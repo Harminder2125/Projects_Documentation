@@ -7,7 +7,7 @@
 
                 <h1 class="text-6xl font-black font-inter text-zinc-800 ">Resolve your issues, even faster</h1>
                 <p class="text-lg mt-8 text-zinc-600">Complete repository of manuals, video tutorials, demo instances, demo credentials and incremental updates of all the projects developed by NIC Punjab</p>
-                <button class="bg-pink-800 hover:bg-red-900 text-white font-bold py-3 px-4 rounded mt-14">
+                <button class="bg-pink-800 hover:bg-fuchsia-900 text-white font-bold py-3 px-4 rounded mt-14">
                     Navigate to Projects
                 </button>
 

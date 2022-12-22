@@ -12,11 +12,7 @@ use App\Http\Controllers\HomeController;
 | contains the "web" middleware group. Now create something great!
 |
 */
-Route::get('/frontend',[HomeController::class , 'index'])->name('Home');
-Route::get('/', function () {
-    return view('welcome');
-});
-
+Route::get('/',[HomeController::class , 'index'])->name('Home');
 Route::middleware([
     'auth:sanctum',
     config('jetstream.auth_session'),
