@@ -43,10 +43,10 @@
         </div>
         @endif
 
-        <div class="flex flex-col h-screen w-full items-center">
-            <div class="z-1 flex h-14 w-full items-center justify-center bg-gradient-to-r from-fuchsia-900 via-pink-800 to-red-700 px-10">
+        <div class="flex flex-col bg-zinc-100 h-screen w-full items-center">
+            <div class="z-1 flex h-14 w-full items-center justify-center bg-gradient-to-r from-fuchsia-900 via-pink-800 to-red-700 px-0">
                 <div class="w-8/12 py-5">
-                    <nav class=" px-2 py-0.5 opacity-90 dark:bg-gray-900 sm:px-4">
+                    <nav class=" pr-2 py-0.5 opacity-90 dark:bg-gray-900 sm:pr-4">
                         <div class="container mx-auto flex flex-wrap items-center justify-between">
                             <a href="https://flowbite.com/" class="flex items-center">
                                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="mr-3 h-6 w-6 text-white sm:h-9">
@@ -98,7 +98,7 @@
                     </nav>
                 </div>
             </div>
-            <div class="w-full flex bg-pink-100">
+            <div class="w-full flex bg-zinc-100">
                 <div class="w-2/12"><span></span></div>
                 <div class="w-3/12 flex flex-col justify-center">
 
@@ -115,7 +115,7 @@
 
 
             </div>
-            <div class="container items-center w-8/12 bg-white h-1/2">
+            <div class="container items-center w-8/12 bg-zinc-100 h-1/2">
 
             </div>
             <div class="footer"></div>
