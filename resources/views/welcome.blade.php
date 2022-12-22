@@ -11,7 +11,8 @@
     <link href="https://fonts.bunny.net/css2?family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&family=Raleway:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+
     <!-- Styles -->
 
     <style>
@@ -27,7 +28,7 @@
 </head>
 
 <body class="antialiased">
-    <div class="items-top z-2 relative flex min-h-screen justify-center bg-gray-100 py-4 dark:bg-gray-900 sm:items-center sm:pt-0">
+    <div class="items-top z-2 relative flex min-h-screen justify-center  py-4 dark:bg-gray-900 sm:items-center sm:pt-0">
         @if (Route::has('login'))
         <div class="fixed top-0 right-0 hidden px-6 py-4 sm:block">
             @auth
@@ -42,7 +43,7 @@
         </div>
         @endif
 
-        <div class="flex flex-col h-screen w-full items-center bg-zinc-100">
+        <div class="flex flex-col h-screen w-full items-center">
             <div class="z-1 flex h-14 w-full items-center justify-center bg-gradient-to-r from-fuchsia-900 via-pink-800 to-red-700 px-10">
                 <div class="w-8/12 py-5">
                     <nav class=" px-2 py-0.5 opacity-90 dark:bg-gray-900 sm:px-4">
@@ -97,9 +98,22 @@
                     </nav>
                 </div>
             </div>
-            <div class="w-full h-80 bg-green-400">
+            <div class="w-full flex bg-pink-100">
+                <div class="w-2/12"><span></span></div>
+                <div class="w-3/12 flex flex-col justify-center">
 
-                vv
+                    <h1 class="text-6xl font-black font-inter text-zinc-800 ">Resolve your issues, even faster</h1>
+                    <p class="text-lg mt-8 text-zinc-600">Complete repository of manuals, video tutorials, demo instances, demo credentials and incremental updates of all the projects developed by NIC Punjab</p>
+                    <button class="bg-pink-800 hover:bg-red-900 text-white font-bold py-3 px-4 rounded mt-14">
+                        Navigate to Projects
+                    </button>
+
+                </div>
+                <div class="w-7/12 py-1 px-20 pb-10 pt-20 justify-self-end"><img src="./assets/images/illustration5.png" /></div>
+
+
+
+
             </div>
             <div class="container items-center w-8/12 bg-white h-1/2">
 
