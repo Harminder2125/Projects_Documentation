@@ -25,8 +25,6 @@ return new class extends Migration
             $table->rememberToken();
             $table->foreignId('current_team_id')->nullable();
             $table->string('profile_photo_path', 2048)->nullable();
-            $table->foreignId('state_id')->constrained('states')->onDelete('restrict')->comment('User belongs to this state');
-            $table->foreignId('reporting_user_id')->constrained('users')->onDelete('restrict')->comment('Reporting officer');
             $table->timestamps();
         });
     }

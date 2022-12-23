@@ -17,11 +17,11 @@ return new class extends Migration
             $table->id();
             $table->string('title',200);
             $table->string('abbreviation',20)->nullable();
-            $table->text('description',8000);
+            $table->text('description',8000)->nullable();
             $table->date('launch_date')->nullable();
             $table->string('launched_by',100)->nullable();
             $table->foreignId('head_user_id')->constrained('users')->onDelete('restrict')->comment('Project Head');
-            $table->foreignId('leader_user_id')->constrained('users')->onDelete('restrict')->comment('Project Team Leader')->nullable();
+            $table->foreignId('group_id')->constrained('groups')->onDelete('restrict')->comment('Related to state or group');
             $table->string('thumbnail_image')->nullable();
             $table->timestamps();
         });

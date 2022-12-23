@@ -13,12 +13,11 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('districts', function (Blueprint $table) {
-            
+        Schema::create('groups', function (Blueprint $table) {
             $table->id();
-            $table->string('code',5)->nullable();
+            $table->string('code',5);
             $table->string('name',50);
-            $table->foreignId('state_id')->constrained('states')->onDelete('restrict');
+            
         });
     }
 
@@ -29,6 +28,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('districts');
+        Schema::dropIfExists('groups');
     }
 };

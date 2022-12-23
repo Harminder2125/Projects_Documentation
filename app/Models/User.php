@@ -29,9 +29,7 @@ class User extends Authenticatable
         'password',
         'mobile',
         'empcode',
-        'designation',
-        'state_id',
-        'reporting_user_id'
+        'designation',       
     ];
 
     /**
@@ -64,20 +62,4 @@ class User extends Authenticatable
         'profile_photo_url',
     ];
 
-    public function reportingUser()
-    {
-        $this->belongsTo(User::class,'reporting_user_id');
-    }
-     public function state()
-    {
-        $this->belongsTo(State::class,'state_id');
-    }
-    public function projectsHeading()
-    {
-        $this->hasMany(Project::class,'head_user_id');
-    }
-    public function projectsLeading()
-    {
-        $this->hasMany(Project::class,'leader_user_id');
-    }
 }
