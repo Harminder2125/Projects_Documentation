@@ -15,16 +15,18 @@ return new class extends Migration
     {
         Schema::create('users', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
-            $table->string('email')->unique();
-            $table->string('empcode')->nullable();
-            $table->string('designation')->nullable();
-            $table->string('mobile')->unique();
+            $table->string('name',50);
+            $table->string('email',50)->unique();
+            $table->string('empcode',10)->nullable();
+            $table->string('designation',50)->nullable();
+            $table->string('mobile',15)->unique();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
             $table->rememberToken();
             $table->foreignId('current_team_id')->nullable();
             $table->string('profile_photo_path', 2048)->nullable();
+            $table->foreignId('state_id')->constrained('states')->onDelete('restrict')->comment('User belongs to this state');
+            $table->foreignId('reporting_user_id')->constrained('users')->onDelete('restrict')->comment('Reporting officer');
             $table->timestamps();
         });
     }

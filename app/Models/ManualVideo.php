@@ -5,7 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Manual_document extends Model
+class ManualVideo extends Model
 {
     use HasFactory;
 }

@@ -15,15 +15,14 @@ return new class extends Migration
     {
         Schema::create('projects', function (Blueprint $table) {
             $table->id();
-            $table->string('title');
-            $table->string('abbreviation');
-            $table->longText('description');
-            $table->dateTime('launch_date');
-            $table->string('launched_by');
-            $table->foreignId('contact_user_id')->constrained('users')->onDelete('restrict');
-            $table->string('thumbnail_image');
-            
-
+            $table->string('title',200);
+            $table->string('abbreviation',20)->nullable();
+            $table->text('description',8000);
+            $table->date('launch_date')->nullable();
+            $table->string('launched_by',100)->nullable();
+            $table->foreignId('head_user_id')->constrained('users')->onDelete('restrict')->comment('Project Head');
+            $table->foreignId('leader_user_id')->constrained('users')->onDelete('restrict')->comment('Project Team Leader')->nullable();
+            $table->string('thumbnail_image')->nullable();
             $table->timestamps();
         });
     }
