@@ -62,4 +62,10 @@ class User extends Authenticatable
         'profile_photo_url',
     ];
 
+    public function permissions()
+    {
+
+            $this->hasMany(permissions::class);
+    }
+
 }

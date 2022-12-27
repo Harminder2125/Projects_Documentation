@@ -1,16 +1,16 @@
 <!DOCTYPE html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 <head>
-    <x-frontend.partials._header />
+    <x-partials.frontend._header />
 </head>
 <body>
-    <x-frontend.partials._nav />
-   
+    <x-partials.frontend._nav />
+
     <div class="font-sans text-gray-900 antialiased">
         {{ $slot }}
     </div>
 
-    <x-frontend.partials._footer />
+    <x-partials.frontend._footer />
     @livewireScripts
 </body>
 </html>

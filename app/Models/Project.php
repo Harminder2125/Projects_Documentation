@@ -18,4 +18,9 @@ class Project extends Model
         'thumbnail_image',
         'group_id'
     ];
+
+    public function group()
+    {
+        $this->belongsTo(group::class);
+    }
 }

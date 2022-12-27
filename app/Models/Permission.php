@@ -14,4 +14,18 @@ class Permission extends Model
         'group_id',
         'project_id'
     ];
+
+    public function rolename()
+    {
+        $this->belongsTo(role::class);
+    }
+     public function groupname()
+    {
+        $this->belongsTo(group::class);
+    }
+    public function projectname()
+    {
+        $this->belongsTo(project::class);
+    }
+
 }
