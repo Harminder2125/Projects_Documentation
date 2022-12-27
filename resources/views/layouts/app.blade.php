@@ -20,7 +20,6 @@
     <x-jet-banner />
 
     <div class="min-h-screen bg-gray-100">
-        @livewire('navigation-menu')
        
         <!-- Page Heading -->
         <!-- @if (isset($header))
@@ -34,10 +33,12 @@
         <!-- Page Content -->
         <div class="flex">
             <x-partials.backend._sidebar />
-        <main>
+        <main class="w-full">
+        @livewire('navigation-menu')
+
             {{ $slot }}
         </main>
-</div>
+        </div>
     </div>
 
     @stack('modals')
