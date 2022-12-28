@@ -17,15 +17,15 @@ class Permission extends Model
 
     public function rolename()
     {
-        $this->belongsTo(role::class);
+        return $this->belongsTo(role::class,'role_id','id');
     }
      public function groupname()
     {
-        $this->belongsTo(group::class);
+        return $this->belongsTo(group::class);
     }
     public function projectname()
     {
-        $this->belongsTo(project::class);
+        return $this->belongsTo(project::class);
     }
 
 }

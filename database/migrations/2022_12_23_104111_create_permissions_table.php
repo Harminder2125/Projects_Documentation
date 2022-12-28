@@ -18,7 +18,7 @@ return new class extends Migration
             $table->foreignId('user_id')->constrained('users')->onDelete('restrict');
             $table->foreignId('role_id')->constrained('roles')->onDelete('restrict');
             $table->foreignId('group_id')->constrained('groups')->onDelete('restrict');
-            $table->foreignId('project_id')->constrained('projects')->onDelete('restrict')->nullable();
+            $table->foreignId('project_id')->nullable()->constrained('projects')->onDelete('restrict');
             $table->timestamps();
         });
     }

@@ -9,6 +9,7 @@ use Illuminate\Notifications\Notifiable;
 use Laravel\Fortify\TwoFactorAuthenticatable;
 use Laravel\Jetstream\HasProfilePhoto;
 use Laravel\Sanctum\HasApiTokens;
+use App\Models\Permission;
 
 class User extends Authenticatable
 {
@@ -29,7 +30,9 @@ class User extends Authenticatable
         'password',
         'mobile',
         'empcode',
-        'designation',       
+        'designation', 
+        'superadmin',
+        'admin'      
     ];
 
     /**
@@ -65,7 +68,7 @@ class User extends Authenticatable
     public function permissions()
     {
 
-            $this->hasMany(permissions::class);
+            return $this->hasMany(Permission::class);
     }
 
 }
