@@ -21,7 +21,7 @@ class Permission extends Model
     }
      public function groupname()
     {
-        return $this->belongsTo(group::class);
+        return $this->belongsTo(group::class,'group_id','id');
     }
     public function projectname()
     {

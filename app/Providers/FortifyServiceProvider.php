@@ -13,6 +13,7 @@ use Illuminate\Support\ServiceProvider;
 use Laravel\Fortify\Fortify;
 use Illuminate\Support\Facades\Hash;
 use App\Models\User;
+use Session;
 
 
 class FortifyServiceProvider extends ServiceProvider
@@ -37,29 +38,14 @@ class FortifyServiceProvider extends ServiceProvider
         Fortify::authenticateUsing(function (Request $request) {
             $user = User::where('email', $request->email)->first();
      
-            if ($user &&
-                Hash::check($request->password, $user->password)) {
-                    $permissions = $user->permissions()->get();
-                    $isSuperAdmin = null;
-                    $isAdmin = null;
-                    $superadmintitle ="";
-                    $admintitle="";
-                    foreach($permissions as $per)
-                    {
-                        if($per->role_id == 1)
-                        {
-                            $is_superadmin = true;
-                            $superadmin_title =$per->rolename()->first()->name;
-                        }
-                        if($per->role_id ==2)
-                        {
-                           $is_admin = true;
-                            $admin_title = $per->rolename()->first()->name;
-                        }
-                    }
-                    $user->superadmin = $superadmin;
-                    $user->admin =$admin;
-                    return $user;
+            if ($user && Hash::check($request->password, $user->password)) {
+                $permissions = $user->permissions()->get();
+                permissions::addPermissionsToSession('permissions',$permissions);  // Formating and adding 
+                $mainRole = permissions::mainRole();
+                Session::put('role_id',$mainRole['role_id']);
+                Session::put('role',$mainRole['role']);
+                Session::put('group',$mainRole['group']);
+                return $user;
             }
         });
         

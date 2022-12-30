@@ -18,10 +18,10 @@ class RoleSeeder extends Seeder
         $roles = array(
             array('name' => "Super Admin"),
             array('name' => "Admin",),
+            array('name' => "User"),
             array('name' => "Project Head"),
             array('name' => "Team Leader"),
-            array('name' => "Team Member"),
-            array('name'=>"User"),
+            array('name'=>"Team Member"),
         );
         DB::table('roles')->insert($roles);
 
