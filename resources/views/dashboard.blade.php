@@ -14,7 +14,7 @@
 
                 <div class="flex flex-col justify-ceter items-center p-20">
                     <img src="./assets/images/permission.jpg" class="w-60" />
-                    <h1 class="font-bold text-pink-800 uppercase">No role/permissions assigned !</h1>
+                    <h1 class="font-bold text-pink-800 uppercase">Test No role/permissions assigned !</h1>
                     <p class="py-2"> You don't have any role/permission assigned to you. Contact your group/state admin to assign you some role.</p>
                 </div>
             </div>
