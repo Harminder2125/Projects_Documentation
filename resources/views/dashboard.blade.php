@@ -36,10 +36,7 @@
                             <h1 class="font-semibold">States/Groups</h1>
                             <p class="text-sm text-gray-500">States or groups who are registered with us.</p>
                         </div>
-                        <div class="flex-1">
-                            <h1 class="font-semibold">States/Groups</h1>
-                            <p class="text-sm text-gray-500">States or groups who are registered with us.</p>
-                        </div>
+                        
 
                         <div class="flex-1 flex justify-end">
 
