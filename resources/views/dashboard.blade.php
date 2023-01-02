@@ -120,6 +120,7 @@
                 <h1 class="font-semibold py-3 border-b-2 border-gray-200 w-full">Registred Users</h1>
 
             </div>
+         
 
 
         </div>
