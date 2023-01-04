@@ -6,7 +6,7 @@
 <body>
     <x-partials.frontend._nav />
 
-    <div class="font-sans text-gray-900 antialiased">
+    <div class="font-sans text-gray-700 antialiased">
         {{ $slot }}
     </div>
 

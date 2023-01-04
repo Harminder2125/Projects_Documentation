@@ -2,7 +2,7 @@
     <div class="flex flex-col bg-gradient-to-b from-zinc-100 to-white w-full items-center">
 
 
-        <div class="w-full flex ">
+        <div class="w-full flex md:py-10">
             <div class="w-2/12"><span></span></div>
             <div class="w-3/12 flex flex-col justify-center">
 
@@ -19,7 +19,7 @@
 
 
         </div>
-        <div class="w-full items-center flex flex-col border-t-0  border-zinc-300 border-dashed h-16">
+        <div class="w-full items-center flex flex-col border-t-0  border-zinc-300 border-dashed>
             {{-- <div class="w-8/12 flex items-center">
 
                 <h1 class="uppercase text-zinc-800 font-bold font-inter mr-2 text-lg">New Updates</h1>
