@@ -21,6 +21,6 @@ class Project extends Model
 
     public function group()
     {
-        $this->belongsTo(group::class);
+        return $this->belongsTo(group::class);
     }
 }
