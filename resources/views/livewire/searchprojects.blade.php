@@ -3,7 +3,7 @@
 
 
 
-        {{$searchTerm}}
+
         <div class="w-8/12">
             <div class="border border-gray-500 flex bg-white justify-center items-center  rounded-md px-1">
                 <div class="px-2 border-r border-gray-400"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6 text-gray-400">
@@ -12,12 +12,14 @@
                 </div>
 
                 <x-jet-input type="text" wire:model="searchTerm" placeholder="Start typing project name..." class="w-full border-0 h-12">
-                </x-jet-input>
+                </x-jet-input>{{$searchTerm}}
+
 
             </div>
 
 
         </div>
+
 
         <div class="w-2/12 pl-5">
 
