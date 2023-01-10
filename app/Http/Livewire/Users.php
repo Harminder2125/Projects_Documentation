@@ -12,7 +12,7 @@ class Users extends Component
     {
         $users = User::when($this->searchUser,function($query, $searchUser){
                 return $query->where('name','LIKE',"%$this->searchUser%");
-         })->paginate(2);
+         })->paginate(6);
 
         return view('livewire.users',[
             'allusers'=>$users

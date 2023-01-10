@@ -9,7 +9,7 @@
         <div class="max-w-8xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white overflow-hidden shadow-xl p-10">
 
-                <h1 class="text-lg text-pink-800 font-semibold mb-3"> All Users</h1>
+                <h1 class="text-lg text-pink-800 font-semibold"> All Users</h1>
 
                 @livewire('users')
             </div>
