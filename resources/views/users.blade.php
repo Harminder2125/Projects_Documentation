@@ -11,7 +11,7 @@
 
                 <h1 class="text-lg text-pink-800 font-semibold"> All Users</h1>
 
-                @livewire('users')
+                @livewire('usercomponent')
             </div>
         </div>
 

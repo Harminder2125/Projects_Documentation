@@ -1,12 +1,17 @@
 @props(['style' => session('flash.bannerStyle', 'success'), 'message' => session('flash.banner')])
 
-<div x-data="{{ json_encode(['show' => true, 'style' => $style, 'message' => $message]) }}" :class="{ 'bg-green-500': style == 'success', 'bg-red-700': style == 'danger', 'bg-gray-500': style != 'success' && style != 'danger' }" style="display: none;" x-show="show && message" x-init="
+<div x-data="{{ json_encode(['show' => true, 'style' => $style, 'message' => $message]) }}" :class="{ 'bg-green-500': style == 'success', 'bg-red-700': style == 'danger', 'bg-gray-500': style != 'success' && style != 'danger' }" x-transition.duration.1000ms style="display: none;" x-show="show && message" x-init="
+
+
                 document.addEventListener('banner-message', event => {
                     style = event.detail.style;
                     message = event.detail.message;
                     show = true;
                 });
-               
+               Livewire.on('close-banner',event=> {
+               setTimeout(function (){show = false},3000);
+               });
+
             ">
     <div class="max-w-screen-xl mx-auto py-2 px-3 sm:px-6 lg:px-8">
         <div class="flex items-center justify-between flex-wrap">

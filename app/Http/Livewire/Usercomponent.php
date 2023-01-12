@@ -9,11 +9,12 @@ use Illuminate\Validation\Rules\Password;
 use Illuminate\Support\Facades\Validator;
 
 
-class Users extends Component
+class Usercomponent extends Component
 {
     public $searchUser;
     public $confirmingUserAddition = false;
-    public $user=[
+    public $confirmingUserEditing = false;
+    public $edituser=[
         "name"=>"",
         "email"=>"",
         "mobile"=>"",
@@ -22,6 +23,17 @@ class Users extends Component
         "password"=>"",
         "password_confirmation"=>"",
     ];
+    public $user=[
+            "name"=>"",
+        "email"=>"",
+        "mobile"=>"",
+        "designation"=>"",
+        "empcode"=>"",
+        "password"=>"",
+        "password_confirmation"=>"",
+        ];
+   
+    
     public function render()
     {
         $users = User::when($this->searchUser,function($query, $searchUser){
@@ -30,7 +42,7 @@ class Users extends Component
 
          $roles= Role::all();
 
-        return view('livewire.users',[
+        return view('livewire.usercomponent',[
             'allusers'=>$users,
             'roles'=>$roles
         ]);
@@ -39,6 +51,12 @@ class Users extends Component
     {
         if($key == 'confirmingUserAddition')
             $this->confirmingUserAddition = !$this->confirmingUserAddition;
+        else if($key =='confirmingUserEditing')
+            $this->confirmingUserEditing = !$this->confirmingUserEditing;
+        else
+        {
+
+        }
     }
     public function addUser()
     {
@@ -58,9 +76,22 @@ class Users extends Component
         $this->toggle('confirmingUserAddition');
         $this->dispatchBrowserEvent('banner-message', [
             'style' => 'success',
-            'message' => 'Amazing success banner!'
+            'message' => 'New user added successfully!'
         ]);
       
-         $this->dispatchBrowserEvent('close-banner',[]);
+        $this->emit('close-banner');
+    }
+    public function openUserForEditing($id)
+    {
+        
+        $edituser = User::find($id);
+        $this->edituser['name'] = $edituser->name;
+        $this->edituser['email'] = $edituser->email;
+        $this->edituser['mobile'] = $edituser->mobile;
+        $this->edituser['designation'] = $edituser->designation;
+        $this->edituser['empcode'] = $edituser->empcode;
+       
+
+        $this->toggle('confirmingUserEditing');
     }
 }

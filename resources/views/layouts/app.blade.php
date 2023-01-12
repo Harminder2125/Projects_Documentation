@@ -15,12 +15,14 @@
 
     <!-- Styles -->
     @livewireStyles
+
+
 </head>
 <body class="font-sans antialiased">
     <x-jet-banner />
 
     <div class="min-h-screen bg-gray-100">
-       
+
         <!-- Page Heading -->
         <!-- @if (isset($header))
         <header class="bg-white shadow">
@@ -33,16 +35,19 @@
         <!-- Page Content -->
         <div class="flex">
             <x-partials.backend._sidebar />
-        <main class="w-full">
-        @livewire('navigation-menu')
+            <main class="w-full">
+                @livewire('navigation-menu')
 
-            {{ $slot }}
-        </main>
+                {{ $slot }}
+            </main>
         </div>
     </div>
+
+
 
     @stack('modals')
 
     @livewireScripts
+
 </body>
 </html>

@@ -31,8 +31,6 @@ class User extends Authenticatable
         'mobile',
         'empcode',
         'designation', 
-        'superadmin',
-        'admin'      
     ];
 
     /**

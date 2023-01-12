@@ -15,6 +15,7 @@ use App\Http\Controllers\DashboardController;
 |
 */
 Route::get('/',[HomeController::class , 'index'])->name('Home');
+
 Route::middleware([
     'auth:sanctum',
     config('jetstream.auth_session'),
@@ -29,6 +30,7 @@ Route::middleware([
     Route::get('/users', function () {
         return view('users');
     })->name('users');
+    
 
     Route::get('/groups', function () {
         return view('groups');
