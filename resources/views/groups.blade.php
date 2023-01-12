@@ -9,7 +9,7 @@
         <div class="max-w-8xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white overflow-hidden shadow-xl p-10">
 
-                <h1> This is groups view</h1>
+                @livewire('group-component')
             </div>
         </div>
 
