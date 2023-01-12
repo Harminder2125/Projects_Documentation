@@ -99,7 +99,7 @@
 
 
 
-                    <x-jet-danger-button>
+                    <x-jet-danger-button wire:click="openUserForDeletion({{$usr['id']}})">
                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-4 h-4">
                             <path stroke-linecap="round" stroke-linejoin="round" d="M14.74 9l-.346 9m-4.788 0L9.26 9m9.968-3.21c.342.052.682.107 1.022.166m-1.022-.165L18.16 19.673a2.25 2.25 0 01-2.244 2.077H8.084a2.25 2.25 0 01-2.244-2.077L4.772 5.79m14.456 0a48.108 48.108 0 00-3.478-.397m-12 .562c.34-.059.68-.114 1.022-.165m0 0a48.11 48.11 0 013.478-.397m7.5 0v-.916c0-1.18-.91-2.164-2.09-2.201a51.964 51.964 0 00-3.32 0c-1.18.037-2.09 1.022-2.09 2.201v.916m7.5 0a48.667 48.667 0 00-7.5 0" />
                         </svg>
@@ -260,7 +260,7 @@
         </x-slot>
 
         <x-slot name="title">
-            Add User Account
+            Update User Details
         </x-slot>
 
         <x-slot name="content">
@@ -269,20 +269,14 @@
             </div>
 
             <div class="py-5 pr-10">
-                {{print_r($user['name'])}}
-
+                   
                 <x-jet-validation-errors class="mb-4" />
-
                 <form method="POST">
                     @csrf
-
                     <div class="w-full flex gap-x-5">
                         <div class="w-full">
                             <x-jet-label for="name" value="{{ __('Name') }}" />
                             <x-jet-input wire:model="edituser.name" value="{{$user['name']}}" id="upd_name" class="block mt-1 w-full" type="text" name="upd_name" required autofocus autocomplete="name" />
-
-
-
                         </div>
                         <div class="w-full">
                             <x-jet-label for="role" value="{{ __('Role') }}" />
@@ -352,7 +346,7 @@
                 Close
             </x-jet-secondary-button>
 
-            <x-jet-danger-button class="ml-2" wire:click="addUser" wire:loading.attr="disabled">
+            <x-jet-danger-button class="ml-2" wire:click="updateUser({{$edituser['id']}})" wire:loading.attr="disabled">
                 Update User Details
             </x-jet-danger-button>
         </x-slot>
@@ -360,5 +354,48 @@
 
 
 
+
+    <x-jet-confirmation-modal wire:model="confirmingUserDeletion">
+
+        <x-slot name="icon">
+            <div class="mx-auto shrink-0 flex items-center justify-center h-12 w-12 rounded-full bg-green-100 sm:mx-0 sm:h-10 sm:w-10">
+                <svg class="h-6 w-6 text-green-600" stroke="currentColor" fill="none" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M19 7.5v3m0 0v3m0-3h3m-3 0h-3m-2.25-4.125a3.375 3.375 0 11-6.75 0 3.375 3.375 0 016.75 0zM4 19.235v-.11a6.375 6.375 0 0112.75 0v.109A12.318 12.318 0 0110.374 21c-2.331 0-4.512-.645-6.374-1.766z" />
+                </svg>
+
+
+            </div>
+        </x-slot>
+
+        <x-slot name="title">
+            Delete User?
+        </x-slot>
+
+        <x-slot name="content">
+            <div class="pr-10">
+                <h2>Are you sure you want to permanently delete this user from the system.</h2>
+            </div>
+            <div class="w-full">
+            <table class="w-1/2 border-separate mt-2">
+                <tr><th class="w-1/2 bg-red-500 text-red-50  p-2">Name</th><td class="w-1/2 text-red-500 bg-red-50 p-2 line-through">{{$edituser['name']}}</td></tr>
+                <tr><th class="w-1/2 bg-red-500 text-red-50  p-2">Email</th><td class="w-1/2 text-red-500 bg-red-50 p-2 line-through">{{$edituser['email']}}</td></tr>
+                <tr><th class="w-1/2 bg-red-500 text-red-50  p-2">Mobile</th><td class="w-1/2 text-red-500 bg-red-50 p-2 line-through">{{$edituser['mobile']}}</td></tr>
+                <tr><th class="w-1/2 bg-red-500 text-red-50  p-2">Employee Code</th><td class="w-1/2 text-red-500 bg-red-50 p-2 line-through">{{$edituser['empcode']}}</td></tr>
+                <tr><th class="w-1/2 bg-red-500 text-red-50  p-2">Designation</th><td class="w-1/2 text-red-500 bg-red-50 p-2 line-through">{{$edituser['designation']}}</td></tr>
+
+            </table>
+            </div>
+        </x-slot>
+
+        <x-slot name="footer">
+            <x-jet-secondary-button wire:click="$toggle('confirmingUserDeletion')" wire:loading.attr="disabled">
+                Cancel
+            </x-jet-secondary-button>
+
+            <x-jet-danger-button class="ml-2" wire:click="deleteUser({{$edituser['id']}})" wire:loading.attr="disabled">
+                delete it !
+            </x-jet-danger-button>
+        </x-slot>
+    </x-jet-confirmation-modal>
 
 </div>
