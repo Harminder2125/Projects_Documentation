@@ -9,10 +9,19 @@ use App\Models\Group;
 class GroupComponent extends Component
 {
     public $searchGroup="";
-   public $group=[
+    public $refresh = false;
+
+    public $group=[
     "name"=>"",
     "code"=>""
    ];
+   public function toggle($key)
+   {
+
+    // if($key =="refresh")
+        $this->refresh = !$this->refresh;
+
+   }
     public function render()
     {
         $groups = Group::when($this->searchGroup,function($query, $searchGroup){
@@ -37,5 +46,6 @@ class GroupComponent extends Component
         ]);
       
         $this->emit('close-banner');
+        $this->toggle('refresh');
     }
 }
