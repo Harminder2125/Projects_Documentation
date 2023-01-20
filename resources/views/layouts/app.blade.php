@@ -34,7 +34,7 @@
 
         <!-- Page Content -->
         <div class="flex">
-            <x-partials.backend._sidebar />
+            @include('layouts.partials._sidebar')
             <main class="w-full">
                 @livewire('navigation-menu')
 
