@@ -1,4 +1,4 @@
-<x-base-layout>
+<x-front-layout>
     <div class="flex flex-col bg-gradient-to-b from-zinc-100 to-white w-full items-center">
 
 
@@ -39,4 +39,4 @@
 
     </div>
 
-</x-base-layout>
+</x-front-layout>

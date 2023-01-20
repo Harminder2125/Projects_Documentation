@@ -22,22 +22,8 @@ Route::middleware([
     'verified'
 ])->group(function () {
 
-
-    Route::get('/dashboard', function () {
-        return view('dashboard');
-    })->name('dashboard');
-    
-    Route::get('/users', function () {
-        return view('users');
-    })->name('users');
-    
-
-    Route::get('/groups', function () {
-        return view('groups');
-    })->name('groups');
-
-
-
-
+    Route::get('/dashboard',[DashboardController::class,'index'])->name('dashboard');
+    Route::get('/users',[DashboardController::class,'users'])->name('users');
+    Route::get('/groups',[DashboardController::class,'groups'])->name('groups');
     
 });
