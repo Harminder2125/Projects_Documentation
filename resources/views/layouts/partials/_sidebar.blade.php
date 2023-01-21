@@ -3,7 +3,7 @@
         <div class="h-16 bg-fuchsia-900 mb-5 flex justify-center items-center">
             <h1 class="text-sm uppercase font-semibold text-white">NIC Project Manual</h1>
         </div>
-        <div class="flex flex-col px-3 pb-5">
+        <div class="flex flex-col px-5 pb-5">
             <div class="rounded-full w-16 h-16 bg-pink-700 mb-1 flex  justify-center items-center">
                 @php
                 $words = explode(" ", Auth::user()->name);
@@ -18,22 +18,30 @@
             <p class="text-sm text-gray-400">{{ Auth::user()->designation }}</p>
 
         </div>
-        <x-jet-nav-link href="{{ route('dashboard') }}" :active="request()->routeIs('dashboard')">
-            {{ __('Dashboard') }}
-        </x-jet-nav-link>
-        <x-jet-nav-link href="{{ route('users') }}" :active="request()->routeIs('users')">
-            {{ __('Users') }}
-        </x-jet-nav-link>
-        <x-jet-nav-link href="{{ route('groups') }}" :active="request()->routeIs('groups')">
-            {{ __('Groups/States') }}
-        </x-jet-nav-link>
+        <div class="flex flex-col px-3">
+            <x-jet-nav-link href="{{ route('dashboard') }}" :active="request()->routeIs('dashboard')">
+                {{ __('Dashboard') }}
+            </x-jet-nav-link>
+            <x-jet-nav-link href="{{ route('users') }}" :active="request()->routeIs('users')">
+                {{ __('Users') }}
+            </x-jet-nav-link>
+            <x-jet-nav-link href="{{ route('groups') }}" :active="request()->routeIs('groups')">
+                {{ __('Groups/States') }}
+            </x-jet-nav-link>
+            <x-jet-nav-link href="{{ route('assign_roles') }}" :active="request()->routeIs('assign_roles')">
 
-        <x-jet-nav-link href="{{ route('dashboard') }}" :active="request()->routeIs('dashboard1')">
-            {{ __('Contact') }}
-        </x-jet-nav-link>
-        <x-jet-nav-link href="{{ route('profile.show') }}" :active="request()->routeIs('profile.show')">
-            {{ __('Profile') }}
-        </x-jet-nav-link>
+
+                {{ __('Assign Roles') }}
+            </x-jet-nav-link>
+
+            <x-jet-nav-link href="{{ route('dashboard') }}" :active="request()->routeIs('dashboard1')">
+                {{ __('Contact') }}
+            </x-jet-nav-link>
+            <x-jet-nav-link href="{{ route('profile.show') }}" :active="request()->routeIs('profile.show')">
+                {{ __('Profile') }}
+            </x-jet-nav-link>
+        </div>
+
 
     </div>
 </div>
