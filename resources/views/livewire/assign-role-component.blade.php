@@ -38,20 +38,41 @@
 
        </div>
        <div class="flex-1">
-
-           <div class="w-full bg-zinc-100 p-4 rounded-lg shadow-lg flex mb-8">
-               <div class="h-24 w-24 rounded-full bg-pink-800 flex justify-center items-center">
+            <div class="flex justify-center ">
+           <div class="w-2/5 relative center bg-pink-100 p-4 rounded-lg shadow-lg flex-col items-center justify-center  mb-8">
+                <span class="bg-pink-800 absolute top-2 right-1 text-white text-xs font-medium mr-2 px-2.5 py-0.5 rounded dark:bg-pink-800 dark:text-gray-300">
+                Admin</span>
+                <div class="w-full flex justify-center">
+                <div class="h-32 w-32 font-bold text-white rounded-full bg-pink-800 flex justify-center items-center">
                    VV
-               </div>
-               <div>
-                   Name: VIvek verma
+                </div>
+                </div>
+               
+                   <div class="py-3 text-center text-xl font-bold">
+                   Vivek Verma
+                   </div>
+                   <div class="py-0 text-center">
+                   Scientist G (DDG)
+                   </div>
+                   <div class="py-1 text-center text-sm">
+                   Emp code : 1200 | vivek.verma@nic.in
+                   </div>
+                   <div class="py-1 text-center">
+                   
+                   </div>
 
-               </div>
+              
 
            </div>
+           </div>
+           <div>
+           hello
+           </div>
+        </div>
+        <div>
 
 
-           <div class="w-full bg-zinc-100 p-4 rounded-lg shadow-lg flex">
+           {{-- <div class="w-full bg-zinc-100 p-4 rounded-lg shadow-lg flex">
                <div class="h-24 w-24 rounded-full bg-pink-800 flex justify-center items-center">
                    VV
                </div>
@@ -60,7 +81,7 @@
 
                </div>
 
-           </div>
+           </div> --}}
 
 
 
