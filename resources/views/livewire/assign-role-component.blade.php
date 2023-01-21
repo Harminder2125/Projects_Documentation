@@ -50,20 +50,19 @@
 
            </div>
 
-           @foreach($users as $user)
-           @if($user->role_id ==4)
+
            <div class="w-full bg-zinc-100 p-4 rounded-lg shadow-lg flex">
                <div class="h-24 w-24 rounded-full bg-pink-800 flex justify-center items-center">
                    VV
                </div>
-               <div wire:key="{{$user->id}}">
-                   Name: {{$user->name}}
+               <div wire:key="{{$user['id']}}">
+                   Name: {{$user['name']}}
 
                </div>
 
            </div>
 
-           @endif
-           @endforeach
+
+
        </div>
    </div>

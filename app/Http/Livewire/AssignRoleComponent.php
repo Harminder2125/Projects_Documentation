@@ -8,8 +8,8 @@ use App\Models\User;
 class AssignRoleComponent extends Component
 {
     public $projectHeads=[];
-    // public $privelegedUser=[];
     public $users=[];
+    public $hod=[];
    
 
     public function mount()
@@ -22,11 +22,6 @@ class AssignRoleComponent extends Component
                 array_push($this->projectHeads, $user->id);
 
             }
-            // else
-            // {
-            //     array_push($this->privelegedUser, $user->id);
-
-            // }
         }
         
     }
@@ -38,12 +33,14 @@ class AssignRoleComponent extends Component
             "users"=>$this->users
         ]);
     }
+   
     public function update($id)
     {
        $role_id = array_search($id,$this->projectHeads)?4:3;
        $temp = User::find($id);
      
        $temp->role_id =$role_id;
+       
         
        $temp->save();
        
