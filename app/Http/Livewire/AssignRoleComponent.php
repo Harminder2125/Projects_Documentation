@@ -8,42 +8,42 @@ use App\Models\User;
 class AssignRoleComponent extends Component
 {
     public $projectHeads=[];
-    public $users=[];
-    public $hod=[];
-   
-
-    public function mount()
-    {
-        $this->users = User::all();
-        foreach($this->users as $user)
-        {
-            if($user->role_id == 4)
-            {
-                array_push($this->projectHeads, $user->id);
-
-            }
-        }
-        
-    }
+    public $searchterm="";
+    public $users = [];
+    public $openSearchModal = false;
 
     public function render()
     {
-        
+         $this->projectHeads = User::where('role_id','=',4)->get();
+        //  $this->users = User::where('role_id','=',3)->get();
+        $this->users = User::when($this->searchterm,function($query, $searchterm){
+                return $query->where('role_id','=',3)->where('name','LIKE',"%$searchterm%");
+         })->where('role_id','=',3)->get();
+         
         return view('livewire.assign-role-component',[
+            "hods"=>$this->projectHeads,
             "users"=>$this->users
         ]);
     }
-   
-    public function update($id)
+    public function toggle($key)
     {
-       $role_id = array_search($id,$this->projectHeads)?4:3;
-       $temp = User::find($id);
-     
-       $temp->role_id =$role_id;
-       
-        
-       $temp->save();
-       
+        if($key =="SearchModal")
+        {
+            $this->openSearchModal = ! $this->openSearchModal;
+        }
+    }
+   
+    public function removeHOD($id)
+    {
+        $temp = User::find($id);
+        $temp->role_id = 3;
+        $temp->save();
+    }
+     public function addHOD($id)
+    {
+        $temp = User::find($id);
+        $temp->role_id = 4;
+        $temp->save();
     }
     
 }
