@@ -39,12 +39,12 @@ class FortifyServiceProvider extends ServiceProvider
             $user = User::where('email', $request->email)->first();
      
             if ($user && Hash::check($request->password, $user->password)) {
-                $permissions = $user->permissions()->get();
-                permissions::addPermissionsToSession('permissions',$permissions);  // Formating and adding 
-                $mainRole = permissions::mainRole();
-                Session::put('role_id',$mainRole['role_id']);
-                Session::put('role',$mainRole['role']);
-                Session::put('group',$mainRole['group']);
+                       
+                Session::put('role_id',$user->role_id);
+                Session::put('role',$user->role->name);
+                Session::put('group_id',$user->group_id);
+
+                Session::put('group',$user->group->name);
                 return $user;
             }
         });

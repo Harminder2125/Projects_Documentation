@@ -10,6 +10,9 @@ use Laravel\Fortify\TwoFactorAuthenticatable;
 use Laravel\Jetstream\HasProfilePhoto;
 use Laravel\Sanctum\HasApiTokens;
 use App\Models\Permission;
+use App\Models\Role;
+use App\Models\Group;
+
 
 class User extends Authenticatable
 {
@@ -31,6 +34,8 @@ class User extends Authenticatable
         'mobile',
         'empcode',
         'designation', 
+        'role_id',
+        'group_id'
     ];
 
     /**
@@ -67,6 +72,14 @@ class User extends Authenticatable
     {
 
             return $this->hasMany(Permission::class);
+    }
+    public function role()
+    {
+        return $this->belongsTo(Role::class);
+    }
+    public function group()
+    {
+        return $this->belongsTo(Group::class);
     }
 
 }

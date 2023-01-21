@@ -166,6 +166,7 @@
                             <x-jet-label for="name" value="{{ __('Name') }}" />
                             <x-jet-input wire:model="user.name" id="name" class="block mt-1 w-full" type="text" name="name" :value="old('name')" required autofocus autocomplete="name" />
                         </div>
+                
                         <div class="w-full">
                             <x-jet-label for="role" value="{{ __('Role') }}" />
                             <select id="role" name="role" class="w-full">
@@ -282,7 +283,7 @@
                             <x-jet-label for="role" value="{{ __('Role') }}" />
                             <select id="role" name="role" class="w-full">
                                 @foreach($roles as $role)
-                                <option value="{{$role->id}}" {{$role->id==3?'selected':''}}>
+                                <option value="{{$role->id}}" {{$role->id==$edituser['role_id']?'selected':''}}>
                                     {{$role->name}}
                                 </option>
                                 @endforeach

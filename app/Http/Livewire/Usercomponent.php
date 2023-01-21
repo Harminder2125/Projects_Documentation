@@ -7,6 +7,7 @@ use App\Models\User;
 use App\Models\Role;
 use Illuminate\Validation\Rules\Password;
 use Illuminate\Support\Facades\Validator;
+use Session;
 
 
 class Usercomponent extends Component
@@ -25,6 +26,7 @@ class Usercomponent extends Component
         "empcode"=>"",
         "password"=>"",
         "password_confirmation"=>"",
+        "role_id"=>3,
     ];
     public $user=[
             "name"=>"",
@@ -34,6 +36,7 @@ class Usercomponent extends Component
         "empcode"=>"",
         "password"=>"",
         "password_confirmation"=>"",
+        "role_id"=>3
         ];
    
     
@@ -76,7 +79,7 @@ class Usercomponent extends Component
             // 'password' => $this->passwordRules(),
             // 'terms' => Jetstream::hasTermsAndPrivacyPolicyFeature() ? ['accepted', 'required'] : '',
         ])->validate();
-
+            $this->user['group_id'] = Session::get('group_id');
         User::create($this->user);
         
         $this->toggle('confirmingUserAddition');
@@ -97,8 +100,7 @@ class Usercomponent extends Component
         $this->edituser['mobile'] = $edituser->mobile;
         $this->edituser['designation'] = $edituser->designation;
         $this->edituser['empcode'] = $edituser->empcode;
-       
-
+        $this->edituser['role_id'] = $edituser->role_id;
         $this->toggle('confirmingUserEditing');
     }
     public function openUserForDeletion($id)
