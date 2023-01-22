@@ -1,21 +1,8 @@
    <div class="mt-5">
-       <div class="w-full p-6 rounded-sm shadow-sm bg-gray-300">
+       <div class="w-full p-6 rounded-sm shadow-sm bg-gray-100">
            <x-jet-validation-errors class="mb-4" />
-           <div class="w-full  flex">
-               <form method="POST" class="w-full flex justify-center items-center">
-                   @csrf
-                   <div class="border border-zinc-200 w-full mr-4 rounded-sm">
-                       {{-- <x-jet-input type="text" wire:model.debounce.500ms="searchterm" placeholder="Officer / Employee Name..." class="w-full border-0 h-12 rounded-lg">
-
-                       </x-jet-input> --}}
-
-                   </div>
-
-               </form>
-
-
-
-               <x-jet-button wire:click="toggle('SearchModal')" class="h-12 bg-green-600 hover:bg-green-800  focus:border-green-700 focus:ring focus:ring-green-300 active:bg-green-600 "><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5 mr-2">
+           <div class="w-full  flex justify-end">
+                             <x-jet-button wire:click="toggle('SearchModal')" class="h-12 bg-green-600 hover:bg-green-800  focus:border-green-700 focus:ring focus:ring-green-300 active:bg-green-600 "><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5 mr-2">
 
                        <path stroke-linecap="round" stroke-linejoin="round" d="M19 7.5v3m0 0v3m0-3h3m-3 0h-3m-2.25-4.125a3.375 3.375 0 11-6.75 0 3.375 3.375 0 016.75 0zM4 19.235v-.11a6.375 6.375 0 0112.75 0v.109A12.318 12.318 0 0110.374 21c-2.331 0-4.512-.645-6.374-1.766z" />
                    </svg>

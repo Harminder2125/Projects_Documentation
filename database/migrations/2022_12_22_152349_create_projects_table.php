@@ -18,7 +18,10 @@ return new class extends Migration
             $table->string('title',200);
             $table->string('abbreviation',20)->nullable();
             $table->text('description',8000)->nullable();
+            $table->string('category',50)->nullable();
+            $table->string('live_url',150)->nullable();
             $table->date('launch_date')->nullable();
+            $table->string('publish_status',20)->nullable();
             $table->string('launched_by',100)->nullable();
             // $table->foreignId('head_user_id')->constrained('users')->onDelete('restrict')->comment('Project Head');
             $table->foreignId('group_id')->constrained('groups')->onDelete('restrict')->comment('Related to state or group');

@@ -33,7 +33,11 @@
 
                 {{ __('Assign Roles') }}
             </x-jet-nav-link>
+ <x-jet-nav-link href="{{ route('projects') }}" :active="request()->routeIs('projects')">
 
+
+                {{ __('Projects') }}
+            </x-jet-nav-link>
             <x-jet-nav-link href="{{ route('dashboard') }}" :active="request()->routeIs('dashboard1')">
                 {{ __('Contact') }}
             </x-jet-nav-link>

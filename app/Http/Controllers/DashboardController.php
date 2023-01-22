@@ -24,5 +24,9 @@ class DashboardController extends Controller
        
         return view('assign-role');
     }
+    public function projects()
+    {
+        return view('projects');
+    }
     
 }
