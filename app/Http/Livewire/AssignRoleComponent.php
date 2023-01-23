@@ -14,7 +14,7 @@ class AssignRoleComponent extends Component
 
     public function render()
     {
-         $this->projectHeads = User::where('role_id','=',4)->get();
+         $this->projectHeads = User::PrivelegedUsers()->get();
         //  $this->users = User::where('role_id','=',3)->get();
         $this->users = User::when($this->searchterm,function($query, $searchterm){
                 return $query->where('role_id','=',3)->where('name','LIKE',"%$searchterm%");
@@ -44,6 +44,15 @@ class AssignRoleComponent extends Component
         $temp = User::find($id);
         $temp->role_id = 4;
         $temp->save();
+    }
+    public function getNameInitials($value)
+    {
+        $words = explode(" ", $value);
+        $acronym = "";
+        foreach ($words as $w) {
+            $acronym .= mb_substr($w, 0, 1);
+        }
+        return $acronym;
     }
     
 }

@@ -43,7 +43,6 @@ class FortifyServiceProvider extends ServiceProvider
                 Session::put('role_id',$user->role_id);
                 Session::put('role',$user->role->name);
                 Session::put('group_id',$user->group_id);
-
                 Session::put('group',$user->group->name);
                 return $user;
             }

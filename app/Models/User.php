@@ -68,12 +68,12 @@ class User extends Authenticatable
         'profile_photo_url',
     ];
 
-    public function permissions()
+    public function scopePrivelegedUsers($query)
     {
-
-            return $this->hasMany(Permission::class);
+         return $query->where('role_id','=',4);   // Getting list of all priveleged Users
     }
-    public function role()
+
+    function role()
     {
         return $this->belongsTo(Role::class);
     }
