@@ -28,5 +28,12 @@ class DashboardController extends Controller
     {
         return view('projects');
     }
+
+    public function divisions()
+    {
+        return view('divisions');
+    }
+
+    
     
 }
