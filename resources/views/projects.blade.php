@@ -46,7 +46,7 @@
       @livewire('published-projects-component')
     </div>
     <div id="second" class="hidden bg-gray-50 mt-2 text-gray-600 rounded p-4">
-      Second tab
+        @livewire('unpublished-projects-component')
     </div>
     <div id="third" class="hidden bg-gray-50 mt-2 text-gray-600 rounded p-4">
       Third tab
