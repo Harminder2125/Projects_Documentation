@@ -36,7 +36,7 @@
 
         <!-- Page Content -->
         <div class="flex">
-            @include('layouts.partials._sidebar')
+            @include('layouts.partials._sidebar2')
             <main class="w-full">
                 @livewire('navigation-menu')
 
@@ -50,7 +50,7 @@
     @stack('modals')
 
     @livewireScripts
-<script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/1.6.2/flowbite.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/1.6.2/flowbite.min.js"></script>
 
 </body>
 </html>
