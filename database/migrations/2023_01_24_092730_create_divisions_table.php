@@ -13,9 +13,11 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::table('users', function (Blueprint $table) {
-            $table->foreignId('role_id')->constrained('roles')->onDelete('restrict')->comment('Role of user in state/group');
+        Schema::create('divisions', function (Blueprint $table) {
+            $table->id();
+            $table->string('name',150);
             $table->foreignId('group_id')->constrained('groups')->onDelete('restrict')->comment('Related to state or group');
+            $table->timestamps();
         });
     }
 
@@ -26,13 +28,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::table('users', function (Blueprint $table) {
-            $table->dropForeign('users_role_id_foreign');
-            $table->dropForeign('users_group_id_foreign');
-
-            $table->dropColumn('role_id');
-            $table->dropColumn('group_id');
-
-        });
+        Schema::dropIfExists('divisions');
     }
 };
