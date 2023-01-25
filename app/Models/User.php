@@ -68,11 +68,16 @@ class User extends Authenticatable
         'profile_photo_url',
     ];
 
+    public function isAdmin()
+    {
+       $result = $this->role_id ==2?  true:  false;
+       return $result;
+    }
     public function scopePrivelegedUsers($query)
     {
          return $query->where('role_id','=',4);   // Getting list of all priveleged Users
     }
-
+   
     function role()
     {
         return $this->belongsTo(Role::class);
