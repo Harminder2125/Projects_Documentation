@@ -4,17 +4,26 @@ namespace App\Http\Livewire;
 
 use Livewire\Component;
 use Illuminate\Support\Facades\Validator;
-use App\Models\Group;
+use App\Models\Division;
 
 class Divisions extends Component
 {
-
+    
    
     public function render()
     {
-
-     return view('livewire.divisions');
+       $divisions=Division::paginate(2);
+       $data=compact('divisions');
+       
+       return view('livewire.divisions')->with($data);
             
         
+    }
+
+    public function view()
+    {
+       $divisions=Division::all();
+       $data=compact('divisions');
+       return view('livewire.divisions')->with($data);
     }
 }
