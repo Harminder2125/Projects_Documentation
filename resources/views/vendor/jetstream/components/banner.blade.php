@@ -1,6 +1,6 @@
 @props(['style' => session('flash.bannerStyle', 'success'), 'message' => session('flash.banner')])
 
-<div x-data="{{ json_encode(['show' => true, 'style' => $style, 'message' => $message]) }}" :class="{ 'bg-green-500': style == 'success', 'bg-red-700': style == 'danger', 'bg-gray-500': style != 'success' && style != 'danger' }" x-transition.duration.1000ms style="display: none;" x-show="show && message" x-init="
+<div class="w-full fixed left-0 bottom-1" x-data="{{ json_encode(['show' => true, 'style' => $style, 'message' => $message]) }}" :class="{ 'bg-green-500': style == 'success', 'bg-red-700': style == 'danger', 'bg-gray-500': style != 'success' && style != 'danger' }" x-transition.duration.1000ms style="display: none;" x-show="show && message" x-init="
 
 
                 document.addEventListener('banner-message', event => {
