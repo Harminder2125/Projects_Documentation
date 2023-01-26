@@ -1,18 +1,10 @@
 <x-app-layout>
-    <x-slot name="header">
-        <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            {{ __('Groups') }}
-        </h2>
-    </x-slot>
+  
+<x-slot name="title">Groups/States</x-slot>
+<x-slot name="subtitle">Register new groups or states</x-slot>
 
-    <div class="py-12">
-        <div class="max-w-8xl mx-auto sm:px-6 lg:px-8">
-            <div class="bg-white overflow-hidden shadow-xl p-10">
 
                 @livewire('group-component')
-            </div>
-        </div>
-
-    </div>
+            
 
 </x-app-layout>

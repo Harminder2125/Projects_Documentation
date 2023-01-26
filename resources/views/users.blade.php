@@ -1,14 +1,10 @@
 <x-app-layout>
-   
-    <div class="py-12">
-        <div class="max-w-8xl mx-auto sm:px-6 lg:px-8">
-            <div class="bg-white overflow-hidden shadow-xl p-10">
+    <x-slot name="title">
+     All Users
+    </x-slot>
+    <x-slot name="subtitle">
+    Users registered under this portal
+    </x-slot>
 
-                <h1 class="text-lg text-fuchsia-900 font-semibold uppercase"> All Users</h1>
-
-                @livewire('usercomponent')
-            </div>
-        </div>
-
-    </div>
+    @livewire('usercomponent')
 </x-app-layout>

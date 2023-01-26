@@ -1,12 +1,12 @@
 <x-app-layout>
-      <div class="py-12">
-        <div class="max-w-8xl mx-auto sm:px-6 lg:px-8">
-            <div class="bg-white overflow-hidden shadow-xl p-10">
+     
 
-                <x-slot name="header">
-                
+                <x-slot name="title">
+                Projects
                 </x-slot> 
-                <h1 class="text-lg text-pink-800 font-semibold uppercase mb-2">Projects</h1>
+               <x-slot name="subtitle">
+               Complete list of projects of your group
+               </x-slot>
                 <div class="rounded w-full mx-auto mt-4">
   <!-- Tabs -->
   <div class="bg-gray-200 rounded">
@@ -80,8 +80,5 @@ tabTogglers.forEach(function(toggler) {
 });
 
 </script>
-            </div>
-        </div>
-
-    </div>
+            
 </x-app-layout>

@@ -1,10 +1,6 @@
 <div>
 
-    <div class="flex justify-between border-b border-fuchsia-200 border-dashed mb-4">
-        <div>
-            <h3 class="mb-4 text-gray-500 tracking-widest uppercase text-sm">Users registered under this portal</h3>
-        </div>
-    </div>
+  
 
     <div class=" flex justify-between ">
 
