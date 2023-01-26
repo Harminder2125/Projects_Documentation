@@ -5,8 +5,10 @@ namespace App\Http\Livewire;
 use Livewire\Component;
 use App\Models\User;
 use App\Models\Role;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\Rules\Password;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\Auth;
 use Session;
 
 
@@ -80,6 +82,11 @@ class Usercomponent extends Component
             // 'terms' => Jetstream::hasTermsAndPrivacyPolicyFeature() ? ['accepted', 'required'] : '',
         ])->validate();
             $this->user['group_id'] = Session::get('group_id');
+            $this->user['password'] = Hash::make($this->user['password']);
+            if(Auth::user()->isAdmin())
+            {
+                $this->user['role_id'] = 3;     // Admins can only add users with role "PRIVELGED USER"
+            }
         User::create($this->user);
         
         $this->toggle('confirmingUserAddition');

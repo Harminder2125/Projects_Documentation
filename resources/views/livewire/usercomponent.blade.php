@@ -1,24 +1,26 @@
 <div>
 
-    <div class="flex justify-between">
+    <div class="flex justify-between border-b border-fuchsia-200 border-dashed mb-4">
         <div>
-            <h1 class="mb-8 text-gray-500">Users registered under this portal</h1>
+            <h3 class="mb-4 text-gray-500 tracking-widest uppercase text-sm">Users registered under this portal</h3>
         </div>
     </div>
 
     <div class=" flex justify-between ">
 
-        <div class="border border-zinc-200 w-1/5 rounded-sm">
+        <div class="border border-fuchsia-200 w-1/5 rounded-sm">
 
             <x-jet-input type="text" wire:model.debounce.500ms="searchUser" placeholder="Search..." class="w-full border-0 h-12 rounded-lg">
 
             </x-jet-input>
 
         </div>
-        <x-jet-button wire:click="$toggle('confirmingUserAddition')" class="h-12 bg-green-600 hover:bg-green-800  focus:border-green-700 focus:ring focus:ring-green-300 active:bg-green-600 "><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5 mr-2">
+       <x-primary-button class="bg-fuchsia-900" wire:click="$toggle('confirmingUserAddition')" >
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5 mr-2">
                 <path stroke-linecap="round" stroke-linejoin="round" d="M19 7.5v3m0 0v3m0-3h3m-3 0h-3m-2.25-4.125a3.375 3.375 0 11-6.75 0 3.375 3.375 0 016.75 0zM4 19.235v-.11a6.375 6.375 0 0112.75 0v.109A12.318 12.318 0 0110.374 21c-2.331 0-4.512-.645-6.374-1.766z" />
             </svg>
-            New User</x-jet-button>
+            Add User</x-primary-button> 
+           
     </div>
 
 
@@ -26,7 +28,7 @@
 
     <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
 
-        <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+        <thead class="text-xs text-gray-700 uppercase bg-fuchsia-100 dark:bg-gray-700 dark:text-gray-400">
             <th scope="col" class="px-6 py-3">
                 <div class="flex items-center">
 
@@ -89,13 +91,13 @@
                 <td class="px-6 py-4">{{$usr['designation']}}</td>
 
                 <td class="px-6 py-4 flex">
-                    <x-jet-button wire:click="openUserForEditing({{$usr['id']}})" class="bg-blue-500 hover:bg-blue-700 mr-2">
+                    <x-primary-button wire:click="openUserForEditing({{$usr['id']}})" class="mr-2">
                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-4 h-4">
                             <path stroke-linecap="round" stroke-linejoin="round" d="M16.862 4.487l1.687-1.688a1.875 1.875 0 112.652 2.652L10.582 16.07a4.5 4.5 0 01-1.897 1.13L6 18l.8-2.685a4.5 4.5 0 011.13-1.897l8.932-8.931zm0 0L19.5 7.125M18 14v4.75A2.25 2.25 0 0115.75 21H5.25A2.25 2.25 0 013 18.75V8.25A2.25 2.25 0 015.25 6H10" />
                         </svg>
 
 
-                    </x-jet-button>
+                    </x-primary-button>
 
 
 
@@ -135,8 +137,8 @@
     <x-jet-confirmation-modal wire:model="confirmingUserAddition">
 
         <x-slot name="icon">
-            <div class="mx-auto shrink-0 flex items-center justify-center h-12 w-12 rounded-full bg-green-100 sm:mx-0 sm:h-10 sm:w-10">
-                <svg class="h-6 w-6 text-green-600" stroke="currentColor" fill="none" viewBox="0 0 24 24">
+            <div class="mx-auto shrink-0 flex items-center justify-center h-12 w-12 rounded-full bg-fuchsia-900 sm:mx-0 sm:h-10 sm:w-10">
+                <svg class="h-5 w-5 text-white" stroke-width="1.5" stroke="currentColor" fill="none" viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round" d="M19 7.5v3m0 0v3m0-3h3m-3 0h-3m-2.25-4.125a3.375 3.375 0 11-6.75 0 3.375 3.375 0 016.75 0zM4 19.235v-.11a6.375 6.375 0 0112.75 0v.109A12.318 12.318 0 0110.374 21c-2.331 0-4.512-.645-6.374-1.766z" />
                 </svg>
 
@@ -147,13 +149,14 @@
         <x-slot name="title">
             Add User Account
         </x-slot>
-
+        <x-slot name="subtitle">
+        All users will be added as priveleged users.
+        </x-slot>
         <x-slot name="content">
-            <div class="pr-10">
-                <h2>These users will be able to use the system as per role specified. Please choose user role carefully.</h2>
+            <div class=" pb-2">
             </div>
 
-            <div class="py-5 pr-10">
+            <div>
 
 
                 <x-jet-validation-errors class="mb-4" />
@@ -164,12 +167,12 @@
                     <div class="w-full flex gap-x-5">
                         <div class="w-full">
                             <x-jet-label for="name" value="{{ __('Name') }}" />
-                            <x-jet-input wire:model="user.name" id="name" class="block mt-1 w-full" type="text" name="name" :value="old('name')" required autofocus autocomplete="name" />
+                            <x-input wire:model="user.name" id="name" class="block w-full" type="text" name="name" :value="old('name')" required autofocus autocomplete="name" />
                         </div>
-                
+                        <!--
                         <div class="w-full">
                             <x-jet-label for="role" value="{{ __('Role') }}" />
-                            <select id="role" name="role" class="w-full">
+                            <select id="role" name="role" class="w-full border border-fuchsia-200">
                                 @foreach($roles as $role)
                                 <option value="{{$role->id}}" {{$role->id==3?'selected':''}}>
                                     {{$role->name}}
@@ -177,7 +180,7 @@
                                 @endforeach
                             </select>
 
-                        </div>
+                        </div>-->
 
                     </div>
 
@@ -186,14 +189,14 @@
                         <div class="mt-4 w-full">
 
                             <x-jet-label for="email" value="{{ __('Email') }}" />
-                            <x-jet-input wire:model="user.email" id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email')" required />
+                            <x-input wire:model="user.email" id="email" class="block w-full" type="email" name="email" :value="old('email')" required />
 
                         </div>
 
                         <div class="mt-4 w-full">
 
                             <x-jet-label for="mobile" value="{{ __('Mobile') }}" />
-                            <x-jet-input wire:model="user.mobile" id="mobile" class="block mt-1 w-full" type="text" name="mobile" :value="old('mobile')" required />
+                            <x-input wire:model="user.mobile" id="mobile" class="block w-full" type="text" name="mobile" :value="old('mobile')" required />
 
                         </div>
                     </div>
@@ -202,13 +205,13 @@
                         <div class="mt-4 w-full">
 
                             <x-jet-label for="empcode" value="{{ __('Empcode') }}" />
-                            <x-jet-input wire:model="user.empcode" id="empcode" class="block mt-1 w-full" type="text" name="empcode" :value="old('empcode')" required />
+                            <x-input wire:model="user.empcode" id="empcode" class="block w-full" type="text" name="empcode" :value="old('empcode')" required />
 
                         </div>
                         <div class="mt-4 w-full">
 
                             <x-jet-label for="designation" value="{{ __('Designation') }}" />
-                            <x-jet-input wire:model="user.designation" id="designation" class="block mt-1 w-full" type="text" name="designation" :value="old('designation')" required />
+                            <x-input wire:model="user.designation" id="designation" class="block w-full" type="text" name="designation" :value="old('designation')" required />
 
                         </div>
                     </div>
@@ -217,14 +220,14 @@
                         <div class="mt-4 w-full">
 
                             <x-jet-label for="password" value="{{ __('Password') }}" />
-                            <x-jet-input wire:model="user.password" id="password" class="block mt-1 w-full" type="password" name="password" required autocomplete="new-password" />
+                            <x-input wire:model="user.password" id="password" class="block w-full" type="password" name="password" required autocomplete="new-password" />
 
                         </div>
 
                         <div class="mt-4 w-full">
 
                             <x-jet-label for="password_confirmation" value="{{ __('Confirm Password') }}" />
-                            <x-jet-input wire:model="user.password_confirmation" id="password_confirmation" class="block mt-1 w-full" type="password" name="password_confirmation" required autocomplete="new-password" />
+                            <x-input wire:model="user.password_confirmation" id="password_confirmation" class="block w-full" type="password" name="password_confirmation" required autocomplete="new-password" />
 
                         </div>
                     </div>
@@ -241,9 +244,9 @@
                 Close
             </x-jet-secondary-button>
 
-            <x-jet-danger-button class="ml-2" wire:click="addUser" wire:loading.attr="disabled">
+            <x-primary-button class="ml-2" wire:click="addUser" wire:loading.attr="disabled">
                 Add User
-            </x-jet-danger-button>
+            </x-primary-button>
         </x-slot>
     </x-jet-confirmation-modal>
 
@@ -252,12 +255,15 @@
 
         <x-slot name="icon">
             <div class="mx-auto shrink-0 flex items-center justify-center h-12 w-12 rounded-full bg-green-100 sm:mx-0 sm:h-10 sm:w-10">
-                <svg class="h-6 w-6 text-green-600" stroke="currentColor" fill="none" viewBox="0 0 24 24">
+                <svg class="h-6 w-6 text-green-600" stroke-width="1.5" stroke="currentColor" fill="none" viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round" d="M19 7.5v3m0 0v3m0-3h3m-3 0h-3m-2.25-4.125a3.375 3.375 0 11-6.75 0 3.375 3.375 0 016.75 0zM4 19.235v-.11a6.375 6.375 0 0112.75 0v.109A12.318 12.318 0 0110.374 21c-2.331 0-4.512-.645-6.374-1.766z" />
                 </svg>
 
 
             </div>
+        </x-slot>
+        <x-slot name="subtitle">
+        All users will be added as priveleged users.
         </x-slot>
 
         <x-slot name="title">
@@ -265,11 +271,8 @@
         </x-slot>
 
         <x-slot name="content">
-            <div class="pr-10">
-                <h2>These users will be able to use the system as per role specified. Please choose user role carefully.</h2>
-            </div>
-
-            <div class="py-5 pr-10">
+           
+            <div>
                    
                 <x-jet-validation-errors class="mb-4" />
                 <form method="POST">
@@ -277,11 +280,11 @@
                     <div class="w-full flex gap-x-5">
                         <div class="w-full">
                             <x-jet-label for="name" value="{{ __('Name') }}" />
-                            <x-jet-input wire:model="edituser.name" value="{{$user['name']}}" id="upd_name" class="block mt-1 w-full" type="text" name="upd_name" required autofocus autocomplete="name" />
+                            <x-input wire:model="edituser.name" value="{{$user['name']}}" id="upd_name" class="block w-full" type="text" name="upd_name" required autofocus autocomplete="name" />
                         </div>
-                        <div class="w-full">
+                       <!-- <div class="w-full">
                             <x-jet-label for="role" value="{{ __('Role') }}" />
-                            <select id="role" name="role" class="w-full">
+                            <select id="role" name="role" class="w-full border">
                                 @foreach($roles as $role)
                                 <option value="{{$role->id}}" {{$role->id==$edituser['role_id']?'selected':''}}>
                                     {{$role->name}}
@@ -289,7 +292,7 @@
                                 @endforeach
                             </select>
 
-                        </div>
+                        </div>-->
 
                     </div>
 
@@ -298,7 +301,7 @@
                         <div class="mt-4 w-full">
 
                             <x-jet-label for="email" value="{{ __('Email') }}" />
-                            <x-jet-input wire:model="edituser.email" id="upd_email" class="block mt-1 w-full" type="email" name="upd_email" :value="old('email')" required />
+                            <x-input wire:model="edituser.email" id="upd_email" class="block w-full" type="email" name="upd_email" :value="old('email')" required />
 
 
 
@@ -308,7 +311,7 @@
                         <div class="mt-4 w-full">
 
                             <x-jet-label for="mobile" value="{{ __('Mobile') }}" />
-                            <x-jet-input wire:model="edituser.mobile" id="upd_mobile" class="block mt-1 w-full" type="text" name="upd_mobile" required />
+                            <x-input wire:model="edituser.mobile" id="upd_mobile" class="block w-full" type="text" name="upd_mobile" required />
 
 
 
@@ -320,7 +323,7 @@
                         <div class="mt-4 w-full">
 
                             <x-jet-label for="empcode" value="{{ __('Empcode') }}" />
-                            <x-jet-input wire:model="edituser.empcode" id="upd_empcode" class="block mt-1 w-full" type="text" name="upd_empcode" :value="old('empcode')" required />
+                            <x-input wire:model="edituser.empcode" id="upd_empcode" class="block w-full" type="text" name="upd_empcode" :value="old('empcode')" required />
 
 
 
@@ -329,7 +332,7 @@
                         <div class="mt-4 w-full">
 
                             <x-jet-label for="designation" value="{{ __('Designation') }}" />
-                            <x-jet-input wire:model="edituser.designation" id="upd_designation" class="block mt-1 w-full" type="text" name="upd_designation" :value="old('designation')" required />
+                            <x-input wire:model="edituser.designation" id="upd_designation" class="block w-full" type="text" name="upd_designation" :value="old('designation')" required />
 
 
 
@@ -347,9 +350,9 @@
                 Close
             </x-jet-secondary-button>
 
-            <x-jet-danger-button class="ml-2" wire:click="updateUser({{$edituser['id']}})" wire:loading.attr="disabled">
+            <x-primary-button class="ml-2" wire:click="updateUser({{$edituser['id']}})" wire:loading.attr="disabled">
                 Update User Details
-            </x-jet-danger-button>
+            </x-primary-button>
         </x-slot>
     </x-jet-confirmation-modal>
 
@@ -358,9 +361,9 @@
 
     <x-jet-confirmation-modal wire:model="confirmingUserDeletion">
 
-        <x-slot name="icon">
-            <div class="mx-auto shrink-0 flex items-center justify-center h-12 w-12 rounded-full bg-green-100 sm:mx-0 sm:h-10 sm:w-10">
-                <svg class="h-6 w-6 text-green-600" stroke="currentColor" fill="none" viewBox="0 0 24 24">
+     <x-slot name="icon">
+            <div class="mx-auto shrink-0 flex items-center justify-center h-12 w-12 rounded-full bg-red-800 sm:mx-0 sm:h-10 sm:w-10">
+                <svg class="h-5 w-5 text-white" stroke-width="1.5" stroke="currentColor" fill="none" viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round" d="M19 7.5v3m0 0v3m0-3h3m-3 0h-3m-2.25-4.125a3.375 3.375 0 11-6.75 0 3.375 3.375 0 016.75 0zM4 19.235v-.11a6.375 6.375 0 0112.75 0v.109A12.318 12.318 0 0110.374 21c-2.331 0-4.512-.645-6.374-1.766z" />
                 </svg>
 
@@ -369,22 +372,23 @@
         </x-slot>
 
         <x-slot name="title">
-            Delete User?
+            <span class="text-red-800">Delete User?</span>
         </x-slot>
-
+        <x-slot name="subtitle">
+        Permanently remove this user from your account.
+        </x-slot>
         <x-slot name="content">
-            <div class="pr-10">
-                <h2>Are you sure you want to permanently delete this user from the system.</h2>
-            </div>
-            <div class="w-full">
-            <table class="w-1/2 border-separate mt-2">
+            
+            <div class="w-full flex justify-center items-center p-10">
+          <!--  <table class="w-1/2 border-separate mt-2">
                 <tr><th class="w-1/2 bg-red-500 text-red-50  p-2">Name</th><td class="w-1/2 text-red-500 bg-red-50 p-2 line-through">{{$edituser['name']}}</td></tr>
                 <tr><th class="w-1/2 bg-red-500 text-red-50  p-2">Email</th><td class="w-1/2 text-red-500 bg-red-50 p-2 line-through">{{$edituser['email']}}</td></tr>
                 <tr><th class="w-1/2 bg-red-500 text-red-50  p-2">Mobile</th><td class="w-1/2 text-red-500 bg-red-50 p-2 line-through">{{$edituser['mobile']}}</td></tr>
                 <tr><th class="w-1/2 bg-red-500 text-red-50  p-2">Employee Code</th><td class="w-1/2 text-red-500 bg-red-50 p-2 line-through">{{$edituser['empcode']}}</td></tr>
                 <tr><th class="w-1/2 bg-red-500 text-red-50  p-2">Designation</th><td class="w-1/2 text-red-500 bg-red-50 p-2 line-through">{{$edituser['designation']}}</td></tr>
 
-            </table>
+            </table>-->
+                <div class="p-4 border border-gray-500 border-dashed rounded-lg"><h1><span class="text-lg uppercase text-gray-600 font-semibold">Are you sure you want to delete?</span><br/>{{$edituser['name']}}<br/>employee code - {{$edituser['empcode']}}<br/>designation - {{$edituser['designation']}}<br/> email - {{$edituser['email']}}<br/>mobile - {{$edituser['mobile']}}.</h1></div>
             </div>
         </x-slot>
 
