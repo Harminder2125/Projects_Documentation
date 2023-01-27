@@ -4,7 +4,7 @@
 
     <div class=" flex justify-between ">
 
-        <div class="border border-fuchsia-900 opacity-30 w-1/5 rounded-sm">
+        <div class="border border-purple-100 w-1/5 rounded-sm">
 
             <x-jet-input type="text" wire:model.debounce.500ms="searchUser" placeholder="Search..." class="w-full border-0 h-12 rounded-lg">
 
