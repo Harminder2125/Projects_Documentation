@@ -22,6 +22,7 @@ class CategorySeeder extends Seeder
                     array('name' => "Health"),
                     array('name' => "General Administration"),
                     array('name' => "Police"),
+                    array('name' => "Bank"),
                 );
         DB::table('categories')->insert($categories);
     }
