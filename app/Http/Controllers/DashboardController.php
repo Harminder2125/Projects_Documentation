@@ -33,6 +33,10 @@ class DashboardController extends Controller
     {
         return view('divisions');
     }
+    public function categories()
+    {
+        return view('categories');
+    }
 
     
     
