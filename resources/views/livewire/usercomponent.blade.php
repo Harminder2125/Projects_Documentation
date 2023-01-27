@@ -1,22 +1,22 @@
 <div>
 
-  
+
 
     <div class=" flex justify-between ">
 
-        <div class="border border-fuchsia-200 w-1/5 rounded-sm">
+        <div class="border border-fuchsia-900 opacity-30 w-1/5 rounded-sm">
 
             <x-jet-input type="text" wire:model.debounce.500ms="searchUser" placeholder="Search..." class="w-full border-0 h-12 rounded-lg">
 
             </x-jet-input>
 
         </div>
-       <x-primary-button class="bg-fuchsia-900" wire:click="$toggle('confirmingUserAddition')" >
-        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5 mr-2">
+        <x-primary-button class="bg-fuchsia-900" wire:click="$toggle('confirmingUserAddition')">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5 mr-2">
                 <path stroke-linecap="round" stroke-linejoin="round" d="M19 7.5v3m0 0v3m0-3h3m-3 0h-3m-2.25-4.125a3.375 3.375 0 11-6.75 0 3.375 3.375 0 016.75 0zM4 19.235v-.11a6.375 6.375 0 0112.75 0v.109A12.318 12.318 0 0110.374 21c-2.331 0-4.512-.645-6.374-1.766z" />
             </svg>
-            Add User</x-primary-button> 
-           
+            Add User</x-primary-button>
+
     </div>
 
 
@@ -24,7 +24,7 @@
 
     <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
 
-        <thead class="text-xs text-gray-700 uppercase bg-fuchsia-100 dark:bg-gray-700 dark:text-gray-400">
+        <thead class="text-xs text-gray-700 uppercase bg-purple-100 dark:bg-gray-700 dark:text-gray-400">
             <th scope="col" class="px-6 py-3">
                 <div class="flex items-center">
 
@@ -146,7 +146,7 @@
             Add User Account
         </x-slot>
         <x-slot name="subtitle">
-        All users will be added as priveleged users.
+            All users will be added as priveleged users.
         </x-slot>
         <x-slot name="content">
             <div class=" pb-2">
@@ -259,7 +259,7 @@
             </div>
         </x-slot>
         <x-slot name="subtitle">
-        All users will be added as priveleged users.
+            All users will be added as priveleged users.
         </x-slot>
 
         <x-slot name="title">
@@ -267,9 +267,9 @@
         </x-slot>
 
         <x-slot name="content">
-           
+
             <div>
-                   
+
                 <x-jet-validation-errors class="mb-4" />
                 <form method="POST">
                     @csrf
@@ -278,7 +278,7 @@
                             <x-jet-label for="name" value="{{ __('Name') }}" />
                             <x-input wire:model="edituser.name" value="{{$user['name']}}" id="upd_name" class="block w-full" type="text" name="upd_name" required autofocus autocomplete="name" />
                         </div>
-                       <!-- <div class="w-full">
+                        <!-- <div class="w-full">
                             <x-jet-label for="role" value="{{ __('Role') }}" />
                             <select id="role" name="role" class="w-full border">
                                 @foreach($roles as $role)
@@ -357,7 +357,7 @@
 
     <x-jet-confirmation-modal wire:model="confirmingUserDeletion">
 
-     <x-slot name="icon">
+        <x-slot name="icon">
             <div class="mx-auto shrink-0 flex items-center justify-center h-12 w-12 rounded-full bg-red-800 sm:mx-0 sm:h-10 sm:w-10">
                 <svg class="h-5 w-5 text-white" stroke-width="1.5" stroke="currentColor" fill="none" viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round" d="M19 7.5v3m0 0v3m0-3h3m-3 0h-3m-2.25-4.125a3.375 3.375 0 11-6.75 0 3.375 3.375 0 016.75 0zM4 19.235v-.11a6.375 6.375 0 0112.75 0v.109A12.318 12.318 0 0110.374 21c-2.331 0-4.512-.645-6.374-1.766z" />
@@ -371,12 +371,12 @@
             <span class="text-red-800">Delete User?</span>
         </x-slot>
         <x-slot name="subtitle">
-        Permanently remove this user from your account.
+            Permanently remove this user from your account.
         </x-slot>
         <x-slot name="content">
-            
+
             <div class="w-full flex justify-center items-center p-10">
-          <!--  <table class="w-1/2 border-separate mt-2">
+                <!--  <table class="w-1/2 border-separate mt-2">
                 <tr><th class="w-1/2 bg-red-500 text-red-50  p-2">Name</th><td class="w-1/2 text-red-500 bg-red-50 p-2 line-through">{{$edituser['name']}}</td></tr>
                 <tr><th class="w-1/2 bg-red-500 text-red-50  p-2">Email</th><td class="w-1/2 text-red-500 bg-red-50 p-2 line-through">{{$edituser['email']}}</td></tr>
                 <tr><th class="w-1/2 bg-red-500 text-red-50  p-2">Mobile</th><td class="w-1/2 text-red-500 bg-red-50 p-2 line-through">{{$edituser['mobile']}}</td></tr>
@@ -384,7 +384,9 @@
                 <tr><th class="w-1/2 bg-red-500 text-red-50  p-2">Designation</th><td class="w-1/2 text-red-500 bg-red-50 p-2 line-through">{{$edituser['designation']}}</td></tr>
 
             </table>-->
-                <div class="p-4 border border-gray-500 border-dashed rounded-lg"><h1><span class="text-lg uppercase text-gray-600 font-semibold">Are you sure you want to delete?</span><br/>{{$edituser['name']}}<br/>employee code - {{$edituser['empcode']}}<br/>designation - {{$edituser['designation']}}<br/> email - {{$edituser['email']}}<br/>mobile - {{$edituser['mobile']}}.</h1></div>
+                <div class="p-4 border border-gray-500 border-dashed rounded-lg">
+                    <h1><span class="text-lg uppercase text-gray-600 font-semibold">Are you sure you want to delete?</span><br />{{$edituser['name']}}<br />employee code - {{$edituser['empcode']}}<br />designation - {{$edituser['designation']}}<br /> email - {{$edituser['email']}}<br />mobile - {{$edituser['mobile']}}.</h1>
+                </div>
             </div>
         </x-slot>
 
