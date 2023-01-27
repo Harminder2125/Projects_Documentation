@@ -12,17 +12,19 @@ class Divisions extends Component
    
     public function render()
     {
-       $divisions=Division::paginate(2);
-       $data=compact('divisions');
+
+      
+      $divisions=Division::paginate(2);
        
-       return view('livewire.divisions')->with($data);
+       
+       return view('livewire.divisions')->with('divisions',$divisions);
             
         
     }
 
     public function view()
     {
-       $divisions=Division::all();
+       $divisions=Division::with('divisions.groups')->all();
        $data=compact('divisions');
        return view('livewire.divisions')->with($data);
     }
