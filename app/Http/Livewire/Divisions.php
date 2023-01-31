@@ -4,6 +4,7 @@ namespace App\Http\Livewire;
 
 use Livewire\Component;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\Auth;
 use App\Models\Division;
 
 class Divisions extends Component
@@ -12,12 +13,12 @@ class Divisions extends Component
     public $confirmingDivisionAddition=false,$confirmingDivisionEditing=false,$confirmingDivisionDeletion=false;
     public $division=[
         "name"=>"",
-        "group_id"=>""
+        "group_id"=>2
     ]; 
     public $editdivision=[
         "id"=>"",
         "name"=>"",
-        "group_id"=>""
+        "group_id"=>2
     ]; 
 
     public function render()
@@ -57,6 +58,7 @@ class Divisions extends Component
             'name' => ['required', 'string', 'max:150'],
            
         ])->validate();
+        $this->division->group_id=Auth::user()->group_id;
         Division::create($this->division);
         
         $this->toggle('confirmingDivisionAddition');

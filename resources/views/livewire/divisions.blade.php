@@ -55,7 +55,7 @@
       @if($divisions->count() ==0)
                 <td colspan="6">
                     <div class="flex w-full justify-center items-center py-5">
-                        <p class="text-gray-400">No record found containing '{{$searchCategory}}' ...</p>
+                        <p class="text-gray-400">No record found containing '{{$searchDivision}}' ...</p>
                     </div>
                 </td>
     
@@ -106,10 +106,7 @@
                                 <x-input wire:model="division.name" id="name" class="block w-full" type="text" name="name" :value="old('name')" required autofocus autocomplete="name" />
                             </div>
 
-                            <div class="w-full">
-                                <x-jet-label for="group_id" value="{{ __('Group') }}" />
-                                <x-input wire:model="division.group_id" id="group_id" class="block w-full" type="text" name="group_id" :value="old('group_id')" required autofocus autocomplete="group_id" />
-                            </div>
+                            
                            
     
                         </div>
