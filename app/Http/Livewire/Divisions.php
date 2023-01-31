@@ -58,7 +58,7 @@ class Divisions extends Component
             'name' => ['required', 'string', 'max:150'],
            
         ])->validate();
-        $this->division->group_id=Auth::user()->group_id;
+        $this->division['group_id']=Auth::user()->group_id;
         Division::create($this->division);
         
         $this->toggle('confirmingDivisionAddition');
