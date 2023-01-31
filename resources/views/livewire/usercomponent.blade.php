@@ -1,7 +1,6 @@
 <div>
 
 
-
     <div class=" flex justify-between ">
 
         <div class="border border-purple-100 w-1/5 rounded-sm">

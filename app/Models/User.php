@@ -12,6 +12,9 @@ use Laravel\Sanctum\HasApiTokens;
 use App\Models\Permission;
 use App\Models\Role;
 use App\Models\Group;
+use Illuminate\Support\Facades\Auth;
+
+use App\Models\Scopes\GroupScope;
 
 
 class User extends Authenticatable
@@ -67,6 +70,12 @@ class User extends Authenticatable
     protected $appends = [
         'profile_photo_url',
     ];
+
+    protected static function booted()
+    {
+        if(Auth::check())
+        static::addGlobalScope(new GroupScope);
+    }
 
     public function isAdmin()
     {

@@ -19,11 +19,6 @@ class Project extends Model
         'group_id'
     ];
 
-    protected static function booted()
-    {
-        static::addGlobalScope(new GroupScope);
-    }
-
     public function group()
     {
         return $this->belongsTo(group::class);
