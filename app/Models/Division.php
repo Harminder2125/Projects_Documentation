@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use App\Models\Group;
+use App\Models\User;
 
 class Division extends Model
 {
@@ -23,7 +24,7 @@ class Division extends Model
 
    public function hod()
    {
-    return $this->belongsTo(User::class);
+    return $this->belongsTo(User::class,'user_id','id');
    }
     
  

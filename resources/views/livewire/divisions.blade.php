@@ -34,7 +34,17 @@
                 <td class="px-6 py-3">{{ $division->name}}</td>
                 <td class="px-6 py-3">{{ $division->group->name}}</td>
                 <td class="px-6 py-3">
-                    <span class="bg-gray-200 text-gray-500 px-2 rounded-lg">Not Assigned</span>
+
+                    @if($division->user_id)
+                    {{$division->hod->name}}
+
+                    @else
+                    <span class="bg-gray-200 text-gray-500 px-2 rounded-lg">
+                        Not assigned
+                    </span>
+
+                    @endif
+
 
                 </td>
 
@@ -119,7 +129,7 @@
                             <x-jet-label for="name" value="{{ __('Name of division') }}" />
                             {{-- <x-input wire:model="division.name" id="name" class="block w-full" type="text" name="name" :value="old('name')" required autofocus autocomplete="name" /> --}}
 
-                            <x-select :userlist="$userlist">
+                            <x-select wire:model="division.user_id" :userlist="$userlist">
 
                             </x-select>
 
