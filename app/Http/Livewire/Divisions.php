@@ -15,12 +15,14 @@ class Divisions extends Component
     public $confirmingDivisionAddition=false,$confirmingDivisionEditing=false,$confirmingDivisionDeletion=false;
     public $division=[
         "name"=>"",
-        "group_id"=>2
+        "group_id"=>2,
+        "user_id"=>""
     ]; 
     public $editdivision=[
         "id"=>"",
         "name"=>"",
-        "group_id"=>2
+        "group_id"=>2,
+        "user_id"=>""
     ]; 
 
     public function mount(){
@@ -69,6 +71,7 @@ class Divisions extends Component
     public function addDivision(){
         Validator::make($this->division, [
             'name' => ['required', 'string', 'max:150'],
+            'user_id'=>['required', 'integer']
            
         ])->validate();
         $this->division['group_id']=Auth::user()->group_id;
@@ -84,17 +87,21 @@ class Divisions extends Component
     }
     public function editDivision($id){
         $name=Division::find($id)->name;
+        $user_id=Division::find($id)->user_id;
         $this->editdivision['name']=$name;
         $this->editdivision['id']=$id;
+        $this->editdivision['user_id']=$user_id;
         $this->toggle('confirmingDivisionEditing');
 
     } 
     public function updateDivision(){
         Validator::make($this->editdivision, [
             'name' => ['required', 'string', 'max:150'],
+            'user_id'=>['required', 'integer']
         ])->validate();
         $division=Division::find($this->editdivision['id']);
         $division->name=$this->editdivision['name'];
+        $division->user_id=$this->editdivision['user_id'];
         $division->save();
         $this->toggle('confirmingDivisionEditing');
         $this->dispatchBrowserEvent('banner-message', [
@@ -108,8 +115,10 @@ class Divisions extends Component
 
     public function deleteDivision($id){
         $name=Division::find($id)->name;
+        $user_id=Division::find($id)->user_id;
         $this->editdivision['name']=$name;
         $this->editdivision['id']=$id;
+        $this->editdivision['user_id']=$user_id;
         $this->toggle('confirmingDivisionDeletion');
     }
     public function delete(){
