@@ -71,42 +71,7 @@
 
 
 
-            <li class="border-b border-gray-200">
-                <button type="button" class="flex items-center w-full p-2 pl-3 py-3 text-sm font-normal text-gray-500 transition duration-75  group hover:bg-gray-200 dark:text-white dark:hover:bg-gray-700" aria-controls="dropdown-example" data-collapse-toggle="dropdown-example">
-                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class=" w-6 h-6">
-                        <path stroke-linecap="round" stroke-linejoin="round" d="M2.25 7.125C2.25 6.504 2.754 6 3.375 6h6c.621 0 1.125.504 1.125 1.125v3.75c0 .621-.504 1.125-1.125 1.125h-6a1.125 1.125 0 01-1.125-1.125v-3.75zM14.25 8.625c0-.621.504-1.125 1.125-1.125h5.25c.621 0 1.125.504 1.125 1.125v8.25c0 .621-.504 1.125-1.125 1.125h-5.25a1.125 1.125 0 01-1.125-1.125v-8.25zM3.75 16.125c0-.621.504-1.125 1.125-1.125h5.25c.621 0 1.125.504 1.125 1.125v2.25c0 .621-.504 1.125-1.125 1.125h-5.25a1.125 1.125 0 01-1.125-1.125v-2.25z" />
-                    </svg>
-
-
-
-                    <span class="flex-1 text-xs font-semibold uppercase ml-2 text-left whitespace-nowrap" sidebar-toggle-item>Division Management</span>
-                    <svg sidebar-toggle-item class="w-6 h-6" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
-                        <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd"></path>
-                    </svg>
-                </button>
-                <ul id="dropdown-example" class="hidden">
-                    <div class="pl-6">
-                        <x-jet-nav-link class="text-sm uppercase border-b border-gray-200" href="{{ route('divisions') }}" :active="request()->routeIs('divisions')">
-                       <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="mr-2 w-6 h-6">
-  <path stroke-linecap="round" stroke-linejoin="round" d="M9 4.5v15m6-15v15m-10.875 0h15.75c.621 0 1.125-.504 1.125-1.125V5.625c0-.621-.504-1.125-1.125-1.125H4.125C3.504 4.5 3 5.004 3 5.625v12.75c0 .621.504 1.125 1.125 1.125z" />
-</svg>
-
-
-                            {{ __('Divisions') }}
-
-                        </x-jet-nav-link>
-                        <x-jet-nav-link class="text-sm uppercase border-b border-gray-200" href="{{ route('users') }}" :active="request()->routeIs('Home')">
-                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="mr-2 w-6 h-6">
-  <path stroke-linecap="round" stroke-linejoin="round" d="M17.982 18.725A7.488 7.488 0 0012 15.75a7.488 7.488 0 00-5.982 2.975m11.963 0a9 9 0 10-11.963 0m11.963 0A8.966 8.966 0 0112 21a8.966 8.966 0 01-5.982-2.275M15 9.75a3 3 0 11-6 0 3 3 0 016 0z" />
-</svg>
-
-                            {{ __('HOD\'s') }}
-
-                        </x-jet-nav-link>
-
-                    </div>
-                </ul>
-            </li>
+            
             <li>
 
 
@@ -122,11 +87,31 @@
 
 
             </li>
-              <li>
+            <li class="border-b border-gray-200">
+                <button type="button" class="flex items-center w-full p-2 pl-3 py-3 text-sm font-normal text-gray-500 transition duration-75  group hover:bg-gray-200 dark:text-white dark:hover:bg-gray-700" aria-controls="dropdown-example" data-collapse-toggle="dropdown-example">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class=" w-6 h-6">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M2.25 7.125C2.25 6.504 2.754 6 3.375 6h6c.621 0 1.125.504 1.125 1.125v3.75c0 .621-.504 1.125-1.125 1.125h-6a1.125 1.125 0 01-1.125-1.125v-3.75zM14.25 8.625c0-.621.504-1.125 1.125-1.125h5.25c.621 0 1.125.504 1.125 1.125v8.25c0 .621-.504 1.125-1.125 1.125h-5.25a1.125 1.125 0 01-1.125-1.125v-8.25zM3.75 16.125c0-.621.504-1.125 1.125-1.125h5.25c.621 0 1.125.504 1.125 1.125v2.25c0 .621-.504 1.125-1.125 1.125h-5.25a1.125 1.125 0 01-1.125-1.125v-2.25z" />
+                    </svg>
 
 
 
-                <x-jet-nav-link class="uppercase  text-sm border-b border-gray-200" href="{{ route('categories') }}" :active="request()->routeIs('categories')">
+                    <span class="flex-1 text-xs font-semibold uppercase ml-2 text-left whitespace-nowrap" sidebar-toggle-item>Master</span>
+                    <svg sidebar-toggle-item class="w-6 h-6" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                        <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd"></path>
+                    </svg>
+                </button>
+                <ul id="dropdown-example" class="hidden">
+                    <div class="pl-6">
+                        <x-jet-nav-link class="text-sm uppercase border-b border-gray-200" href="{{ route('divisions') }}" :active="request()->routeIs('divisions')">
+                       <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="mr-2 w-6 h-6">
+  <path stroke-linecap="round" stroke-linejoin="round" d="M9 4.5v15m6-15v15m-10.875 0h15.75c.621 0 1.125-.504 1.125-1.125V5.625c0-.621-.504-1.125-1.125-1.125H4.125C3.504 4.5 3 5.004 3 5.625v12.75c0 .621.504 1.125 1.125 1.125z" />
+</svg>
+
+
+                            {{ __('Divisions') }}
+
+                        </x-jet-nav-link>
+                       <x-jet-nav-link class="uppercase  text-sm border-b border-gray-200" href="{{ route('categories') }}" :active="request()->routeIs('categories')">
                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="mr-2 w-6 h-6">
                <path stroke-linecap="round" stroke-linejoin="round" d="M9.568 3H5.25A2.25 2.25 0 003 5.25v4.318c0 .597.237 1.17.659 1.591l9.581 9.581c.699.699 1.78.872 2.607.33a18.095 18.095 0 005.223-5.223c.542-.827.369-1.908-.33-2.607L11.16 3.66A2.25 2.25 0 009.568 3z" />
   <path stroke-linecap="round" stroke-linejoin="round" d="M6 6h.008v.008H6V6z" />
@@ -134,12 +119,14 @@
 
 
 
-                    {{ __('Category Management') }}
+                    {{ __('Categories') }}
 
                 </x-jet-nav-link>
 
-
+                    </div>
+                </ul>
             </li>
+              
 
             {{-- <li>
                 <a href="#" class="flex items-center p-2 text-base font-normal text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700">

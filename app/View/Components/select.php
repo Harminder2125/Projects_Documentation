@@ -7,9 +7,12 @@ use Illuminate\View\Component;
 class select extends Component
 {
     public $userlist;
+   
     public function __construct($userlist)
     {
+
         $this->userlist=$userlist;
+        
     }
 
     /**

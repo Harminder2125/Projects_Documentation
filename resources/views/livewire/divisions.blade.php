@@ -126,10 +126,10 @@
                             <x-input wire:model="division.name" id="name" class="block w-full" type="text" name="name" :value="old('name')" required autofocus autocomplete="name" />
                         </div>
                         <div class="w-full">
-                            <x-jet-label for="name" value="{{ __('Name of division') }}" />
+                            <x-jet-label for="name" value="{{ __('Name of HOD') }}" />
                             {{-- <x-input wire:model="division.name" id="name" class="block w-full" type="text" name="name" :value="old('name')" required autofocus autocomplete="name" /> --}}
 
-                            <x-select wire:model="division.user_id" :userlist="$userlist">
+                            <x-select wire:model="division.user_id" :userlist="$userlist" >
 
                             </x-select>
 
@@ -196,7 +196,15 @@
                             <x-jet-label for="name" value="{{ __('Name') }}" />
                             <x-input wire:model="editdivision.name" id="name" class="block w-full" type="text" name="name" :value="old('name')" required autofocus autocomplete="name" />
                         </div>
+                        <div class="w-full">
+                            <x-jet-label for="name" value="{{ __('Name of HOD') }}" />
+                            {{-- <x-input wire:model="division.name" id="name" class="block w-full" type="text" name="name" :value="old('name')" required autofocus autocomplete="name" /> --}}
 
+                            <x-select wire:model="editdivision.user_id" :userlist="$userlist">
+
+                            </x-select>
+
+                        </div>
 
 
 
