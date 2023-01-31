@@ -103,7 +103,7 @@
             </div>
 
             <div>
-        
+
 
                 <x-jet-validation-errors class="mb-4" />
 
@@ -118,9 +118,9 @@
                         <div class="w-full">
                             <x-jet-label for="name" value="{{ __('Name of division') }}" />
                             {{-- <x-input wire:model="division.name" id="name" class="block w-full" type="text" name="name" :value="old('name')" required autofocus autocomplete="name" /> --}}
-                          
-                            <x-select userlist={{($userlist)}}>
-                              
+
+                            <x-select :userlist="$userlist">
+
                             </x-select>
 
                         </div>

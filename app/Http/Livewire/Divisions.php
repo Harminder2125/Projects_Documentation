@@ -26,13 +26,8 @@ class Divisions extends Component
     ]; 
 
     public function mount(){
-        $users=User::where("role_id","=",3)->get(['id','name'])->toArray();
-        // foreach($users as $user)
-        // {
-        //     $this->userlist[]=array(,$user['name']);
-        // }    
-        $this->userlist=$users;
-        //dd($this->userlist);
+        $this->userlist=User::where("role_id","=",3)->get(['id','name'])->toArray();
+        
     }
 
     public function render()
