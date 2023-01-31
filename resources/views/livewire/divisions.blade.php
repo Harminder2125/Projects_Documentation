@@ -118,8 +118,9 @@
                         <div class="w-full">
                             <x-jet-label for="name" value="{{ __('Name of division') }}" />
                             {{-- <x-input wire:model="division.name" id="name" class="block w-full" type="text" name="name" :value="old('name')" required autofocus autocomplete="name" /> --}}
-                            <x-select name="">
-                                <option value="">Select HOD</option>
+                          
+                            <x-select userlist={{($userlist)}}>
+                              
                             </x-select>
 
                         </div>

@@ -82,10 +82,7 @@ class User extends Authenticatable
        $result = $this->role_id ==2?  true:  false;
        return $result;
     }
-    public function scopePrivelegedUsers($query)
-    {
-         return $query->where('role_id','=',4);   // Getting list of all priveleged Users
-    }
+    
    
     function role()
     {

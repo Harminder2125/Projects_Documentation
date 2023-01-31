@@ -6,14 +6,10 @@ use Illuminate\View\Component;
 
 class select extends Component
 {
-    /**
-     * Create a new component instance.
-     *
-     * @return void
-     */
-    public function __construct()
+    public $userlist;
+    public function __construct($userlist)
     {
-        //
+        $this->userlist=$userlist;
     }
 
     /**

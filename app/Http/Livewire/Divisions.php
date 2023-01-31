@@ -6,10 +6,12 @@ use Livewire\Component;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Division;
+use App\Models\User;
 
 class Divisions extends Component
 {
     public $searchDivision;
+    public $userlist=[];
     public $confirmingDivisionAddition=false,$confirmingDivisionEditing=false,$confirmingDivisionDeletion=false;
     public $division=[
         "name"=>"",
@@ -21,6 +23,16 @@ class Divisions extends Component
         "group_id"=>2
     ]; 
 
+    public function mount(){
+        $users=User::where("role_id","=",3)->get(['id','name'])->toArray();
+        // foreach($users as $user)
+        // {
+        //     $this->userlist[]=array(,$user['name']);
+        // }    
+        $this->userlist=$users;
+        //dd($this->userlist);
+    }
+
     public function render()
     {   $divisions=Division::when($this->searchDivision,function($query, $searchDivision){
         return $query->where('name','LIKE',"%$this->searchDivision%");
@@ -31,6 +43,7 @@ class Divisions extends Component
         return view('livewire.divisions',[
             'divisions'=>$divisions,
         ]);
+        
     }
     public function toggle($key){
        
