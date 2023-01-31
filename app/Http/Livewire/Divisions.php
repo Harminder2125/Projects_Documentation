@@ -8,24 +8,107 @@ use App\Models\Division;
 
 class Divisions extends Component
 {
-    
-   
+    public $searchDivision;
+    public $confirmingDivisionAddition=false,$confirmingDivisionEditing=false,$confirmingDivisionDeletion=false;
+    public $division=[
+        "name"=>"",
+        "group_id"=>""
+    ]; 
+    public $editdivision=[
+        "id"=>"",
+        "name"=>"",
+        "group_id"=>""
+    ]; 
+
     public function render()
+    {   $divisions=Division::when($this->searchDivision,function($query, $searchDivision){
+        return $query->where('name','LIKE',"%$this->searchDivision%");
+        })->orderBy('id','DESC')->paginate(5);
+
+        $divisions->withPath('/divisions');
+
+        return view('livewire.divisions',[
+            'divisions'=>$divisions,
+        ]);
+    }
+    public function toggle($key){
+       
+     if($key == 'confirmingDivisionAddition')
+     {
+        $this->confirmingDivisionAddition = !$this->confirmingDivisionAddition;
+     }
+    else if($key =='confirmingDivisionEditing')
+    {
+        $this->confirmingDivisionEditing = !$this->confirmingDivisionEditing;
+
+    }
+    else if($key =='confirmingDivisionDeletion')
+    {
+        $this->confirmingDivisionDeletion = !$this->confirmingDivisionDeletion;
+    }
+    else
     {
 
-      
-      $divisions=Division::paginate(2);
-       
-       
-       return view('livewire.divisions')->with('divisions',$divisions);
-            
+    }
         
     }
-
-    public function view()
-    {
-       $divisions=Division::with('divisions.groups')->all();
-       $data=compact('divisions');
-       return view('livewire.divisions')->with($data);
+    public function addDivision(){
+        Validator::make($this->division, [
+            'name' => ['required', 'string', 'max:150'],
+           
+        ])->validate();
+        Division::create($this->division);
+        
+        $this->toggle('confirmingDivisionAddition');
+        $this->dispatchBrowserEvent('banner-message', [
+            'style' => 'success',
+            'message' => 'New Division added successfully!'
+        ]);
+      
+        $this->emit('close-banner');
     }
+    public function editDivision($id){
+        $name=Division::find($id)->name;
+        $this->editdivision['name']=$name;
+        $this->editdivision['id']=$id;
+        $this->toggle('confirmingDivisionEditing');
+
+    } 
+    public function updateDivision(){
+        Validator::make($this->editdivision, [
+            'name' => ['required', 'string', 'max:150'],
+        ])->validate();
+        $division=Division::find($this->editdivision['id']);
+        $division->name=$this->editdivision['name'];
+        $division->save();
+        $this->toggle('confirmingDivisionEditing');
+        $this->dispatchBrowserEvent('banner-message', [
+            'style' => 'success',
+            'message' => 'Division Details Updated successfully!'
+        ]);
+      
+        $this->emit('close-banner');
+
+    }
+
+    public function deleteDivision($id){
+        $name=Division::find($id)->name;
+        $this->editdivision['name']=$name;
+        $this->editdivision['id']=$id;
+        $this->toggle('confirmingDivisionDeletion');
+    }
+    public function delete(){
+
+        $division=Division::find($this->editdivision['id']);
+        $division->delete();
+        $this->toggle('confirmingDivisionDeletion');
+        $this->dispatchBrowserEvent('banner-message', [
+            'style' => 'danger',
+            'message' => 'Division Details Deleted successfully!'
+        ]);
+      
+        $this->emit('close-banner');
+
+    }
+    
 }
