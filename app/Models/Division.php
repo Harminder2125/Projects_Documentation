@@ -12,12 +12,18 @@ class Division extends Model
     public $timestamps = false;
     protected $fillable = [
         'name',
-        'group_id'
+        'group_id',
+        'user_id'
      ];
 
    public function group()
    {
     return $this->belongsTo(Group::class);
+   }
+
+   public function hod()
+   {
+    return $this->belongsTo(User::class);
    }
     
  

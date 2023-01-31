@@ -17,6 +17,7 @@ return new class extends Migration
             $table->id();
             $table->string('name',150);
             $table->foreignId('group_id')->constrained('groups')->onDelete('restrict')->comment('Related to state or group');
+            $table->foreignId('user_id')->constrained('users')->onDelete('restrict')->comment('Related to Division of a State');
             $table->timestamps();
         });
     }
