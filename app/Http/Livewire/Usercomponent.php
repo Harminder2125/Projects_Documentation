@@ -9,7 +9,6 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\Rules\Password;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Auth;
-use Session;
 
 
 class Usercomponent extends Component
@@ -81,7 +80,7 @@ class Usercomponent extends Component
             // 'password' => $this->passwordRules(),
             // 'terms' => Jetstream::hasTermsAndPrivacyPolicyFeature() ? ['accepted', 'required'] : '',
         ])->validate();
-            $this->user['group_id'] = Session::get('group_id');
+            $this->user['group_id'] = Auth::user()->group_id;
             $this->user['password'] = Hash::make($this->user['password']);
             if(Auth::user()->isAdmin())
             {

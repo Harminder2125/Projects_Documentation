@@ -8,7 +8,7 @@
     <div class="py-12">
 
         <!-- <x-jet-welcome /> -->
-        @if(Session::get('role_id')==3)
+        @if(Auth::user()->role_id==3)
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white overflow-hidden shadow-xl sm:rounded-lg">
 
@@ -22,7 +22,8 @@
 
         @endif
 
-        @if(Session::get('role_id') ==1)
+        @if(Auth::user()->role_id ==1)
+
         <!-- SUPER ADMIN -->
         <!-- Dashboard top boxes -->
         <div class="w-full  px-10 xs:px-2">
@@ -36,7 +37,7 @@
                             <h1 class="font-semibold">test States/Groups</h1>
                             <p class="text-sm text-gray-500">States or groups who are registered with us.</p>
                         </div>
-                        
+
 
                         <div class="flex-1 flex justify-end">
 
@@ -121,13 +122,13 @@
                 <h1 class="font-semibold py-3 border-b-2 border-gray-200 w-full">Registred Users</h1>
 
             </div>
-         
+
 
 
         </div>
         @endif
 
-        @if(Session::get('role_id') ==2)
+        @if(Auth::user()->role_id==2)
         <!--  IF USER IS ADMIN-->
         <div class="w-full  px-10 xs:px-2">
 
