@@ -2,7 +2,7 @@
     <div class="flex">
         <div class="flex flex-col bg-white  w-9/12 pr-4">
 
-            <div class="pr-4 text-justify  ">
+            <div class="pr-4 text-justify tracking-widest  text-gray-600 text-regular leading-relaxed">
                 {{$project['description']}}
             </div>
 
