@@ -19,8 +19,8 @@ class Project extends Model
         'group_id'
     ];
 
-    public function group()
+    public function division()
     {
-        return $this->belongsTo(group::class);
+        return $this->belongsTo(Division::class);
     }
 }

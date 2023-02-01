@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\User;
+use App\Models\Project;
 
 class DashboardController extends Controller
 {
@@ -27,6 +28,16 @@ class DashboardController extends Controller
     public function projects()
     {
         return view('projects');
+    }
+    public function projectdetail($id)
+    {   
+        $project = Project::where('id',$id)->first();
+   
+        return view('project-detail',[
+            'project_id'=>$id,
+            'project_name'=>$project->title,
+            'abbreviation'=>$project->abbreviation
+        ]);
     }
 
     public function divisions()
