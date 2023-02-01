@@ -56,7 +56,7 @@
 
                     <div class="w-3/4 p-6">
                         <div class="flex items-baseline rounded-full">
-                            <span class="rounded-full bg-pink-800 text-white px-2 py-1 text-sm">{{$project->group()->first()->name}}</span>
+                            <span class="rounded-full bg-pink-800 text-white px-2 py-1 text-sm">{{$project->division->group->name}}</span>
                         </div>
                         <h4 class="mt-2 text-sm leading-normal font-semibold uppercase leading-tight ">{{$project->title}}</h4>
                     </div>

@@ -8,7 +8,7 @@
         {{$abbreviation}}
     </x-slot>
     <div class="rounded w-full mx-auto mt-4">
-        @livewire('project-detail-component')
+        @livewire('project-detail-component',["id"=>$project_id])
     </div>
 
 
