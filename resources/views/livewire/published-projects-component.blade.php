@@ -9,8 +9,13 @@
             </div>
             <div class="-mt-10 flex justify-center overflow-hidden z-10">
 
-                <img src="./assets/images/projects/dummylogo.png" class="border-4 border-white flex justify-center items-center w-20 h-20 rounded-full shadow-sm object-cover" />
-
+                @if($project->thumbnail_image)
+                    <img src="./assets/images/projects/{{$project->thumbnail_image}}" class="border-4 border-white flex justify-center items-center w-20 h-20 rounded-full shadow-sm object-cover" />
+                @else
+                <span class="bg-fuchsia-900 text-white border-4 border-white flex justify-center items-center w-20 h-20 rounded-full shadow-sm object-cover">
+                {{$project->abbreviation}}
+                </span>
+                @endif
 
 
             </div>
