@@ -169,7 +169,7 @@
                     <th class="bg-gray-200 text-left px-2  py-2 border-r border-gray-300">Description</th>
                     <th class="bg-gray-200 text-left px-2 w-36 py-2 border-r border-gray-300">View</th>
                 </thead>
-                <tbody class="text-xs text-gray-700">
+                <tbody class="text-sm text-gray-700">
                     <tr class="hover:bg-gray-50">
                         <td class=" py-2 px-2  border border-gray-300">1.0.2</td>
                         <td class=" py-2 px-2 border border-gray-300">01-FEB-2023</td>
