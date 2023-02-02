@@ -15,11 +15,12 @@ return new class extends Migration
     {
         Schema::create('project_histories', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('project_id')->constrained('projects')->onDelete('restrict');
+
             $table->string('action_performed',30);
             $table->string('action_description',250)->nullable();
             $table->foreignId('first_user_id')->constrained('users')->onDelete('restrict');
-            $table->foreignId('second_user_id')->constrained('users')->onDelete('restrict')->nullable();
-            $table->foreignId('project_id')->constrained('projects')->onDelete('restrict');
+            $table->foreignId('second_user_id')->nullable()->constrained('users')->onDelete('restrict');
 
 
             $table->timestamps();
