@@ -5,7 +5,7 @@
 
     <select class="w-full form-select" {{ $disabled ? 'disabled' : '' }} {!! $attributes->merge(['class' => 'text-gray-500 focus:border-purple-100 focus:ring focus:ring-purple-100 focus:ring-opacity-50 rounded-sm shadow-sm']) !!}>
 
-        <option value="0">Select User</option>
+        <option value="0">Select Option</option>
 
         @foreach ($userlist as $item)
 

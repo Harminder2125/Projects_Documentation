@@ -12,8 +12,9 @@ class ProjectDetailComponent extends Component
     public $team_leader="ss duggal";
     public $team_members=["navinder sharma","narinder singh","dinesh sharma"];
     public $confirmingProjectTransfer = false;
+    public $projectTransferFinal = false;
     public $divisionlist=[];
-    public $newdivisionid="";
+    public $newdivisionid=0;
 
     public function getSelectedDivisionName(){
 
@@ -27,6 +28,22 @@ class ProjectDetailComponent extends Component
             }
         }
         return $name;
+    }
+    public function transferProject($id)
+    {
+            $project = Project::find($id);
+            $project->division_id = $this->newdivisionid;
+            $project->save();
+            $this->toggle('projectTransferFinal');
+            $this->toggle('confirmingProjectTransfer');
+            $this->dispatchBrowserEvent('banner-message', [
+            'style' => 'success',
+            'message' => 'Project '.$project->title.' successfully transferred to '.$project->division->name
+        ]);
+      
+        $this->emit('close-banner');
+
+
     }
     
     public function toggle($key){
@@ -43,7 +60,14 @@ class ProjectDetailComponent extends Component
              }
              $this->divisionlist = $divlist->toArray();
         }
+       
      }
+      else if($key == 'projectTransferFinal'){
+         $this->projectTransferFinal = !$this->projectTransferFinal;
+      }
+      else{
+
+      }
             
     }
 
