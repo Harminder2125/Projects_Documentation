@@ -155,14 +155,14 @@
     <div class=" flex justify-end ">
         <x-secondary-button class="mr-2 my-4 text-sm p-2 rounded-lg shadow">Project Timeline</x-secondary-button>
 
-        <x-danger-button class="my-4 text-sm p-2 rounded-lg shadow">Transfer Project </x-danger-button>
+        <x-danger-button wire:click="toggle('confirmingProjectTransfer')" class="my-4 text-sm p-2 rounded-lg shadow">Transfer Project </x-danger-button>
 
     </div>
     <div class="border-t-2 border-gray-200 border-dashed pt-4">
-            <x-main-title>Project Manual</x-main-title>
-            <x-sub-title>List of all the manuals published under this project</x-sub-title>
-            <div class="py-4">
-                <table class="w-full">
+        <x-main-title>Project Manual</x-main-title>
+        <x-sub-title>List of all the manuals published under this project</x-sub-title>
+        <div class="py-4">
+            <table class="w-full">
                 <thead class="uppercase text-sm text-gray-700">
                     <th class="bg-gray-200 text-left px-2 w-36 py-2 border-r border-gray-300">Version</th>
                     <th class="bg-gray-200 text-left px-2 w-36 py-2 border-r border-gray-300">Published Date</th>
@@ -171,33 +171,111 @@
                 </thead>
                 <tbody class="text-xs text-gray-700">
                     <tr class="hover:bg-gray-50">
-                    <td class=" py-2 px-2  border border-gray-300">1.0.2</td>
-                    <td class=" py-2 px-2 border border-gray-300">01-FEB-2023</td>
-                    <td class=" py-2 px-2 border border-gray-300"></td>
-                    <td class=" py-2 px-2 border border-gray-300">
-                        <a href="#" class="text-blue-500">view</a>
-                    </td>
+                        <td class=" py-2 px-2  border border-gray-300">1.0.2</td>
+                        <td class=" py-2 px-2 border border-gray-300">01-FEB-2023</td>
+                        <td class=" py-2 px-2 border border-gray-300"></td>
+                        <td class=" py-2 px-2 border border-gray-300">
+                            <a href="#" class="text-blue-500">view</a>
+                        </td>
                     </tr>
                     <tr class="hover:bg-gray-50">
-                    <td class=" py-2 px-2  border border-gray-300">1.0.1</td>
-                    <td class=" py-2 px-2 border border-gray-300">15-DEC-2022</td>
-                    <td class=" py-2 px-2 border border-gray-300">Description</td>
-                    <td class=" py-2 px-2 border border-gray-300">
-                        <a href="#" class="text-blue-500">view</a>
-                    </td>
+                        <td class=" py-2 px-2  border border-gray-300">1.0.1</td>
+                        <td class=" py-2 px-2 border border-gray-300">15-DEC-2022</td>
+                        <td class=" py-2 px-2 border border-gray-300">Description</td>
+                        <td class=" py-2 px-2 border border-gray-300">
+                            <a href="#" class="text-blue-500">view</a>
+                        </td>
                     </tr>
                     <tr class="hover:bg-gray-50">
-                    <td class=" py-2 px-2  border border-gray-300">1.0.0</td>
-                    <td class=" py-2 px-2 border border-gray-300">10-OCT-2022</td>
-                    <td class=" py-2 px-2 border border-gray-300">Description</td>
-                    <td class=" py-2 px-2 border border-gray-300">
-                        <a href="#" class="text-blue-500">view</a>
-                    </td>
+                        <td class=" py-2 px-2  border border-gray-300">1.0.0</td>
+                        <td class=" py-2 px-2 border border-gray-300">10-OCT-2022</td>
+                        <td class=" py-2 px-2 border border-gray-300">Description</td>
+                        <td class=" py-2 px-2 border border-gray-300">
+                            <a href="#" class="text-blue-500">view</a>
+                        </td>
                     </tr>
                 </tbody>
-                </table>
-            </div>
-            
+            </table>
+        </div>
+
     </div>
+
+
+    <x-jet-confirmation-modal wire:model="confirmingProjectTransfer">
+
+
+        <x-slot name="icon">
+            <div class="mx-auto shrink-0 flex items-center justify-center h-12 w-12 rounded-full bg-red-800 sm:mx-0 sm:h-10 sm:w-10">
+                <svg class="h-5 w-5 text-white" stroke-width="1.5" stroke="currentColor" fill="none" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M19 7.5v3m0 0v3m0-3h3m-3 0h-3m-2.25-4.125a3.375 3.375 0 11-6.75 0 3.375 3.375 0 016.75 0zM4 19.235v-.11a6.375 6.375 0 0112.75 0v.109A12.318 12.318 0 0110.374 21c-2.331 0-4.512-.645-6.374-1.766z" />
+                </svg>
+
+
+            </div>
+        </x-slot>
+
+        <x-slot name="title">
+            <span class="text-red-800">Transfer Project?</span>
+        </x-slot>
+        <x-slot name="subtitle">
+            Transfer of project to some other division.
+        </x-slot>
+        <x-slot name="content">
+            <div class="bg-red-100 p-4 rounded-lg">
+                <span class="text-xs font-semibold text-gray-700 uppercase mb-4">Transfer of any project to some other division will result in.</span>
+
+
+                <ul class="list-disc list-inside leading-loose text-gray-500 text-xs uppercase">
+                    <li>Current Project Head / HOD will not be able to access this project anymore.</li>
+                    <li>All the approval requests will be routed to the new Project Head / HOD.</li>
+                    <li>If new project head/HOD wants to reshuffle his project team, he can manually change team leader or team members.</li>
+
+
+                </ul>
+
+            </div>
+            <div class="w-full flex flex-col justify-center items-center py-4">
+
+                <div class="p-4 w-full border border-gray-500 border-dashed rounded-lg">
+                    <div class="mb-2">
+                        <x-main-title>Transfer project</x-main-title>
+                    </div>
+
+                    <div class="mb-2 text-bold  text-gray-500 py-2 my-2">{{$project['title']}}</div>
+
+                    <div class="mb-2">
+                        <x-main-title>transfer TO</x-main-title>
+                    </div>
+
+                    <x-select wire:model="newdivisionid" :userlist="$divisionlist">
+
+
+                    </x-select>
+
+                </div>
+
+
+
+            </div>
+            <x-main-title>
+                <div class="text-center leading-loose">You are transferring <span class="text-rose-800">{{$project['title']}}</span> to <span class="text-orange-600">{{$this->getSelectedDivisionName()}}</span> </div>
+            </x-main-title>
+
+
+
+
+        </x-slot>
+
+        <x-slot name="footer">
+            <x-jet-secondary-button wire:click="$toggle('confirmingProjectTransfer')" wire:loading.attr="disabled">
+                Cancel
+            </x-jet-secondary-button>
+
+            <x-jet-danger-button class="ml-2" wire:click="transferProject({{$project['id']}})" wire:loading.attr="disabled">
+                Transfer it !
+            </x-jet-danger-button>
+        </x-slot>
+    </x-jet-confirmation-modal>
+
 
 </div>
