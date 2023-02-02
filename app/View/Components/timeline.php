@@ -3,6 +3,7 @@
 namespace App\View\Components;
 
 use Illuminate\View\Component;
+use App\Models\ProjectHistory;
 
 class timeline extends Component
 {
@@ -11,10 +12,12 @@ class timeline extends Component
      *
      * @return void
      */
-    public function __construct()
+    public $projectid;
+    public function __construct($id)
     {
-        //
+        $this->projectid=$id;
     }
+   
 
     /**
      * Get the view / contents that represent the component.
@@ -23,6 +26,7 @@ class timeline extends Component
      */
     public function render()
     {
-        return view('components.timeline');
+        $data=ProjectHistory::where("project_id","=",$this->projectid)->orderby("id","desc")->get();
+        return view('components.timeline',["history"=>$data]);
     }
 }

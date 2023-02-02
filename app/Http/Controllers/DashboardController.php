@@ -39,6 +39,16 @@ class DashboardController extends Controller
             'abbreviation'=>$project->abbreviation
         ]);
     }
+    public function projecttimeline($id)
+    {   
+        $project = Project::where('id',$id)->first();
+   
+        return view('project-timeline',[
+            'project_id'=>$id,
+            'project_name'=>$project->title,
+            'abbreviation'=>$project->abbreviation
+        ]);
+    }
 
     public function divisions()
     {

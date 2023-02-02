@@ -153,7 +153,7 @@
         </div>
     </div>
     <div class=" flex justify-end ">
-        <x-secondary-button class="mr-2 my-4 text-sm p-2 rounded-lg shadow">Project Timeline</x-secondary-button>
+        <a href="/project/timeline/{{$project->id}}"><x-secondary-button class="mr-2 my-4 text-sm p-2 rounded-lg shadow">Project Timeline</x-secondary-button></a>
 
         <x-danger-button wire:click="toggle('confirmingProjectTransfer')" class="my-4 text-sm p-2 rounded-lg shadow">Transfer Project </x-danger-button>
 
