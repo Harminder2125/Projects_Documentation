@@ -11,6 +11,6 @@
     <div class="rounded w-full mx-auto mt-4">
         @livewire('project-detail-component',["id"=>$project_id])
     </div>
-
+    <x-timeline ></x-timeline>
 
 </x-app-layout>
