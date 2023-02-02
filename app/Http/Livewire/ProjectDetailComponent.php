@@ -14,7 +14,7 @@ class ProjectDetailComponent extends Component
     public $confirmingProjectTransfer = false;
     public $projectTransferFinal = false;
     public $divisionlist=[];
-    public $newdivisionid="";
+    public $newdivisionid=0;
 
     public function getSelectedDivisionName(){
 

@@ -271,9 +271,11 @@
                 Cancel
             </x-jet-secondary-button>
 
+            @if($this->newdivisionid !=0)
             <x-jet-danger-button class="ml-2" wire:click="toggle('projectTransferFinal')" wire:loading.attr="disabled">
                 Proceed
             </x-jet-danger-button>
+            @endif
         </x-slot>
     </x-jet-confirmation-modal>
     <x-jet-confirmation-modal wire:model="projectTransferFinal">
