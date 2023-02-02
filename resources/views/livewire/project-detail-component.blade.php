@@ -6,7 +6,7 @@
                 {{$project['description']}}
             </div>
             <div class="my-4 mt-8">
-                <h1 class="text-lg text-gray-700 font-semibold uppercase"> Project Team</h1>
+                <x-main-title>Project Team</x-main-title>
             </div>
 
             <div class="bg-gray-100 p-4 rounded-lg shadow-sm">
@@ -85,6 +85,19 @@
                         </div>
                     </div>
                     <div class=" py-2 dark:bg-gray-800 hover:bg-gray-50 dark:hover:bg-gray-600">
+                        <div scope="row" class="py-1 uppercase px-6 text-sm font-medium text-gray-600 whitespace-nowrap dark:text-white">
+                            Division
+                        </div>
+                        <div class="px-6 flex uppercase text-xs  text-gray-500">
+
+
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="mr-2 w-5 h-5">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M9 4.5v15m6-15v15m-10.875 0h15.75c.621 0 1.125-.504 1.125-1.125V5.625c0-.621-.504-1.125-1.125-1.125H4.125C3.504 4.5 3 5.004 3 5.625v12.75c0 .621.504 1.125 1.125 1.125z"></path>
+                            </svg>
+                            {{$project->division->name}}
+                        </div>
+                    </div>
+                    <div class=" py-2 dark:bg-gray-800 hover:bg-gray-50 dark:hover:bg-gray-600">
                         <div scope="row" class="py-1 text-sm  uppercase px-6  font-medium text-gray-600 whitespace-nowrap dark:text-white">
 
 
@@ -140,15 +153,51 @@
         </div>
     </div>
     <div class=" flex justify-end ">
-        <x-primary-button class="my-4 text-sm p-2 rounded-lg shadow">Transfer Project </x-primary-button>
-        <x-secondary-button class="my-4 text-sm p-2 rounded-lg shadow">Transfer Project </x-secondary-button>
-        <x-dark-button class="my-4 text-sm p-2 rounded-lg shadow">Transfer Project </x-dark-button>
+        <x-secondary-button class="mr-2 my-4 text-sm p-2 rounded-lg shadow">Project Timeline</x-secondary-button>
 
         <x-danger-button class="my-4 text-sm p-2 rounded-lg shadow">Transfer Project </x-danger-button>
 
     </div>
-    <div>
-
+    <div class="border-t-2 border-gray-200 border-dashed pt-4">
+            <x-main-title>Project Manual</x-main-title>
+            <x-sub-title>List of all the manuals published under this project</x-sub-title>
+            <div class="py-4">
+                <table class="w-full">
+                <thead class="uppercase text-sm text-gray-700">
+                    <th class="bg-gray-200 text-left px-2 w-36 py-2 border-r border-gray-300">Version</th>
+                    <th class="bg-gray-200 text-left px-2 w-36 py-2 border-r border-gray-300">Published Date</th>
+                    <th class="bg-gray-200 text-left px-2  py-2 border-r border-gray-300">Description</th>
+                    <th class="bg-gray-200 text-left px-2 w-36 py-2 border-r border-gray-300">View</th>
+                </thead>
+                <tbody class="text-xs text-gray-700">
+                    <tr class="hover:bg-gray-50">
+                    <td class=" py-2 px-2  border border-gray-300">1.0.2</td>
+                    <td class=" py-2 px-2 border border-gray-300">01-FEB-2023</td>
+                    <td class=" py-2 px-2 border border-gray-300"></td>
+                    <td class=" py-2 px-2 border border-gray-300">
+                        <a href="#" class="text-blue-500">view</a>
+                    </td>
+                    </tr>
+                    <tr class="hover:bg-gray-50">
+                    <td class=" py-2 px-2  border border-gray-300">1.0.1</td>
+                    <td class=" py-2 px-2 border border-gray-300">15-DEC-2022</td>
+                    <td class=" py-2 px-2 border border-gray-300">Description</td>
+                    <td class=" py-2 px-2 border border-gray-300">
+                        <a href="#" class="text-blue-500">view</a>
+                    </td>
+                    </tr>
+                    <tr class="hover:bg-gray-50">
+                    <td class=" py-2 px-2  border border-gray-300">1.0.0</td>
+                    <td class=" py-2 px-2 border border-gray-300">10-OCT-2022</td>
+                    <td class=" py-2 px-2 border border-gray-300">Description</td>
+                    <td class=" py-2 px-2 border border-gray-300">
+                        <a href="#" class="text-blue-500">view</a>
+                    </td>
+                    </tr>
+                </tbody>
+                </table>
+            </div>
+            
     </div>
 
 </div>

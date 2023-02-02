@@ -42,13 +42,10 @@
     <div class="py-12">
         <div class="max-w-8xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white overflow-hidden shadow-xl p-10">
-
-                <h1 class="text-lg text-fuchsia-900 font-semibold uppercase"> {{$title}}</h1>
-                  <div class="flex justify-between border-b border-fuchsia-200 border-dashed mb-4">
-        <div>
-            <h3 class="mb-4 text-gray-500 tracking-widest uppercase text-sm">{{$subtitle}}</h3>
-        </div>
-    </div>
+    <x-main-heading>{{$title}}</x-main-heading> 
+    <x-sub-heading>{{$subtitle}}</x-sub-heading> 
+     
+                
                 {{ $slot }}
                  </div>
         </div>
