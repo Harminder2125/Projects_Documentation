@@ -271,6 +271,58 @@
                 Cancel
             </x-jet-secondary-button>
 
+            <x-jet-danger-button class="ml-2" wire:click="toggle('projectTransferFinal')" wire:loading.attr="disabled">
+                Proceed
+            </x-jet-danger-button>
+        </x-slot>
+    </x-jet-confirmation-modal>
+    <x-jet-confirmation-modal wire:model="projectTransferFinal">
+
+
+        <x-slot name="icon">
+            <div class="mx-auto shrink-0 flex items-center justify-center h-12 w-12 rounded-full bg-red-800 sm:mx-0 sm:h-10 sm:w-10">
+                <svg class="h-5 w-5 text-white" stroke-width="1.5" stroke="currentColor" fill="none" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M19 7.5v3m0 0v3m0-3h3m-3 0h-3m-2.25-4.125a3.375 3.375 0 11-6.75 0 3.375 3.375 0 016.75 0zM4 19.235v-.11a6.375 6.375 0 0112.75 0v.109A12.318 12.318 0 0110.374 21c-2.331 0-4.512-.645-6.374-1.766z" />
+                </svg>
+
+
+            </div>
+        </x-slot>
+
+        <x-slot name="title">
+            <span class="text-red-800">Transfer Project</span>
+        </x-slot>
+        <x-slot name="subtitle">
+            Transfer of project to some other division.
+        </x-slot>
+        <x-slot name="content">
+
+            <div class="w-full flex flex-col justify-center items-center py-4">
+
+                <div class="p-4 w-full border border-gray-500 border-dashed rounded-lg">
+
+                    <x-main-title>
+                        <div class="text-center leading-loose">Are you sure you want to transfer <span class="text-rose-800">{{$project['title']}}</span> to <span class="text-orange-600">{{$this->getSelectedDivisionName()}}</span> </div>
+                    </x-main-title>
+
+
+                </div>
+
+
+
+            </div>
+
+
+
+
+
+        </x-slot>
+
+        <x-slot name="footer">
+            <x-jet-secondary-button wire:click="$toggle('projectTransferFinal')" wire:loading.attr="disabled">
+                Cancel
+            </x-jet-secondary-button>
+
             <x-jet-danger-button class="ml-2" wire:click="transferProject({{$project['id']}})" wire:loading.attr="disabled">
                 Transfer it !
             </x-jet-danger-button>
