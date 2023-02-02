@@ -153,9 +153,35 @@
         </div>
     </div>
     <div class=" flex justify-end ">
-        <a href="/project/timeline/{{$project->id}}"><x-secondary-button class="mr-2 my-4 text-sm p-2 rounded-lg shadow">Project Timeline</x-secondary-button></a>
 
-        <x-danger-button wire:click="toggle('confirmingProjectTransfer')" class="my-4 text-sm p-2 rounded-lg shadow">Transfer Project </x-danger-button>
+        <a href="/projects">
+            <x-dark-button class="my-4 text-sm p-2 rounded-lg shadow mr-2">
+
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5 mr-2">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M11.25 9l-3 3m0 0l3 3m-3-3h7.5M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                </svg>
+
+
+
+
+                back to projects</x-dark-button>
+        </a>
+
+        <a href="/project/timeline/{{$project->id}}">
+
+            <x-secondary-button class="mr-2 my-4 text-sm p-2 rounded-lg shadow"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5 mr-2">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M12 6v6h4.5m4.5 0a9 9 0 11-18 0 9 9 0 0118 0z" />
+                </svg>
+
+                Project Timeline</x-secondary-button>
+        </a>
+
+        <x-danger-button wire:click="toggle('confirmingProjectTransfer')" class="my-4 text-sm p-2 rounded-lg shadow">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5 mr-2">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M7.5 21L3 16.5m0 0L7.5 12M3 16.5h13.5m0-13.5L21 7.5m0 0L16.5 12M21 7.5H7.5" />
+            </svg>
+
+            Transfer Project </x-danger-button>
 
     </div>
     <div class="border-t-2 border-gray-200 border-dashed pt-4">
@@ -278,7 +304,7 @@
             @endif
         </x-slot>
     </x-jet-confirmation-modal>
-    
+
     <x-jet-confirmation-modal wire:model="projectTransferFinal">
 
 
