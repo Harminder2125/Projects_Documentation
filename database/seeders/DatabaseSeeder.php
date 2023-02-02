@@ -29,6 +29,7 @@ class DatabaseSeeder extends Seeder
             CategorySeeder::class,
             DivisionSeeder::class,
             ProjectSeeder::class,
+            ProjectHistorySeeder::class,
         ]);
     }
 }
