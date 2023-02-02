@@ -278,6 +278,7 @@
             @endif
         </x-slot>
     </x-jet-confirmation-modal>
+    
     <x-jet-confirmation-modal wire:model="projectTransferFinal">
 
 
