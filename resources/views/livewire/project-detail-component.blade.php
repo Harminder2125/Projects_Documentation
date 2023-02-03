@@ -1,4 +1,6 @@
 <div>
+    <script src="/assets/js/lottieplayer.js"></script>
+
     <div class="flex">
         <div class="flex flex-col bg-white  w-9/12 pr-4">
 
@@ -184,47 +186,130 @@
             Transfer Project </x-danger-button>
 
     </div>
-    <div class="border-t-2 border-gray-200 border-dashed pt-4">
-        <x-main-title>Project Manual</x-main-title>
-        <x-sub-title>List of all the manuals published under this project</x-sub-title>
-        <div class="py-4">
-            <table class="w-full">
-                <thead class="uppercase text-sm text-gray-700">
-                    <th class="bg-gray-200 text-left px-2 w-36 py-2 border-r border-gray-300">Version</th>
-                    <th class="bg-gray-200 text-left px-2 w-36 py-2 border-r border-gray-300">Published Date</th>
-                    <th class="bg-gray-200 text-left px-2  py-2 border-r border-gray-300">Description</th>
-                    <th class="bg-gray-200 text-left px-2 w-36 py-2 border-r border-gray-300">View</th>
-                </thead>
-                <tbody class="text-sm text-gray-700">
-                    <tr class="hover:bg-gray-50">
-                        <td class=" py-2 px-2  border border-gray-300">1.0.2</td>
-                        <td class=" py-2 px-2 border border-gray-300">01-FEB-2023</td>
-                        <td class=" py-2 px-2 border border-gray-300"></td>
-                        <td class=" py-2 px-2 border border-gray-300">
-                            <a href="#" class="text-blue-500">view</a>
-                        </td>
-                    </tr>
-                    <tr class="hover:bg-gray-50">
-                        <td class=" py-2 px-2  border border-gray-300">1.0.1</td>
-                        <td class=" py-2 px-2 border border-gray-300">15-DEC-2022</td>
-                        <td class=" py-2 px-2 border border-gray-300">Description</td>
-                        <td class=" py-2 px-2 border border-gray-300">
-                            <a href="#" class="text-blue-500">view</a>
-                        </td>
-                    </tr>
-                    <tr class="hover:bg-gray-50">
-                        <td class=" py-2 px-2  border border-gray-300">1.0.0</td>
-                        <td class=" py-2 px-2 border border-gray-300">10-OCT-2022</td>
-                        <td class=" py-2 px-2 border border-gray-300">Description</td>
-                        <td class=" py-2 px-2 border border-gray-300">
-                            <a href="#" class="text-blue-500">view</a>
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
+    <div class="w-full flex gap-4 mt-4 flex-wrap">
+        <div class="flex-1 border-2 border-gray-200 border-dashed p-4">
+            <x-main-title>Hardware Requirements</x-main-title>
+            <x-sub-title>Hardware and software requirement for running -{{$project->title}}</x-sub-title>
+            <div class="py-4 flex flex-col justify-center items-center ">
+
+                <lottie-player src="/assets/js/lottieanimations/box-empty.json" background="transparent" speed="1" style="width: 200px; height: 200px;" loop autoplay></lottie-player>
+
+
+                <x-sub-title class="font-semibold text-gray-400">Onboarding document not available!</x-sub-title>
+            </div>
+
+        </div>
+
+        <div class="flex-1 border-2 border-gray-200 border-dashed p-4">
+            <x-main-title>Project ONboarding</x-main-title>
+            <x-sub-title>Steps to follow for onboarding -{{$project->title}}</x-sub-title>
+            <div class="py-4 flex flex-col justify-center items-center ">
+
+                <lottie-player src="/assets/js/lottieanimations/box-empty.json" background="transparent" speed="1" style="width: 200px; height: 200px;" loop autoplay></lottie-player>
+
+
+                <x-sub-title class="font-semibold text-gray-400">Onboarding document not available!</x-sub-title>
+            </div>
+
+        </div>
+        <div class="flex-1  border-2 border-gray-200 border-dashed p-4">
+            <x-main-title>Project preliminary Setup</x-main-title>
+            <x-sub-title>setting up master data and project configurations -{{$project->title}}</x-sub-title>
+            <div class="py-4 flex flex-col justify-center items-center ">
+
+                <lottie-player src="/assets/js/lottieanimations/box-empty.json" background="transparent" speed="1" style="width: 200px; height: 200px;" loop autoplay></lottie-player>
+
+
+                <x-sub-title class="font-semibold text-gray-400">Onboarding document not available!</x-sub-title>
+            </div>
+
+        </div>
+           <div class="flex-1 border-2 border-gray-200 border-dashed p-4">
+               <x-main-title>Staging Server </x-main-title>
+               <x-sub-title>Details of staging server -{{$project->title}}</x-sub-title>
+               <div class="py-4 flex flex-col justify-center items-center ">
+
+                   <lottie-player src="/assets/js/lottieanimations/box-empty.json" background="transparent" speed="1" style="width: 200px; height: 200px;" loop autoplay></lottie-player>
+
+
+                   <x-sub-title class="font-semibold text-gray-400">Onboarding document not available!</x-sub-title>
+               </div>
+
+           </div>
+
+           <div class="flex-1 border-2 border-gray-200 border-dashed p-4">
+               <x-main-title>Live Server</x-main-title>
+               <x-sub-title>Details of live server -{{$project->title}}</x-sub-title>
+               <div class="py-4 flex flex-col justify-center items-center ">
+
+                   <lottie-player src="/assets/js/lottieanimations/box-empty.json" background="transparent" speed="1" style="width: 200px; height: 200px;" loop autoplay></lottie-player>
+
+
+                   <x-sub-title class="font-semibold text-gray-400">Onboarding document not available!</x-sub-title>
+               </div>
+
+           </div>
+           <div class="flex-1  border-2 border-gray-200 border-dashed p-4">
+               <x-main-title>Mobile Application</x-main-title>
+               <x-sub-title>Mobile application for  -{{$project->title}}</x-sub-title>
+               <div class="py-4 flex flex-col justify-center items-center ">
+
+                   <lottie-player src="/assets/js/lottieanimations/box-empty.json" background="transparent" speed="1" style="width: 200px; height: 200px;" loop autoplay></lottie-player>
+
+
+                   <x-sub-title class="font-semibold text-gray-400">Onboarding document not available!</x-sub-title>
+               </div>
+
+           </div>
+
+        <div class="flex-2 w-full border-2  border-gray-200 border-dashed p-4">
+
+            <x-main-title>Project Manual</x-main-title>
+            <x-sub-title>List of all the manuals published under this project</x-sub-title>
+            <div class="py-4">
+                <table class="w-full">
+                    <thead class="uppercase text-sm text-gray-700">
+                        <th class="bg-gray-200 text-left px-2 w-36 py-2 border-r border-gray-300">Version</th>
+                        <th class="bg-gray-200 text-left px-2 w-36 py-2 border-r border-gray-300">Published Date</th>
+                        <th class="bg-gray-200 text-left px-2  py-2 border-r border-gray-300">Description</th>
+                        <th class="bg-gray-200 text-left px-2 w-36 py-2 border-r border-gray-300">View</th>
+                    </thead>
+                    <tbody class="text-sm text-gray-700">
+                        <tr class="hover:bg-gray-50">
+                            <td class=" py-2 px-2  border border-gray-300">1.0.2</td>
+                            <td class=" py-2 px-2 border border-gray-300">01-FEB-2023</td>
+                            <td class=" py-2 px-2 border border-gray-300"></td>
+                            <td class=" py-2 px-2 border border-gray-300">
+                                <a href="#" class="text-blue-500">view</a>
+                            </td>
+                        </tr>
+                        <tr class="hover:bg-gray-50">
+                            <td class=" py-2 px-2  border border-gray-300">1.0.1</td>
+                            <td class=" py-2 px-2 border border-gray-300">15-DEC-2022</td>
+                            <td class=" py-2 px-2 border border-gray-300">Description</td>
+                            <td class=" py-2 px-2 border border-gray-300">
+                                <a href="#" class="text-blue-500">view</a>
+                            </td>
+                        </tr>
+                        <tr class="hover:bg-gray-50">
+                            <td class=" py-2 px-2  border border-gray-300">1.0.0</td>
+                            <td class=" py-2 px-2 border border-gray-300">10-OCT-2022</td>
+                            <td class=" py-2 px-2 border border-gray-300">Description</td>
+                            <td class=" py-2 px-2 border border-gray-300">
+                                <a href="#" class="text-blue-500">view</a>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
         </div>
 
     </div>
+
+
+
+
 
 
     <x-jet-confirmation-modal wire:model="confirmingProjectTransfer">

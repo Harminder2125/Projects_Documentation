@@ -1,8 +1,10 @@
 <div>
+    <script src="/assets/js/lottieplayer.js"></script>
+
+
     @if($history->count()<=1) <div class="flex flex-col justify-center items-center h-96">
         <div>
-            <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
-            <lottie-player src="https://assets10.lottiefiles.com/packages/lf20_WpDG3calyJ.json" background="transparent" speed="1" style="width: 300px; height: 300px;" loop autoplay></lottie-player>
+            <lottie-player src="/assets/js/lottieanimations/empty-ghost.json" background="transparent" speed="1" style="width: 300px; height: 300px;" loop autoplay></lottie-player>
 
         </div>
         <x-sub-title class="font-semibold text-gray-400 mb-2">Project Manual Timeline not yet created ! Please have some patience.</x-sub-title>
@@ -55,7 +57,7 @@
         <div class="items-center ml-4 justify-between p-4 bg-white border border-gray-200 rounded-lg shadow-sm sm:flex dark:bg-gray-700 dark:border-gray-600">
             <time class="mb-1 text-xs font-normal text-gray-400 sm:order-last sm:mb-0">just now</time>
             <x-sub-title>
-                <div>{{$record->fromUser->name}} <span class="font-semibold text-rose-700">{{$record->action_performed}}</span> the Project and send back to <span class="font-semi-bold bg-gray-200 text-gray-500 px-2 rounded">{{$record->toUser->name}}</span> for recommended changes </div>
+                <div>{{$record->fromUser->name}} <span class="font-semibold text-rose-700">{{$record->action_performed}}</span> the Project and send back to <span class="font-semi-bold bg-gray-200 text-gray-500 px-2 rounded">{{$record->toUser->name}}</span> by recommending some changes. </div>
             </x-sub-title>
         </div>
         @break
