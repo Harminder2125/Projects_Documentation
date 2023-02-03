@@ -531,12 +531,12 @@
                 </div>
                 @else
                 <div class="flex flex-col justify-center items-center">
-                    <svg viewBox="0 0 512 512" id="Layer_1" version="1.1" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" class="h-32 w-32 fill-green-800">
+                    <svg class="w-32 h32 fill-rose-800" viewBox="0 0 1024 1024" class="icon" version="1.1" xmlns="http://www.w3.org/2000/svg">
                         <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
                         <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
                         <g id="SVGRepo_iconCarrier">
-                            <path d="M551.424 0H176.128c-47.104 0-85.504 38.4-85.504 85.504v852.992c0 47.104 38.4 85.504 85.504 85.504h375.296c47.104 0 85.504-38.4 85.504-85.504V85.504c0-47.104-38.4-85.504-85.504-85.504M312.832 68.096h102.4c9.216 0 16.896 7.68 16.896 16.896s-7.68 16.896-16.896 16.896h-102.4c-9.216 0-16.896-7.68-16.896-16.896-0.512-9.216 7.168-16.896 16.896-16.896m51.2 921.6c-28.16 0-51.2-23.04-51.2-51.2s23.04-51.2 51.2-51.2 51.2 23.04 51.2 51.2-23.04 51.2-51.2 51.2m238.592-136.704H124.928V170.496h477.696v682.496z" fill="#FFA28D"></path>
-                            <path d="M853.504 66.56h-218.112c1.536 6.144 2.048 12.288 2.048 18.432v45.056h88.576c8.704 0 15.872 7.168 15.872 15.872s-7.168 15.872-15.872 15.872h-88.576v64H901.12v637.952h-264.192v54.784c8.192-13.824 23.552-23.04 40.448-23.04 26.624 0 47.616 21.504 47.616 47.616 0 26.624-21.504 47.616-47.616 47.616-19.968 0-36.864-12.288-44.032-29.696-10.24 35.328-43.008 61.44-81.92 61.44h301.568c44.032 0 79.872-35.84 79.872-79.872V146.432c0.512-44.032-35.84-79.872-79.36-79.872z" fill="#5FFFBA"></path>
+                            <path d="M551.424 0H176.128c-47.104 0-85.504 38.4-85.504 85.504v852.992c0 47.104 38.4 85.504 85.504 85.504h375.296c47.104 0 85.504-38.4 85.504-85.504V85.504c0-47.104-38.4-85.504-85.504-85.504M312.832 68.096h102.4c9.216 0 16.896 7.68 16.896 16.896s-7.68 16.896-16.896 16.896h-102.4c-9.216 0-16.896-7.68-16.896-16.896-0.512-9.216 7.168-16.896 16.896-16.896m51.2 921.6c-28.16 0-51.2-23.04-51.2-51.2s23.04-51.2 51.2-51.2 51.2 23.04 51.2 51.2-23.04 51.2-51.2 51.2m238.592-136.704H124.928V170.496h477.696v682.496z" class="fill-rose-800"></path>
+                            <path d="M853.504 66.56h-218.112c1.536 6.144 2.048 12.288 2.048 18.432v45.056h88.576c8.704 0 15.872 7.168 15.872 15.872s-7.168 15.872-15.872 15.872h-88.576v64H901.12v637.952h-264.192v54.784c8.192-13.824 23.552-23.04 40.448-23.04 26.624 0 47.616 21.504 47.616 47.616 0 26.624-21.504 47.616-47.616 47.616-19.968 0-36.864-12.288-44.032-29.696-10.24 35.328-43.008 61.44-81.92 61.44h301.568c44.032 0 79.872-35.84 79.872-79.872V146.432c0.512-44.032-35.84-79.872-79.36-79.872z" class="fill-gray-800"></path>
                         </g>
                     </svg>
 
@@ -581,48 +581,62 @@
 
             <x-main-title>Complete Project Manual</x-main-title>
             <x-sub-title>List of all the manuals published under this project</x-sub-title>
-            <div class="py-4 flex flex-col justify-center items-center">
+            <div class="py-4 flex flex-col justify-center items-center ">
 
-                {{-- <table class="w-full">
-                    <thead class="uppercase text-sm text-gray-700">
-                        <th class="bg-gray-200 text-left px-2 w-36 py-2 border-r border-gray-300">Version</th>
-                        <th class="bg-gray-200 text-left px-2 w-36 py-2 border-r border-gray-300">Published Date</th>
-                        <th class="bg-gray-200 text-left px-2  py-2 border-r border-gray-300">Description</th>
-                        <th class="bg-gray-200 text-left px-2 w-36 py-2 border-r border-gray-300">View</th>
-                    </thead>
-                    <tbody class="text-sm text-gray-700">
-                        <tr class="hover:bg-gray-50">
-                            <td class=" py-2 px-2  border border-gray-300">1.0.2</td>
-                            <td class=" py-2 px-2 border border-gray-300">01-FEB-2023</td>
-                            <td class=" py-2 px-2 border border-gray-300"></td>
-                            <td class=" py-2 px-2 border border-gray-300">
-                                <a href="#" class="text-blue-500">view</a>
-                            </td>
-                        </tr>
-                        <tr class="hover:bg-gray-50">
-                            <td class=" py-2 px-2  border border-gray-300">1.0.1</td>
-                            <td class=" py-2 px-2 border border-gray-300">15-DEC-2022</td>
-                            <td class=" py-2 px-2 border border-gray-300">Description</td>
-                            <td class=" py-2 px-2 border border-gray-300">
-                                <a href="#" class="text-blue-500">view</a>
-                            </td>
-                        </tr>
-                        <tr class="hover:bg-gray-50">
-                            <td class=" py-2 px-2  border border-gray-300">1.0.0</td>
-                            <td class=" py-2 px-2 border border-gray-300">10-OCT-2022</td>
-                            <td class=" py-2 px-2 border border-gray-300">Description</td>
-                            <td class=" py-2 px-2 border border-gray-300">
-                                <a href="#" class="text-blue-500">view</a>
-                            </td>
-                        </tr>
-                    </tbody>
-                </table> --}}
-                <lottie-player src="/assets/js/lottieanimations/box-empty.json" background="transparent" speed="1" style="width: 200px; height: 200px;" loop autoplay></lottie-player>
+                @if(false) <div>
+                    <lottie-player src="/assets/js/lottieanimations/box-empty.json" background="transparent" speed="1" style="width: 200px; height: 200px;" loop autoplay></lottie-player>
+                    <x-sub-title class="font-semibold text-gray-400">Onboarding document not available!</x-sub-title>
+                </div>
+                @else
+                <div class="flex flex-col justify-center items-center">
+                    <svg viewBox="0 0 512 512" id="Layer_1" version="1.1" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" class="h-32 w-32">
+
+                        <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+                        <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
+                        <g id="SVGRepo_iconCarrier">
+
+                            <g>
+                                <path d="M378.41,0H208.294h-13.176l-9.314,9.314L57.017,138.102l-9.315,9.314v13.176v265.513 c0,47.361,38.528,85.896,85.896,85.896H378.41c47.36,0,85.888-38.535,85.888-85.896V85.895C464.298,38.528,425.77,0,378.41,0z M432.494,426.104c0,29.877-24.214,54.092-54.084,54.092H133.598c-29.877,0-54.091-24.215-54.091-54.092V160.591h83.717 c24.884,0,45.07-20.179,45.07-45.07V31.804H378.41c29.87,0,54.084,24.214,54.084,54.091V426.104z" class="fill-rose-800"></path>
+                                <rect x="277.446" y="93.17" class="fill-gray-800" width="89.373" height="89.373"></rect>
+                                <rect x="145.175" y="232.592" class="fill-gray-800" width="221.644" height="25.024"></rect>
+                                <rect x="145.175" y="304.09" class="fill-gray-800" width="221.644" height="25.024"></rect>
+                                <rect x="145.175" y="375.588" class="fill-gray-800" width="221.644" height="25.024"></rect>
+                            </g>
+                        </g>
+                    </svg>
 
 
-                <x-sub-title class="font-semibold text-gray-400">Onboarding document not available!</x-sub-title>
+
+
+                    <h2 class="mb-2 text-sm font-semibold text-gray-600 dark:text-white">Password requirements:</h2>
+                    <ul class="max-w-md space-y-1 text-sm text-gray-500 list-inside text-center dark:text-gray-400">
+
+                        <li class="flex items-center"><svg class="w-4 h-4 mr-1.5 text-green-500 dark:text-green-400 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
+                            </svg>Windows 10/Server 2019</li>
+
+                        <li class="flex items-center"><svg class="w-4 h-4 mr-1.5 text-green-500 dark:text-green-400 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
+                            </svg>4GB ram and 2GB disk Space </li>
+
+
+                        <li class="flex items-center"><svg class="w-4 h-4 mr-1.5 text-green-500 dark:text-green-400 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
+                            </svg>.NET Framework 4.8</li>
+
+
+
+                    </ul>
+
+
+
+
+                </div>
+                @endif
+
 
             </div>
+
 
         </div>
 
