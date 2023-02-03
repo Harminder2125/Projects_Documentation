@@ -5,10 +5,12 @@ namespace App\Http\Livewire;
 use Livewire\Component;
 use App\Models\Project;
 use App\Models\Division;
+use App\Models\Featurebox;
 
 class ProjectDetailComponent extends Component
 {
     public $project_id;
+    public $featurebox=[];
     public $team_leader="ss duggal";
     public $team_members=["navinder sharma","narinder singh","dinesh sharma"];
     public $confirmingProjectTransfer = false;
@@ -83,6 +85,9 @@ class ProjectDetailComponent extends Component
 
     public function mount($id){
         $this->project_id=$id;
+        $this->featurebox=Featurebox::where("project_id","=",$id)->get();
+        
+
     }
 
     public function render()
