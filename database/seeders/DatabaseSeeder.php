@@ -30,6 +30,9 @@ class DatabaseSeeder extends Seeder
             DivisionSeeder::class,
             ProjectSeeder::class,
             ProjectHistorySeeder::class,
+            Featurebox::class,
+            Featureboxentries::class,
+            
         ]);
     }
 }
