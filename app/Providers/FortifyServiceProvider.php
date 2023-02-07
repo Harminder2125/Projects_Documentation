@@ -13,6 +13,7 @@ use Illuminate\Support\ServiceProvider;
 use Laravel\Fortify\Fortify;
 use Illuminate\Support\Facades\Hash;
 use App\Models\User;
+use App\Models\Division;
 use Session;
 
 
@@ -40,6 +41,7 @@ class FortifyServiceProvider extends ServiceProvider
      
             if ($user && Hash::check($request->password, $user->password)) {
                        
+               
                 // Session::put('role_id',$user->role_id);
                 // Session::put('role',$user->role->name);
                 // Session::put('group_id',$user->group_id);

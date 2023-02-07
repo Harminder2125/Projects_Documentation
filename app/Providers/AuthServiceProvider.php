@@ -30,6 +30,7 @@ class AuthServiceProvider extends ServiceProvider
         Gate::define('manage_users', function(User $user) {
             return $user->role_id == 2;
         });
+        
 
         //
     }
