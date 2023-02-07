@@ -189,20 +189,9 @@
     <div class="w-full grid grid-cols-3 gap-4 mt-4 ">
 
         <div class="border-2 border-gray-200 border-dashed p-4">
-            <x-main-title>Hardware Requirements</x-main-title>
-            <x-sub-title class="h-8">Hardware and software requirement for running -{{$project->title}}</x-sub-title>
-            <div class="py-4 flex flex-col justify-center items-center ">
-
-                @if(false) <div>
-                    <lottie-player src="/assets/js/lottieanimations/box-empty.json" background="transparent" speed="1" style="width: 200px; height: 200px;" loop autoplay></lottie-player>
-                    <x-sub-title class="font-semibold text-gray-400">Onboarding document not available!</x-sub-title>
-                </div>
-                @else
-                <div class="flex flex-col justify-center items-center">
-                    <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" class="h-32 w-32 fill-rose-800 animate animate-spin" viewBox="-7.2 -7.2 86.40 86.40" enable-background="new 0 0 72 72" xml:space="preserve" stroke="#000000" stroke-width="0.00072" transform="matrix(1, 0, 0, 1, 0, 0)rotate(-45)">
-
-
-
+            <div class="flex">
+                <div>
+                    <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" class="h-12 w-12 fill-rose-800" viewBox="-7.2 -7.2 86.40 86.40" enable-background="new 0 0 72 72" xml:space="preserve" stroke="#000000" stroke-width="0.00072" transform="matrix(1, 0, 0, 1, 0, 0)rotate(0)">
                         <g id="SVGRepo_bgCarrier" stroke-width="0" transform="translate(0,0), scale(1)"></g>
                         <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round" stroke="#CCCCCC" stroke-width="0.144"></g>
                         <g id="SVGRepo_iconCarrier">
@@ -231,6 +220,22 @@
                             </g>
                         </g>
                     </svg>
+                </div>
+                <div>
+                    <x-main-title>System Requirements</x-main-title>
+                    <x-sub-title class="h-8">Hardware and software requirement</x-sub-title>
+                </div>
+
+            </div>
+            <div class="py-4 flex flex-col justify-center items-center ">
+
+                @if(false) <div>
+                    <lottie-player src="/assets/js/lottieanimations/box-empty.json" background="transparent" speed="1" style="width: 200px; height: 200px;" loop autoplay></lottie-player>
+                    <x-sub-title class="font-semibold text-gray-400">Onboarding document not available!</x-sub-title>
+                </div>
+                @else
+                <div class="flex flex-col justify-center items-center">
+
                     <h2 class="mb-2 text-sm font-semibold text-gray-600 dark:text-white">Password requirements:</h2>
                     <ul class="max-w-md space-y-1 text-sm text-gray-500 list-inside text-center dark:text-gray-400">
 
@@ -265,24 +270,9 @@
         </div>
 
         <div class="border-2 border-gray-200 border-dashed p-4">
-            <x-main-title>Project ONboarding</x-main-title>
-            <x-sub-title class="h-8">Steps to follow for onboarding -{{$project->title}}</x-sub-title>
-
-            <div class="py-4 flex flex-col justify-center items-center ">
-
-                @if(false) <div>
-                    <lottie-player src="/assets/js/lottieanimations/box-empty.json" background="transparent" speed="1" style="width: 200px; height: 200px;" loop autoplay></lottie-player>
-                    <x-sub-title class="font-semibold text-gray-400">Onboarding document not available!</x-sub-title>
-                </div>
-                @else
-                <div class="flex flex-col justify-center items-center">
-                    <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" class="h-32 w-32 fill-rose-800" viewBox="-7.2 -7.2 86.40 86.40" enable-background="new 0 0 72 72" xml:space="preserve" stroke-width="0.00072" transform="matrix(1, 0, 0, 1, 0, 0)rotate(-0)">
-
-
-
-
-
-
+            <div class="flex">
+                <div>
+                    <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" class="h-12 w-12 fill-rose-800" viewBox="-7.2 -7.2 86.40 86.40" enable-background="new 0 0 72 72" xml:space="preserve" stroke-width="0.00072" transform="matrix(1, 0, 0, 1, 0, 0)rotate(-0)">
                         <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
                         <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
                         <g id="SVGRepo_iconCarrier">
@@ -301,6 +291,24 @@
 
 
                     </svg>
+
+                </div>
+                <div>
+                    <x-main-title>Project ONboarding</x-main-title>
+                    <x-sub-title class="h-8">Steps to follow for onboarding</x-sub-title>
+
+                </div>
+
+            </div>
+            <div class="py-4 flex flex-col justify-center items-center ">
+
+                @if(false) <div>
+                    <lottie-player src="/assets/js/lottieanimations/box-empty.json" background="transparent" speed="1" style="width: 200px; height: 200px;" loop autoplay></lottie-player>
+                    <x-sub-title class="font-semibold text-gray-400">Onboarding document not available!</x-sub-title>
+                </div>
+                @else
+                <div class="flex flex-col justify-center items-center">
+
                     <h2 class="mb-2 text-sm font-semibold text-gray-600 dark:text-white">Password requirements:</h2>
                     <ul class="max-w-md space-y-1 text-sm text-gray-500 list-inside text-center dark:text-gray-400">
 
@@ -333,18 +341,10 @@
 
         </div>
         <div class="border-2 border-gray-200 border-dashed p-4">
-            <x-main-title>Project preliminary Setup</x-main-title>
-            <x-sub-title class="h-8">setting </x-sub-title>
+            <div class="flex">
+                <div>
 
-            <div class="py-4 flex flex-col justify-center items-center ">
-
-                @if(false) <div>
-                    <lottie-player src="/assets/js/lottieanimations/box-empty.json" background="transparent" speed="1" style="width: 200px; height: 200px;" loop autoplay></lottie-player>
-                    <x-sub-title class="font-semibold text-gray-400">Onboarding document not available!</x-sub-title>
-                </div>
-                @else
-                <div class="flex flex-col justify-center items-center">
-                    <svg viewBox="0 0 512 512" id="Layer_1" version="1.1" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" fill="#202a38" stroke="#202a38" class="h-32 w-32">
+                    <svg viewBox="0 0 512 512" id="Layer_1" version="1.1" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" fill="#202a38" stroke="#202a38" class="h-10 w-10 mr-2">
 
                         <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
                         <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
@@ -366,6 +366,29 @@
                     </svg>
 
 
+                </div>
+                <div>
+                    <x-main-title>Project preliminary Setup</x-main-title>
+                    <x-sub-title class="h-8">setting </x-sub-title>
+
+
+                </div>
+
+            </div>
+
+
+
+            <div class="py-4 flex flex-col justify-center items-center ">
+
+                @if(false) <div>
+                    <lottie-player src="/assets/js/lottieanimations/box-empty.json" background="transparent" speed="1" style="width: 200px; height: 200px;" loop autoplay></lottie-player>
+                    <x-sub-title class="font-semibold text-gray-400">Onboarding document not available!</x-sub-title>
+                </div>
+                @else
+                <div class="flex flex-col justify-center items-center">
+
+
+
 
 
                     <h2 class="mb-2 text-sm font-semibold text-gray-600 dark:text-white">Password requirements:</h2>
@@ -400,17 +423,9 @@
 
         </div>
         <div class="border-2 border-gray-200 border-dashed p-4">
-            <x-main-title>Staging Server </x-main-title>
-            <x-sub-title>Details of staging server </x-sub-title>
-            <div class="py-4 flex flex-col justify-center items-center ">
-
-                @if(false) <div>
-                    <lottie-player src="/assets/js/lottieanimations/box-empty.json" background="transparent" speed="1" style="width: 200px; height: 200px;" loop autoplay></lottie-player>
-                    <x-sub-title class="font-semibold text-gray-400">Onboarding document not available!</x-sub-title>
-                </div>
-                @else
-                <div class="flex flex-col justify-center items-center">
-                    <svg viewBox="0 0 512 512" id="Layer_1" version="1.1" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" class="h-32 w-32 fill-rose-800">
+            <div class="flex">
+                <div class="flex justify-center items-center">
+                    <svg viewBox="0 0 512 512" id="Layer_1" version="1.1" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" class="h-8 w-8 mr-2 fill-rose-800">
                         <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
                         <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
                         <g id="SVGRepo_iconCarrier">
@@ -426,6 +441,30 @@
 
 
 
+                </div>
+                <div>
+                    <x-main-title>Staging Server </x-main-title>
+                    <x-sub-title>Details of staging server </x-sub-title>
+
+
+
+                </div>
+
+            </div>
+
+
+            <div class="py-4 flex flex-col justify-center items-center ">
+
+                @if(false) <div>
+                    <lottie-player src="/assets/js/lottieanimations/box-empty.json" background="transparent" speed="1" style="width: 200px; height: 200px;" loop autoplay></lottie-player>
+                    <x-sub-title class="font-semibold text-gray-400">Onboarding document not available!</x-sub-title>
+                </div>
+                @else
+                <div class="flex flex-col justify-center items-center">
+
+
+
+
 
 
                     <h2 class="mb-2 text-sm font-semibold text-gray-600 dark:text-white">Password requirements:</h2>
@@ -461,17 +500,10 @@
         </div>
 
         <div class="border-2 border-gray-200 border-dashed p-4">
-            <x-main-title>Live Server</x-main-title>
-            <x-sub-title>Details of live server</x-sub-title>
-            <div class="py-4 flex flex-col justify-center items-center ">
+            <div class="flex">
+                <div class="flex justify-center items-center">
 
-                @if(false) <div>
-                    <lottie-player src="/assets/js/lottieanimations/box-empty.json" background="transparent" speed="1" style="width: 200px; height: 200px;" loop autoplay></lottie-player>
-                    <x-sub-title class="font-semibold text-gray-400">Onboarding document not available!</x-sub-title>
-                </div>
-                @else
-                <div class="flex flex-col justify-center items-center">
-                    <svg viewBox="0 0 512 512" id="Layer_1" version="1.1" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" class="h-32 w-32 fill-green-800">
+                    <svg viewBox="0 0 512 512" id="Layer_1" version="1.1" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" class="h-8 w-8 mr-2 fill-green-800">
                         <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
                         <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
                         <g id="SVGRepo_iconCarrier">
@@ -486,7 +518,27 @@
 
 
 
+                </div>
+                <div>
+                    <x-main-title>Live Server</x-main-title>
+                    <x-sub-title>Details of live server</x-sub-title>
 
+
+
+
+                </div>
+
+            </div>
+
+
+            <div class="py-4 flex flex-col justify-center items-center ">
+
+                @if(false) <div>
+                    <lottie-player src="/assets/js/lottieanimations/box-empty.json" background="transparent" speed="1" style="width: 200px; height: 200px;" loop autoplay></lottie-player>
+                    <x-sub-title class="font-semibold text-gray-400">Onboarding document not available!</x-sub-title>
+                </div>
+                @else
+                <div class="flex flex-col justify-center items-center">
 
                     <h2 class="mb-2 text-sm font-semibold text-gray-600 dark:text-white">Password requirements:</h2>
                     <ul class="max-w-md space-y-1 text-sm text-gray-500 list-inside text-center dark:text-gray-400">
@@ -521,8 +573,34 @@
 
         </div>
         <div class="border-2 border-gray-200 border-dashed p-4">
-            <x-main-title>Mobile Application</x-main-title>
-            <x-sub-title>Mobile application for -{{$project->title}}</x-sub-title>
+            <div class="flex">
+                <div class="flex justify-center items-center">
+
+                    <svg class="w-8 h-8 mr-2 fill-rose-800" viewBox="0 0 1024 1024" class="icon" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                        <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+                        <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
+                        <g id="SVGRepo_iconCarrier">
+                            <path d="M551.424 0H176.128c-47.104 0-85.504 38.4-85.504 85.504v852.992c0 47.104 38.4 85.504 85.504 85.504h375.296c47.104 0 85.504-38.4 85.504-85.504V85.504c0-47.104-38.4-85.504-85.504-85.504M312.832 68.096h102.4c9.216 0 16.896 7.68 16.896 16.896s-7.68 16.896-16.896 16.896h-102.4c-9.216 0-16.896-7.68-16.896-16.896-0.512-9.216 7.168-16.896 16.896-16.896m51.2 921.6c-28.16 0-51.2-23.04-51.2-51.2s23.04-51.2 51.2-51.2 51.2 23.04 51.2 51.2-23.04 51.2-51.2 51.2m238.592-136.704H124.928V170.496h477.696v682.496z" class="fill-rose-800"></path>
+                            <path d="M853.504 66.56h-218.112c1.536 6.144 2.048 12.288 2.048 18.432v45.056h88.576c8.704 0 15.872 7.168 15.872 15.872s-7.168 15.872-15.872 15.872h-88.576v64H901.12v637.952h-264.192v54.784c8.192-13.824 23.552-23.04 40.448-23.04 26.624 0 47.616 21.504 47.616 47.616 0 26.624-21.504 47.616-47.616 47.616-19.968 0-36.864-12.288-44.032-29.696-10.24 35.328-43.008 61.44-81.92 61.44h301.568c44.032 0 79.872-35.84 79.872-79.872V146.432c0.512-44.032-35.84-79.872-79.36-79.872z" class="fill-gray-800"></path>
+                        </g>
+                    </svg>
+
+
+
+                </div>
+                <div>
+                    <x-main-title>Mobile Application</x-main-title>
+                    <x-sub-title>Android & IOS Mobile application</x-sub-title>
+
+
+
+
+
+                </div>
+
+            </div>
+
+
             <div class="py-4 flex flex-col justify-center items-center ">
 
                 @if(false) <div>
@@ -531,14 +609,7 @@
                 </div>
                 @else
                 <div class="flex flex-col justify-center items-center">
-                    <svg class="w-32 h32 fill-rose-800" viewBox="0 0 1024 1024" class="icon" version="1.1" xmlns="http://www.w3.org/2000/svg">
-                        <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
-                        <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
-                        <g id="SVGRepo_iconCarrier">
-                            <path d="M551.424 0H176.128c-47.104 0-85.504 38.4-85.504 85.504v852.992c0 47.104 38.4 85.504 85.504 85.504h375.296c47.104 0 85.504-38.4 85.504-85.504V85.504c0-47.104-38.4-85.504-85.504-85.504M312.832 68.096h102.4c9.216 0 16.896 7.68 16.896 16.896s-7.68 16.896-16.896 16.896h-102.4c-9.216 0-16.896-7.68-16.896-16.896-0.512-9.216 7.168-16.896 16.896-16.896m51.2 921.6c-28.16 0-51.2-23.04-51.2-51.2s23.04-51.2 51.2-51.2 51.2 23.04 51.2 51.2-23.04 51.2-51.2 51.2m238.592-136.704H124.928V170.496h477.696v682.496z" class="fill-rose-800"></path>
-                            <path d="M853.504 66.56h-218.112c1.536 6.144 2.048 12.288 2.048 18.432v45.056h88.576c8.704 0 15.872 7.168 15.872 15.872s-7.168 15.872-15.872 15.872h-88.576v64H901.12v637.952h-264.192v54.784c8.192-13.824 23.552-23.04 40.448-23.04 26.624 0 47.616 21.504 47.616 47.616 0 26.624-21.504 47.616-47.616 47.616-19.968 0-36.864-12.288-44.032-29.696-10.24 35.328-43.008 61.44-81.92 61.44h301.568c44.032 0 79.872-35.84 79.872-79.872V146.432c0.512-44.032-35.84-79.872-79.36-79.872z" class="fill-gray-800"></path>
-                        </g>
-                    </svg>
+
 
 
 
@@ -578,18 +649,10 @@
         </div>
 
         <div class="flex-2 w-full border-2  border-gray-200 border-dashed p-4">
+            <div class="flex">
+                <div class="flex justify-center items-center">
 
-            <x-main-title>Complete Project Manual</x-main-title>
-            <x-sub-title>List of all the manuals published under this project</x-sub-title>
-            <div class="py-4 flex flex-col justify-center items-center ">
-
-                @if(false) <div>
-                    <lottie-player src="/assets/js/lottieanimations/box-empty.json" background="transparent" speed="1" style="width: 200px; height: 200px;" loop autoplay></lottie-player>
-                    <x-sub-title class="font-semibold text-gray-400">Onboarding document not available!</x-sub-title>
-                </div>
-                @else
-                <div class="flex flex-col justify-center items-center">
-                    <svg viewBox="0 0 512 512" id="Layer_1" version="1.1" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" class="h-32 w-32">
+                    <svg viewBox="0 0 512 512" id="Layer_1" version="1.1" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" class="h-8 w-8 mr-2">
 
                         <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
                         <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
@@ -604,6 +667,33 @@
                             </g>
                         </g>
                     </svg>
+
+
+
+
+                </div>
+                <div>
+                    <x-main-title>Complete Project Manual</x-main-title>
+                    <x-sub-title>Manuals published under this project</x-sub-title>
+
+
+
+
+
+                </div>
+
+            </div>
+
+
+            <div class="py-4 flex flex-col justify-center items-center ">
+
+                @if(false) <div>
+                    <lottie-player src="/assets/js/lottieanimations/box-empty.json" background="transparent" speed="1" style="width: 200px; height: 200px;" loop autoplay></lottie-player>
+                    <x-sub-title class="font-semibold text-gray-400">Onboarding document not available!</x-sub-title>
+                </div>
+                @else
+                <div class="flex flex-col justify-center items-center">
+
 
 
 
