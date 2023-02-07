@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\User;
 use App\Models\Project;
+use Illuminate\Support\Facades\Gate;
 
 class DashboardController extends Controller
 {
@@ -27,7 +28,10 @@ class DashboardController extends Controller
     }
     public function projects()
     {
-        return view('projects');
+        if (Gate::allows('is_admin')) {
+                return view('projects');
+        }
+       abort(404);
     }
     public function projectcreate()
     {

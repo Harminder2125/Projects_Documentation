@@ -3,6 +3,8 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\UserController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -36,6 +38,11 @@ Route::middleware([
 
 
     Route::get('/manual',[DashboardController::class,'manual'])->name('manual');
+
+
+    // USERS ROUTES
+     Route::get('/user/projects',[UserController::class,'projects'])->name('userprojects');
+
     
     
 });

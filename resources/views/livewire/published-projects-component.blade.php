@@ -5,12 +5,12 @@
         <div class="border-0 border-emerald-300 bg-gray-100 rounded-lg flex flex-col flex-center shadow-lg">
             <div class="overflow-hidden h-32 rounded-t-lg relative">
                 <span class="absolute top-0 right-0 px-2 pb-0.5 text-xs  font-semibold text-gray-600 mt-4 mr-4 bg-purple-200 rounded-lg">Category</span>
-                <img src="./assets/images/projects/banner7.jpg" class="w-full h-32 object-cover" />
+                <img src="/assets/images/projects/banner7.jpg" class="w-full h-32 object-cover" />
             </div>
             <div class="-mt-10 flex justify-center overflow-hidden z-10">
 
                 @if($project->logo_image)
-                <img src="./assets/images/projects/{{$project->logo_image}}" class="border-4 border-white flex justify-center items-center w-20 h-20 rounded-full shadow-sm object-cover" />
+                <img src="/assets/images/projects/{{$project->logo_image}}" class="border-4 border-white flex justify-center items-center w-20 h-20 rounded-full shadow-sm object-cover" />
                 @else
                 <span class="bg-fuchsia-900 text-white border-4 border-white flex justify-center items-center w-20 h-20 rounded-full shadow-sm object-cover">
                     {{$project->abbreviation}}
