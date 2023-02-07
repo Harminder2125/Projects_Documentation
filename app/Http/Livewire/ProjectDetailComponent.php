@@ -86,8 +86,6 @@ class ProjectDetailComponent extends Component
     public function mount($id){
         $this->project_id=$id;
         $this->featurebox=Featurebox::where("project_id","=",$id)->get();
-        
-
     }
 
     public function render()

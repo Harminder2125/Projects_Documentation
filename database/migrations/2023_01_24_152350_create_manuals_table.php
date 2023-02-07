@@ -18,11 +18,11 @@ return new class extends Migration
             $table->foreignId('project_id')->constrained('projects')->onDelete('restrict')->comment('project has manual in it');
             
             $table->string('title',150);
-            $table->string('subtitle',250)->nullable();
-            $table->longText('description')->nullable();
-            $table->foreignId('parent_id')->nullable()->constrained('manuals')->onDelete('restrict')->comment('there are Incices under it');
-            $table->integer('position');
-           
+            $table->string('version',20)->nullable();
+            $table->string('staging_server_url',500)->nullable();
+            $table->longText('major_changes')->nullable();
+            $table->string('has_document_manual',500)->nullable()->comment('If user has uploaded pdf manual then its path');
+            $table->string('has_video_manual',500)->nullable()->comment('If user has youtube video manual then its link');
             $table->timestamps();
         });
 

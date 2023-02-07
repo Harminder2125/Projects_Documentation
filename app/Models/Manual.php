@@ -12,10 +12,10 @@ class Manual extends Model
     protected $fillable = [
         'project_id',
         'title',
-        'subtitle',
-        'description',
-        'parent_id',
-        'position',
+        'version',
+        'major_changes',
+        'has_document_manual',
+        'has_video_manual',
     ];
 
     public function project()
@@ -23,12 +23,4 @@ class Manual extends Model
     return $this->belongsTo(Project::class);
    }
 
-   public function manual_parent()
-   {
-    return $this->belongsTo(Manual::class);
-   }
-
-   public function manual_children() {
-    return $this->hasMany(Manual::class, 'parent_id')->orderBy('position');;
-}
 }

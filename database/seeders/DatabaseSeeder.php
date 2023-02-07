@@ -25,13 +25,14 @@ class DatabaseSeeder extends Seeder
             RoleSeeder::class,
             UserSeeder::class,
             PermissionSeeder::class,
-            
             CategorySeeder::class,
             DivisionSeeder::class,
             ProjectSeeder::class,
             ProjectHistorySeeder::class,
             Featurebox::class,
             Featureboxentries::class,
+            ManualSeeder::class,
+            ManualContentSeeder::class
             
         ]);
     }
