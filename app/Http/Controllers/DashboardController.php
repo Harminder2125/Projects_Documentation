@@ -59,6 +59,11 @@ class DashboardController extends Controller
         return view('categories');
     }
 
+    public function manual()
+    {
+        return view('manual');
+    }
+
     
     
 }

@@ -32,6 +32,9 @@ Route::middleware([
 
     Route::get('/divisions',[DashboardController::class,'divisions'])->name('divisions');
     Route::get('/categories',[DashboardController::class,'categories'])->name('categories');
+
+
+    Route::get('/manual',[DashboardController::class,'manual'])->name('manual');
     
     
 });
