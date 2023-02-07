@@ -13,7 +13,8 @@ class Featurebox extends Model
         'project_id',
         'title',
         'subtitle',
-        'position'
+        'position',
+        'icon',
      ];
 
 public function project()
