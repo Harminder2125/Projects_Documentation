@@ -27,6 +27,7 @@ Route::middleware([
     Route::get('/groups',[DashboardController::class,'groups'])->name('groups');
     Route::get('/role/assign',[DashboardController::class,'assignRoles'])->name('assign_roles');
     Route::get('/projects',[DashboardController::class,'projects'])->name('projects');
+    Route::get('/project/create',[DashboardController::class,'projectcreate'])->name('projectcreate');
     Route::get('/project/{id}',[DashboardController::class,'projectdetail'])->name('projectdetail');
     Route::get('/project/timeline/{id}',[DashboardController::class,'projecttimeline'])->name('projecttimeline');
 

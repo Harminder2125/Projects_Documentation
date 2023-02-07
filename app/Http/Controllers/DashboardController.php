@@ -29,6 +29,13 @@ class DashboardController extends Controller
     {
         return view('projects');
     }
+    public function projectcreate()
+    {
+        return view('project-create',[
+            'project_name'=>'Create Project',
+            'abbreviation'=>'Here you may create new project manual'
+        ]);
+    }
     public function projectdetail($id)
     {   
         $project = Project::where('id',$id)->first();
@@ -63,6 +70,7 @@ class DashboardController extends Controller
     {
         return view('manual');
     }
+
 
     
     

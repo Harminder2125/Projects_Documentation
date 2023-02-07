@@ -25,7 +25,6 @@ return new class extends Migration
             $table->string('has_video_manual',500)->nullable()->comment('If user has youtube video manual then its link');
             $table->timestamps();
         });
-
         
     }
 

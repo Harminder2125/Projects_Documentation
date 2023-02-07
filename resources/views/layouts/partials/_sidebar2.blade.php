@@ -10,7 +10,7 @@
         <div class="pl-2 mt-14">
 
             <div class="flex flex-col pb-5 pl-4">
-                
+
                 <div class="rounded-full w-16 h-16 bg-gradient-to-bl from-fuchsia-900 to-red-700 via-pink-800 mb-1 flex  justify-center items-center">
                     @php
                     $words = explode(" ", Auth::user()->name);
@@ -69,9 +69,24 @@
 
             @endcan
 
+            <li>
 
 
-            
+                <x-jet-nav-link class="border-b text-sm border-gray-200 uppercase" href="{{ route('projectcreate') }}" :active="request()->routeIs('projectcreate')">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="mr-2 w-6 h-6">
+                       <path stroke-linecap="round" stroke-linejoin="round" d="M12 4.5v15m7.5-7.5h-15" />
+                    </svg>
+
+
+
+                    {{ __('Create Project') }}
+
+                </x-jet-nav-link>
+
+
+            </li>
+
+
             <li>
 
 
@@ -103,30 +118,30 @@
                 <ul id="dropdown-example" class="hidden">
                     <div class="pl-6">
                         <x-jet-nav-link class="text-sm uppercase border-b border-gray-200" href="{{ route('divisions') }}" :active="request()->routeIs('divisions')">
-                       <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="mr-2 w-6 h-6">
-  <path stroke-linecap="round" stroke-linejoin="round" d="M9 4.5v15m6-15v15m-10.875 0h15.75c.621 0 1.125-.504 1.125-1.125V5.625c0-.621-.504-1.125-1.125-1.125H4.125C3.504 4.5 3 5.004 3 5.625v12.75c0 .621.504 1.125 1.125 1.125z" />
-</svg>
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="mr-2 w-6 h-6">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M9 4.5v15m6-15v15m-10.875 0h15.75c.621 0 1.125-.504 1.125-1.125V5.625c0-.621-.504-1.125-1.125-1.125H4.125C3.504 4.5 3 5.004 3 5.625v12.75c0 .621.504 1.125 1.125 1.125z" />
+                            </svg>
 
 
                             {{ __('Divisions') }}
 
                         </x-jet-nav-link>
-                       <x-jet-nav-link class="uppercase  text-sm border-b border-gray-200" href="{{ route('categories') }}" :active="request()->routeIs('categories')">
-                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="mr-2 w-6 h-6">
-               <path stroke-linecap="round" stroke-linejoin="round" d="M9.568 3H5.25A2.25 2.25 0 003 5.25v4.318c0 .597.237 1.17.659 1.591l9.581 9.581c.699.699 1.78.872 2.607.33a18.095 18.095 0 005.223-5.223c.542-.827.369-1.908-.33-2.607L11.16 3.66A2.25 2.25 0 009.568 3z" />
-  <path stroke-linecap="round" stroke-linejoin="round" d="M6 6h.008v.008H6V6z" />
-                </svg>
+                        <x-jet-nav-link class="uppercase  text-sm border-b border-gray-200" href="{{ route('categories') }}" :active="request()->routeIs('categories')">
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="mr-2 w-6 h-6">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M9.568 3H5.25A2.25 2.25 0 003 5.25v4.318c0 .597.237 1.17.659 1.591l9.581 9.581c.699.699 1.78.872 2.607.33a18.095 18.095 0 005.223-5.223c.542-.827.369-1.908-.33-2.607L11.16 3.66A2.25 2.25 0 009.568 3z" />
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M6 6h.008v.008H6V6z" />
+                            </svg>
 
 
 
-                    {{ __('Categories') }}
+                            {{ __('Categories') }}
 
-                </x-jet-nav-link>
+                        </x-jet-nav-link>
 
                     </div>
                 </ul>
             </li>
-              
+
 
             {{-- <li>
                 <a href="#" class="flex items-center p-2 text-base font-normal text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700">
