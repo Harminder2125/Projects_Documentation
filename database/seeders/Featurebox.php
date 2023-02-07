@@ -16,13 +16,23 @@ class Featurebox extends Seeder
     {
         // DB::table('categories')->delete();
         $onboard_requirements = array(
-            array('project_id' => "1",'title' => "title1",'subtitle'=>"sub1",'position'=>"0"),
-            array('project_id' => "1",'title' => "title2",'subtitle'=>"sub2",'position'=>"1"),
-            array('project_id' => "1",'title' => "title3",'subtitle'=>"sub3",'position'=>"2"),
-            array('project_id' => "2",'title' => "title4",'subtitle'=>"sub4",'position'=>"0"),
-            array('project_id' => "2",'title' => "title5",'subtitle'=>"sub5",'position'=>"1"),
-            array('project_id' => "3",'title' => "title5",'subtitle'=>"sub5",'position'=>"0"),
+            array('project_id' => "1",'title' => "Hardware Requirements",'subtitle'=>"Hardware and software requirement for running",'position'=>"0"),
+            array('project_id' => "1",'title' => "PROJECT ONBOARDING",'subtitle'=>"STEPS TO FOLLOW FOR ONBOARDING",'position'=>"1"),
+            array('project_id' => "1",'title' => "PROJECT PRELIMINARY SETUP",'subtitle'=>"SETTINGS",'position'=>"2"),
+            array('project_id' => "1",'title' => "STAGING SERVER",'subtitle'=>"DETAILS OF STAGING SERVER",'position'=>"3"),
+            array('project_id' => "1",'title' => "LIVE SERVER",'subtitle'=>"DETAILS OF LIVE SERVER",'position'=>"4"),
+            array('project_id' => "1",'title' => "MOBILE APPLICATION",'subtitle'=>"ANDROID/IOS",'position'=>"5"),
+            array('project_id' => "1",'title' => "COMPLETE PROJECT MANUAL",'subtitle'=>"LIST OF ALL THE MANUALS",'position'=>"6"),
+
+            array('project_id' => "2",'title' => "Hardware Requirements",'subtitle'=>"Hardware and software requirement for running",'position'=>"0"),
+            array('project_id' => "2",'title' => "PROJECT ONBOARDING",'subtitle'=>"STEPS TO FOLLOW FOR ONBOARDING",'position'=>"2"),
+            array('project_id' => "2",'title' => "PROJECT PRELIMINARY SETUP",'subtitle'=>"SETTINGS",'position'=>"2"),
+            array('project_id' => "2",'title' => "STAGING SERVER",'subtitle'=>"DETAILS OF STAGING SERVER",'position'=>"3"),
+            array('project_id' => "2",'title' => "LIVE SERVER",'subtitle'=>"DETAILS OF LIVE SERVER",'position'=>"4"),
+            array('project_id' => "2",'title' => "MOBILE APPLICATION",'subtitle'=>"ANDROID/IOS",'position'=>"5"),
+            array('project_id' => "2",'title' => "COMPLETE PROJECT MANUAL",'subtitle'=>"LIST OF ALL THE MANUALS",'position'=>"6"),
+       
         );
-DB::table('featurebox')->insert($onboard_requirements);
+DB::table('featureboxes')->insert($onboard_requirements);
     }
 }

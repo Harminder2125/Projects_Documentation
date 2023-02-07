@@ -20,4 +20,9 @@ public function project()
 {
  return $this->belongsTo(Project::class);
 }
+
+public function featureboxentries() {
+    return $this->hasMany(Featureboxentries::class, 'featurebox_id');
+}
+
 }

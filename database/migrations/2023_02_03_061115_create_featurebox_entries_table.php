@@ -15,7 +15,7 @@ return new class extends Migration
     {
         Schema::create('featureboxentries', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('featurebox_id')->constrained('featurebox')->onDelete('restrict');;
+            $table->foreignId('featurebox_id')->constrained('featureboxes')->onDelete('restrict');;
             $table->string('title',200);
             $table->string('description',300);
             $table->integer('position');

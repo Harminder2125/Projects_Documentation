@@ -13,7 +13,7 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('featurebox', function (Blueprint $table) {
+        Schema::create('featureboxes', function (Blueprint $table) {
             $table->id();
             $table->foreignId('project_id')->constrained('projects')->onDelete('restrict');
             $table->string('title',150);
@@ -30,6 +30,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('featurebox');
+        Schema::dropIfExists('featureboxes');
     }
 };

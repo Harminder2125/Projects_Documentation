@@ -19,4 +19,6 @@ public function featurebox()
 {
  return $this->belongsTo(featurebox::class);
 }
+
+
 }
