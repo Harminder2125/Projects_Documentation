@@ -14,9 +14,11 @@ class Project extends Model
         'description',
         'launch_date',
         'launched_by',
-        // 'head_user_id',
-        'thumbnail_image',
-        'group_id'
+        
+        'logo_image',
+        'banner_image',
+        'division_id',
+        'publish_status',
     ];
 
     public function division()

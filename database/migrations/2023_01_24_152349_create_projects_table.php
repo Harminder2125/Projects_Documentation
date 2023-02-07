@@ -25,7 +25,9 @@ return new class extends Migration
             $table->string('launched_by',100)->nullable();
             // $table->foreignId('head_user_id')->constrained('users')->onDelete('restrict')->comment('Project Head');
             $table->foreignId('division_id')->constrained('divisions')->onDelete('restrict')->comment('Division to which this project is alloted');
-            $table->string('thumbnail_image')->nullable();
+            $table->string('logo_image')->nullable();
+            $table->string('banner_image')->nullable();
+
             $table->timestamps();
         });
     }
