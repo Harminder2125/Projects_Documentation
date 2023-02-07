@@ -54,6 +54,7 @@ class CreateProject extends Component
 
         
         Project::create($this->project);
+        $this->resetProject();
          $this->dispatchBrowserEvent('banner-message', [
             'style' => 'success',
             'message' => 'New Project created successfully!'

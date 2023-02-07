@@ -3,7 +3,7 @@
  {{-- <img src="{{ url('storage/photos/avatar.png') }}" alt="" title="" /> --}}
 
  <div class=" border-t border-gray-200 mt-4">
- 
+
      <x-sub-title class="font-semibold mt-4">Basic details</x-sub-title>
      <div class="bg-gray-100 p-8 rounded-md mb-12">
 
@@ -64,21 +64,30 @@
 
 
          <div>
-            @if($this->project['logo_image']!="")
-            {
-                <img src="{{ url('storage/photos/avatar.png') }}" alt="" title="" />
 
-            }
+
              <x-jet-label for="cap" value="{{ __('Logo Image') }}" />
              <x-input type="file" wire:model="project.logo_image" class="mt-1 block w-full" />
 
              <x-jet-input-error for="cap" class="mt-2" />
+             @if($project['logo_image']!='')
+             <img src="{{$project['logo_image']->temporaryUrl()}}" class="mt-2 w-32 h-32 rounded-md" />
+
+             @endif
+
          </div>
          <div>
+
+
              <x-jet-label for="cap" value="{{ __('Banner Image') }}" />
              <x-input wire:model="project.banner_image" type="file" class="mt-1 block w-full" />
 
              <x-jet-input-error for="cap" class="mt-2" />
+             @if($project['banner_image']!='')
+             <img src="{{$project['banner_image']->temporaryUrl()}}" class=" mt-2 w-32 h-32 rounded-md" />
+
+             @endif
+
          </div>
 
 
@@ -94,5 +103,6 @@
 
 
      </div>
+
 
  </div>
