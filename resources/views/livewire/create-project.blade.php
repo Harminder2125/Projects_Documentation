@@ -2,7 +2,7 @@
 
  {{-- <img src="{{ url('storage/photos/avatar.png') }}" alt="" title="" /> --}}
 
- <div class=" border-t border-gray-200 mt-4">
+ <div>
 
      <x-sub-title class="font-semibold mt-4">Basic details</x-sub-title>
      <div class="bg-gray-100 p-8 rounded-md mb-12">
@@ -96,10 +96,26 @@
 
      </div>
      <div class="flex justify-end mt-8">
+
+         <a href="/manage/user/projects">
+             <x-secondary-button class="text-sm rounded-lg shadow mr-2">
+
+                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5 mr-2">
+                     <path stroke-linecap="round" stroke-linejoin="round" d="M11.25 9l-3 3m0 0l3 3m-3-3h7.5M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                 </svg>
+
+
+
+
+                 back to projects</x-secondary-button>
+         </a>
+
          <x-primary-button class="mr-4" wire:click="createProject()">Create Project</x-primary-button>
 
 
          <x-dark-button wire:click="resetProject()">Reset Project Details</x-dark-button>
+
+
 
 
      </div>

@@ -8,12 +8,11 @@ use Illuminate\Support\Facades\Auth;
 class GroupScope implements Scope
 {
         /**
-     * Apply the scope to a given Eloquent query builder.
-     *
-     * @param  \Illuminate\Database\Eloquent\Builder  $builder
-     * @param  \Illuminate\Database\Eloquent\Model  $model
-     * @return void
-     */
+         * This Global Scope will be implemented on USER Model for following actions
+         * 1. The person will not be able to access user of other group or state.
+         *
+        */
+    
     public function apply(Builder $builder, Model $model)
     {
         $builder->where('group_id', '=',Auth::user()->group_id);

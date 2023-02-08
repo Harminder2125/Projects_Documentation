@@ -69,25 +69,6 @@
             </li>
             @endcan
 
-
-            <li>
-
-
-                <x-jet-nav-link class="border-b text-sm border-gray-200 uppercase" href="{{ route('projectcreate') }}" :active="request()->routeIs('projectcreate')">
-                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="mr-2 w-6 h-6">
-                        <path stroke-linecap="round" stroke-linejoin="round" d="M12 4.5v15m7.5-7.5h-15" />
-                    </svg>
-
-
-
-                    {{ __('Create Project') }}
-
-                </x-jet-nav-link>
-
-
-            </li>
-
-
             <li>
 
 
@@ -103,6 +84,70 @@
 
 
             </li>
+            @elseif(Auth::user()->role_id == 2)
+            <li>
+
+
+                <x-jet-nav-link class="border-b text-sm border-gray-200 uppercase" href="{{ route('users') }}" :active="request()->routeIs('musers')">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="mr-2 w-6 h-6">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M15 19.128a9.38 9.38 0 002.625.372 9.337 9.337 0 004.121-.952 4.125 4.125 0 00-7.533-2.493M15 19.128v-.003c0-1.113-.285-2.16-.786-3.07M15 19.128v.106A12.318 12.318 0 018.624 21c-2.331 0-4.512-.645-6.374-1.766l-.001-.109a6.375 6.375 0 0111.964-3.07M12 6.375a3.375 3.375 0 11-6.75 0 3.375 3.375 0 016.75 0zm8.25 2.25a2.625 2.625 0 11-5.25 0 2.625 2.625 0 015.25 0z" />
+                    </svg>
+
+
+                    {{ __('My Divisions') }}
+
+                </x-jet-nav-link>
+
+
+            </li>
+            <li>
+
+
+                <x-jet-nav-link class="border-b text-sm border-gray-200 uppercase" href="{{ route('team') }}" :active="request()->routeIs('team')">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="mr-2 w-6 h-6">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M15 19.128a9.38 9.38 0 002.625.372 9.337 9.337 0 004.121-.952 4.125 4.125 0 00-7.533-2.493M15 19.128v-.003c0-1.113-.285-2.16-.786-3.07M15 19.128v.106A12.318 12.318 0 018.624 21c-2.331 0-4.512-.645-6.374-1.766l-.001-.109a6.375 6.375 0 0111.964-3.07M12 6.375a3.375 3.375 0 11-6.75 0 3.375 3.375 0 016.75 0zm8.25 2.25a2.625 2.625 0 11-5.25 0 2.625 2.625 0 015.25 0z" />
+                    </svg>
+
+
+                    {{ __('My Team') }}
+
+                </x-jet-nav-link>
+
+
+            </li>
+            <li>
+
+
+                <x-jet-nav-link class="uppercase  text-sm border-b border-gray-200" href="{{ route('projects') }}" :active="request()->routeIs('projects')">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="mr-2 w-6 h-6">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M14.25 9.75L16.5 12l-2.25 2.25m-4.5 0L7.5 12l2.25-2.25M6 20.25h12A2.25 2.25 0 0020.25 18V6A2.25 2.25 0 0018 3.75H6A2.25 2.25 0 003.75 6v12A2.25 2.25 0 006 20.25z" />
+                    </svg>
+
+
+                    {{ __('My Projects') }}
+
+                </x-jet-nav-link>
+
+
+            </li>
+            @can('manage_users')
+            <li>
+
+
+                <x-jet-nav-link class="border-b text-sm border-gray-200 uppercase" href="{{ route('users') }}" :active="request()->routeIs('users')">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="mr-2 w-6 h-6">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M15 19.128a9.38 9.38 0 002.625.372 9.337 9.337 0 004.121-.952 4.125 4.125 0 00-7.533-2.493M15 19.128v-.003c0-1.113-.285-2.16-.786-3.07M15 19.128v.106A12.318 12.318 0 018.624 21c-2.331 0-4.512-.645-6.374-1.766l-.001-.109a6.375 6.375 0 0111.964-3.07M12 6.375a3.375 3.375 0 11-6.75 0 3.375 3.375 0 016.75 0zm8.25 2.25a2.625 2.625 0 11-5.25 0 2.625 2.625 0 015.25 0z" />
+                    </svg>
+
+
+                    {{ __('User Management') }}
+
+                </x-jet-nav-link>
+
+
+            </li>
+            @endcan
+
             <li class="border-b border-gray-200">
                 <button type="button" class="flex items-center w-full p-2 pl-3 py-3 text-sm font-normal text-gray-500 transition duration-75  group hover:bg-gray-200 dark:text-white dark:hover:bg-gray-700" aria-controls="dropdown-example" data-collapse-toggle="dropdown-example">
                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class=" w-6 h-6">
@@ -118,13 +163,13 @@
                 </button>
                 <ul id="dropdown-example" class="hidden">
                     <div class="pl-6">
-                        <x-jet-nav-link class="text-sm uppercase border-b border-gray-200" href="{{ route('divisions') }}" :active="request()->routeIs('divisions')">
+                        <x-jet-nav-link class="text-sm uppercase border-b border-gray-200" href="{{ route('managedivisions') }}" :active="request()->routeIs('managedivisions')">
                             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="mr-2 w-6 h-6">
                                 <path stroke-linecap="round" stroke-linejoin="round" d="M9 4.5v15m6-15v15m-10.875 0h15.75c.621 0 1.125-.504 1.125-1.125V5.625c0-.621-.504-1.125-1.125-1.125H4.125C3.504 4.5 3 5.004 3 5.625v12.75c0 .621.504 1.125 1.125 1.125z" />
                             </svg>
 
 
-                            {{ __('Divisions') }}
+                            {{ __('Manage Divisions') }}
 
                         </x-jet-nav-link>
                         <x-jet-nav-link class="uppercase  text-sm border-b border-gray-200" href="{{ route('categories') }}" :active="request()->routeIs('categories')">
@@ -145,73 +190,97 @@
             </li>
 
 
-            @elseif(Auth::user()->role_id == 2)
-            @can('manage_users')
+            @elseif(Auth::user()->role_id == 3)
+
+            @if(!Auth::user()->divisions->isEmpty())
             <li>
-
-
-                <x-jet-nav-link class="border-b text-sm border-gray-200 uppercase" href="{{ route('users') }}" :active="request()->routeIs('users')">
+                <x-jet-nav-link class="uppercase  text-sm border-b border-gray-200" href="{{ route('divisions') }}" :active="request()->routeIs('divisions')">
                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="mr-2 w-6 h-6">
-                        <path stroke-linecap="round" stroke-linejoin="round" d="M15 19.128a9.38 9.38 0 002.625.372 9.337 9.337 0 004.121-.952 4.125 4.125 0 00-7.533-2.493M15 19.128v-.003c0-1.113-.285-2.16-.786-3.07M15 19.128v.106A12.318 12.318 0 018.624 21c-2.331 0-4.512-.645-6.374-1.766l-.001-.109a6.375 6.375 0 0111.964-3.07M12 6.375a3.375 3.375 0 11-6.75 0 3.375 3.375 0 016.75 0zm8.25 2.25a2.625 2.625 0 11-5.25 0 2.625 2.625 0 015.25 0z" />
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M14.25 9.75L16.5 12l-2.25 2.25m-4.5 0L7.5 12l2.25-2.25M6 20.25h12A2.25 2.25 0 0020.25 18V6A2.25 2.25 0 0018 3.75H6A2.25 2.25 0 003.75 6v12A2.25 2.25 0 006 20.25z" />
                     </svg>
 
 
-                    {{ __('User Management') }}
+                    {{ __('My Divisions') }}
 
                 </x-jet-nav-link>
-
-
             </li>
-            @endcan
+            <li>
+                <x-jet-nav-link class="uppercase  text-sm border-b border-gray-200" href="{{ route('team') }}" :active="request()->routeIs('team')">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="mr-2 w-6 h-6">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M14.25 9.75L16.5 12l-2.25 2.25m-4.5 0L7.5 12l2.25-2.25M6 20.25h12A2.25 2.25 0 0020.25 18V6A2.25 2.25 0 0018 3.75H6A2.25 2.25 0 003.75 6v12A2.25 2.25 0 006 20.25z" />
+                    </svg>
 
 
+                    {{ __('My Team') }}
+
+                </x-jet-nav-link>
+            </li>
             <li>
 
 
-                <x-jet-nav-link class="border-b text-sm border-gray-200 uppercase" href="{{ route('projectcreate') }}" :active="request()->routeIs('projectcreate')">
+                <x-jet-nav-link class="border-b text-sm border-gray-200 uppercase" href="{{ route('manageuserprojects') }}" :active="request()->routeIs('manageuserprojects')">
                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="mr-2 w-6 h-6">
                         <path stroke-linecap="round" stroke-linejoin="round" d="M12 4.5v15m7.5-7.5h-15" />
                     </svg>
 
 
 
-                    {{ __('Create Project') }}
+                    {{ __('Manage Projects') }}
 
                 </x-jet-nav-link>
 
 
             </li>
 
-
             <li>
-
-
-                <x-jet-nav-link class="uppercase  text-sm border-b border-gray-200" href="{{ route('projects') }}" :active="request()->routeIs('projects')">
+                <x-jet-nav-link class="uppercase  text-sm border-b border-gray-200" href="{{ route('userprojects') }}" :active="request()->routeIs('projects')">
                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="mr-2 w-6 h-6">
                         <path stroke-linecap="round" stroke-linejoin="round" d="M14.25 9.75L16.5 12l-2.25 2.25m-4.5 0L7.5 12l2.25-2.25M6 20.25h12A2.25 2.25 0 0020.25 18V6A2.25 2.25 0 0018 3.75H6A2.25 2.25 0 003.75 6v12A2.25 2.25 0 006 20.25z" />
                     </svg>
 
 
-                    {{ __('Projects Management') }}
+                    {{ __('Feedback') }}
 
                 </x-jet-nav-link>
-
-
             </li>
 
 
 
-            @elseif(Auth::user()->role_id == 3)
+            @endif
+        </ul>
+        <div class="bg-gray-200  mt-8  p-4 py-2">
+            <x-sub-title class="font-semibold text-white">User View</x-sub-title>
 
-            <x-jet-nav-link class="uppercase  text-sm border-b border-gray-200" href="{{ route('userprojects') }}" :active="request()->routeIs('userprojects')">
-                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="mr-2 w-6 h-6">
-                    <path stroke-linecap="round" stroke-linejoin="round" d="M14.25 9.75L16.5 12l-2.25 2.25m-4.5 0L7.5 12l2.25-2.25M6 20.25h12A2.25 2.25 0 0020.25 18V6A2.25 2.25 0 0018 3.75H6A2.25 2.25 0 003.75 6v12A2.25 2.25 0 006 20.25z" />
-                </svg>
+        </div>
+        <ul class="space-y pl-2">
 
 
-                {{ __('Published Projects') }}
+            <li>
+                <x-jet-nav-link class="uppercase  text-sm border-b border-gray-200" href="{{ route('userprojects') }}" :active="request()->routeIs('userprojects')">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="mr-2 w-6 h-6">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M14.25 9.75L16.5 12l-2.25 2.25m-4.5 0L7.5 12l2.25-2.25M6 20.25h12A2.25 2.25 0 0020.25 18V6A2.25 2.25 0 0018 3.75H6A2.25 2.25 0 003.75 6v12A2.25 2.25 0 006 20.25z" />
+                    </svg>
 
-            </x-jet-nav-link>
+
+                    {{ __('Published Projects') }}
+
+                </x-jet-nav-link>
+            </li>
+
+            <li>
+                <x-jet-nav-link class="uppercase  text-sm border-b border-gray-200" href="{{ route('userprojects') }}" :active="request()->routeIs('projects')">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="mr-2 w-6 h-6">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M14.25 9.75L16.5 12l-2.25 2.25m-4.5 0L7.5 12l2.25-2.25M6 20.25h12A2.25 2.25 0 0020.25 18V6A2.25 2.25 0 0018 3.75H6A2.25 2.25 0 003.75 6v12A2.25 2.25 0 006 20.25z" />
+                    </svg>
+
+
+                    {{ __('Ongoing Projects') }}
+
+                </x-jet-nav-link>
+            </li>
+
+
+
 
 
 

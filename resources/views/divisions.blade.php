@@ -1,9 +1,10 @@
 <x-app-layout>
-  <x-slot name="title">Divisions</x-slot>
-<x-slot name="subtitle">Add new divisions within state</x-slot>
-    
+    <x-slot name="title">My Divisions</x-slot>
+    <x-slot name="subtitle">Divisions related to you</x-slot>
 
-                @livewire('divisions')
-            
+
+    @livewire('divisions')
+
+
 
 </x-app-layout>
