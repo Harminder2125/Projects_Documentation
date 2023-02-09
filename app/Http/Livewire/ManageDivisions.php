@@ -71,7 +71,13 @@ class ManageDivisions extends Component
         ])->validate();
         $this->division['group_id']=Auth::user()->group_id;
         Division::create($this->division);
-        
+
+        //Changing role-id of user from 3 to 4
+        $user = User::find($this->division['user_id']);
+        $user->role_id = 4;
+        $user->save();
+        //Changed role-id of user from 3 to 4
+
         $this->toggle('confirmingDivisionAddition');
         $this->dispatchBrowserEvent('banner-message', [
             'style' => 'success',
@@ -95,6 +101,22 @@ class ManageDivisions extends Component
             'user_id'=>['required', 'integer']
         ])->validate();
         $division=Division::find($this->editdivision['id']);
+        
+        //Changing role-id of user from 3 to 4
+        if($this->editdivision['user_id'] != $division->user_id)
+        {
+            $user1 = User::find($this->editdivision['user_id']);
+            $user1->role_id = 4;
+            $user1->save();
+            
+            $user2 = User::find($division->user_id);
+            $user2->role_id = 3;
+            $user2->save();
+        }
+        
+        //Changed role-id of user from 3 to 4
+
+
         $division->name=$this->editdivision['name'];
         $division->user_id=$this->editdivision['user_id'];
         $division->save();
@@ -119,6 +141,16 @@ class ManageDivisions extends Component
     public function delete(){
 
         $division=Division::find($this->editdivision['id']);
+        //Changing role-id of user from 4 to 3
+       
+            
+            $user2 = User::find($division->user_id);
+            $user2->role_id = 3;
+            $user2->save();
+       
+        //Changed role-id of user from 3 to 4
+
+
         $division->delete();
         $this->toggle('confirmingDivisionDeletion');
         $this->dispatchBrowserEvent('banner-message', [

@@ -192,7 +192,39 @@
 
             @elseif(Auth::user()->role_id == 3)
 
-            @if(!Auth::user()->divisions->isEmpty())
+
+        </ul>
+        <div class="bg-gray-200  mt-8  p-4 py-2">
+            <x-sub-title class="font-semibold text-white">User View</x-sub-title>
+
+        </div>
+        <ul class="space-y pl-2">
+
+
+            <li>
+                <x-jet-nav-link class="uppercase  text-sm border-b border-gray-200" href="{{ route('userprojects') }}" :active="request()->routeIs('userprojects')">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="mr-2 w-6 h-6">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M14.25 9.75L16.5 12l-2.25 2.25m-4.5 0L7.5 12l2.25-2.25M6 20.25h12A2.25 2.25 0 0020.25 18V6A2.25 2.25 0 0018 3.75H6A2.25 2.25 0 003.75 6v12A2.25 2.25 0 006 20.25z" />
+                    </svg>
+
+
+                    {{ __('Published Projects') }}
+
+                </x-jet-nav-link>
+            </li>
+
+            <li>
+                <x-jet-nav-link class="uppercase  text-sm border-b border-gray-200" href="{{ route('userprojects') }}" :active="request()->routeIs('projects')">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="mr-2 w-6 h-6">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M14.25 9.75L16.5 12l-2.25 2.25m-4.5 0L7.5 12l2.25-2.25M6 20.25h12A2.25 2.25 0 0020.25 18V6A2.25 2.25 0 0018 3.75H6A2.25 2.25 0 003.75 6v12A2.25 2.25 0 006 20.25z" />
+                    </svg>
+
+
+                    {{ __('Ongoing Projects') }}
+
+                </x-jet-nav-link>
+            </li>
+            @elseif(Auth::user()->role_id ==4)
             <li>
                 <x-jet-nav-link class="uppercase  text-sm border-b border-gray-200" href="{{ route('divisions') }}" :active="request()->routeIs('divisions')">
                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="mr-2 w-6 h-6">
@@ -246,7 +278,7 @@
 
 
 
-            @endif
+
         </ul>
         <div class="bg-gray-200  mt-8  p-4 py-2">
             <x-sub-title class="font-semibold text-white">User View</x-sub-title>
@@ -278,6 +310,7 @@
 
                 </x-jet-nav-link>
             </li>
+
 
 
 

@@ -20,10 +20,12 @@ class UserController extends Controller
        
        if(count($divisions)>0)
         {    
-             $projects = Project::whereIn('division_id',$divisions)->get();
+             $publishedprojects = Project::Published()->whereIn('division_id',$divisions)->get();
+             $unpublishedprojects = Project::Unpublished()->whereIn('division_id',$divisions)->get();
+
             
         }
         
-        return view('user.manageprojects',['projects'=>$projects]);
+        return view('user.manageprojects',['published'=>$publishedprojects,'unpublished'=>$unpublishedprojects]);
     }
 }
