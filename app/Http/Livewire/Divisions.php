@@ -10,17 +10,10 @@ class Divisions extends Component
     {
         return view('livewire.divisions');
     }
-<<<<<<< HEAD
-    else if($key =='confirmingDivisionDeletion')
-    {
-        $this->confirmingDivisionDeletion = !$this->confirmingDivisionDeletion;
-    }
-    else
-    {
-
-    }
+    
+   
         
-    }
+    
     public function addDivision(){
         Validator::make($this->division, [
             'name' => ['required', 'string', 'max:150'],
@@ -90,6 +83,4 @@ class Divisions extends Component
 
     }
     
-=======
->>>>>>> 0b971b0d6919c62dd4d4ce3a2421e4c95d7075be
 }

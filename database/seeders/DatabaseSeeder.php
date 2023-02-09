@@ -32,7 +32,10 @@ class DatabaseSeeder extends Seeder
             Featurebox::class,
             Featureboxentries::class,
             ManualSeeder::class,
-            ManualContentSeeder::class
+            ManualContentSeeder::class,
+            ProjectRolesSeeder::class,
+            ProjectTeamMembersSeeder::class,
+            
             
         ]);
     }
