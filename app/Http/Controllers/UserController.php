@@ -3,8 +3,6 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\Project;
-use Auth;
 
 class UserController extends Controller
 {
@@ -20,12 +18,10 @@ class UserController extends Controller
        
        if(count($divisions)>0)
         {    
-             $publishedprojects = Project::Published()->whereIn('division_id',$divisions)->get();
-             $unpublishedprojects = Project::Unpublished()->whereIn('division_id',$divisions)->get();
-
+             $projects = Project::whereIn('division_id',$divisions)->get();
             
         }
         
-        return view('user.manageprojects',['published'=>$publishedprojects,'unpublished'=>$unpublishedprojects]);
+        return view('user.manageprojects',['projects'=>$projects]);
     }
 }
