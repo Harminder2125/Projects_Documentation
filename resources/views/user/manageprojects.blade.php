@@ -17,8 +17,9 @@
 
 
         </div>
-        <div class="flex flex-wrap gap-x-4 gap-y-8 py-8">
-            @foreach($projects as $project)
+        <div class="grid grid-cols-3 gap-x-4 gap-y-8 py-8">
+        <x-main-title>Published Projects</x-main-title>
+            @foreach($published as $project)
             <div class="p-4 rounded-md bg-gray-100">
                 <x-main-title>{{$project->title}}({{$project->abbreviation}})</x-main-title>
                 <div class="flex py-8 flex-wrap">
@@ -27,8 +28,11 @@
 
 
                 </div>
-                <x-dark-button>Update Team</x-dark-button>
-                <x-danger-button>Create Manual</x-danger-button>
+
+                <div class="flex justify-end">
+                    <x-danger-button>View Details</x-danger-button>
+                </div>
+
 
 
 
