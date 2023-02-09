@@ -81,6 +81,7 @@ class Divisions extends Component
         $this->emit('close-banner');
     }
     public function editDivision($id){
+        
         $name=Division::find($id)->name;
         $user_id=Division::find($id)->user_id;
         $this->editdivision['name']=$name;
@@ -95,6 +96,7 @@ class Divisions extends Component
             'user_id'=>['required', 'integer']
         ])->validate();
         $division=Division::find($this->editdivision['id']);
+        $this->authorize('update',$division);
         $division->name=$this->editdivision['name'];
         $division->user_id=$this->editdivision['user_id'];
         $division->save();
