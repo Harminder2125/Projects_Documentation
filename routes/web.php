@@ -33,15 +33,19 @@ Route::middleware([
     Route::get('/project/{id}',[DashboardController::class,'projectdetail'])->name('projectdetail');
     Route::get('/project/timeline/{id}',[DashboardController::class,'projecttimeline'])->name('projecttimeline');
 
-    Route::get('/divisions',[DashboardController::class,'divisions'])->name('divisions');
+    Route::get('/manage/divisions',[DashboardController::class,'manageDivisions'])->name('managedivisions');
     Route::get('/categories',[DashboardController::class,'categories'])->name('categories');
 
+    Route::get('/divisions',[DashboardController::class,'divisions'])->name('divisions');
+    Route::get('/team',[DashboardController::class,'team'])->name('team');
 
     Route::get('/manual',[DashboardController::class,'manual'])->name('manual');
-
+   
 
     // USERS ROUTES
-     Route::get('/user/projects',[UserController::class,'projects'])->name('userprojects');
+    Route::get('/user/projects',[UserController::class,'projects'])->name('userprojects');
+    Route::get('/manage/user/projects',[UserController::class,'manageprojects'])->name('manageuserprojects');
+     
 
     
     

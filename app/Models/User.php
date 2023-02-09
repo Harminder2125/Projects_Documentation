@@ -17,6 +17,8 @@ use App\Models\Division;
 use App\Models\Scopes\GroupScope;
 
 
+
+
 class User extends Authenticatable
 {
     use HasApiTokens;
@@ -74,16 +76,24 @@ class User extends Authenticatable
     protected static function booted()
     {
         if(Auth::check())
-        static::addGlobalScope(new GroupScope);
+        static::addGlobalScope(new GroupScope);  //Only user related to same group
+       
     }
-
-    public function isAdmin()
+    /* LOCAL SCOPES START HERE*/
+    public function scopeUser($query)
     {
-       $result = $this->role_id ==2?  true:  false;
-       return $result;
+        return $query->where('role_id', '=', 3);    // Retrieve all users with roleid-3 or rolename- USER
     }
-    
-   
+    public function scopeAdmin($query)
+    {
+        return $query->where('role_id', '=', 2);    // Retrieve all users with roleid-2 or rolename- ADMIN
+    }
+     public function scopeSuperAdmin($query)
+    {
+        return $query->where('role_id', '=', 1);    // Retrieve all users with roleid-1 or rolename- SUPERADMIN
+    }
+   /* LOCAL SCOPES ENDS HERE */
+
     function role()
     {
         return $this->belongsTo(Role::class);

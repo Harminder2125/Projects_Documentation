@@ -43,7 +43,7 @@ class Usercomponent extends Component
     
     public function render()
     {
-        $users = User::when($this->searchUser,function($query, $searchUser){
+        $users = User::User()->when($this->searchUser,function($query, $searchUser){
                 return $query->where('name','LIKE',"%$this->searchUser%");
          })->orderBy('id','DESC')->paginate(6);
          $users->withPath('/users');

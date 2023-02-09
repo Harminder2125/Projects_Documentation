@@ -61,9 +61,17 @@ class DashboardController extends Controller
         ]);
     }
 
+    public function manageDivisions()
+    {
+        return view('admin.manage-divisions');
+    }
     public function divisions()
     {
         return view('divisions');
+    }
+    public function team()
+    {
+        return view('team');
     }
     public function categories()
     {

@@ -39,18 +39,18 @@
             @include('layouts.partials._sidebar2')
             <main class="w-full">
                 @livewire('navigation-menu')
-    <div class="py-12">
-        <div class="max-w-8xl mx-auto sm:px-6 lg:px-8">
-            <div class="bg-white overflow-hidden shadow-xl p-10">
-    <x-main-heading>{{$title}}</x-main-heading> 
-    <x-sub-heading>{{$subtitle}}</x-sub-heading> 
-     
-                
-                {{ $slot }}
-                 </div>
-        </div>
+                <div class="py-12">
+                    <div class="max-w-8xl mx-auto sm:px-6 lg:px-8">
+                        <div class="bg-white overflow-hidden shadow-xl p-10">
+                            <x-main-heading>{{$title}}</x-main-heading>
+                            <x-sub-heading>{{$subtitle}}</x-sub-heading>
 
-    </div>
+
+                            <div class="border-t border-gray-100 mt-4 py-4">{{ $slot }}</div>
+                        </div>
+                    </div>
+
+                </div>
             </main>
         </div>
     </div>

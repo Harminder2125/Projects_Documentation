@@ -3,14 +3,56 @@
 namespace App\Http\Livewire;
 
 use Livewire\Component;
+use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\Auth;
+use App\Models\Division;
+use App\Models\User;
 
-class Divisions extends Component
+class ManageDivisions extends Component
 {
-    public function render()
-    {
-        return view('livewire.divisions');
+    public $searchDivision;
+    public $userlist=[];
+    public $confirmingDivisionAddition=false,$confirmingDivisionEditing=false,$confirmingDivisionDeletion=false;
+    public $division=[
+        "name"=>"",
+        "group_id"=>2,
+        "user_id"=>""
+    ]; 
+    public $editdivision=[
+        "id"=>"",
+        "name"=>"",
+        "group_id"=>2,
+        "user_id"=>""
+    ]; 
+
+    public function mount(){
+        $this->userlist=User::where("role_id","=",3)->get(['id','name'])->toArray();
+        
     }
-<<<<<<< HEAD
+
+    public function render()
+    {   $divisions=Division::when($this->searchDivision,function($query, $searchDivision){
+        return $query->where('name','LIKE',"%$this->searchDivision%");
+        })->orderBy('id','DESC')->paginate(5);
+
+        $divisions->withPath('/divisions');
+
+        return view('livewire.manage-divisions',[
+            'divisions'=>$divisions,
+        ]);
+        
+    }
+    public function toggle($key){
+       
+     if($key == 'confirmingDivisionAddition')
+     {
+        $this->confirmingDivisionAddition = !$this->confirmingDivisionAddition;
+     }
+    else if($key =='confirmingDivisionEditing')
+    {
+        $this->confirmingDivisionEditing = !$this->confirmingDivisionEditing;
+
+    }
     else if($key =='confirmingDivisionDeletion')
     {
         $this->confirmingDivisionDeletion = !$this->confirmingDivisionDeletion;
@@ -39,7 +81,6 @@ class Divisions extends Component
         $this->emit('close-banner');
     }
     public function editDivision($id){
-        
         $name=Division::find($id)->name;
         $user_id=Division::find($id)->user_id;
         $this->editdivision['name']=$name;
@@ -54,7 +95,6 @@ class Divisions extends Component
             'user_id'=>['required', 'integer']
         ])->validate();
         $division=Division::find($this->editdivision['id']);
-        $this->authorize('update',$division);
         $division->name=$this->editdivision['name'];
         $division->user_id=$this->editdivision['user_id'];
         $division->save();
@@ -90,6 +130,4 @@ class Divisions extends Component
 
     }
     
-=======
->>>>>>> 0b971b0d6919c62dd4d4ce3a2421e4c95d7075be
 }
