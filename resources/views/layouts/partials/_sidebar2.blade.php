@@ -55,7 +55,7 @@
             <li>
 
 
-                <x-jet-nav-link class="border-b text-sm border-gray-200 uppercase" href="{{ route('users') }}" :active="request()->routeIs('users')">
+                <x-jet-nav-link class="border-b text-sm border-gray-200 uppercase" href="{{ route('adminusers') }}" :active="request()->routeIs('adminusers')">
                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="mr-2 w-6 h-6">
                         <path stroke-linecap="round" stroke-linejoin="round" d="M15 19.128a9.38 9.38 0 002.625.372 9.337 9.337 0 004.121-.952 4.125 4.125 0 00-7.533-2.493M15 19.128v-.003c0-1.113-.285-2.16-.786-3.07M15 19.128v.106A12.318 12.318 0 018.624 21c-2.331 0-4.512-.645-6.374-1.766l-.001-.109a6.375 6.375 0 0111.964-3.07M12 6.375a3.375 3.375 0 11-6.75 0 3.375 3.375 0 016.75 0zm8.25 2.25a2.625 2.625 0 11-5.25 0 2.625 2.625 0 015.25 0z" />
                     </svg>
@@ -85,68 +85,38 @@
 
             </li>
             @elseif(Auth::user()->role_id == 2)
-            <li>
-
-
-                <x-jet-nav-link class="border-b text-sm border-gray-200 uppercase" href="{{ route('users') }}" :active="request()->routeIs('musers')">
-                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="mr-2 w-6 h-6">
-                        <path stroke-linecap="round" stroke-linejoin="round" d="M15 19.128a9.38 9.38 0 002.625.372 9.337 9.337 0 004.121-.952 4.125 4.125 0 00-7.533-2.493M15 19.128v-.003c0-1.113-.285-2.16-.786-3.07M15 19.128v.106A12.318 12.318 0 018.624 21c-2.331 0-4.512-.645-6.374-1.766l-.001-.109a6.375 6.375 0 0111.964-3.07M12 6.375a3.375 3.375 0 11-6.75 0 3.375 3.375 0 016.75 0zm8.25 2.25a2.625 2.625 0 11-5.25 0 2.625 2.625 0 015.25 0z" />
-                    </svg>
-
-
-                    {{ __('My Divisions') }}
-
-                </x-jet-nav-link>
-
-
-            </li>
-            <li>
-
-
-                <x-jet-nav-link class="border-b text-sm border-gray-200 uppercase" href="{{ route('team') }}" :active="request()->routeIs('team')">
-                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="mr-2 w-6 h-6">
-                        <path stroke-linecap="round" stroke-linejoin="round" d="M15 19.128a9.38 9.38 0 002.625.372 9.337 9.337 0 004.121-.952 4.125 4.125 0 00-7.533-2.493M15 19.128v-.003c0-1.113-.285-2.16-.786-3.07M15 19.128v.106A12.318 12.318 0 018.624 21c-2.331 0-4.512-.645-6.374-1.766l-.001-.109a6.375 6.375 0 0111.964-3.07M12 6.375a3.375 3.375 0 11-6.75 0 3.375 3.375 0 016.75 0zm8.25 2.25a2.625 2.625 0 11-5.25 0 2.625 2.625 0 015.25 0z" />
-                    </svg>
-
-
-                    {{ __('My Team') }}
-
-                </x-jet-nav-link>
-
-
-            </li>
-            <li>
-
-
-                <x-jet-nav-link class="uppercase  text-sm border-b border-gray-200" href="{{ route('projects') }}" :active="request()->routeIs('projects')">
-                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="mr-2 w-6 h-6">
-                        <path stroke-linecap="round" stroke-linejoin="round" d="M14.25 9.75L16.5 12l-2.25 2.25m-4.5 0L7.5 12l2.25-2.25M6 20.25h12A2.25 2.25 0 0020.25 18V6A2.25 2.25 0 0018 3.75H6A2.25 2.25 0 003.75 6v12A2.25 2.25 0 006 20.25z" />
-                    </svg>
-
-
-                    {{ __('My Projects') }}
-
-                </x-jet-nav-link>
-
-
-            </li>
             @can('manage_users')
             <li>
 
 
-                <x-jet-nav-link class="border-b text-sm border-gray-200 uppercase" href="{{ route('users') }}" :active="request()->routeIs('users')">
+                <x-jet-nav-link class="border-b text-sm border-gray-200 uppercase" href="{{ route('adminusers') }}" :active="request()->routeIs('adminusers')">
                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="mr-2 w-6 h-6">
                         <path stroke-linecap="round" stroke-linejoin="round" d="M15 19.128a9.38 9.38 0 002.625.372 9.337 9.337 0 004.121-.952 4.125 4.125 0 00-7.533-2.493M15 19.128v-.003c0-1.113-.285-2.16-.786-3.07M15 19.128v.106A12.318 12.318 0 018.624 21c-2.331 0-4.512-.645-6.374-1.766l-.001-.109a6.375 6.375 0 0111.964-3.07M12 6.375a3.375 3.375 0 11-6.75 0 3.375 3.375 0 016.75 0zm8.25 2.25a2.625 2.625 0 11-5.25 0 2.625 2.625 0 015.25 0z" />
                     </svg>
 
 
-                    {{ __('User Management') }}
+                    {{ __('Users Management') }}
 
                 </x-jet-nav-link>
 
 
             </li>
             @endcan
+            <li>
+
+
+                <x-jet-nav-link class="uppercase  text-sm border-b border-gray-200" href="{{ route('adminprojects') }}" :active="request()->routeIs('adminprojects')">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="mr-2 w-6 h-6">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M14.25 9.75L16.5 12l-2.25 2.25m-4.5 0L7.5 12l2.25-2.25M6 20.25h12A2.25 2.25 0 0020.25 18V6A2.25 2.25 0 0018 3.75H6A2.25 2.25 0 003.75 6v12A2.25 2.25 0 006 20.25z" />
+                    </svg>
+
+
+                    {{ __('Projects Management') }}
+
+                </x-jet-nav-link>
+
+
+            </li>
 
             <li class="border-b border-gray-200">
                 <button type="button" class="flex items-center w-full p-2 pl-3 py-3 text-sm font-normal text-gray-500 transition duration-75  group hover:bg-gray-200 dark:text-white dark:hover:bg-gray-700" aria-controls="dropdown-example" data-collapse-toggle="dropdown-example">
@@ -156,22 +126,121 @@
 
 
 
-                    <span class="flex-1 text-xs font-semibold uppercase ml-2 text-left whitespace-nowrap" sidebar-toggle-item>Master</span>
+                    <span class="flex-1 text-xs font-semibold uppercase ml-2 text-left whitespace-nowrap" sidebar-toggle-item>Teams Management</span>
                     <svg sidebar-toggle-item class="w-6 h-6" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
                         <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd"></path>
                     </svg>
                 </button>
                 <ul id="dropdown-example" class="hidden">
+                    <li>
+                        <div class="pl-6">
+
+                            <x-jet-nav-link class="uppercase  text-sm border-b border-gray-200" href="{{ route('team') }}" :active="request()->routeIs('team')">
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="mr-2 w-6 h-6">
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="M9.568 3H5.25A2.25 2.25 0 003 5.25v4.318c0 .597.237 1.17.659 1.591l9.581 9.581c.699.699 1.78.872 2.607.33a18.095 18.095 0 005.223-5.223c.542-.827.369-1.908-.33-2.607L11.16 3.66A2.25 2.25 0 009.568 3z" />
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="M6 6h.008v.008H6V6z" />
+                                </svg>
+
+
+
+                                {{ __('My Team') }}
+
+                            </x-jet-nav-link>
+
+                        </div>
+                    </li>
+
+                    <li>
+                        <div class="pl-6">
+
+                            <x-jet-nav-link class="uppercase  text-sm border-b border-gray-200" href="{{ route('categories') }}" :active="request()->routeIs('categories')">
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="mr-2 w-6 h-6">
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="M9.568 3H5.25A2.25 2.25 0 003 5.25v4.318c0 .597.237 1.17.659 1.591l9.581 9.581c.699.699 1.78.872 2.607.33a18.095 18.095 0 005.223-5.223c.542-.827.369-1.908-.33-2.607L11.16 3.66A2.25 2.25 0 009.568 3z" />
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="M6 6h.008v.008H6V6z" />
+                                </svg>
+
+
+
+                                {{ __('Project Heads') }}
+
+                            </x-jet-nav-link>
+
+                        </div>
+                    </li>
+                    <li>
+                        <div class="pl-6">
+
+                            <x-jet-nav-link class="uppercase  text-sm border-b border-gray-200" href="{{ route('categories') }}" :active="request()->routeIs('categories')">
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="mr-2 w-6 h-6">
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="M9.568 3H5.25A2.25 2.25 0 003 5.25v4.318c0 .597.237 1.17.659 1.591l9.581 9.581c.699.699 1.78.872 2.607.33a18.095 18.095 0 005.223-5.223c.542-.827.369-1.908-.33-2.607L11.16 3.66A2.25 2.25 0 009.568 3z" />
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="M6 6h.008v.008H6V6z" />
+                                </svg>
+
+
+
+                                {{ __('Team Leaders') }}
+
+                            </x-jet-nav-link>
+
+                        </div>
+                    </li>
+                    <li>
+                        <div class="pl-6">
+
+                            <x-jet-nav-link class="uppercase  text-sm border-b border-gray-200" href="{{ route('categories') }}" :active="request()->routeIs('categories')">
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="mr-2 w-6 h-6">
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="M9.568 3H5.25A2.25 2.25 0 003 5.25v4.318c0 .597.237 1.17.659 1.591l9.581 9.581c.699.699 1.78.872 2.607.33a18.095 18.095 0 005.223-5.223c.542-.827.369-1.908-.33-2.607L11.16 3.66A2.25 2.25 0 009.568 3z" />
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="M6 6h.008v.008H6V6z" />
+                                </svg>
+
+
+
+                                {{ __('Team Members') }}
+
+                            </x-jet-nav-link>
+
+                        </div>
+                    </li>
+
+
+
+                </ul>
+            </li>
+
+            <li>
+
+
+                <x-jet-nav-link class="border-b text-sm border-gray-200 uppercase" href="{{ route('team') }}" :active="request()->routeIs('team')">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="mr-2 w-6 h-6">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M15 19.128a9.38 9.38 0 002.625.372 9.337 9.337 0 004.121-.952 4.125 4.125 0 00-7.533-2.493M15 19.128v-.003c0-1.113-.285-2.16-.786-3.07M15 19.128v.106A12.318 12.318 0 018.624 21c-2.331 0-4.512-.645-6.374-1.766l-.001-.109a6.375 6.375 0 0111.964-3.07M12 6.375a3.375 3.375 0 11-6.75 0 3.375 3.375 0 016.75 0zm8.25 2.25a2.625 2.625 0 11-5.25 0 2.625 2.625 0 015.25 0z" />
+                    </svg>
+
+
+                    {{ __('Manuals Management') }}
+
+                </x-jet-nav-link>
+
+
+            </li>
+
+
+
+            <li class="border-b border-gray-200">
+                <button type="button" class="flex items-center w-full p-2 pl-3 py-3 text-sm font-normal text-gray-500 transition duration-75  group hover:bg-gray-200 dark:text-white dark:hover:bg-gray-700" aria-controls="dropdown-example2" data-collapse-toggle="dropdown-example2">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class=" w-6 h-6">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M2.25 7.125C2.25 6.504 2.754 6 3.375 6h6c.621 0 1.125.504 1.125 1.125v3.75c0 .621-.504 1.125-1.125 1.125h-6a1.125 1.125 0 01-1.125-1.125v-3.75zM14.25 8.625c0-.621.504-1.125 1.125-1.125h5.25c.621 0 1.125.504 1.125 1.125v8.25c0 .621-.504 1.125-1.125 1.125h-5.25a1.125 1.125 0 01-1.125-1.125v-8.25zM3.75 16.125c0-.621.504-1.125 1.125-1.125h5.25c.621 0 1.125.504 1.125 1.125v2.25c0 .621-.504 1.125-1.125 1.125h-5.25a1.125 1.125 0 01-1.125-1.125v-2.25z" />
+                    </svg>
+
+
+
+                    <span class="flex-1 text-xs font-semibold uppercase ml-2 text-left whitespace-nowrap" sidebar-toggle-item>Masters Management</span>
+                    <svg sidebar-toggle-item class="w-6 h-6" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                        <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd"></path>
+                    </svg>
+                </button>
+                <ul id="dropdown-example2" class="hidden">
                     <div class="pl-6">
-                        <x-jet-nav-link class="text-sm uppercase border-b border-gray-200" href="{{ route('managedivisions') }}" :active="request()->routeIs('managedivisions')">
-                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="mr-2 w-6 h-6">
-                                <path stroke-linecap="round" stroke-linejoin="round" d="M9 4.5v15m6-15v15m-10.875 0h15.75c.621 0 1.125-.504 1.125-1.125V5.625c0-.621-.504-1.125-1.125-1.125H4.125C3.504 4.5 3 5.004 3 5.625v12.75c0 .621.504 1.125 1.125 1.125z" />
-                            </svg>
 
-
-                            {{ __('Manage Divisions') }}
-
-                        </x-jet-nav-link>
                         <x-jet-nav-link class="uppercase  text-sm border-b border-gray-200" href="{{ route('categories') }}" :active="request()->routeIs('categories')">
                             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="mr-2 w-6 h-6">
                                 <path stroke-linecap="round" stroke-linejoin="round" d="M9.568 3H5.25A2.25 2.25 0 003 5.25v4.318c0 .597.237 1.17.659 1.591l9.581 9.581c.699.699 1.78.872 2.607.33a18.095 18.095 0 005.223-5.223c.542-.827.369-1.908-.33-2.607L11.16 3.66A2.25 2.25 0 009.568 3z" />
@@ -180,7 +249,7 @@
 
 
 
-                            {{ __('Categories') }}
+                            {{ __('Project Categories') }}
 
                         </x-jet-nav-link>
 
@@ -190,145 +259,47 @@
             </li>
 
 
-            @elseif(Auth::user()->role_id == 3)
-
-
-        </ul>
-        <div class="bg-gray-200  mt-8  p-4 py-2">
-            <x-sub-title class="font-semibold text-white">User View</x-sub-title>
-
-        </div>
-        <ul class="space-y pl-2">
-
-
-            <li>
-                <x-jet-nav-link class="uppercase  text-sm border-b border-gray-200" href="{{ route('userprojects') }}" :active="request()->routeIs('userprojects')">
-                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="mr-2 w-6 h-6">
-                        <path stroke-linecap="round" stroke-linejoin="round" d="M14.25 9.75L16.5 12l-2.25 2.25m-4.5 0L7.5 12l2.25-2.25M6 20.25h12A2.25 2.25 0 0020.25 18V6A2.25 2.25 0 0018 3.75H6A2.25 2.25 0 003.75 6v12A2.25 2.25 0 006 20.25z" />
-                    </svg>
-
-
-                    {{ __('Published Projects') }}
-
-                </x-jet-nav-link>
-            </li>
-
-            <li>
-                <x-jet-nav-link class="uppercase  text-sm border-b border-gray-200" href="{{ route('userprojects') }}" :active="request()->routeIs('projects')">
-                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="mr-2 w-6 h-6">
-                        <path stroke-linecap="round" stroke-linejoin="round" d="M14.25 9.75L16.5 12l-2.25 2.25m-4.5 0L7.5 12l2.25-2.25M6 20.25h12A2.25 2.25 0 0020.25 18V6A2.25 2.25 0 0018 3.75H6A2.25 2.25 0 003.75 6v12A2.25 2.25 0 006 20.25z" />
-                    </svg>
-
-
-                    {{ __('Ongoing Projects') }}
-
-                </x-jet-nav-link>
-            </li>
-            @elseif(Auth::user()->role_id ==4)
-            <li>
-                <x-jet-nav-link class="uppercase  text-sm border-b border-gray-200" href="{{ route('divisions') }}" :active="request()->routeIs('divisions')">
-                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="mr-2 w-6 h-6">
-                        <path stroke-linecap="round" stroke-linejoin="round" d="M14.25 9.75L16.5 12l-2.25 2.25m-4.5 0L7.5 12l2.25-2.25M6 20.25h12A2.25 2.25 0 0020.25 18V6A2.25 2.25 0 0018 3.75H6A2.25 2.25 0 003.75 6v12A2.25 2.25 0 006 20.25z" />
-                    </svg>
-
-
-                    {{ __('My Divisions') }}
-
-                </x-jet-nav-link>
-            </li>
-            <li>
-                <x-jet-nav-link class="uppercase  text-sm border-b border-gray-200" href="{{ route('team') }}" :active="request()->routeIs('team')">
-                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="mr-2 w-6 h-6">
-                        <path stroke-linecap="round" stroke-linejoin="round" d="M14.25 9.75L16.5 12l-2.25 2.25m-4.5 0L7.5 12l2.25-2.25M6 20.25h12A2.25 2.25 0 0020.25 18V6A2.25 2.25 0 0018 3.75H6A2.25 2.25 0 003.75 6v12A2.25 2.25 0 006 20.25z" />
-                    </svg>
-
-
-                    {{ __('My Team') }}
-
-                </x-jet-nav-link>
-            </li>
-            <li>
-
-
-                <x-jet-nav-link class="border-b text-sm border-gray-200 uppercase" href="{{ route('manageuserprojects') }}" :active="request()->routeIs('manageuserprojects')">
-                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="mr-2 w-6 h-6">
-                        <path stroke-linecap="round" stroke-linejoin="round" d="M12 4.5v15m7.5-7.5h-15" />
-                    </svg>
-
-
-
-                    {{ __('Manage Projects') }}
-
-                </x-jet-nav-link>
-
-
-            </li>
-
-            <li>
-                <x-jet-nav-link class="uppercase  text-sm border-b border-gray-200" href="{{ route('userprojects') }}" :active="request()->routeIs('projects')">
-                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="mr-2 w-6 h-6">
-                        <path stroke-linecap="round" stroke-linejoin="round" d="M14.25 9.75L16.5 12l-2.25 2.25m-4.5 0L7.5 12l2.25-2.25M6 20.25h12A2.25 2.25 0 0020.25 18V6A2.25 2.25 0 0018 3.75H6A2.25 2.25 0 003.75 6v12A2.25 2.25 0 006 20.25z" />
-                    </svg>
-
-
-                    {{ __('Feedback') }}
-
-                </x-jet-nav-link>
-            </li>
-
-
-
-
-        </ul>
-        <div class="bg-gray-200  mt-8  p-4 py-2">
-            <x-sub-title class="font-semibold text-white">User View</x-sub-title>
-
-        </div>
-        <ul class="space-y pl-2">
-
-
-            <li>
-                <x-jet-nav-link class="uppercase  text-sm border-b border-gray-200" href="{{ route('userprojects') }}" :active="request()->routeIs('userprojects')">
-                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="mr-2 w-6 h-6">
-                        <path stroke-linecap="round" stroke-linejoin="round" d="M14.25 9.75L16.5 12l-2.25 2.25m-4.5 0L7.5 12l2.25-2.25M6 20.25h12A2.25 2.25 0 0020.25 18V6A2.25 2.25 0 0018 3.75H6A2.25 2.25 0 003.75 6v12A2.25 2.25 0 006 20.25z" />
-                    </svg>
-
-
-                    {{ __('Published Projects') }}
-
-                </x-jet-nav-link>
-            </li>
-
-            <li>
-                <x-jet-nav-link class="uppercase  text-sm border-b border-gray-200" href="{{ route('userprojects') }}" :active="request()->routeIs('projects')">
-                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="mr-2 w-6 h-6">
-                        <path stroke-linecap="round" stroke-linejoin="round" d="M14.25 9.75L16.5 12l-2.25 2.25m-4.5 0L7.5 12l2.25-2.25M6 20.25h12A2.25 2.25 0 0020.25 18V6A2.25 2.25 0 0018 3.75H6A2.25 2.25 0 003.75 6v12A2.25 2.25 0 006 20.25z" />
-                    </svg>
-
-
-                    {{ __('Ongoing Projects') }}
-
-                </x-jet-nav-link>
-            </li>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
             @else
 
 
 
             @endif
+
+
+
+        </ul>
+        <div class="bg-gray-200  mt-8  p-4 py-2">
+            <x-sub-title class="font-semibold text-white">User View</x-sub-title>
+
+        </div>
+        <ul class="space-y pl-2">
+
+
+            <li>
+                <x-jet-nav-link class="uppercase  text-sm border-b border-gray-200" href="{{ route('userprojects') }}" :active="request()->routeIs('userprojects')">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="mr-2 w-6 h-6">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M14.25 9.75L16.5 12l-2.25 2.25m-4.5 0L7.5 12l2.25-2.25M6 20.25h12A2.25 2.25 0 0020.25 18V6A2.25 2.25 0 0018 3.75H6A2.25 2.25 0 003.75 6v12A2.25 2.25 0 006 20.25z" />
+                    </svg>
+
+
+                    {{ __('Published Projects') }}
+
+                </x-jet-nav-link>
+            </li>
+
+            <li>
+                <x-jet-nav-link class="uppercase  text-sm border-b border-gray-200" href="{{ route('userprojects') }}" :active="request()->routeIs('projects')">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="mr-2 w-6 h-6">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M14.25 9.75L16.5 12l-2.25 2.25m-4.5 0L7.5 12l2.25-2.25M6 20.25h12A2.25 2.25 0 0020.25 18V6A2.25 2.25 0 0018 3.75H6A2.25 2.25 0 003.75 6v12A2.25 2.25 0 006 20.25z" />
+                    </svg>
+
+
+                    {{ __('Ongoing Projects') }}
+
+                </x-jet-nav-link>
+            </li>
+
+
 
 
 

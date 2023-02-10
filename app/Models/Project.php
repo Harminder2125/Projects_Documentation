@@ -17,7 +17,6 @@ class Project extends Model
         
         'logo_image',
         'banner_image',
-        'division_id',
         'publish_status',
     ];
 
@@ -33,8 +32,5 @@ class Project extends Model
     
    /* LOCAL SCOPES ENDS HERE */
 
-    public function division()
-    {
-        return $this->belongsTo(Division::class);
-    }
+    
 }

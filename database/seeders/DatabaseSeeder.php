@@ -26,7 +26,7 @@ class DatabaseSeeder extends Seeder
             UserSeeder::class,
             PermissionSeeder::class,
             CategorySeeder::class,
-            DivisionSeeder::class,
+            
             ProjectSeeder::class,
             ProjectHistorySeeder::class,
             Featurebox::class,

@@ -50,7 +50,7 @@ class Usercomponent extends Component
 
          $roles= Role::all();
 
-        return view('livewire.usercomponent',[
+        return view('livewire.admin.usercomponent',[
             'allusers'=>$users,
             'roles'=>$roles
         ]);

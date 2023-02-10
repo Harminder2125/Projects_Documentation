@@ -4,6 +4,8 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\AdminController;
+
 
 
 /*
@@ -25,18 +27,16 @@ Route::middleware([
 ])->group(function () {
 
     Route::get('/dashboard',[DashboardController::class,'index'])->name('dashboard');
-    Route::get('/users',[DashboardController::class,'users'])->name('users')->middleware('can:manage_users');
+    Route::get('/admin/users',[AdminController::class,'users'])->name('adminusers')->middleware('can:manage_users');
     Route::get('/groups',[DashboardController::class,'groups'])->name('groups');
     Route::get('/role/assign',[DashboardController::class,'assignRoles'])->name('assign_roles');
-    Route::get('/projects',[DashboardController::class,'projects'])->name('projects');
+    Route::get('/admin/projects',[AdminController::class,'projects'])->name('adminprojects');
     Route::get('/project/create',[DashboardController::class,'projectcreate'])->name('projectcreate');
     Route::get('/project/{id}',[DashboardController::class,'projectdetail'])->name('projectdetail');
     Route::get('/project/timeline/{id}',[DashboardController::class,'projecttimeline'])->name('projecttimeline');
 
-    Route::get('/manage/divisions',[DashboardController::class,'manageDivisions'])->name('managedivisions');
     Route::get('/categories',[DashboardController::class,'categories'])->name('categories');
 
-    Route::get('/divisions',[DashboardController::class,'divisions'])->name('divisions');
     Route::get('/team',[DashboardController::class,'team'])->name('team');
 
     Route::get('/manual',[DashboardController::class,'manual'])->name('manual');
