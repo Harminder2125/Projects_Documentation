@@ -35,6 +35,11 @@ class DatabaseSeeder extends Seeder
             ManualContentSeeder::class,
             ProjectRolesSeeder::class,
             ProjectTeamMembersSeeder::class,
+            PrivilegesSeeder::class,
+            ProjectrolePrivilegeSeeder::class,
+            RolePrivilegeSeeder::class,
+
+
             
             
         ]);
