@@ -2,7 +2,7 @@
 
 
     <x-slot name="title">
-        Projects Management
+        Project Management
     </x-slot>
     <x-slot name="subtitle">
         Complete list of projects of your group
