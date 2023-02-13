@@ -1,9 +1,10 @@
 @props(['disabled' => false])
 
 
-<div class="border {{$disabled?'border-gray-400 border-dashed':'border-purple-100'}} mt-1">
+<div class="border bg-white py-1 {{$disabled?'border-gray-400 border-dashed':'border-purple-100'}} mt-1">
 
-    <select class="w-full form-select" {{ $disabled ? 'disabled' : '' }} {!! $attributes->merge(['class' => 'text-gray-500 focus:border-purple-100 focus:ring focus:ring-purple-100 focus:ring-opacity-50 rounded-sm shadow-sm']) !!}>
+    <select class="border-0 focus:ring-0 w-full form-select" {{ $disabled ? 'disabled' : '' }} {!! $attributes->merge(['class' => 'text-gray-500 focus:border-purple-100 focus:ring focus:ring-purple-100 focus:ring-opacity-50 rounded-sm shadow-sm']) !!}>
+
 
         <option value="0">Select Option</option>
 

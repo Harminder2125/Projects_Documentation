@@ -18,4 +18,11 @@ class AdminController extends Controller
         }
        abort(404);
     }
+    public function createproject()
+    {
+        if (Gate::allows('is_admin')) {
+                return view('admin.createproject');
+        }
+       abort(404);
+    }
 }

@@ -30,7 +30,7 @@ class CreateProject extends Component
     {
         $categories = Category::all();
        
-        return view('livewire.create-project',[
+        return view('livewire.admin.create-project',[
             'categories'=>$categories,
         ]);
     }
