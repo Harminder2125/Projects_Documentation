@@ -14,7 +14,7 @@ class Project extends Model
         'description',
         'launch_date',
         'launched_by',
-        
+        'category',
         'logo_image',
         'banner_image',
         'publish_status',
@@ -23,14 +23,21 @@ class Project extends Model
      /* LOCAL SCOPES START HERE*/
     public function scopePublished($query)
     {
-        return $query->where('publish_status', '=', 'PUBLISHED');   
+        return $query->where('publish_status', '=', 1);   
     }
     public function scopeUnpublished($query)
     {
-        return $query->where('publish_status', '!=', 'PUBLISHED'); 
+        return $query->where('publish_status', '==', 2); 
     }
     
    /* LOCAL SCOPES ENDS HERE */
-
+    public function status()
+    {
+         return $this->belongsTo(ProjectStatus::class,'publish_status','id');
+    }
+    public function project_category()
+    {
+         return $this->belongsTo(Category::class,'category','id');
+    }
     
 }

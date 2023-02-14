@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Gate;
 
 use Illuminate\Http\Request;
 
+
 class AdminController extends Controller
 {
     public function users()
@@ -24,5 +25,9 @@ class AdminController extends Controller
                 return view('admin.createproject');
         }
        abort(404);
+    }
+    public function editProject($projectid)
+    {
+        return view('admin.editproject',['projectid'=>$projectid]);
     }
 }

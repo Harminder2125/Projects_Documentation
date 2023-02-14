@@ -43,6 +43,8 @@ Route::middleware([
     Route::get('/admin/users',[AdminController::class,'users'])->name('adminusers')->middleware('can:manage_users');
     Route::get('/admin/projects',[AdminController::class,'projects'])->name('adminprojects');
     Route::get('/admin/project/create',[AdminController::class,'createproject'])->name('createproject');
+    Route::get('/admin/edit/project/{id}',[AdminController::class,'editProject'])->name('editproject');
+
 
    
 
