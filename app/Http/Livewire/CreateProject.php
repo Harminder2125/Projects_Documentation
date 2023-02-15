@@ -7,6 +7,8 @@ use Livewire\WithFileUploads;
 use App\Models\Division;
 use App\Models\Category;
 use App\Models\Project;
+use App\Models\ProjectStatus;
+
 use Auth;
 
 class CreateProject extends Component
@@ -22,16 +24,18 @@ class CreateProject extends Component
         "launched_by"=>"",
         "logo_image"=>"",
         "banner_image"=>"",
-        "division_id"=>"",
-        "publish_status"=>"UNPUBLISHED"
+        "group_id"=>"",
+        "publish_status"=>""
     ];
     
     public function render()
     {
         $categories = Category::all();
+        $status = ProjectStatus::all();
        
         return view('livewire.admin.create-project',[
             'categories'=>$categories,
+            'statuslist'=>$status
         ]);
     }
     public function createProject()
@@ -50,7 +54,7 @@ class CreateProject extends Component
         }
            
         
-        $this->project['division_id'] = Auth::user()->group_id;
+        $this->project['group_id'] = Auth::user()->group_id;
 
         
         Project::create($this->project);

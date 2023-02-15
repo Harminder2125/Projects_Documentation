@@ -6,33 +6,48 @@ use Livewire\Component;
 use App\Models\Project;
 use App\Models\Category;
 use App\Models\ProjectStatus;
+use DB;
 
 class AllProjects extends Component
 {
     public $search = '';
     public $category=0;
+    public $categoryname="";
     public $status=0;
+    public $statusname="";
+    public $temp = 0;
     public function render()
     {
-        // $projects = Project::paginate(4);
-         $projects = Project::when($this->search,function($query, $search){
-            $result =  $query->where('title','LIKE',"%$this->search%");
-            if($this->category!=0)
-            {
-                $result = $result->where('category','=',$this->category);
-            }
-            if($this->status!=0)
-            {
-                $result = $result->where('publish_status','=',$this->status);
-            }
-            return $result;
 
-            
-         })->orderBy('id','DESC')->paginate(4);
-        //  $projects->withPath('/projects');
-
+         $projects = Project::when($this->category!=0, function ($query) {
+                return $query->where('category', $this->category);
+            })
+            ->when($this->search, function ($query) {
+                return $query->where('title', 'like', '%' . $this->search . '%');
+            })
+            ->when($this->status !=0, function ($query) {
+                return $query->where('publish_status', $this->status);
+            })
+            ->orderBy('id','DESC')->paginate(4);
+            $projects->withPath('/admin/projects');
+          
         $categories = Category::all();
         $status= ProjectStatus::all();
+       if($this->categoryname != 0)
+       {
+        $ct =  Category::find($this->category);
+        if($ct)
+            $this->categoryname =$ct->name;
+       }
+        
+        if($this->status != 0)
+        {
+            $st =ProjectStatus::find($this->status);
+            if($st)
+                 $this->statusname = $st->name;
+        }
+       
+
        
 
         return view('livewire.admin.all-projects',['allprojects'=>$projects,'statuslist'=>$status,'categorylist'=>$categories]);
@@ -42,34 +57,24 @@ class AllProjects extends Component
     {
          return redirect()->to('/admin/edit/project/'.$id);
     }
+
+    function openProjectDetails($projectid)
+    {
+        return redirect()->to('/admin/project/'.$projectid);
+    }
     public function searchProjects()
     {
-       
-        $projects = Project::when($this->category!=0,function($query){
-            return $query->where('category',$this->category);
-        })->orderBy('id','DESC')->paginate(4);
-    
-        
-        // if($this->category!=0)
-        // {
-        //     $projects->where('category','=',$this->category);
-        // }
-        // if($this->status!=0)
-        // {
-           
-        //    $projects->where('publish_status','=',$this->status);
-        // }
-        // if($this->search)
-        // {
-        //   $projects->where('title','LIKE',"%$this->search%");
-        // }
-        
-            
-       
-        $categories = Category::all();
-        $status= ProjectStatus::all();
-       
+       $this->temp =1;
+        $this->render();
+    }
+    public function resetSearchForm()
+    {
+        $this->search = "";
+        $this->status = 0;
+        $this->category =0;
+        $this->categoryname = "";
+        $this->statusname = "";
 
-        return view('livewire.admin.all-projects',['allprojects'=>$projects,'statuslist'=>$status,'categorylist'=>$categories]);
+
     }
 }

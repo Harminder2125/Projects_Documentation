@@ -8,24 +8,28 @@
                 {{$project['description']}}
             </div>
             <div class="my-4 mt-8">
-                <x-main-title>Project Team</x-main-title>
+                <x-main-title>Current Project Team</x-main-title>
             </div>
 
             <div class="bg-gray-100 p-4 rounded-lg shadow-sm">
 
 
                 <div class="grid gap-x-2 grid-cols-4 gap-y-4">
+                    @if($project_head != "")
                     <div class="flex items-center justify-center flex-col">
                         <div class="mx-2 w-20 h-20 rounded-full bg-fuchsia-900 text-sm font-semibold uppercase flex items-center justify-center text-white">
-                            {{$this->getNameInitials($project->division->hod->name)}}
+                            {{$this->getNameInitials($project_head)}}
                         </div>
 
                         <div class="text-xs mt-2 text-center uppercase font-semibold">
-                            {{$project->division->hod->name}}
+                            {{$project_head}}
 
                         </div>
                         <div class="text-xs text-gray-500">Project Head</div>
                     </div>
+                    @endif
+                    @if($team_leader!= "")
+
                     <div class="flex items-center justify-center flex-col">
                         <div class="mx-2 w-20 h-20 rounded-full bg-rose-800 text-sm font-semibold uppercase flex items-center justify-center text-white">
                             {{$this->getNameInitials($team_leader)}}
@@ -37,7 +41,7 @@
                         </div>
                         <div class="text-xs text-gray-500">Team Leader</div>
                     </div>
-
+                    @endif
 
                     @foreach ($team_members as $member)
                     <div class="flex items-center justify-center flex-col">
@@ -53,7 +57,13 @@
                     </div>
 
                     @endforeach
+
                 </div>
+                @if($project_head=="" && $team_leader=="" && $team_members==[])
+                <div class="w-full px-8 flex justify-center items-center">
+                    <x-sub-title>No Team member assigned.</x-sub-title>
+                </div>
+                @endif
 
             </div>
 
@@ -83,12 +93,12 @@
                                 <path stroke-linecap="round" stroke-linejoin="round" d="M15 10.5a3 3 0 11-6 0 3 3 0 016 0z" />
                                 <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1115 0z" />
                             </svg>
-                            {{$project->division->group->name}}
+                            {{$project->group->name}}
                         </div>
                     </div>
                     <div class=" py-2 dark:bg-gray-800 hover:bg-gray-50 dark:hover:bg-gray-600">
                         <div scope="row" class="py-1 uppercase px-6 text-sm font-medium text-gray-600 whitespace-nowrap dark:text-white">
-                            Division
+                            Project Head
                         </div>
                         <div class="px-6 flex uppercase text-xs  text-gray-500">
 
@@ -96,7 +106,7 @@
                             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="mr-2 w-5 h-5">
                                 <path stroke-linecap="round" stroke-linejoin="round" d="M9 4.5v15m6-15v15m-10.875 0h15.75c.621 0 1.125-.504 1.125-1.125V5.625c0-.621-.504-1.125-1.125-1.125H4.125C3.504 4.5 3 5.004 3 5.625v12.75c0 .621.504 1.125 1.125 1.125z"></path>
                             </svg>
-                            {{$project->division->name}}
+                            {{$project_head}}
                         </div>
                     </div>
                     <div class=" py-2 dark:bg-gray-800 hover:bg-gray-50 dark:hover:bg-gray-600">
@@ -156,7 +166,7 @@
     </div>
     <div class=" flex justify-end ">
 
-        <a href="/projects">
+        <a href="/admin/projects">
             <x-dark-button class="my-4 text-sm p-2 rounded-lg shadow mr-2">
 
                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5 mr-2">
@@ -168,6 +178,19 @@
 
                 back to projects</x-dark-button>
         </a>
+        <a href="/admin/projects">
+            <x-primary-button class="my-4 text-sm p-2 rounded-lg shadow mr-2">
+
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5 mr-2">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M11.25 9l-3 3m0 0l3 3m-3-3h7.5M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                </svg>
+
+
+
+
+                Assign Team</x-primary-button>
+        </a>
+
 
         <a href="/project/timeline/{{$project->id}}">
 
@@ -177,14 +200,15 @@
 
                 Project Timeline</x-secondary-button>
         </a>
-        @can('transfer_projects')
+
         <x-danger-button wire:click="toggle('confirmingProjectTransfer')" class="my-4 text-sm p-2 rounded-lg shadow">
             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5 mr-2">
-                <path stroke-linecap="round" stroke-linejoin="round" d="M7.5 21L3 16.5m0 0L7.5 12M3 16.5h13.5m0-13.5L21 7.5m0 0L16.5 12M21 7.5H7.5" />
+                <path stroke-linecap="round" stroke-linejoin="round" d="M9.75 9.75l4.5 4.5m0-4.5l-4.5 4.5M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
             </svg>
 
-            Transfer Project </x-danger-button>
-        @endcan
+
+            Delete Project </x-danger-button>
+
 
     </div>
     <div class="w-full grid grid-cols-3 gap-4 mt-4 ">
@@ -245,7 +269,7 @@
 
 
 
-        <x-jet-confirmation-modal wire:model="confirmingProjectTransfer">
+        {{-- <x-jet-confirmation-modal wire:model="confirmingProjectTransfer">
 
 
             <x-slot name="icon">
@@ -287,94 +311,94 @@
 
                         <div class="mb-2 text-bold  text-gray-500 py-2 my-2">{{$project['title']}}</div>
 
-                        <div class="mb-2">
-                            <x-main-title>transfer TO</x-main-title>
-                        </div>
+    <div class="mb-2">
+        <x-main-title>transfer TO</x-main-title>
+    </div>
 
-                        <x-select wire:model="newdivisionid" :userlist="$divisionlist">
-
-
-                        </x-select>
-
-                    </div>
+    <x-select wire:model="newdivisionid" :userlist="$divisionlist">
 
 
+    </x-select>
 
-                </div>
+</div>
+
+
+
+</div>
+<x-main-title>
+    <div class="text-center leading-loose">You are transferring <span class="text-rose-800">{{$project['title']}}</span> to <span class="text-orange-600">{{$this->getSelectedDivisionName()}}</span> </div>
+</x-main-title>
+
+
+
+
+</x-slot>
+
+<x-slot name="footer">
+    <x-jet-secondary-button wire:click="$toggle('confirmingProjectTransfer')" wire:loading.attr="disabled">
+        Cancel
+    </x-jet-secondary-button>
+
+    @if($this->newdivisionid !=0)
+    <x-jet-danger-button class="ml-2" wire:click="toggle('projectTransferFinal')" wire:loading.attr="disabled">
+        Proceed
+    </x-jet-danger-button>
+    @endif
+</x-slot>
+</x-jet-confirmation-modal>
+
+<x-jet-confirmation-modal wire:model="projectTransferFinal">
+
+
+    <x-slot name="icon">
+        <div class="mx-auto shrink-0 flex items-center justify-center h-12 w-12 rounded-full bg-red-800 sm:mx-0 sm:h-10 sm:w-10">
+            <svg class="h-5 w-5 text-white" stroke-width="1.5" stroke="currentColor" fill="none" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M19 7.5v3m0 0v3m0-3h3m-3 0h-3m-2.25-4.125a3.375 3.375 0 11-6.75 0 3.375 3.375 0 016.75 0zM4 19.235v-.11a6.375 6.375 0 0112.75 0v.109A12.318 12.318 0 0110.374 21c-2.331 0-4.512-.645-6.374-1.766z" />
+            </svg>
+
+
+        </div>
+    </x-slot>
+
+    <x-slot name="title">
+        <span class="text-red-800">Transfer Project</span>
+    </x-slot>
+    <x-slot name="subtitle">
+        Transfer of project to some other division.
+    </x-slot>
+    <x-slot name="content">
+
+        <div class="w-full flex flex-col justify-center items-center py-4">
+
+            <div class="p-4 w-full border border-gray-500 border-dashed rounded-lg">
+
                 <x-main-title>
-                    <div class="text-center leading-loose">You are transferring <span class="text-rose-800">{{$project['title']}}</span> to <span class="text-orange-600">{{$this->getSelectedDivisionName()}}</span> </div>
+                    <div class="text-center leading-loose">Are you sure you want to transfer <span class="text-rose-800">{{$project['title']}}</span> to <span class="text-orange-600">{{$this->getSelectedDivisionName()}}</span> </div>
                 </x-main-title>
 
 
-
-
-            </x-slot>
-
-            <x-slot name="footer">
-                <x-jet-secondary-button wire:click="$toggle('confirmingProjectTransfer')" wire:loading.attr="disabled">
-                    Cancel
-                </x-jet-secondary-button>
-
-                @if($this->newdivisionid !=0)
-                <x-jet-danger-button class="ml-2" wire:click="toggle('projectTransferFinal')" wire:loading.attr="disabled">
-                    Proceed
-                </x-jet-danger-button>
-                @endif
-            </x-slot>
-        </x-jet-confirmation-modal>
-
-        <x-jet-confirmation-modal wire:model="projectTransferFinal">
-
-
-            <x-slot name="icon">
-                <div class="mx-auto shrink-0 flex items-center justify-center h-12 w-12 rounded-full bg-red-800 sm:mx-0 sm:h-10 sm:w-10">
-                    <svg class="h-5 w-5 text-white" stroke-width="1.5" stroke="currentColor" fill="none" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" d="M19 7.5v3m0 0v3m0-3h3m-3 0h-3m-2.25-4.125a3.375 3.375 0 11-6.75 0 3.375 3.375 0 016.75 0zM4 19.235v-.11a6.375 6.375 0 0112.75 0v.109A12.318 12.318 0 0110.374 21c-2.331 0-4.512-.645-6.374-1.766z" />
-                    </svg>
-
-
-                </div>
-            </x-slot>
-
-            <x-slot name="title">
-                <span class="text-red-800">Transfer Project</span>
-            </x-slot>
-            <x-slot name="subtitle">
-                Transfer of project to some other division.
-            </x-slot>
-            <x-slot name="content">
-
-                <div class="w-full flex flex-col justify-center items-center py-4">
-
-                    <div class="p-4 w-full border border-gray-500 border-dashed rounded-lg">
-
-                        <x-main-title>
-                            <div class="text-center leading-loose">Are you sure you want to transfer <span class="text-rose-800">{{$project['title']}}</span> to <span class="text-orange-600">{{$this->getSelectedDivisionName()}}</span> </div>
-                        </x-main-title>
-
-
-                    </div>
+            </div>
 
 
 
-                </div>
+        </div>
 
 
 
 
 
-            </x-slot>
+    </x-slot>
 
-            <x-slot name="footer">
-                <x-jet-secondary-button wire:click="$toggle('projectTransferFinal')" wire:loading.attr="disabled">
-                    Cancel
-                </x-jet-secondary-button>
+    <x-slot name="footer">
+        <x-jet-secondary-button wire:click="$toggle('projectTransferFinal')" wire:loading.attr="disabled">
+            Cancel
+        </x-jet-secondary-button>
 
-                <x-jet-danger-button class="ml-2" wire:click="transferProject({{$project['id']}})" wire:loading.attr="disabled">
-                    Transfer it !
-                </x-jet-danger-button>
-            </x-slot>
-        </x-jet-confirmation-modal>
+        <x-jet-danger-button class="ml-2" wire:click="transferProject({{$project['id']}})" wire:loading.attr="disabled">
+            Transfer it !
+        </x-jet-danger-button>
+    </x-slot>
+</x-jet-confirmation-modal> --}}
 
 
-    </div>
+</div>

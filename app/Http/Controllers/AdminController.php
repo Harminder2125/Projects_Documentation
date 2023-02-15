@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 use Illuminate\Support\Facades\Gate;
 
 use Illuminate\Http\Request;
+use App\Models\Project;
 
 
 class AdminController extends Controller
@@ -29,5 +30,16 @@ class AdminController extends Controller
     public function editProject($projectid)
     {
         return view('admin.editproject',['projectid'=>$projectid]);
+    }
+
+    public function projectdetail($id)
+    {   
+        $project = Project::where('id',$id)->first();
+   
+        return view('admin.project-detail',[
+            'project_id'=>$id,
+            'project_name'=>$project->title,
+            'abbreviation'=>$project->abbreviation
+        ]);
     }
 }

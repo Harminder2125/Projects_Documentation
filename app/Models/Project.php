@@ -14,6 +14,7 @@ class Project extends Model
         'description',
         'launch_date',
         'launched_by',
+        'group_id',
         'category',
         'logo_image',
         'banner_image',
@@ -31,6 +32,28 @@ class Project extends Model
     }
     
    /* LOCAL SCOPES ENDS HERE */
+    public function team()
+    {   // Returns all team members - Project Head , Team Leader and Team Members
+        return $this->hasMany(ProjectTeamMembers::class,'project_id','id');
+    }
+    public function head()
+    {
+         // Returns only project head
+        return $this->hasMany(ProjectTeamMembers::class,'project_id','id')->where('projectrole_id',1);
+    }
+    public function leader()
+    {
+         // Returns only team leader
+        return $this->hasMany(ProjectTeamMembers::class,'project_id','id')->where('projectrole_id',2);
+    }
+    public function members()
+    {
+         // Returns only team members
+       return $this->hasMany(ProjectTeamMembers::class,'project_id','id')->where('projectrole_id',3);
+    }
+    
+
+
     public function status()
     {
          return $this->belongsTo(ProjectStatus::class,'publish_status','id');
@@ -38,6 +61,10 @@ class Project extends Model
     public function project_category()
     {
          return $this->belongsTo(Category::class,'category','id');
+    }
+    public function group()
+    {
+        return $this->belongsTo(Group::class,'group_id','id');
     }
     
 }

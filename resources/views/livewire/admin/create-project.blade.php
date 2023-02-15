@@ -38,7 +38,17 @@
      </div>
 
      <x-sub-title class="font-semibold">Launch Details</x-sub-title>
-     <div class="my-2 grid grid-cols-3 gap-2 bg-gray-200  p-8 rounded-md mb-12">
+     <div class="my-2 grid grid-cols-4 gap-2 bg-gray-200  p-8 rounded-md mb-12">
+
+         <div>
+             <x-jet-label for="cap" value="{{ __('Publish Status') }}" />
+
+             <x-select type="text" class="mt-1 block w-full" wire:model="project.publish_status" :userlist="$statuslist" />
+
+             <x-jet-input-error for="cap" class="mt-2" />
+
+
+         </div>
 
          <div>
              <x-jet-label for="cap" value="{{ __('Live Url') }}" />
@@ -100,7 +110,7 @@
      </div>
      <div class="flex justify-end mt-8">
 
-         <a href="/manage/user/projects">
+         <a href="/admin/projects">
              <x-secondary-button class="text-sm rounded-lg shadow mr-2">
 
                  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5 mr-2">

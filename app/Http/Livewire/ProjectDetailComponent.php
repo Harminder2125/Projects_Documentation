@@ -11,68 +11,15 @@ class ProjectDetailComponent extends Component
 {
     public $project_id;
     public $featurebox=[];
-    public $team_leader="ss duggal";
-    public $team_members=["navinder sharma","narinder singh","dinesh sharma"];
+    public $project_head="";
+    public $team_leader="";
+    public $team_members=[];
     public $confirmingProjectTransfer = false;
     public $projectTransferFinal = false;
     public $divisionlist=[];
     public $newdivisionid=0;
 
-    public function getSelectedDivisionName(){
-
-        $name = "";
-        foreach($this->divisionlist as $div)
-        {
-            if($div['id'] == $this->newdivisionid)
-            {
-                $name = $div['name'];
-                break;
-            }
-        }
-        return $name;
-    }
-    public function transferProject($id)
-    {
-            $project = Project::find($id);
-            $project->division_id = $this->newdivisionid;
-            $project->save();
-            $this->toggle('projectTransferFinal');
-            $this->toggle('confirmingProjectTransfer');
-            $this->dispatchBrowserEvent('banner-message', [
-            'style' => 'success',
-            'message' => 'Project '.$project->title.' successfully transferred to '.$project->division->name
-        ]);
-      
-        $this->emit('close-banner');
-
-
-    }
-    
-    public function toggle($key){
-       
-     if($key == 'confirmingProjectTransfer')
-     {
-        $this->confirmingProjectTransfer = !$this->confirmingProjectTransfer;
-        if($this->confirmingProjectTransfer)
-        {
-             $divlist=Division::all();
-             foreach($divlist as $div)
-             {
-                $div->name = $div->name."-".$div->hod->name;
-             }
-             $this->divisionlist = $divlist->toArray();
-        }
-       
-     }
-      else if($key == 'projectTransferFinal'){
-         $this->projectTransferFinal = !$this->projectTransferFinal;
-      }
-      else{
-
-      }
-            
-    }
-
+  
     public function getNameInitials($value)
     {
         $words = explode(" ", $value);
@@ -91,6 +38,18 @@ class ProjectDetailComponent extends Component
     public function render()
     {
         $project=Project::find($this->project_id);
-        return view('livewire.project-detail-component',["project"=>$project]);
+        
+        if($project->head->first()){$this->project_head = $project->head->first()->user->name;}
+        if($project->leader->first())$this->team_leader = $project->leader->first()->user->name;
+        $members = $project->members;
+         if($members)
+        {
+                foreach($members as $member)
+               {
+                   array_push($this->team_members, $member->user->name);
+               }
+        }
+       
+        return view('livewire.admin.project-detail-component',["project"=>$project]);
     }
 }
