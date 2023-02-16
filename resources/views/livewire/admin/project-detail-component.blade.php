@@ -178,18 +178,18 @@
 
                 back to projects</x-dark-button>
         </a>
-        <a href="/admin/projects">
-            <x-primary-button class="my-4 text-sm p-2 rounded-lg shadow mr-2">
 
-                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5 mr-2">
-                    <path stroke-linecap="round" stroke-linejoin="round" d="M11.25 9l-3 3m0 0l3 3m-3-3h7.5M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
-                </svg>
+        <x-primary-button class="my-4 text-sm p-2 rounded-lg shadow mr-2" wire:click="toggle('confirmingteamassign')">
 
-
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5 mr-2">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M11.25 9l-3 3m0 0l3 3m-3-3h7.5M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+            </svg>
 
 
-                Assign Team</x-primary-button>
-        </a>
+
+
+            Assign Team</x-primary-button>
+
 
 
         <a href="/project/timeline/{{$project->id}}">
@@ -269,7 +269,7 @@
 
 
 
-        {{-- <x-jet-confirmation-modal wire:model="confirmingProjectTransfer">
+        <x-jet-confirmation-modal wire:model="confirmingteamassign">
 
 
             <x-slot name="icon">
@@ -283,122 +283,189 @@
             </x-slot>
 
             <x-slot name="title">
-                <span class="text-red-800">Transfer Project?</span>
+                <span class="text-red-800">Assign Team to this project</span>
             </x-slot>
             <x-slot name="subtitle">
                 Transfer of project to some other division.
             </x-slot>
             <x-slot name="content">
-                <div class="bg-red-100 p-4 rounded-lg">
-                    <span class="text-xs font-semibold text-gray-700 uppercase mb-4">Transfer of any project to some other division will result in.</span>
+
+                <div class="w-full flex mt-2 justify-center items-center py-4 border border-gray-500 border-dashed rounded-lg">
 
 
-                    <ul class="list-disc list-inside leading-loose text-gray-500 text-xs uppercase">
-                        <li>Current Project Head / HOD will not be able to access this project anymore.</li>
-                        <li>All the approval requests will be routed to the new Project Head / HOD.</li>
-                        <li>If new project head/HOD wants to reshuffle his project team, he can manually change team leader or team members.</li>
+                    <div class="p-4 w-1/5 border-r border-dashed border-gray-500">
+                        <x-main-title>Project Head</x-main-title>
+
+                    </div>
+                    <div class="p-4 w-3/5 border-r border-dashed border-gray-500">
+                        @if($project_head =="")
+                        <div class="w-full flex justify-center items-center">
+                            <x-sub-title>No Project head assigned!</x-sub-title>
+                        </div>
+
+                        @else
+                        @endif
 
 
-                    </ul>
+                    </div>
+
+                    <div class="p-4 w-1/5  rounded-lg">
+                        @if($project_head =="")
+
+                        <a href="#" class="text-blue-600"> Assign</a>
+
+                        @else
+                        {{-- <a href="#" class="text-blue-600">Update</a> --}}
+                        <x-dark-button> Update</x-dark-button>
+                        @endif
+
+                    </div>
+
+
+
 
                 </div>
+                <div class="w-full flex mt-2 justify-center items-center py-4 border border-gray-500 border-dashed rounded-lg">
+
+
+                    <div class="p-4 w-1/5 border-r border-dashed border-gray-500">
+                        <x-main-title>Team Leader</x-main-title>
+
+                    </div>
+                    <div class="p-4 w-3/5 border-r border-dashed border-gray-500">
+                        @if($team_leader =="")
+                        <div class="w-full flex justify-center items-center">
+                            <x-sub-title>No Team team  leader assigned!</x-sub-title>
+                        </div>
+
+                        @else
+                        @endif
+
+
+                    </div>
+
+                    <div class="p-4 w-1/5  rounded-lg">
+                        @if($team_leader =="")
+
+                        <a href="#" class="text-blue-600"> Assign</a>
+
+                        @else
+                        {{-- <a href="#" class="text-blue-600">Update</a> --}}
+                        <x-dark-button> Update</x-dark-button>
+                        @endif
+
+                    </div>
+
+
+
+
+                </div>
+
+                <div class="w-full flex mt-2 justify-center items-center py-4 border border-gray-500 border-dashed rounded-lg">
+
+
+                    <div class="p-4 w-1/3 border-r border-dashed border-gray-500">
+                        <x-main-title>Team Leader</x-main-title>
+
+                    </div>
+                    <div class="p-4 w-2/3  rounded-lg">
+                        <x-sub-title>{{$team_leader}}</x-sub-title>
+
+                    </div>
+
+
+
+
+                </div>
+                <div class="w-full flex mt-2 justify-center items-center py-4 border border-gray-500 border-dashed rounded-lg">
+
+
+                    <div class="p-4 w-1/3 border-r border-dashed border-gray-500">
+                        <x-main-title>Team Members</x-main-title>
+
+                    </div>
+                    <div class="p-4 w-2/3  rounded-lg">
+                        <x-sub-title>{{$team_leader}}</x-sub-title>
+
+                    </div>
+
+
+
+
+                </div>
+
+
+
+
+
+
+            </x-slot>
+
+            <x-slot name="footer">
+                <x-jet-secondary-button wire:click="$toggle('confirmingteamassign')" wire:loading.attr="disabled">
+                    Cancel
+                </x-jet-secondary-button>
+
+                @if(true)
+                <x-jet-danger-button class="ml-2" wire:click="toggle('assignteamfinal')" wire:loading.attr="disabled">
+                    Proceed
+                </x-jet-danger-button>
+                @endif
+            </x-slot>
+        </x-jet-confirmation-modal>
+
+        <x-jet-confirmation-modal wire:model="assignteamfinal">
+
+
+            <x-slot name="icon">
+                <div class="mx-auto shrink-0 flex items-center justify-center h-12 w-12 rounded-full bg-red-800 sm:mx-0 sm:h-10 sm:w-10">
+                    <svg class="h-5 w-5 text-white" stroke-width="1.5" stroke="currentColor" fill="none" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M19 7.5v3m0 0v3m0-3h3m-3 0h-3m-2.25-4.125a3.375 3.375 0 11-6.75 0 3.375 3.375 0 016.75 0zM4 19.235v-.11a6.375 6.375 0 0112.75 0v.109A12.318 12.318 0 0110.374 21c-2.331 0-4.512-.645-6.374-1.766z" />
+                    </svg>
+
+
+                </div>
+            </x-slot>
+
+            <x-slot name="title">
+                <span class="text-red-800">Transfer Project</span>
+            </x-slot>
+            <x-slot name="subtitle">
+                Transfer of project to some other division.
+            </x-slot>
+            <x-slot name="content">
+
                 <div class="w-full flex flex-col justify-center items-center py-4">
 
                     <div class="p-4 w-full border border-gray-500 border-dashed rounded-lg">
-                        <div class="mb-2">
-                            <x-main-title>Transfer project</x-main-title>
-                        </div>
 
-                        <div class="mb-2 text-bold  text-gray-500 py-2 my-2">{{$project['title']}}</div>
+                        <x-main-title>
+                            <div class="text-center leading-loose">Are you sure you want to transfer <span class="text-rose-800">{{$project['title']}}</span> to <span class="text-orange-600"></span> </div>
+                        </x-main-title>
 
-    <div class="mb-2">
-        <x-main-title>transfer TO</x-main-title>
+
+                    </div>
+
+
+
+                </div>
+
+
+
+
+
+            </x-slot>
+
+            <x-slot name="footer">
+                <x-jet-secondary-button wire:click="$toggle('assignTeamFinal')" wire:loading.attr="disabled">
+                    Cancel
+                </x-jet-secondary-button>
+
+                <x-jet-danger-button class="ml-2" wire:click="" wire:loading.attr="disabled">
+                    Transfer it !
+                </x-jet-danger-button>
+            </x-slot>
+        </x-jet-confirmation-modal>
+
+
     </div>
-
-    <x-select wire:model="newdivisionid" :userlist="$divisionlist">
-
-
-    </x-select>
-
-</div>
-
-
-
-</div>
-<x-main-title>
-    <div class="text-center leading-loose">You are transferring <span class="text-rose-800">{{$project['title']}}</span> to <span class="text-orange-600">{{$this->getSelectedDivisionName()}}</span> </div>
-</x-main-title>
-
-
-
-
-</x-slot>
-
-<x-slot name="footer">
-    <x-jet-secondary-button wire:click="$toggle('confirmingProjectTransfer')" wire:loading.attr="disabled">
-        Cancel
-    </x-jet-secondary-button>
-
-    @if($this->newdivisionid !=0)
-    <x-jet-danger-button class="ml-2" wire:click="toggle('projectTransferFinal')" wire:loading.attr="disabled">
-        Proceed
-    </x-jet-danger-button>
-    @endif
-</x-slot>
-</x-jet-confirmation-modal>
-
-<x-jet-confirmation-modal wire:model="projectTransferFinal">
-
-
-    <x-slot name="icon">
-        <div class="mx-auto shrink-0 flex items-center justify-center h-12 w-12 rounded-full bg-red-800 sm:mx-0 sm:h-10 sm:w-10">
-            <svg class="h-5 w-5 text-white" stroke-width="1.5" stroke="currentColor" fill="none" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" d="M19 7.5v3m0 0v3m0-3h3m-3 0h-3m-2.25-4.125a3.375 3.375 0 11-6.75 0 3.375 3.375 0 016.75 0zM4 19.235v-.11a6.375 6.375 0 0112.75 0v.109A12.318 12.318 0 0110.374 21c-2.331 0-4.512-.645-6.374-1.766z" />
-            </svg>
-
-
-        </div>
-    </x-slot>
-
-    <x-slot name="title">
-        <span class="text-red-800">Transfer Project</span>
-    </x-slot>
-    <x-slot name="subtitle">
-        Transfer of project to some other division.
-    </x-slot>
-    <x-slot name="content">
-
-        <div class="w-full flex flex-col justify-center items-center py-4">
-
-            <div class="p-4 w-full border border-gray-500 border-dashed rounded-lg">
-
-                <x-main-title>
-                    <div class="text-center leading-loose">Are you sure you want to transfer <span class="text-rose-800">{{$project['title']}}</span> to <span class="text-orange-600">{{$this->getSelectedDivisionName()}}</span> </div>
-                </x-main-title>
-
-
-            </div>
-
-
-
-        </div>
-
-
-
-
-
-    </x-slot>
-
-    <x-slot name="footer">
-        <x-jet-secondary-button wire:click="$toggle('projectTransferFinal')" wire:loading.attr="disabled">
-            Cancel
-        </x-jet-secondary-button>
-
-        <x-jet-danger-button class="ml-2" wire:click="transferProject({{$project['id']}})" wire:loading.attr="disabled">
-            Transfer it !
-        </x-jet-danger-button>
-    </x-slot>
-</x-jet-confirmation-modal> --}}
-
-
-</div>

@@ -18,8 +18,9 @@ class ProjectDetailComponent extends Component
     public $projectTransferFinal = false;
     public $divisionlist=[];
     public $newdivisionid=0;
-
-  
+    public $confirmingteamassign = false;
+    public $assignteamfinal =false;
+    public $groupusers = [];
     public function getNameInitials($value)
     {
         $words = explode(" ", $value);
@@ -52,4 +53,16 @@ class ProjectDetailComponent extends Component
        
         return view('livewire.admin.project-detail-component',["project"=>$project]);
     }
+public function toggle($key)
+    {
+        if($key == 'confirmingteamassign')
+            $this->confirmingteamassign = !$this->confirmingteamassign;
+        else if($key =='assignteamfinal')
+            $this->assignteamfinal= !$this->assignteamfinal;
+        else
+        {
+
+        }
+    }
+
 }
