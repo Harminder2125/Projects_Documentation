@@ -304,6 +304,21 @@
                         </div>
 
                         @else
+                        <div class="flex w-full px-4">
+                            <div class="mx-2 w-12 h-12 rounded-full bg-fuchsia-900 text-sm font-semibold uppercase flex items-center justify-center text-white">
+                                {{$this->getNameInitials($project_head)}}
+                            </div>
+                            <div>
+                                <div class="text-xs mt-2 text-center uppercase font-semibold">
+                                    {{$project_head}}
+
+                                </div>
+                                <div class="text-xs text-gray-500">Project Head</div>
+                            </div>
+
+                        </div>
+
+
                         @endif
 
 
@@ -312,11 +327,11 @@
                     <div class="p-4 w-1/5  rounded-lg">
                         @if($project_head =="")
 
-                        <a href="#" class="text-blue-600"> Assign</a>
+                        <a href="#" wire:click="toggle('teammodal')" class="text-blue-600"> Add</a>
 
                         @else
-                        {{-- <a href="#" class="text-blue-600">Update</a> --}}
-                        <x-dark-button> Update</x-dark-button>
+                        <a href="#" class="text-blue-600">Update</a>
+                        {{-- <x-dark-button> Update</x-dark-button> --}}
                         @endif
 
                     </div>
@@ -335,7 +350,7 @@
                     <div class="p-4 w-3/5 border-r border-dashed border-gray-500">
                         @if($team_leader =="")
                         <div class="w-full flex justify-center items-center">
-                            <x-sub-title>No Team team  leader assigned!</x-sub-title>
+                            <x-sub-title>No Team team leader assigned!</x-sub-title>
                         </div>
 
                         @else
@@ -347,7 +362,7 @@
                     <div class="p-4 w-1/5  rounded-lg">
                         @if($team_leader =="")
 
-                        <a href="#" class="text-blue-600"> Assign</a>
+                        <a href="#" class="text-blue-600"> Add</a>
 
                         @else
                         {{-- <a href="#" class="text-blue-600">Update</a> --}}
@@ -364,28 +379,31 @@
                 <div class="w-full flex mt-2 justify-center items-center py-4 border border-gray-500 border-dashed rounded-lg">
 
 
-                    <div class="p-4 w-1/3 border-r border-dashed border-gray-500">
-                        <x-main-title>Team Leader</x-main-title>
-
-                    </div>
-                    <div class="p-4 w-2/3  rounded-lg">
-                        <x-sub-title>{{$team_leader}}</x-sub-title>
-
-                    </div>
-
-
-
-
-                </div>
-                <div class="w-full flex mt-2 justify-center items-center py-4 border border-gray-500 border-dashed rounded-lg">
-
-
-                    <div class="p-4 w-1/3 border-r border-dashed border-gray-500">
+                    <div class="p-4 w-1/5 border-r border-dashed border-gray-500">
                         <x-main-title>Team Members</x-main-title>
 
                     </div>
-                    <div class="p-4 w-2/3  rounded-lg">
-                        <x-sub-title>{{$team_leader}}</x-sub-title>
+                    <div class="p-4 w-3/5 border-r border-dashed border-gray-500">
+                        @if($team_leader =="")
+                        <div class="w-full flex justify-center items-center">
+                            <x-sub-title>No Team team leader assigned!</x-sub-title>
+                        </div>
+
+                        @else
+                        @endif
+
+
+                    </div>
+
+                    <div class="p-4 w-1/5  rounded-lg">
+                        @if($team_leader =="")
+
+                        <a href="#" class="text-blue-600"> Add</a>
+
+                        @else
+                        {{-- <a href="#" class="text-blue-600">Update</a> --}}
+                        <x-dark-button> Update</x-dark-button>
+                        @endif
 
                     </div>
 
@@ -393,6 +411,8 @@
 
 
                 </div>
+
+
 
 
 
@@ -466,6 +486,57 @@
                 </x-jet-danger-button>
             </x-slot>
         </x-jet-confirmation-modal>
+
+        <x-jet-confirmation-modal wire:model="teammodal">
+
+
+            <x-slot name="icon">
+                <div class="mx-auto shrink-0 flex items-center justify-center h-12 w-12 rounded-full bg-red-800 sm:mx-0 sm:h-10 sm:w-10">
+                    <svg class="h-5 w-5 text-white" stroke-width="1.5" stroke="currentColor" fill="none" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M19 7.5v3m0 0v3m0-3h3m-3 0h-3m-2.25-4.125a3.375 3.375 0 11-6.75 0 3.375 3.375 0 016.75 0zM4 19.235v-.11a6.375 6.375 0 0112.75 0v.109A12.318 12.318 0 0110.374 21c-2.331 0-4.512-.645-6.374-1.766z" />
+                    </svg>
+
+
+                </div>
+            </x-slot>
+
+            <x-slot name="title">
+                <span class="text-red-800">Add Project Head</span>
+            </x-slot>
+            <x-slot name="subtitle">
+                Assign project head to current project
+            </x-slot>
+            <x-slot name="content">
+
+                <div class="w-full flex flex-col justify-center items-center py-4">
+
+                    <div class="p-4 w-full border-0 border-gray-500 border-dashed rounded-lg">
+                        <x-jet-label for="cap" value="{{ __('Select Project Head') }}" />
+
+                        <x-select type="text" class="mt-1 block w-full" wire:model="temp.project_head" :userlist="$users" />
+                    </div>
+
+
+
+                </div>
+
+
+
+
+
+            </x-slot>
+
+            <x-slot name="footer">
+                <x-jet-secondary-button wire:click="$toggle('teammodal')" wire:loading.attr="disabled">
+                    Cancel
+                </x-jet-secondary-button>
+
+                <x-jet-danger-button class="ml-2" wire:click="selectProjectHead()" wire:loading.attr="disabled">
+                    Select !
+                </x-jet-danger-button>
+            </x-slot>
+        </x-jet-confirmation-modal>
+
 
 
     </div>

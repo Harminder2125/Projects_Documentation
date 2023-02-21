@@ -6,11 +6,13 @@ use Livewire\Component;
 use App\Models\Project;
 use App\Models\Division;
 use App\Models\Featurebox;
+use App\Models\User;
 
 class ProjectDetailComponent extends Component
 {
     public $project_id;
     public $featurebox=[];
+    public $users=[];
     public $project_head="";
     public $team_leader="";
     public $team_members=[];
@@ -20,7 +22,11 @@ class ProjectDetailComponent extends Component
     public $newdivisionid=0;
     public $confirmingteamassign = false;
     public $assignteamfinal =false;
+    public $teammodal = false;
     public $groupusers = [];
+    public $temp=[
+        "project_head"=>"",
+    ];
     public function getNameInitials($value)
     {
         $words = explode(" ", $value);
@@ -34,6 +40,7 @@ class ProjectDetailComponent extends Component
     public function mount($id){
         $this->project_id=$id;
         $this->featurebox=Featurebox::where("project_id","=",$id)->get();
+        $this->users = User::all();
     }
 
     public function render()
@@ -59,10 +66,18 @@ public function toggle($key)
             $this->confirmingteamassign = !$this->confirmingteamassign;
         else if($key =='assignteamfinal')
             $this->assignteamfinal= !$this->assignteamfinal;
-        else
+        else if($key=='teammodal')
         {
+            $this->teammodal = !$this->teammodal;        
+        }
+        else{
 
         }
     }
-
+    public function selectProjectHead()
+    {
+        $head =  $this->users->where('id',$this->temp['project_head'])->first();
+         $this->project_head = $head->name;
+         $this->toggle('teammodal');
+    }
 }
