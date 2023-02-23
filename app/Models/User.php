@@ -80,7 +80,7 @@ class User extends Authenticatable
        
     }
     /* LOCAL SCOPES START HERE*/
-    public function scopeUser($query)
+    public function scopeEndUser($query)
     {
         return $query->where('role_id', '=', 3);    // Retrieve all users with roleid-3 or rolename- USER
     }

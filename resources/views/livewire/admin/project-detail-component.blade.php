@@ -18,11 +18,12 @@
                     @if($project_head != "")
                     <div class="flex items-center justify-center flex-col">
                         <div class="mx-2 w-20 h-20 rounded-full bg-fuchsia-900 text-sm font-semibold uppercase flex items-center justify-center text-white">
-                            {{$this->getNameInitials($project_head)}}
+                            {{$this->getNameInitials($project_head->user->name)}}
                         </div>
 
                         <div class="text-xs mt-2 text-center uppercase font-semibold">
-                            {{$project_head}}
+                            {{$project_head->user->name}}
+
 
                         </div>
                         <div class="text-xs text-gray-500">Project Head</div>
@@ -32,11 +33,12 @@
 
                     <div class="flex items-center justify-center flex-col">
                         <div class="mx-2 w-20 h-20 rounded-full bg-rose-800 text-sm font-semibold uppercase flex items-center justify-center text-white">
-                            {{$this->getNameInitials($team_leader)}}
+                            {{$this->getNameInitials($team_leader->user->name)}}
                         </div>
 
                         <div class="text-xs mt-2 text-center uppercase font-semibold">
-                            {{$team_leader}}
+                            {{$team_leader->user->name}}
+
 
                         </div>
                         <div class="text-xs text-gray-500">Team Leader</div>
@@ -44,13 +46,15 @@
                     @endif
 
                     @foreach ($team_members as $member)
+
+
                     <div class="flex items-center justify-center flex-col">
                         <div class="mx-2 w-20 h-20 rounded-full bg-gray-700 text-sm font-semibold uppercase flex items-center justify-center text-white">
-                            {{$this->getNameInitials($member)}}
+                            {{$this->getNameInitials($member["name"])}}
                         </div>
 
                         <div class=" mt-2 text-center text-sm uppercase font-semibold">
-                            {{$member}}
+                            {{$member["name"]}}
 
                         </div>
                         <div class="text-xs text-gray-500">Team Member</div>
@@ -286,7 +290,7 @@
                 <span class="text-red-800">Assign Team to this project</span>
             </x-slot>
             <x-slot name="subtitle">
-                Transfer of project to some other division.
+                Assign Project Head, Team Leader and Team Members.
             </x-slot>
             <x-slot name="content">
 
@@ -298,7 +302,7 @@
 
                     </div>
                     <div class="p-4 w-3/5 border-r border-dashed border-gray-500">
-                        @if($project_head =="")
+                        @if($temp['project_head_id'] =="")
                         <div class="w-full flex justify-center items-center">
                             <x-sub-title>No Project head assigned!</x-sub-title>
                         </div>
@@ -306,11 +310,11 @@
                         @else
                         <div class="flex w-full px-4">
                             <div class="mx-2 w-12 h-12 rounded-full bg-fuchsia-900 text-sm font-semibold uppercase flex items-center justify-center text-white">
-                                {{$this->getNameInitials($project_head)}}
+                                {{$this->getNameInitials($temp['project_head_name'])}}
                             </div>
                             <div>
-                                <div class="text-xs mt-2 text-center uppercase font-semibold">
-                                    {{$project_head}}
+                                <div class="text-xs mt-2  uppercase font-semibold">
+                                    {{$temp['project_head_name']}}
 
                                 </div>
                                 <div class="text-xs text-gray-500">Project Head</div>
@@ -325,12 +329,14 @@
                     </div>
 
                     <div class="p-4 w-1/5  rounded-lg">
-                        @if($project_head =="")
+                        @if($temp['project_head_id'] =="")
 
-                        <a href="#" wire:click="toggle('teammodal')" class="text-blue-600"> Add</a>
+                        <a href="javascript:void(0)" wire:click="toggle('projectheadmodal')" class="text-blue-600"> Add</a>
 
                         @else
-                        <a href="#" class="text-blue-600">Update</a>
+                        <a href="javascript:void(0)" wire:click="toggle('projectheadmodal')" class="text-blue-600">Update</a>
+
+
                         {{-- <x-dark-button> Update</x-dark-button> --}}
                         @endif
 
@@ -348,25 +354,41 @@
 
                     </div>
                     <div class="p-4 w-3/5 border-r border-dashed border-gray-500">
-                        @if($team_leader =="")
+                        @if($temp['team_leader_id'] =="")
                         <div class="w-full flex justify-center items-center">
                             <x-sub-title>No Team team leader assigned!</x-sub-title>
                         </div>
 
                         @else
+                        <div class="flex w-full px-4">
+                            <div class="mx-2 w-12 h-12 rounded-full bg-red-800 text-sm font-semibold uppercase flex items-center justify-center text-white">
+                                {{$this->getNameInitials($temp['team_leader_name'])}}
+                            </div>
+                            <div>
+                                <div class="text-xs mt-2  uppercase font-semibold">
+                                    {{$temp['team_leader_name']}}
+
+                                </div>
+                                <div class="text-xs text-gray-500">Team Leader</div>
+                            </div>
+
+                        </div>
+
                         @endif
 
 
                     </div>
 
                     <div class="p-4 w-1/5  rounded-lg">
-                        @if($team_leader =="")
+                        @if($temp['team_leader_id'] =="")
 
-                        <a href="#" class="text-blue-600"> Add</a>
+                        <a href="javascript:void(0)" wire:click="toggle('teamleadermodal')" class="text-blue-600"> Add</a>
+
 
                         @else
-                        {{-- <a href="#" class="text-blue-600">Update</a> --}}
-                        <x-dark-button> Update</x-dark-button>
+                        <a href="javascript:void(0)" wire:click="toggle('teamleadermodal')" class="text-blue-600">Update</a>
+
+
                         @endif
 
                     </div>
@@ -384,21 +406,42 @@
 
                     </div>
                     <div class="p-4 w-3/5 border-r border-dashed border-gray-500">
-                        @if($team_leader =="")
+                        @if($temp['members'] ==[])
                         <div class="w-full flex justify-center items-center">
-                            <x-sub-title>No Team team leader assigned!</x-sub-title>
+                            <x-sub-title>No Team members assigned!</x-sub-title>
                         </div>
 
                         @else
+                        <div class="grid grid-cols-1 gap-2">
+
+                            @foreach($temp['members'] as $key => $tmember)
+
+                            <div class="flex w-full px-4">
+                                <div class="mx-2 w-12 h-12 rounded-full bg-gray-800 text-sm font-semibold uppercase flex items-center justify-center text-white">
+
+                                    {{$this->getNameInitials($tmember['name'])}}
+                                </div>
+                                <div>
+                                    <div class="text-xs mt-2  uppercase font-semibold">
+                                        {{$tmember['name']}} (<a class="text-blue-600" wire:click="removeTeamMember({{$key}})" href="javascript:void(0)">remove</a>)
+
+
+                                    </div>
+                                    <div class="text-xs text-gray-500">Team Member</div>
+                                </div>
+
+                            </div>
+
+
+                            @endforeach
+                        </div>
                         @endif
-
-
                     </div>
 
                     <div class="p-4 w-1/5  rounded-lg">
                         @if($team_leader =="")
 
-                        <a href="#" class="text-blue-600"> Add</a>
+                        <a href="javascript:void(0)" wire:click="toggle('teammembermodal')" class="text-blue-600"> Add</a>
 
                         @else
                         {{-- <a href="#" class="text-blue-600">Update</a> --}}
@@ -413,12 +456,6 @@
                 </div>
 
 
-
-
-
-
-
-
             </x-slot>
 
             <x-slot name="footer">
@@ -428,7 +465,7 @@
 
                 @if(true)
                 <x-jet-danger-button class="ml-2" wire:click="toggle('assignteamfinal')" wire:loading.attr="disabled">
-                    Proceed
+                    Finalize
                 </x-jet-danger-button>
                 @endif
             </x-slot>
@@ -448,10 +485,10 @@
             </x-slot>
 
             <x-slot name="title">
-                <span class="text-red-800">Transfer Project</span>
+                <span class="text-red-800">Finalize Project Team</span>
             </x-slot>
             <x-slot name="subtitle">
-                Transfer of project to some other division.
+                Finalize project head, team leader and team members
             </x-slot>
             <x-slot name="content">
 
@@ -460,11 +497,45 @@
                     <div class="p-4 w-full border border-gray-500 border-dashed rounded-lg">
 
                         <x-main-title>
-                            <div class="text-center leading-loose">Are you sure you want to transfer <span class="text-rose-800">{{$project['title']}}</span> to <span class="text-orange-600"></span> </div>
+                            <div class="text-center leading-loose">Are you sure you want to Finalize this team to <span class="text-rose-800">{{$project['title']}}</span> Project<span class="text-orange-600"></span> </div>
                         </x-main-title>
 
+                        <div class="flex flex-col mt-2">
+                            <div class="w-full flex bg-gray-200 mb-1 rounded-md">
+                                <div class="bg-gray-300 w-1/3 p-4 rounded-l-md">Project Head</div>
+
+
+
+                                <div class="p-4">{{$temp['project_head_name']}}</div>
+
+                            </div>
+                            <div class="w-full flex bg-gray-200 mb-1  rounded-md">
+
+                                <div class="bg-gray-300 w-1/3 p-4 rounded-l-md">Team Leader</div>
+
+
+
+                                <div class="p-4">{{$temp['team_leader_name']}}</div>
+
+                            </div>
+                            <div class="w-full flex bg-gray-200 mb-1  rounded-md">
+
+                                <div class="bg-gray-300 w-1/3 p-4 rounded-l-md">Team Members</div>
+
+
+                                <div class="p-4">
+                                    @foreach($temp['members'] as $member)
+                                    <div class="py-2 ">{{$member['name']}}</div>
+                                    @endforeach
+                                </div>
+
+                            </div>
+
+
+                        </div>
 
                     </div>
+
 
 
 
@@ -477,17 +548,18 @@
             </x-slot>
 
             <x-slot name="footer">
-                <x-jet-secondary-button wire:click="$toggle('assignTeamFinal')" wire:loading.attr="disabled">
+                <x-jet-secondary-button wire:click="toggle('assignteamfinal')" wire:loading.attr="disabled">
+
                     Cancel
                 </x-jet-secondary-button>
 
-                <x-jet-danger-button class="ml-2" wire:click="" wire:loading.attr="disabled">
-                    Transfer it !
+                <x-jet-danger-button class="ml-2" wire:click="finalizeTeam()" wire:loading.attr="disabled">
+                    Yes! Finalize it
                 </x-jet-danger-button>
             </x-slot>
         </x-jet-confirmation-modal>
 
-        <x-jet-confirmation-modal wire:model="teammodal">
+        <x-jet-confirmation-modal wire:model="projectheadmodal">
 
 
             <x-slot name="icon">
@@ -513,7 +585,7 @@
                     <div class="p-4 w-full border-0 border-gray-500 border-dashed rounded-lg">
                         <x-jet-label for="cap" value="{{ __('Select Project Head') }}" />
 
-                        <x-select type="text" class="mt-1 block w-full" wire:model="temp.project_head" :userlist="$users" />
+                        <x-select type="text" class="mt-1 block w-full" wire:model="temp.project_head_id" :userlist="$users" />
                     </div>
 
 
@@ -527,7 +599,7 @@
             </x-slot>
 
             <x-slot name="footer">
-                <x-jet-secondary-button wire:click="$toggle('teammodal')" wire:loading.attr="disabled">
+                <x-jet-secondary-button wire:click="$toggle('projectheadmodal')" wire:loading.attr="disabled">
                     Cancel
                 </x-jet-secondary-button>
 
@@ -537,6 +609,105 @@
             </x-slot>
         </x-jet-confirmation-modal>
 
+        <x-jet-confirmation-modal wire:model="teamleadermodal">
+
+
+            <x-slot name="icon">
+                <div class="mx-auto shrink-0 flex items-center justify-center h-12 w-12 rounded-full bg-red-800 sm:mx-0 sm:h-10 sm:w-10">
+                    <svg class="h-5 w-5 text-white" stroke-width="1.5" stroke="currentColor" fill="none" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M19 7.5v3m0 0v3m0-3h3m-3 0h-3m-2.25-4.125a3.375 3.375 0 11-6.75 0 3.375 3.375 0 016.75 0zM4 19.235v-.11a6.375 6.375 0 0112.75 0v.109A12.318 12.318 0 0110.374 21c-2.331 0-4.512-.645-6.374-1.766z" />
+                    </svg>
+
+
+                </div>
+            </x-slot>
+
+            <x-slot name="title">
+                <span class="text-red-800">Add Project Head</span>
+            </x-slot>
+            <x-slot name="subtitle">
+                Assign project head to current project
+            </x-slot>
+            <x-slot name="content">
+
+                <div class="w-full flex flex-col justify-center items-center py-4">
+
+                    <div class="p-4 w-full border-0 border-gray-500 border-dashed rounded-lg">
+                        <x-jet-label for="cap" value="{{ __('Select Project Head') }}" />
+
+                        <x-select type="text" class="mt-1 block w-full" wire:model="temp.team_leader_id" :userlist="$users" />
+                    </div>
+
+
+
+                </div>
+
+
+
+
+
+            </x-slot>
+
+            <x-slot name="footer">
+                <x-jet-secondary-button wire:click="$toggle('teamleadermodal')" wire:loading.attr="disabled">
+                    Cancel
+                </x-jet-secondary-button>
+
+                <x-jet-danger-button class="ml-2" wire:click="selectTeamLeader()" wire:loading.attr="disabled">
+                    Select !
+                </x-jet-danger-button>
+            </x-slot>
+        </x-jet-confirmation-modal>
+
+        <x-jet-confirmation-modal wire:model="teammembermodal">
+
+
+            <x-slot name="icon">
+                <div class="mx-auto shrink-0 flex items-center justify-center h-12 w-12 rounded-full bg-red-800 sm:mx-0 sm:h-10 sm:w-10">
+                    <svg class="h-5 w-5 text-white" stroke-width="1.5" stroke="currentColor" fill="none" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M19 7.5v3m0 0v3m0-3h3m-3 0h-3m-2.25-4.125a3.375 3.375 0 11-6.75 0 3.375 3.375 0 016.75 0zM4 19.235v-.11a6.375 6.375 0 0112.75 0v.109A12.318 12.318 0 0110.374 21c-2.331 0-4.512-.645-6.374-1.766z" />
+                    </svg>
+
+
+                </div>
+            </x-slot>
+
+            <x-slot name="title">
+                <span class="text-red-800">Add Team Member</span>
+            </x-slot>
+            <x-slot name="subtitle">
+                Assign Team Member to current project
+            </x-slot>
+            <x-slot name="content">
+
+                <div class="w-full flex flex-col justify-center items-center py-4">
+
+                    <div class="p-4 w-full border-0 border-gray-500 border-dashed rounded-lg">
+                        <x-jet-label for="cap" value="{{ __('Select Team Member') }}" />
+
+                        <x-select type="text" class="mt-1 block w-full" wire:model="temp.team_member_id" :userlist="$users" />
+                    </div>
+
+
+
+                </div>
+
+
+
+
+
+            </x-slot>
+
+            <x-slot name="footer">
+                <x-jet-secondary-button wire:click="$toggle('teammembermodal')" wire:loading.attr="disabled">
+                    Cancel
+                </x-jet-secondary-button>
+
+                <x-jet-danger-button class="ml-2" wire:click="selectTeamMember()" wire:loading.attr="disabled">
+                    Select !
+                </x-jet-danger-button>
+            </x-slot>
+        </x-jet-confirmation-modal>
 
 
     </div>
