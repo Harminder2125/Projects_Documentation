@@ -123,7 +123,13 @@
                 </td>
 
 
-                <td class="px-6 py-4">{{$project['category']}}</td>
+                @if($project->head->first())
+
+                <td class="px-6 py-4">{{$project->head->first()->user->name}}</td>
+                @else
+                <td class="px-6 py-4 text-red-700">Not Assigned</td>
+
+                @endif
 
                 <td class="font-semibold px-6 py-4 uppercase {{$project->status->name=='Published'? 'text-green-700': 'text-red-700'}}">{{$project->status->name}}</td>
 

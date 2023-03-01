@@ -50,11 +50,13 @@
 
                     <div class="flex items-center justify-center flex-col">
                         <div class="mx-2 w-20 h-20 rounded-full bg-gray-700 text-sm font-semibold uppercase flex items-center justify-center text-white">
-                            {{$this->getNameInitials($member["name"])}}
+                            {{$this->getNameInitials($member["team_member_name"])}}
+
                         </div>
 
                         <div class=" mt-2 text-center text-sm uppercase font-semibold">
-                            {{$member["name"]}}
+                            {{$member["team_member_name"]}}
+
 
                         </div>
                         <div class="text-xs text-gray-500">Team Member</div>
@@ -110,7 +112,11 @@
                             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="mr-2 w-5 h-5">
                                 <path stroke-linecap="round" stroke-linejoin="round" d="M9 4.5v15m6-15v15m-10.875 0h15.75c.621 0 1.125-.504 1.125-1.125V5.625c0-.621-.504-1.125-1.125-1.125H4.125C3.504 4.5 3 5.004 3 5.625v12.75c0 .621.504 1.125 1.125 1.125z"></path>
                             </svg>
-                            {{$project_head}}
+                            @if($project_head)
+                            {{$project_head->user->name}}
+                            @else
+                            Not assigned
+                            @endif
                         </div>
                     </div>
                     <div class=" py-2 dark:bg-gray-800 hover:bg-gray-50 dark:hover:bg-gray-600">
@@ -126,7 +132,13 @@
                                 <path stroke-linecap="round" stroke-linejoin="round" d="M9.568 3H5.25A2.25 2.25 0 003 5.25v4.318c0 .597.237 1.17.659 1.591l9.581 9.581c.699.699 1.78.872 2.607.33a18.095 18.095 0 005.223-5.223c.542-.827.369-1.908-.33-2.607L11.16 3.66A2.25 2.25 0 009.568 3z" />
                                 <path stroke-linecap="round" stroke-linejoin="round" d="M6 6h.008v.008H6V6z" />
                             </svg>
-                            Finance
+                            @if($project->project_category)
+                            {{$project->project_category->name}}
+                            @else
+                            Not set
+                            @endif
+
+
                         </div>
                     </div>
                     <div class=" py-2  dark:bg-gray-800 hover:bg-gray-50 dark:hover:bg-gray-600">
@@ -141,8 +153,17 @@
                             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5 mr-2">
                                 <path stroke-linecap="round" stroke-linejoin="round" d="M6.75 3v2.25M17.25 3v2.25M3 18.75V7.5a2.25 2.25 0 012.25-2.25h13.5A2.25 2.25 0 0121 7.5v11.25m-18 0A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75m-18 0v-7.5A2.25 2.25 0 015.25 9h13.5A2.25 2.25 0 0121 11.25v7.5" />
                             </svg>
+                            @if($project->launch_date)
 
-                            1st Feb 2023
+                            {{$project->launch_date->format('d-M-Y')}}
+
+                            @else
+                            No information
+                            @endif
+
+
+
+
                         </div>
                     </div>
                     <div class=" py-2 dark:bg-gray-800 hover:bg-gray-50 dark:hover:bg-gray-600">
@@ -156,7 +177,12 @@
                             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5 mr-2">
                                 <path stroke-linecap="round" stroke-linejoin="round" d="M15.59 14.37a6 6 0 01-5.84 7.38v-4.8m5.84-2.58a14.98 14.98 0 006.16-12.12A14.98 14.98 0 009.631 8.41m5.96 5.96a14.926 14.926 0 01-5.841 2.58m-.119-8.54a6 6 0 00-7.381 5.84h4.8m2.581-5.84a14.927 14.927 0 00-2.58 5.84m2.699 2.7c-.103.021-.207.041-.311.06a15.09 15.09 0 01-2.448-2.448 14.9 14.9 0 01.06-.312m-2.24 2.39a4.493 4.493 0 00-1.757 4.306 4.493 4.493 0 004.306-1.758M16.5 9a1.5 1.5 0 11-3 0 1.5 1.5 0 013 0z" />
                             </svg>
-                            CM State
+                            @if($project->launched_by)
+                            {{$project->launched_by}}
+                            @else
+                            No information
+                            @endif
+
                         </div>
                     </div>
                 </div>
@@ -186,8 +212,9 @@
         <x-primary-button class="my-4 text-sm p-2 rounded-lg shadow mr-2" wire:click="toggle('confirmingteamassign')">
 
             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5 mr-2">
-                <path stroke-linecap="round" stroke-linejoin="round" d="M11.25 9l-3 3m0 0l3 3m-3-3h7.5M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                <path stroke-linecap="round" stroke-linejoin="round" d="M11.48 3.499a.562.562 0 011.04 0l2.125 5.111a.563.563 0 00.475.345l5.518.442c.499.04.701.663.321.988l-4.204 3.602a.563.563 0 00-.182.557l1.285 5.385a.562.562 0 01-.84.61l-4.725-2.885a.563.563 0 00-.586 0L6.982 20.54a.562.562 0 01-.84-.61l1.285-5.386a.562.562 0 00-.182-.557l-4.204-3.602a.563.563 0 01.321-.988l5.518-.442a.563.563 0 00.475-.345L11.48 3.5z" />
             </svg>
+
 
 
 
@@ -419,11 +446,12 @@
                             <div class="flex w-full px-4">
                                 <div class="mx-2 w-12 h-12 rounded-full bg-gray-800 text-sm font-semibold uppercase flex items-center justify-center text-white">
 
-                                    {{$this->getNameInitials($tmember['name'])}}
+                                    {{$this->getNameInitials($tmember['team_member_name'])}}
                                 </div>
                                 <div>
                                     <div class="text-xs mt-2  uppercase font-semibold">
-                                        {{$tmember['name']}} (<a class="text-blue-600" wire:click="removeTeamMember({{$key}})" href="javascript:void(0)">remove</a>)
+                                        {{$tmember['team_member_name']}} (<a class="text-blue-600" wire:click="removeTeamMember({{$key}})" href="javascript:void(0)">remove</a>)
+
 
 
                                     </div>
@@ -439,14 +467,11 @@
                     </div>
 
                     <div class="p-4 w-1/5  rounded-lg">
-                        @if($team_leader =="")
+
 
                         <a href="javascript:void(0)" wire:click="toggle('teammembermodal')" class="text-blue-600"> Add</a>
 
-                        @else
-                        {{-- <a href="#" class="text-blue-600">Update</a> --}}
-                        <x-dark-button> Update</x-dark-button>
-                        @endif
+
 
                     </div>
 
@@ -525,7 +550,8 @@
 
                                 <div class="p-4">
                                     @foreach($temp['members'] as $member)
-                                    <div class="py-2 ">{{$member['name']}}</div>
+                                    <div class="py-2 ">{{$member['team_member_name']}}</div>
+
                                     @endforeach
                                 </div>
 

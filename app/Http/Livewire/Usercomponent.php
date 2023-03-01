@@ -43,10 +43,10 @@ class Usercomponent extends Component
     
     public function render()
     {
-        $users = User::User()->when($this->searchUser,function($query, $searchUser){
+        $users = User::EndUser()->when($this->searchUser,function($query, $searchUser){
                 return $query->where('name','LIKE',"%$this->searchUser%");
          })->orderBy('id','DESC')->paginate(6);
-         $users->withPath('/users');
+         $users->withPath('/admin/users');
 
          $roles= Role::all();
 

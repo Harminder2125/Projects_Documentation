@@ -20,6 +20,7 @@ class Project extends Model
         'banner_image',
         'publish_status',
     ];
+    protected $dates = ['launch_date'];
 
      /* LOCAL SCOPES START HERE*/
     public function scopePublished($query)

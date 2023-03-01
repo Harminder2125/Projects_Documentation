@@ -51,26 +51,13 @@ class ProjectDetailComponent extends Component
         }
         return $acronym;
     }
-
-    public function mount($id){
-        $this->project_id=$id;
-        $this->featurebox=Featurebox::where("project_id","=",$id)->get();
-        $this->users = User::EndUser()->get();
-    }
-
-    public function render()
+    public function updateTeam()
     {
-        $project=Project::find($this->project_id);
         $this->project_head = "";
         $this->team_leader = "";
         $this->team_members= [];
- $this->temp['team_leader_id'] = "";
- $this->temp['project_head_id']="";
- $this->temp['project_head_name']="";
-  $this->temp['team_leader_name']="";
-  $this->temp['members'] = [];
-
-        
+        $this->temp['members'] = [];
+        $project=Project::find($this->project_id);
         if($project->head->first()){
             $head = $project->head->first();
             $this->project_head = $head;
@@ -88,11 +75,31 @@ class ProjectDetailComponent extends Component
         {
                 foreach($members as $member)
                {
-                   array_push($this->team_members, ["id"=>$member->user->id,"name"=>$member->user->name]);
-                   array_push($this->temp['members'],["id"=>$member->user->id,"name"=>$member->user->name]);
+                   array_push($this->team_members, ["team_member_id"=>$member->user->id,"team_member_name"=>$member->user->name]);
+                   array_push($this->temp['members'],["team_member_id"=>$member->user->id,"team_member_name"=>$member->user->name]);
                }
         }
+    }
+    public function mount($id){
+        $this->project_id=$id;
+        $this->featurebox=Featurebox::where("project_id","=",$id)->get();
+        $this->users = User::EndUser()->get();
        
+       
+        // $this->temp['team_leader_id'] = "";
+        // $this->temp['project_head_id']="";
+        // $this->temp['project_head_name']="";
+        // $this->temp['team_leader_name']="";
+      
+         $this->updateTeam();
+
+        
+        
+    }
+
+    public function render()
+    {
+          $project=Project::find($this->project_id);
         return view('livewire.admin.project-detail-component',["project"=>$project]);
     }
 public function toggle($key)
@@ -165,7 +172,11 @@ public function toggle($key)
        
         //Add New Entries
         ProjectTeamMembers::insert($data);  
+
+        //Retrieve updated results
+       $this->updateTeam();
         $this->toggle('assignteamfinal');
+        $this->toggle('confirmingteamassign');
         $this->dispatchBrowserEvent('banner-message', [
             'style' => 'success',
             'message' => 'Team assigned successfully!'
