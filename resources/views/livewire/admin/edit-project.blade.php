@@ -81,26 +81,44 @@
 
 
              <x-jet-label for="cap" value="{{ __('Logo Image') }}" />
-             <x-input type="file" wire:model="project.logo_image" class="mt-1 block w-full" />
+             <x-input type="file" wire:model="project.edit_logo_image" class="mt-1 block w-full" />
 
              <x-jet-input-error for="cap" class="mt-2" />
-             @if($project['logo_image']!='')
-             <img src="{{$project['logo_image']->temporaryUrl()}}" class="mt-2 w-32 h-32 rounded-md" />
 
-             @endif
+             <div class="flex">
+
+                 @if($project['edit_logo_image']!='')
+
+                 <img src="{{$project['edit_logo_image']->temporaryUrl()}}" class="mt-2 w-32 h-32 rounded-md" />
+                 @elseif($project['logo_image']!='')
+                 <img src="/storage/{{$project['logo_image']}}" class="mt-2 w-32 h-32 rounded-md" />
+
+                 @else
+                 @endif
+             </div>
+
 
          </div>
          <div>
 
 
              <x-jet-label for="cap" value="{{ __('Banner Image') }}" />
-             <x-input wire:model="project.banner_image" type="file" class="mt-1 block w-full" />
+             <x-input wire:model="project.edit_banner_image" type="file" class="mt-1 block w-full" />
 
              <x-jet-input-error for="cap" class="mt-2" />
-             @if($project['banner_image']!='')
-             <img src="{{$project['banner_image']->temporaryUrl()}}" class=" mt-2 w-32 h-32 rounded-md" />
+             <div class="flex">
 
-             @endif
+                 @if($project['edit_banner_image']!='')
+
+                 <img src="{{$project['edit_banner_image']->temporaryUrl()}}" class="mt-2 w-32 h-32 rounded-md" />
+                 @elseif($project['banner_image']!='')
+                 <img src="/storage/{{$project['banner_image']}}" class="mt-2 w-32 h-32 rounded-md" />
+
+                 @else
+                 @endif
+             </div>
+
+
 
          </div>
 

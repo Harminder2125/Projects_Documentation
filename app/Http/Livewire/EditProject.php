@@ -3,14 +3,16 @@
 namespace App\Http\Livewire;
 
 use Livewire\Component;
+use Livewire\WithFileUploads;
 use App\Models\Project;
 use App\Models\Category;
 use App\Models\ProjectStatus;
 
-
+use Auth;
 class EditProject extends Component
 {
-    public $project = [
+        use WithFileUploads;
+        public $project = [
         "id"=>"",
         "title"=>"",
         "abbreviation"=>"",
@@ -21,6 +23,8 @@ class EditProject extends Component
         "launched_by"=>"",
         "logo_image"=>"",
         "banner_image"=>"",
+        "edit_logo_image"=>"",
+        "edit_banner_image"=>"",
         "publish_status"=>0
     ];
     public function mount($id)
@@ -34,8 +38,11 @@ class EditProject extends Component
             $this->project['category'] = $project->category;
             $this->project['description'] = $project->description;
             $this->project['live_url'] = $project->live_url;
-            $this->project['launch_date'] = $project->launch_date;
+            $this->project['launch_date'] = date("Y-m-d", strtotime($project->launch_date));
             $this->project['launched_by'] = $project->launched_by;
+            $this->project['logo_image'] = $project->logo_image;
+            $this->project['banner_image'] = $project->banner_image;
+
             $this->project['publish_status'] = $project->publish_status;
         }
     }
@@ -57,6 +64,23 @@ class EditProject extends Component
         $project->launch_date = $this->project['launch_date'];
         $project->launched_by = $this->project['launched_by'];
         $project->publish_status = $this->project['publish_status'];
+        $lastId = $this->project['id'];
+       
+        if($this->project['edit_logo_image']!="")
+        {
+           $path = $this->project['edit_logo_image']->storeAs('images/projects/'.$project->abbreviation.'_'.$lastId, 'logo_'.$lastId.'.png','public');
+           $project->logo_image = $path;
+          
+            
+        }
+        if($this->project['edit_banner_image']!="")
+        {
+            $path =  $this->project['edit_banner_image']->storeAs('images/projects/'.$project->abbreviation.'_'.$lastId, 'banner_'.$lastId.'.png','public');
+             $project->banner_image = $path;
+        }       
+
+
+
         $project->save();
         $this->dispatchBrowserEvent('banner-message', [
             'style' => 'success',

@@ -40,26 +40,38 @@ class CreateProject extends Component
     }
     public function createProject()
     {
+        $this->project['group_id'] = Auth::user()->group_id;
+        $project = new Project;
+        $project->title = $this->project['title'];
+        $project->abbreviation=$this->project['abbreviation'];
+        $project->category = $this->project['category'];
+        $project->description=$this->project['description'];
+        $project->live_url=$this->project['live_url'];
+        $project->launch_date=$this->project['launch_date'];
+        $project->launched_by=$this->project['launched_by'];
+        $project->logo_image=$this->project['logo_image'];
+        $project->banner_image=$this->project['banner_image'];
+        $project->group_id=$this->project['group_id'];
+        $project->publish_status=$this->project['publish_status'];
+        $project->save();
+        // Project::create($project);
+        $lastId = $project->id;
+       
         if($this->project['logo_image']!="")
         {
-           $path = $this->project['logo_image']->storeAs('photos', 'avatar.png','public');
-           $this->project['logo_image'] = $path;
+           $path = $this->project['logo_image']->storeAs('images/projects/'.$project->abbreviation.'_'.$lastId, 'logo_'.$lastId.'.png','public');
+           $project->logo_image = $path;
           
             
         }
         if($this->project['banner_image']!="")
         {
-            $path =  $this->project['banner_image']->storeAs('photos', 'avatar2.png','public');
-             $this->project['banner_image'] = $path;
+            $path =  $this->project['banner_image']->storeAs('images/projects/'.$project->abbreviation.'_'.$lastId, 'banner_'.$lastId.'.png','public');
+             $project->banner_image = $path;
         }
-           
-        
-        $this->project['group_id'] = Auth::user()->group_id;
-
-        
-        Project::create($this->project);
+        $project->save();
         $this->resetProject();
-         $this->dispatchBrowserEvent('banner-message', [
+        $this->dispatchBrowserEvent('banner-message', [
             'style' => 'success',
             'message' => 'New Project created successfully!'
         ]);

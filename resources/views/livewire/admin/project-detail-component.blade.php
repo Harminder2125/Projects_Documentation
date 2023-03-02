@@ -81,8 +81,8 @@
 
             <div class="relative overflow-x-auto  sm:rounded-lg">
                 <div class="mb-4  flex justify-center text-gray-900 ">
-                    @if($project['thumbnail_image'])
-                    <img class="object-cover w-40 h-40 rounded" src='/assets/images/projects/{{$project['thumbnail_image']}}' />
+                    @if($project['logo_image'])
+                    <img class="object-cover w-40 h-40 rounded" src='/storage/{{$project['logo_image']}}' />
                     @else
                     <div class="rounded w-40 h-40 text-2xl flex items-center justify-center bg-fuchsia-800 text-white">{{$project['abbreviation']}}</div>
                     @endif
@@ -249,11 +249,10 @@
         <div class="border-2 border-gray-200 border-dashed p-4">
             <div class="flex">
                 <div class="flex">
-                    <object type="image/svg+xml" data="\assets\svg\{{ $fb->icon }}.svg" width="30" height="30"> </object>
-
+                    <object type="image/svg+xml" data="\assets\svg\{{ $fb->icon }}.svg" width="32" height="32"> </object>
                 </div>
-                <div>
-                    <x-main-title>{{ $fb->title }}</x-main-title>
+                <div class="ml-2">
+                    <x-main-title class="text-gray-800">{{ $fb->title }}</x-main-title>
                     <x-sub-title class="h-8">{{ $fb->subtitle }}</x-sub-title>
                 </div>
             </div>
