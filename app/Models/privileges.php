@@ -11,4 +11,5 @@ class privileges extends Model
     protected $fillable = [
         'name',
     ];
+    
 }
