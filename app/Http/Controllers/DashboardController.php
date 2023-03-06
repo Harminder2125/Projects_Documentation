@@ -31,16 +31,7 @@ class DashboardController extends Controller
             'abbreviation'=>'Here you may create new project manual'
         ]);
     }
-    public function projectdetail($id)
-    {   
-        $project = Project::where('id',$id)->first();
    
-        return view('project-detail',[
-            'project_id'=>$id,
-            'project_name'=>$project->title,
-            'abbreviation'=>$project->abbreviation
-        ]);
-    }
     public function projecttimeline($id)
     {   
         $project = Project::where('id',$id)->first();

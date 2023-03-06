@@ -79,8 +79,18 @@ class User extends Authenticatable
         static::addGlobalScope(new GroupScope);  //Only user related to same group
        
     }
+
+    public function isAdmin()
+    {
+        if($this->role_id == 2)
+        {
+            return true;
+        }
+        return false;
+    }
+    
     /* LOCAL SCOPES START HERE*/
-    public function scopeUser($query)
+    public function scopeEndUser($query)
     {
         return $query->where('role_id', '=', 3);    // Retrieve all users with roleid-3 or rolename- USER
     }
@@ -92,6 +102,8 @@ class User extends Authenticatable
     {
         return $query->where('role_id', '=', 1);    // Retrieve all users with roleid-1 or rolename- SUPERADMIN
     }
+    
+    
    /* LOCAL SCOPES ENDS HERE */
 
     function role()

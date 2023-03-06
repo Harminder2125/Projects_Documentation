@@ -29,8 +29,7 @@ Route::middleware([
     Route::get('/dashboard',[DashboardController::class,'index'])->name('dashboard');
     Route::get('/groups',[DashboardController::class,'groups'])->name('groups');
     Route::get('/role/assign',[DashboardController::class,'assignRoles'])->name('assign_roles');
-     Route::get('/project/create',[DashboardController::class,'projectcreate'])->name('projectcreate');
-    Route::get('/project/{id}',[DashboardController::class,'projectdetail'])->name('projectdetail');
+    Route::get('/project/create',[DashboardController::class,'projectcreate'])->name('projectcreate');
     Route::get('/project/timeline/{id}',[DashboardController::class,'projecttimeline'])->name('projecttimeline');
 
     Route::get('/categories',[DashboardController::class,'categories'])->name('categories');
@@ -39,10 +38,15 @@ Route::middleware([
 
     Route::get('/manual',[DashboardController::class,'manual'])->name('manual');
    
+
     //ADMIN ROUTES
     Route::get('/admin/users',[AdminController::class,'users'])->name('adminusers')->middleware('can:manage_users');
     Route::get('/admin/projects',[AdminController::class,'projects'])->name('adminprojects');
-   
+    Route::get('/admin/project/create',[AdminController::class,'createproject'])->name('createproject');
+    Route::get('/admin/edit/project/{id}',[AdminController::class,'editProject'])->name('editproject');
+    Route::get('/admin/project/{id}',[AdminController::class,'projectdetail'])->name('projectdetail');
+
+
 
     // USERS ROUTES
     Route::get('/user/projects',[UserController::class,'projects'])->name('userprojects');
