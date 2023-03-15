@@ -46,7 +46,7 @@ Route::middleware([
     Route::get('/admin/edit/project/{id}',[AdminController::class,'editProject'])->name('editproject');
     Route::get('/admin/project/{id}',[AdminController::class,'projectdetail'])->name('projectdetail');
 
-
+    Route::get('/manual',[DashboardController::class,'manual'])->name('manual');
 
     // USERS ROUTES
     Route::get('/user/projects',[UserController::class,'projects'])->name('userprojects');

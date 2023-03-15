@@ -19,7 +19,7 @@ class role_privilege_mapping extends Model
     }
     function privileges()
     {
-        return $this->belongsTo(Privileges::class);
+        return $this->belongsTo(Privileges::class,'privilege_id');
     }
 
  

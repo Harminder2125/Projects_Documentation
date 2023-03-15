@@ -14,6 +14,7 @@ use App\Models\Role;
 use App\Models\Group;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Division;
+use App\Models\role_privilege_mapping;
 use App\Models\Scopes\GroupScope;
 
 
@@ -117,6 +118,11 @@ class User extends Authenticatable
     public function divisions()
     {
         return $this->hasMany(Division::class);
+    }
+
+    public function role_privilege_mapping()
+    {
+        return $this->hasMany(role_privilege_mapping::class,'role_id');
     }
 
 }

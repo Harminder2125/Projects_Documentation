@@ -9,10 +9,12 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\Rules\Password;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 
 
 class Usercomponent extends Component
 {
+    use AuthorizesRequests;
     public $searchUser;
     public $confirmingUserAddition = false;
     public $confirmingUserEditing = false;
@@ -57,12 +59,24 @@ class Usercomponent extends Component
     }
     public function toggle($key)
     {
+        
+        
         if($key == 'confirmingUserAddition')
+        {
+            $this->authorize('create',[User::class]);
             $this->confirmingUserAddition = !$this->confirmingUserAddition;
+        }
         else if($key =='confirmingUserEditing')
             $this->confirmingUserEditing = !$this->confirmingUserEditing;
         else if($key =='confirmingUserDeletion')
+           {
+
+
+       
+            $this->authorize('delete',[User::class]);
+            
             $this->confirmingUserDeletion = !$this->confirmingUserDeletion;
+           }
         else
         {
 
@@ -70,6 +84,7 @@ class Usercomponent extends Component
     }
     public function addUser()
     {
+        $this->authorize('create',[User::class]);
         Validator::make($this->user, [
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
@@ -153,8 +168,11 @@ class Usercomponent extends Component
     }
     public function deleteUser($id)
     {
+       
         
         $user_delete = User::find($id);
+       
+        $this->authorize('delete',[User::class,$user_delete]);
         $user_delete->delete();
         
         $this->toggle('confirmingUserDeletion');
@@ -164,5 +182,7 @@ class Usercomponent extends Component
         ]);
       
         $this->emit('close-banner');
+        
+        
     }
 }

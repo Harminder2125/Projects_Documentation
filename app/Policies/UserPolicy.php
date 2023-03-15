@@ -4,6 +4,7 @@ namespace App\Policies;
 
 use App\Models\User;
 use Illuminate\Auth\Access\HandlesAuthorization;
+use Illuminate\Support\Facades\Session;
 
 class UserPolicy
 {
@@ -29,7 +30,7 @@ class UserPolicy
      */
     public function view(User $user, User $model)
     {
-        $privileges['view-user']
+        
     }
 
     /**
@@ -40,7 +41,7 @@ class UserPolicy
      */
     public function create(User $user)
     {
-        //
+        return Session::get('permissions.create_user')==1;
     }
 
     /**
@@ -62,9 +63,14 @@ class UserPolicy
      * @param  \App\Models\User  $model
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function delete(User $user, User $model)
+    public function delete(User $user, User $model=null)
     {
-        //
+      
+        //dd(Session::get('permissions.delete_user'));
+
+        return Session::get('permissions.delete_user')==1;
+        
+        
     }
 
     /**
