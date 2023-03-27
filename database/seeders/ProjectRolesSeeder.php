@@ -16,7 +16,8 @@ class ProjectRolesSeeder extends Seeder
     {
         DB::table('project_roles')->delete();
         $projectroles = array(
-                    array('name' => "TeamLead",),
+                    array('name' => "Project Head",),
+                    array('name' => "Team Leader",),
                     array('name' => "Team Member",),
                 );
         DB::table('project_roles')->insert($projectroles);

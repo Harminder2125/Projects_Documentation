@@ -2,12 +2,20 @@
 
 
     <x-slot name="title">
-        Projects
+        ALL projects
     </x-slot>
     <x-slot name="subtitle">
-        Complete list of projects of your group
+        All projects running under your supervision
     </x-slot>
-    <div class="rounded w-full mx-auto mt-4">
+    @livewire('all-projects')
+
+
+
+
+
+
+
+    {{-- <div class="rounded w-full mx-auto mt-4">
         <!-- Tabs -->
         <div class="bg-purple-100 rounded">
             <ul id="tabs" class="inline-flex px-1 w-full">
@@ -80,6 +88,6 @@
             });
         });
 
-    </script>
+    </script> --}}
 
 </x-app-layout>

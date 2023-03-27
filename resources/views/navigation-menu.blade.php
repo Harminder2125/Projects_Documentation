@@ -93,7 +93,7 @@
                                 <button type="button" class="inline-flex items-center px-3 py-2 border border-transparent text-sm leading-4 font-medium rounded-md text-red-50  hover:text-red-300 focus:outline-none transition">
 
 
-                                    <span class="uppercase">{{!Auth::user()->divisions->isEmpty()?"HOD":Auth::user()->role->name }}</span>
+                                    <span class="uppercase">{{Auth::user()->role->name }}</span>
 
 
                                     <svg class="ml-2 -mr-0.5 h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">

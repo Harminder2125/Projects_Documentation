@@ -1,7 +1,8 @@
 <?php
 
 namespace App\Providers;
-
+use Illuminate\Support\Facades\Auth;
+use App\Models\Privileges;
 use App\Actions\Fortify\CreateNewUser;
 use App\Actions\Fortify\ResetUserPassword;
 use App\Actions\Fortify\UpdateUserPassword;
@@ -40,8 +41,29 @@ class FortifyServiceProvider extends ServiceProvider
             $user = User::where('email', $request->email)->first();
      
             if ($user && Hash::check($request->password, $user->password)) {
-                       
+                 
+                $pp=array();
+                $perm=Privileges::get(['name']);
+                foreach($perm as $y)
+                {
+                    $pp[$y->name]=0;
+                }
+                $p=$user->role_privilege_mapping;
+                foreach($p as $x)
+                {
+
+                    $pp[$x->privileges->name]=1;
+                }
+
+               // dd($pp);
+                
+                
+
                
+               
+        
+                Session::put('permissions',$pp);
+                
                 // Session::put('role_id',$user->role_id);
                 // Session::put('role',$user->role->name);
                 // Session::put('group_id',$user->group_id);

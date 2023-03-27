@@ -13,11 +13,11 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('divisions', function (Blueprint $table) {
+        Schema::create('projectrole_privilege_mappings', function (Blueprint $table) {
             $table->id();
-            $table->string('name',150);
-            $table->foreignId('group_id')->constrained('groups')->onDelete('restrict')->comment('Related to state or group');
-            $table->foreignId('user_id')->constrained('users')->onDelete('restrict')->comment('Related to Division of a State');
+            $table->foreignId('projectrole_id')->constrained('roles')->onDelete('restrict')->comment('Related to Privilege of a User');
+            $table->foreignId('privilege_id')->constrained('privileges')->onDelete('restrict')->comment('Assigned to a role of  a User');
+            
             $table->timestamps();
         });
     }
@@ -29,6 +29,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('divisions');
+        Schema::dropIfExists('projectrole_privilege_mappings');
     }
 };

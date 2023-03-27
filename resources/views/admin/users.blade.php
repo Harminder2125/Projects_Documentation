@@ -1,9 +1,9 @@
 <x-app-layout>
     <x-slot name="title">
-     All Users
+        Users Management
     </x-slot>
     <x-slot name="subtitle">
-    Users registered under this portal
+        list of all the users registered under your group
     </x-slot>
 
     @livewire('usercomponent')

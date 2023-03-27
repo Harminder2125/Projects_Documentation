@@ -26,8 +26,9 @@ class DatabaseSeeder extends Seeder
             UserSeeder::class,
             PermissionSeeder::class,
             CategorySeeder::class,
-            DivisionSeeder::class,
-            ProjectSeeder::class,
+            ProjectStatusSeeder::class ,   
+            ProjectSeeder::class, 
+           
             ProjectHistorySeeder::class,
             Featurebox::class,
             Featureboxentries::class,
@@ -35,7 +36,9 @@ class DatabaseSeeder extends Seeder
             ManualContentSeeder::class,
             ProjectRolesSeeder::class,
             ProjectTeamMembersSeeder::class,
-            
+            PrivilegesSeeder::class,
+            RolePrivilegeSeeder::class,
+            ProjectrolePrivilegeSeeder::class 
             
         ]);
     }
