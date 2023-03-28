@@ -116,7 +116,6 @@
                     </svg>
                 </button>
                 <ul id="dropdown-example3" class="hidden">
-
                     <li>
                         <div class="pl-6">
 
