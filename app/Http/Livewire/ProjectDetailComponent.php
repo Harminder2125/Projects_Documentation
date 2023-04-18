@@ -8,6 +8,9 @@ use App\Models\Division;
 use App\Models\Featurebox;
 use App\Models\User;
 use App\Models\ProjectTeamMembers;
+use App\Models\Manual;
+use Illuminate\Support\Facades\Validator;
+
 
 class ProjectDetailComponent extends Component
 {
@@ -26,11 +29,20 @@ class ProjectDetailComponent extends Component
     public $divisionlist=[];
     public $newdivisionid=0;
     public $confirmingteamassign = false;
+    public $confirmingaddmanual = false;
     public $assignteamfinal =false;
     public $projectheadmodal = false;
     public $teamleadermodal = false;
     public $teammembermodal = false;
     public $groupusers = [];
+    public $manuals = [];
+    public $manual = [
+        "project_id"=>"",
+        "title"=>"",
+        "version"=>"",
+        "staging_server_url"=>"",
+        "major_changes"=>""
+    ];
 
     public $temp=[
         "project_head_id"=>"",
@@ -83,6 +95,7 @@ class ProjectDetailComponent extends Component
     public function mount($id){
         $this->project_id=$id;
         $this->featurebox=Featurebox::where("project_id","=",$id)->get();
+        $this->manuals = Manual::where('project_id',$id)->get();
         $this->users = User::EndUser()->get();
        
        
@@ -106,6 +119,8 @@ public function toggle($key)
     {
         if($key == 'confirmingteamassign')
             $this->confirmingteamassign = !$this->confirmingteamassign;
+        else  if($key == 'confirmingaddmanual')
+            $this->confirmingaddmanual = !$this->confirmingaddmanual;
         else if($key =='assignteamfinal')
             $this->assignteamfinal= !$this->assignteamfinal;
         else if($key=='projectheadmodal')
@@ -184,5 +199,26 @@ public function toggle($key)
       
         $this->emit('close-banner');
 
+    }
+
+    public function addManual()
+    {
+        
+        // Validator::make($this->manual, [
+        //     'title' => ['required', 'string', 'max:255'],
+        //     'version' => ['required', 'string'],
+        // ])->validate();
+        // dd("gee");
+        $this->manual['project_id'] = $this->project_id;
+        
+        Manual::create($this->manual);
+        
+        $this->toggle('confirmingaddmanual');
+        $this->dispatchBrowserEvent('banner-message', [
+            'style' => 'success',
+            'message' => 'New manual added successfully!'
+        ]);
+      
+        $this->emit('close-banner');
     }
 }
