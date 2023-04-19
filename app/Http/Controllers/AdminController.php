@@ -11,14 +11,14 @@ class AdminController extends Controller
 {
     public function users()
     {
+        
         return view('admin.users');
     }
     public function projects()
     {
-        if (Gate::allows('is_admin')) {
+        $this->authorize('viewany',[Project::class]);
                 return view('admin.projects');
-        }
-       abort(404);
+        
     }
     public function createproject()
     {

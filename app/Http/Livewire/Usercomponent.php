@@ -67,7 +67,10 @@ class Usercomponent extends Component
             $this->confirmingUserAddition = !$this->confirmingUserAddition;
         }
         else if($key =='confirmingUserEditing')
+        {
+            $this->authorize('update',[User::class]);
             $this->confirmingUserEditing = !$this->confirmingUserEditing;
+        }
         else if($key =='confirmingUserDeletion')
            {
 
@@ -151,6 +154,9 @@ class Usercomponent extends Component
         ])->validate();
 
         $user_update = User::find($id);
+
+        $this->authorize('update',$user_update);
+
         $user_update->name = $this->edituser['name'];
         $user_update->email = $this->edituser['email'];
         $user_update->mobile = $this->edituser['mobile'];
@@ -172,7 +178,7 @@ class Usercomponent extends Component
         
         $user_delete = User::find($id);
        
-        $this->authorize('delete',[User::class,$user_delete]);
+        $this->authorize('delete',$user_delete);
         $user_delete->delete();
         
         $this->toggle('confirmingUserDeletion');

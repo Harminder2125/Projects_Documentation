@@ -71,6 +71,7 @@
         <tbody>
 
             @foreach($allusers as $usr)
+            @can('view',$usr)
             <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
 
                 <td class="px-6 py-4">{{$usr['name']}}</td>
@@ -111,6 +112,7 @@
 
 
             </tr>
+            @endcan
             @endforeach
 
             @if($allusers->count() ==0)

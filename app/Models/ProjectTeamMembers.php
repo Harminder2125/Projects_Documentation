@@ -29,5 +29,10 @@ class ProjectTeamMembers extends Model
     return $this->belongsTo(ProjectRoles::class,'projectrole_id','id');
    }
 
+   public function ProjectRoles()
+   {
+    return $this->belongsTo(ProjectRoles::class,'projectrole_id');
+   }
+
    
 }
