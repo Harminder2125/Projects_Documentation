@@ -12,6 +12,10 @@ class UserController extends Controller
     {
         return view('user.projects');
     }
+    public function dashboard()
+    {
+        return view('user.dashboard');
+    }
     public function manageprojects()
     {
     //     /* If user is HOD of any division we will retrieve all the projects of that division */
