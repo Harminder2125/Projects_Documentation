@@ -14,6 +14,7 @@ use Illuminate\Support\ServiceProvider;
 use Laravel\Fortify\Fortify;
 use Illuminate\Support\Facades\Hash;
 use App\Models\User;
+use App\Models\ProjectRoles;
 use App\Models\Division;
 use Session;
 
@@ -59,10 +60,32 @@ class FortifyServiceProvider extends ServiceProvider
                 
                 
 
-               
+               $pr=array();
+               $proles=ProjectRoles::get();
+               foreach($proles as $y)
+               {
+                   $pr[$y->id]=array("value"=>0,"name"=>$y->name);
+               }
+               $p2=$user->ProjectTeamMembers;
+               foreach($p2 as $x2)
+               {
+                $temp=$x2->ProjectRoles;
+                if($temp!=null)
+                {
+                   
+                    $pr[$temp->id]=array("value"=>1,"name"=>$temp->name);
+                }
+                   
+               }
+      
+            
+           
                
         
                 Session::put('permissions',$pp);
+                Session::put('projectroles',$pr);
+
+               //dd( Session::get('projectroles.1'));
                 
                 // Session::put('role_id',$user->role_id);
                 // Session::put('role',$user->role->name);
