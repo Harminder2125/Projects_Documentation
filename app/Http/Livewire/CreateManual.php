@@ -1,0 +1,26 @@
+<?php
+
+namespace App\Http\Livewire;
+use App\Models\ManualContent;
+
+use Livewire\Component;
+
+class CreateManual extends Component
+{
+
+        public $manual=[];
+    public function render()
+    {
+        $this->manual=ManualContent::where("manual_id","=",1)->where("parent_id","=",null)->get();
+       
+        return view('livewire.create-manual');
+    }
+
+    public function openforaddition($parent_id)
+    {
+      
+    }
+}
+
+
+
