@@ -53,7 +53,7 @@ Route::middleware([
 
     // USERS ROUTES
     Route::get('/user/projects',[UserController::class,'projects'])->name('userprojects');
-    Route::get('/user/dashboard/{id?}',[UserController::class,'dashboard'])->name('userdashboard');
+    Route::get('/user/dashboard/{id?}',[UserController::class,'dashboard'])->name('rolebasedprojects');
     Route::get('/manage/user/projects',[UserController::class,'manageprojects'])->name('manageuserprojects');
      
 

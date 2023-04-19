@@ -145,7 +145,7 @@
                     <li>
                         <div class="pl-6">
 
-                            <x-jet-nav-link class="uppercase  text-sm border-b border-gray-200" href="{{ route('adminprojects') }}" :active="request()->routeIs('adminprojects')">
+                            <x-jet-nav-link class="uppercase  text-sm border-b border-gray-200" href="{{ route('rolebasedprojects',[$ar]) }}" :active="request()->routeIs('adminprojects')">
 
 
                                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="mr-2 w-6 h-6">
