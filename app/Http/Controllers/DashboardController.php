@@ -26,6 +26,7 @@ class DashboardController extends Controller
     
     public function projectcreate()
     {
+        
         return view('project-create',[
             'project_name'=>'Create Project',
             'abbreviation'=>'Here you may create new project manual'
@@ -56,6 +57,12 @@ class DashboardController extends Controller
         return view('manual');
     }
 
+    public function createmanual($id)
+    {
+        return view('createmanual',['id'=>$id]);
+    }
+
+    
 
     
     

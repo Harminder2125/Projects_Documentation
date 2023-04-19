@@ -2,11 +2,12 @@
 
 namespace App\Policies;
 
+use App\Models\Project;
 use App\Models\User;
 use Illuminate\Auth\Access\HandlesAuthorization;
 use Illuminate\Support\Facades\Session;
 
-class UserPolicy
+class ProjectPolicy
 {
     use HandlesAuthorization;
 
@@ -25,25 +26,12 @@ class UserPolicy
      * Determine whether the user can view the model.
      *
      * @param  \App\Models\User  $user
-     * @param  \App\Models\User  $model
+     * @param  \App\Models\Project  $project
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function view(User $user, User $model=null)
+    public function view(User $user, Project $project=null)
     {
-        if(Session::get('permissions.view_user')==1)
-        {
-            if($model==null)
-            {
-                return 1;
-            }
-            if($user->group_id==$model->group_id)
-            {
-                return 1;
-            }
-            
-        }
-
-        return 0;
+        
     }
 
     /**
@@ -54,74 +42,41 @@ class UserPolicy
      */
     public function create(User $user)
     {
-        return Session::get('permissions.create_user')==1;
+        //
     }
 
     /**
      * Determine whether the user can update the model.
      *
      * @param  \App\Models\User  $user
-     * @param  \App\Models\User  $model
+     * @param  \App\Models\Project  $project
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function update(User $user, User $model=null)
+    public function update(User $user, Project $project)
     {
-        if(Session::get('permissions.update_user')==1)
-        {
-            if($model==null)
-            {
-                return 1;
-            }
-            if($user->group_id==$model->group_id)
-            {
-                return 1;
-            }
-            
-        }
-
-        return 0;
-        
+        //
     }
 
     /**
      * Determine whether the user can delete the model.
      *
      * @param  \App\Models\User  $user
-     * @param  \App\Models\User  $model
+     * @param  \App\Models\Project  $project
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function delete(User $user, User $model=null)
+    public function delete(User $user, Project $project)
     {
-      
-        
-        //dd(Session::get('permissions.delete_user'));
-         
-        if(Session::get('permissions.delete_user')==1)
-        {
-            if($model==null)
-            {
-                return 1;
-            }
-            if($user->group_id==$model->group_id)
-            {
-                return 1;
-            }
-            
-        }
-
-        return 0;
-        
-        
+        //
     }
 
     /**
      * Determine whether the user can restore the model.
      *
      * @param  \App\Models\User  $user
-     * @param  \App\Models\User  $model
+     * @param  \App\Models\Project  $project
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function restore(User $user, User $model)
+    public function restore(User $user, Project $project)
     {
         //
     }
@@ -130,10 +85,10 @@ class UserPolicy
      * Determine whether the user can permanently delete the model.
      *
      * @param  \App\Models\User  $user
-     * @param  \App\Models\User  $model
+     * @param  \App\Models\Project  $project
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function forceDelete(User $user, User $model)
+    public function forceDelete(User $user, Project $project)
     {
         //
     }
