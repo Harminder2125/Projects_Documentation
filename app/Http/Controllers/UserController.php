@@ -12,9 +12,9 @@ class UserController extends Controller
     {
         return view('user.projects');
     }
-    public function dashboard()
+    public function dashboard($id=null)
     {
-        return view('user.dashboard');
+        return view('user.dashboard',['id' => $id]);
     }
     public function manageprojects()
     {
