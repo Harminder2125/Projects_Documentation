@@ -26,11 +26,11 @@
                     <h1 class="font-semibold uppercase text-xs text-gray-700 text-center">
                         Handled by
                     </h1>
-                    <span class="mb-3"> {{$project->division->name}} ({{$project->division->group->name}})</span>
+                    {{-- <span class="mb-3"> {{$project->division->name}} ({{$project->division->group->name}})</span>
                     <h1 class="font-semibold uppercase text-xs text-gray-700 text-center">
                         HOD Name
                     </h1>
-                    <span class="mb-3">{{$project->division->hod->name}}</span>
+                    <span class="mb-3">{{$project->division->hod->name}}</span> --}}
 
                     <h1 class="font-semibold uppercase text-xs text-gray-700 text-center">
                         Completion Status

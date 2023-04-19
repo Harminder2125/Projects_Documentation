@@ -14,6 +14,7 @@ use App\Models\Role;
 use App\Models\Group;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Division;
+use App\Models\role_privilege_mapping;
 use App\Models\Scopes\GroupScope;
 
 
@@ -79,8 +80,18 @@ class User extends Authenticatable
         static::addGlobalScope(new GroupScope);  //Only user related to same group
        
     }
+
+    public function isAdmin()
+    {
+        if($this->role_id == 2)
+        {
+            return true;
+        }
+        return false;
+    }
+    
     /* LOCAL SCOPES START HERE*/
-    public function scopeUser($query)
+    public function scopeEndUser($query)
     {
         return $query->where('role_id', '=', 3);    // Retrieve all users with roleid-3 or rolename- USER
     }
@@ -92,6 +103,8 @@ class User extends Authenticatable
     {
         return $query->where('role_id', '=', 1);    // Retrieve all users with roleid-1 or rolename- SUPERADMIN
     }
+    
+    
    /* LOCAL SCOPES ENDS HERE */
 
     function role()
@@ -105,6 +118,16 @@ class User extends Authenticatable
     public function divisions()
     {
         return $this->hasMany(Division::class);
+    }
+
+    public function role_privilege_mapping()
+    {
+        return $this->hasMany(role_privilege_mapping::class,'role_id');
+    }
+
+    public function ProjectTeamMembers()
+    {
+        return $this->hasMany(ProjectTeamMembers::class,'user_id');
     }
 
 }

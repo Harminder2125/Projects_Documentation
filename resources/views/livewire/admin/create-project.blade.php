@@ -4,10 +4,11 @@
 
  <div>
 
-     <x-sub-title class="font-semibold mt-4">Basic details</x-sub-title>
-     <div class="bg-gray-100 p-8 rounded-md mb-12">
+     <x-sub-title class="font-semibold">Basic details</x-sub-title>
+     <div class="bg-gray-200 my-2 p-8 rounded-md mb-12">
 
-         <div class="grid my-2 grid-cols-3 gap-2">
+
+         <div class="grid grid-cols-3 gap-2">
              <div>
                  <x-jet-label for="cap" value="{{ __('Title') }}" />
                  <x-input placeholder="Enter Project Title" required wire:model="project.title" type="text" class="mt-1 block w-full" />
@@ -29,14 +30,25 @@
          </div>
          <div class="my-2">
              <x-jet-label for="cap" value="{{ __('Description') }}" />
-             <textarea maxlength=8000 placeholder="Enter Project Description (Maximum 8000 Characters)" required wire:model="project.description" rows="4" class="block p-2.5 w-full text-sm text-gray-900  border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"></textarea>
+             <textarea maxlength=8000 placeholder="Enter Project Description (Maximum 8000 Characters)" required wire:model="project.description" rows="4" class="mt-1 block p-2.5 w-full text-sm text-gray-900  border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"></textarea>
+
 
              <x-jet-input-error for="cap" class="mt-2" />
          </div>
      </div>
 
      <x-sub-title class="font-semibold">Launch Details</x-sub-title>
-     <div class="my-2 grid grid-cols-3 gap-2 bg-gray-100  p-8 rounded-md mb-12">
+     <div class="my-2 grid grid-cols-4 gap-2 bg-gray-200  p-8 rounded-md mb-12">
+
+         <div>
+             <x-jet-label for="cap" value="{{ __('Publish Status') }}" />
+
+             <x-select type="text" class="mt-1 block w-full" wire:model="project.publish_status" :userlist="$statuslist" />
+
+             <x-jet-input-error for="cap" class="mt-2" />
+
+
+         </div>
 
          <div>
              <x-jet-label for="cap" value="{{ __('Live Url') }}" />
@@ -60,7 +72,8 @@
      </div>
      <x-sub-title class="font-semibold">Features</x-sub-title>
 
-     <div class="grid grid-cols-2 gap-2 bg-gray-100  rounded-md p-8">
+     <div class="grid grid-cols-2 my-2 gap-2 bg-gray-200 rounded-md p-8">
+
 
 
          <div>
@@ -97,7 +110,7 @@
      </div>
      <div class="flex justify-end mt-8">
 
-         <a href="/manage/user/projects">
+         <a href="/admin/projects">
              <x-secondary-button class="text-sm rounded-lg shadow mr-2">
 
                  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5 mr-2">

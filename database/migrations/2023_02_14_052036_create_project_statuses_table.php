@@ -13,11 +13,9 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('divisions', function (Blueprint $table) {
+        Schema::create('project_statuses', function (Blueprint $table) {
             $table->id();
-            $table->string('name',150);
-            $table->foreignId('group_id')->constrained('groups')->onDelete('restrict')->comment('Related to state or group');
-            $table->foreignId('user_id')->constrained('users')->onDelete('restrict')->comment('Related to Division of a State');
+            $table->string('name',100);
             $table->timestamps();
         });
     }
@@ -29,6 +27,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('divisions');
+        Schema::dropIfExists('project_statuses');
     }
 };

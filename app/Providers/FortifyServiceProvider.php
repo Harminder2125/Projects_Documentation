@@ -1,7 +1,8 @@
 <?php
 
 namespace App\Providers;
-
+use Illuminate\Support\Facades\Auth;
+use App\Models\Privileges;
 use App\Actions\Fortify\CreateNewUser;
 use App\Actions\Fortify\ResetUserPassword;
 use App\Actions\Fortify\UpdateUserPassword;
@@ -13,6 +14,7 @@ use Illuminate\Support\ServiceProvider;
 use Laravel\Fortify\Fortify;
 use Illuminate\Support\Facades\Hash;
 use App\Models\User;
+use App\Models\ProjectRoles;
 use App\Models\Division;
 use Session;
 
@@ -40,8 +42,51 @@ class FortifyServiceProvider extends ServiceProvider
             $user = User::where('email', $request->email)->first();
      
             if ($user && Hash::check($request->password, $user->password)) {
-                       
+                 
+                $pp=array();
+                $perm=Privileges::get(['name']);
+                foreach($perm as $y)
+                {
+                    $pp[$y->name]=0;
+                }
+                $p=$user->role_privilege_mapping;
+                foreach($p as $x)
+                {
+
+                    $pp[$x->privileges->name]=1;
+                }
+
+               // dd($pp);
+                
+                
+
+               $pr=array();
+               $proles=ProjectRoles::get();
+               foreach($proles as $y)
+               {
+                   $pr[$y->id]=array("value"=>0,"name"=>$y->name);
+               }
+               $p2=$user->ProjectTeamMembers;
+               foreach($p2 as $x2)
+               {
+                $temp=$x2->ProjectRoles;
+                if($temp!=null)
+                {
+                   
+                    $pr[$temp->id]=array("value"=>1,"name"=>$temp->name);
+                }
+                   
+               }
+      
+            
+           
                
+        
+                Session::put('permissions',$pp);
+                Session::put('projectroles',$pr);
+
+               //dd( Session::get('projectroles.1'));
+                
                 // Session::put('role_id',$user->role_id);
                 // Session::put('role',$user->role->name);
                 // Session::put('group_id',$user->group_id);

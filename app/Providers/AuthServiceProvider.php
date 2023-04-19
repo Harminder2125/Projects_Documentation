@@ -2,9 +2,11 @@
 
 namespace App\Providers;
 
+use Illuminate\Support\Facades\Auth;
 // use Illuminate\Support\Facades\Gate;
 use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
 use Illuminate\Support\Facades\Gate;
+use Illuminate\Support\Facades\Session;
 use App\Models\User;
 
 class AuthServiceProvider extends ServiceProvider
@@ -15,7 +17,8 @@ class AuthServiceProvider extends ServiceProvider
      * @var array<class-string, class-string>
      */
     protected $policies = [
-        // 'App\Models\Model' => 'App\Policies\ModelPolicy',
+         App\Models\User::class =>App\Policies\UserPolicy::class,
+         App\Models\ProjectRoles::class =>App\Policies\ProjectRolesPolicy::class,
     ];
 
     /**
@@ -25,7 +28,10 @@ class AuthServiceProvider extends ServiceProvider
      */
     public function boot()
     {
+        
+
         $this->registerPolicies();
+        
                 // Should return TRUE or FALSE
         Gate::define('is_admin', function(User $user) {
             return $user->role_id == 2;

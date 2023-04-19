@@ -13,10 +13,7 @@ class DashboardController extends Controller
     {
         return view('dashboard');
     }
-    public function users()
-    {
-        return view('users');
-    }
+    
     public function groups()
     {
         return view('groups');
@@ -26,30 +23,16 @@ class DashboardController extends Controller
        
         return view('assign-role');
     }
-    public function projects()
-    {
-        if (Gate::allows('is_admin')) {
-                return view('projects');
-        }
-       abort(404);
-    }
+    
     public function projectcreate()
     {
+        
         return view('project-create',[
             'project_name'=>'Create Project',
             'abbreviation'=>'Here you may create new project manual'
         ]);
     }
-    public function projectdetail($id)
-    {   
-        $project = Project::where('id',$id)->first();
    
-        return view('project-detail',[
-            'project_id'=>$id,
-            'project_name'=>$project->title,
-            'abbreviation'=>$project->abbreviation
-        ]);
-    }
     public function projecttimeline($id)
     {   
         $project = Project::where('id',$id)->first();
@@ -59,15 +42,6 @@ class DashboardController extends Controller
             'project_name'=>$project->title,
             'abbreviation'=>$project->abbreviation
         ]);
-    }
-
-    public function manageDivisions()
-    {
-        return view('admin.manage-divisions');
-    }
-    public function divisions()
-    {
-        return view('divisions');
     }
     public function team()
     {
@@ -83,6 +57,12 @@ class DashboardController extends Controller
         return view('manual');
     }
 
+    public function createmanual($id)
+    {
+        return view('createmanual',['id'=>$id]);
+    }
+
+    
 
     
     

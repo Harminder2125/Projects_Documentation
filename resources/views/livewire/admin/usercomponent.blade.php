@@ -10,7 +10,7 @@
             </x-jet-input>
 
         </div>
-        <x-primary-button class="bg-fuchsia-900" wire:click="$toggle('confirmingUserAddition')">
+        <x-primary-button class="bg-fuchsia-900" wire:click="toggle('confirmingUserAddition')">
             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5 mr-2">
                 <path stroke-linecap="round" stroke-linejoin="round" d="M19 7.5v3m0 0v3m0-3h3m-3 0h-3m-2.25-4.125a3.375 3.375 0 11-6.75 0 3.375 3.375 0 016.75 0zM4 19.235v-.11a6.375 6.375 0 0112.75 0v.109A12.318 12.318 0 0110.374 21c-2.331 0-4.512-.645-6.374-1.766z" />
             </svg>
@@ -71,6 +71,7 @@
         <tbody>
 
             @foreach($allusers as $usr)
+            @can('view',$usr)
             <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
 
                 <td class="px-6 py-4">{{$usr['name']}}</td>
@@ -111,6 +112,7 @@
 
 
             </tr>
+            @endcan
             @endforeach
 
             @if($allusers->count() ==0)
@@ -235,7 +237,7 @@
         </x-slot>
 
         <x-slot name="footer">
-            <x-jet-secondary-button wire:click="$toggle('confirmingUserAddition')" wire:loading.attr="disabled">
+            <x-jet-secondary-button wire:click="toggle('confirmingUserAddition')" wire:loading.attr="disabled">
                 Close
             </x-jet-secondary-button>
 
