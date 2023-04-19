@@ -20,6 +20,10 @@ class PrivilegesSeeder extends Seeder
                     array('name' => "create_project"),
                     array('name' => "update_project"),
                     array('name' => "delete_project"), 
+                    array('name' => "view_user"),
+                    array('name' => "create_user"),
+                    array('name' => "update_user"),
+                    array('name' => "delete_user"), 
                    
                 );
         DB::table('privileges')->insert($privileges);
