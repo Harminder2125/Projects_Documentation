@@ -48,8 +48,11 @@ Route::middleware([
 
     Route::get('/manual',[DashboardController::class,'manual'])->name('manual');
 
+
+
     // USERS ROUTES
     Route::get('/user/projects',[UserController::class,'projects'])->name('userprojects');
+    Route::get('/user/dashboard',[UserController::class,'dashboard'])->name('userdashboard');
     Route::get('/manage/user/projects',[UserController::class,'manageprojects'])->name('manageuserprojects');
      
 
