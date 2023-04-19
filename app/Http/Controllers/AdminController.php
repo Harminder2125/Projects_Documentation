@@ -16,7 +16,7 @@ class AdminController extends Controller
     }
     public function projects()
     {
-        $this->authorize('viewany',[Project::class]);
+        
                 return view('admin.projects');
         
     }
