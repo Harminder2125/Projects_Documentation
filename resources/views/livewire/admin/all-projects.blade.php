@@ -34,7 +34,7 @@
     </div>
     @if($this->search || $this->category !=0 || $this->status !=0)
     <div class="my-2 py-2 flex justify-center items-center bg-orange-100">
-        <x-sub-title>Search All projects where
+        <x-sub-title>Search projects where
 
             @if($this->search)
             <span>title contains the word <span class="text-rose-700">{{$this->search}}</span>,</span>
