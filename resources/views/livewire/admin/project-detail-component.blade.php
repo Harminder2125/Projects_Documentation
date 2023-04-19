@@ -371,7 +371,7 @@
                             </svg>
                         </a>
                         |
-                        <a href="javascript:void(0);" wire:click="toggle('editmode')" class="pointer ml-1 "><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" fill="none" class="w-5 h-5 stroke-red-800 hover:stroke-red-600 ">
+                        <a href="javascript:void(0);" wire:click="deleteManual({{$man->id}})" class="pointer ml-1 "><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" fill="none" class="w-5 h-5 stroke-red-800 hover:stroke-red-600 ">
                                 <path stroke-linecap=" round" stroke-linejoin="round" d="M14.74 9l-.346 9m-4.788 0L9.26 9m9.968-3.21c.342.052.682.107 1.022.166m-1.022-.165L18.16 19.673a2.25 2.25 0 01-2.244 2.077H8.084a2.25 2.25 0 01-2.244-2.077L4.772 5.79m14.456 0a48.108 48.108 0 00-3.478-.397m-12 .562c.34-.059.68-.114 1.022-.165m0 0a48.11 48.11 0 013.478-.397m7.5 0v-.916c0-1.18-.91-2.164-2.09-2.201a51.964 51.964 0 00-3.32 0c-1.18.037-2.09 1.022-2.09 2.201v.916m7.5 0a48.667 48.667 0 00-7.5 0" />
                             </svg>
 
@@ -897,6 +897,45 @@
             Create
         </x-jet-danger-button>
 
+    </x-slot>
+</x-jet-confirmation-modal>
+
+<x-jet-confirmation-modal wire:model="confirmingManualDeletion">
+
+    <x-slot name="icon">
+        <div class="mx-auto shrink-0 flex items-center justify-center h-12 w-12 rounded-full bg-red-800 sm:mx-0 sm:h-10 sm:w-10">
+            <svg class="h-5 w-5 text-white" stroke-width="1.5" stroke="currentColor" fill="none" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M19 7.5v3m0 0v3m0-3h3m-3 0h-3m-2.25-4.125a3.375 3.375 0 11-6.75 0 3.375 3.375 0 016.75 0zM4 19.235v-.11a6.375 6.375 0 0112.75 0v.109A12.318 12.318 0 0110.374 21c-2.331 0-4.512-.645-6.374-1.766z" />
+            </svg>
+
+
+        </div>
+    </x-slot>
+
+    <x-slot name="title">
+        <span class="text-red-800">Delete Manual?</span>
+    </x-slot>
+    <x-slot name="subtitle">
+        This will permanently remove this manual and all the related details.
+    </x-slot>
+    <x-slot name="content">
+
+        <div class="w-full flex justify-center items-center p-10">
+
+            <div class="p-4 border border-gray-500 border-dashed rounded-lg">
+                <h1><span class="text-lg uppercase text-gray-600 font-semibold">Are you sure you want to delete manual?</span><br />Title - {{$manual['title']}}<br />Version - {{$manual['version']}}<br />Staging URL- {{$manual['staging_server_url']}}<br /> </h1>
+            </div>
+        </div>
+    </x-slot>
+
+    <x-slot name="footer">
+        <x-jet-secondary-button wire:click="$toggle('confirmingManualDeletion')" wire:loading.attr="disabled">
+            Cancel
+        </x-jet-secondary-button>
+
+        <x-jet-danger-button class="ml-2" wire:click="deleteMan({{$manual['id']}})" wire:loading.attr="disabled">
+            delete it !
+        </x-jet-danger-button>
     </x-slot>
 </x-jet-confirmation-modal>
 

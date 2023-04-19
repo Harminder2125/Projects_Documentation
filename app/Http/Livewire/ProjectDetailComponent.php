@@ -30,6 +30,8 @@ class ProjectDetailComponent extends Component
     public $newdivisionid=0;
     public $confirmingteamassign = false;
     public $confirmingaddmanual = false;
+    public $confirmingManualDeletion = false;
+
     public $assignteamfinal =false;
     public $projectheadmodal = false;
     public $teamleadermodal = false;
@@ -37,6 +39,7 @@ class ProjectDetailComponent extends Component
     public $groupusers = [];
     public $manuals = [];
     public $manual = [
+        "id"=>"",
         "project_id"=>"",
         "title"=>"",
         "version"=>"",
@@ -95,7 +98,7 @@ class ProjectDetailComponent extends Component
     public function mount($id){
         $this->project_id=$id;
         $this->featurebox=Featurebox::where("project_id","=",$id)->get();
-        $this->manuals = Manual::where('project_id',$id)->get();
+    
         $this->users = User::EndUser()->get();
        
        
@@ -112,8 +115,13 @@ class ProjectDetailComponent extends Component
 
     public function render()
     {
-          $project=Project::find($this->project_id);
+        $project=Project::find($this->project_id);
+        $this->loadManuals();
         return view('livewire.admin.project-detail-component',["project"=>$project]);
+    }
+    public function loadManuals()
+    {
+        $this->manuals = Manual::where('project_id',$this->project_id)->get();
     }
 public function toggle($key)
     {
@@ -121,6 +129,8 @@ public function toggle($key)
             $this->confirmingteamassign = !$this->confirmingteamassign;
         else  if($key == 'confirmingaddmanual')
             $this->confirmingaddmanual = !$this->confirmingaddmanual;
+        else  if($key == 'confirmingManualDeletion')
+            $this->confirmingManualDeletion = !$this->confirmingManualDeletion;
         else if($key =='assignteamfinal')
             $this->assignteamfinal= !$this->assignteamfinal;
         else if($key=='projectheadmodal')
@@ -210,13 +220,48 @@ public function toggle($key)
         // ])->validate();
         // dd("gee");
         $this->manual['project_id'] = $this->project_id;
-        
-        Manual::create($this->manual);
+        $data =  new Manual();
+        $data->project_id = $this->manual['project_id'];
+        $data->title = $this->manual['title'];
+        $data->version = $this->manual['version'];
+        $data->staging_server_url = $this->manual['staging_server_url'];
+        $data->major_changes = $this->manual['major_changes'];
+        $data->save();
+        $this->resetManualArray();
+       // Manual::create($this->manual);
         
         $this->toggle('confirmingaddmanual');
         $this->dispatchBrowserEvent('banner-message', [
             'style' => 'success',
             'message' => 'New manual added successfully!'
+        ]);
+      
+        $this->emit('close-banner');
+    }
+    
+    public function deleteManual($id)
+    {
+        $this->manual= Manual::find($id);
+        $this->toggle('confirmingManualDeletion');
+    }
+    public function resetManualArray()
+    {
+        $this->manual['id'] = "";
+        $this->manual['project_id'] = "";
+        $this->manual['title'] = "";
+        $this->manual['version'] = "";
+        $this->manual['staging_server_url'] = "";
+        $this->manual['major_changes'] = "";
+    }
+    public function deleteMan($id)
+    {
+        $mymanual = Manual::find($id);
+        $mymanual->delete();
+        $this->resetManualArray();
+         $this->toggle('confirmingManualDeletion');
+        $this->dispatchBrowserEvent('banner-message', [
+            'style' => 'success',
+            'message' => 'Manual deleted successfully!'
         ]);
       
         $this->emit('close-banner');
