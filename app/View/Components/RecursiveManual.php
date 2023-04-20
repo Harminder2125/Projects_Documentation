@@ -8,6 +8,7 @@ class RecursiveManual extends Component
 {
     public $manual;
     public $point;
+    public $editmode = false;
     /**
      * Create a new component instance.
      *
@@ -17,6 +18,14 @@ class RecursiveManual extends Component
     {
         $this->manual=$manual;
         $this->point=$point;
+    }
+
+    public function toggle($key)
+    {
+        if($key =='editmode')
+        {
+            $this->editmode = !$this->editmode;
+        }
     }
 
     /**
