@@ -52,9 +52,9 @@ class DashboardController extends Controller
         return view('categories');
     }
 
-    public function manual()
+    public function manual($id)
     {
-        return view('manual');
+        return view('admin.manualform.manual',['id'=>$id]);
     }
 
     public function createmanual($id)

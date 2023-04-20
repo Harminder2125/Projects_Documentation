@@ -36,7 +36,7 @@ Route::middleware([
 
     Route::get('/team',[DashboardController::class,'team'])->name('team');
 
-    Route::get('/manual',[DashboardController::class,'manual'])->name('manual');
+   // Route::get('/manual',[DashboardController::class,'manual'])->name('manual');
    
 
     //ADMIN ROUTES
@@ -46,8 +46,8 @@ Route::middleware([
     Route::get('/admin/edit/project/{id}',[AdminController::class,'editProject'])->name('editproject');
     Route::get('/admin/project/{id}',[AdminController::class,'projectdetail'])->name('projectdetail');
 
-    Route::get('/createmanual/{id}',[DashboardController::class,'createmanual'])->name('createmanual');
-    Route::get('/manual',[DashboardController::class,'manual'])->name('manual');
+    //Route::get('/createmanual/{id}',[DashboardController::class,'createmanual'])->name('createmanual');
+    Route::get('/admin/manual/{id}',[DashboardController::class,'manual'])->name('manual');
 
 
 
