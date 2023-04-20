@@ -11,5 +11,5 @@
     <div>
 
     </div>
-    @livewire('manual-component',['id'=>$id])
+    @livewire('manual-form.recursive-manual',['manual'=>$manual,'point'=>null])
 </x-app-layout>

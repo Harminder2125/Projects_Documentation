@@ -5,7 +5,9 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\User;
 use App\Models\Project;
+use App\Models\ManualContent;
 use Illuminate\Support\Facades\Gate;
+use Livewire\Livewire;
 
 class DashboardController extends Controller
 {
@@ -54,7 +56,9 @@ class DashboardController extends Controller
 
     public function manual($id)
     {
-        return view('admin.manualform.manual',['id'=>$id]);
+        $manual =  ManualContent::where("manual_id","=",$id)->where("parent_id","=",null)->get();
+        
+        return view('admin.manualForm.manual',['manual'=>$manual,'point'=>null]);
     }
 
     public function createmanual($id)
