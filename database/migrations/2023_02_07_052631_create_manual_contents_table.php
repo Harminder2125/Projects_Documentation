@@ -22,6 +22,7 @@ return new class extends Migration
             $table->longText('description')->nullable();
             $table->foreignId('parent_id')->nullable()->constrained('manual_contents')->onDelete('restrict')->comment('there are Indicies under it');
             $table->integer('position');
+            $table->tinyInteger('static')->default('0');
             $table->timestamps();
         });
     }

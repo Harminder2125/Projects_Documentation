@@ -15,6 +15,7 @@ class ManualContent extends Model
         'description',
         'parent_id',
         'position',
+        'static',
     ];
 
     public function manual()

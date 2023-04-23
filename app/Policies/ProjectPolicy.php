@@ -29,6 +29,11 @@ class ProjectPolicy
      * @param  \App\Models\Project  $project
      * @return \Illuminate\Auth\Access\Response|bool
      */
+    public function canassignteam(User $user, Project $project)
+    {
+        
+    }
+
     public function view(User $user, Project $project=null)
     {
         
