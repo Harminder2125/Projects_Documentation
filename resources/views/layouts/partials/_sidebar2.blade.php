@@ -170,7 +170,8 @@
                         
             
                 @endforeach
-
+                    
+                @can('create',[App\Project::class])
                                     
                     <li>
                         <div class="pl-6">
@@ -192,8 +193,8 @@
 
                         </div>
                     </li>
-
-
+                  
+                    @endcan
 
 
                     {{-- <li>

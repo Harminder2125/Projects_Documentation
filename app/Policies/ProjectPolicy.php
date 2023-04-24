@@ -47,7 +47,7 @@ class ProjectPolicy
      */
     public function create(User $user)
     {
-        //
+        return Session::get('permissions.create_project')==1;
     }
 
     /**
