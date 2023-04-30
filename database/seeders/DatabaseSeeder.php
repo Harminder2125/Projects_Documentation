@@ -39,7 +39,9 @@ class DatabaseSeeder extends Seeder
             PrivilegesSeeder::class,
             RolePrivilegeSeeder::class,
             ProjectrolePrivilegeSeeder::class,
-            ManualStaticsSeeder::class
+            ManualStaticsSeeder::class,
+            EventsSeeder::class,
+            EventsVisibletoSeeder::class
             
         ]);
     }

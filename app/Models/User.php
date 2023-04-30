@@ -130,4 +130,9 @@ class User extends Authenticatable
         return $this->hasMany(ProjectTeamMembers::class,'user_id');
     }
 
+    public function EventsVisibleto()
+    {
+        return $this->hasMany(EventsVisibleto::class,'visible_to');
+    }
+
 }
