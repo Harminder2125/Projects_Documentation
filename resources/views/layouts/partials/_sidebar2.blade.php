@@ -72,15 +72,15 @@
             <li>
 
 
-                <x-jet-nav-link class="uppercase  text-sm border-b border-gray-200" href="{{ route('projects') }}" :active="request()->routeIs('projects')">
-                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="mr-2 w-6 h-6">
-                        <path stroke-linecap="round" stroke-linejoin="round" d="M14.25 9.75L16.5 12l-2.25 2.25m-4.5 0L7.5 12l2.25-2.25M6 20.25h12A2.25 2.25 0 0020.25 18V6A2.25 2.25 0 0018 3.75H6A2.25 2.25 0 003.75 6v12A2.25 2.25 0 006 20.25z" />
-                    </svg>
+                {{-- <x-jet-nav-link class="uppercase  text-sm border-b border-gray-200" href="{{ route('projects') }}" :active="request()->routeIs('projects')">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="mr-2 w-6 h-6">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M14.25 9.75L16.5 12l-2.25 2.25m-4.5 0L7.5 12l2.25-2.25M6 20.25h12A2.25 2.25 0 0020.25 18V6A2.25 2.25 0 0018 3.75H6A2.25 2.25 0 003.75 6v12A2.25 2.25 0 006 20.25z" />
+                </svg>
 
 
-                    {{ __('Projects Management') }}
+                {{ __('Projects Management') }}
 
-                </x-jet-nav-link>
+                </x-jet-nav-link> --}}
 
 
             </li>
@@ -133,14 +133,14 @@
                                 {{ __('All Projects') }}
 
                             </x-jet-nav-link>
-                           
-                           
+
+
 
                         </div>
                     </li>
-                    
+
                     @foreach (array_keys(Session::get('projectroles')) as $ar)
-                       
+
                     @can('isprojectrole',[App\ProjectRoles::class,$ar])
                     <li>
                         <div class="pl-6">
@@ -158,21 +158,21 @@
                                 {{ __('As '.Session::get('projectroles.'.$ar.'.name')) }}
 
                             </x-jet-nav-link>
-                           
-                           
+
+
 
                         </div>
                     </li>
-                    
-                        
+
+
                     @endcan
-                    
-                        
-            
-                @endforeach
-                    
-                @can('create',[App\Project::class])
-                                    
+
+
+
+                    @endforeach
+
+                    @can('create',[App\Project::class])
+
                     <li>
                         <div class="pl-6">
 
@@ -193,7 +193,7 @@
 
                         </div>
                     </li>
-                  
+
                     @endcan
 
 
