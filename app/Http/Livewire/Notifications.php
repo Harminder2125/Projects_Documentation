@@ -14,4 +14,14 @@ class Notifications extends Component
         ->orderBy("id","desc")->get();
         return view('livewire.notifications');
     }
+
+    public function onseen($id)
+    {
+        $visibleto = EventsVisibleto::find($id);
+        $visibleto->seen='1';
+        $visibleto->save();
+     
+        
+        $this->emit('refreshComponent');
+    }
 }

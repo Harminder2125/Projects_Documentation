@@ -198,7 +198,7 @@
 
 
 
-        @livewire('notifications')
+       
 
 
     </div>

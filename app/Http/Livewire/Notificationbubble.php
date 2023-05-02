@@ -16,4 +16,7 @@ class Notificationbubble extends Component
         $this->count=count($this->newnotifications);
         return view('livewire.notificationbubble');
     }
+
+    protected $listeners = ['refreshComponent' => 'render'];
+
 }
