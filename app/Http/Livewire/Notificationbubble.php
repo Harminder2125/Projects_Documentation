@@ -12,6 +12,7 @@ class Notificationbubble extends Component
     public function render()
     {
         $this->newnotifications=EventsVisibleto::where('seen','=',0)->where('user_id','=',Auth::user()->id)->get();
+        
         $this->count=count($this->newnotifications);
         return view('livewire.notificationbubble');
     }

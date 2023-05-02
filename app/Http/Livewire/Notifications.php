@@ -10,9 +10,8 @@ class Notifications extends Component
     public $newnotifications=[];
     public function render()
     {
-        $this->newnotifications=EventsVisibleto::where('seen','=',0)->where('user_id','=',Auth::user()->id)->get();
-        
-        
+        $this->newnotifications=EventsVisibleto::where('user_id','=',Auth::user()->id)
+        ->orderBy("id","desc")->get();
         return view('livewire.notifications');
     }
 }

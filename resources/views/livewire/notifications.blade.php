@@ -9,8 +9,8 @@
 
                 @foreach ($newnotifications as $nn)
 
-                <div class="p-3 bg-stone-100 mb-2 w-full flex flex-col">
-                    <div> {{ $nn->Events->payload }}</div>
+                <div class="p-3 bg-stone-100 rounded mb-2 w-full flex flex-col">
+                    <div class="{{$nn->seen==0?"text-bold":""}}"> {{ $nn->Events->payload }}</div>
                     @if ($nn->Events->created_at)
                     <div class="text-right text-sm  text-stone-500"> {{ $nn->Events->created_at->diffForHumans() }}</div>
                     @endif

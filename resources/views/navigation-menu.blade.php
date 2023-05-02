@@ -104,7 +104,7 @@
                             @endif
                             <div class="inline-flex rounded-md items-center px-1 py-2 text-red-400">
 
-
+                                <a href="/notifications">
                                 <div class="relative">
                                    @livewire('notificationbubble')
                                     <span class="uppercase" class="mt-2">
@@ -114,6 +114,7 @@
                                     </span>
 
                                 </div>
+                                </a>
 
 
 
