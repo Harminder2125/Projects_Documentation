@@ -66,6 +66,11 @@ class DashboardController extends Controller
         return view('createmanual',['id'=>$id]);
     }
 
+    public function notify()
+    {
+        return view('notifications');
+    }
+
     
 
     

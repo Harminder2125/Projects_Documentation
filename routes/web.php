@@ -36,6 +36,8 @@ Route::middleware([
 
     Route::get('/team',[DashboardController::class,'team'])->name('team');
 
+    Route::get('/notifications',[DashboardController::class,'notify'])->name('notify');
+
    // Route::get('/manual',[DashboardController::class,'manual'])->name('manual');
    
 
