@@ -11,7 +11,7 @@ class Notifications extends Component
     public function render()
     {
         $this->newnotifications=EventsVisibleto::where('seen','=',0)->where('user_id','=',Auth::user()->id)->get();
-       
+        
         
         return view('livewire.notifications');
     }

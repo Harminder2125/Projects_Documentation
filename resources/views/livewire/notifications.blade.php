@@ -11,20 +11,22 @@
                     <h1>Notifications</h1>
                     <ul>
                         @foreach ($newnotifications as $nn)
-                      
-                            <li class="p-3">{{ $nn->Events->payload }}</li>
+
+                        <li class="p-3">{{ $nn->Events->payload }}</li>
                         @endforeach
-                       </ul>
+                    </ul>
 
                 </div>
 
-                
+
+
             </div>
 
-            
-            
-            
-            
+
+
+
+
+
         </div>
     </div>
 
