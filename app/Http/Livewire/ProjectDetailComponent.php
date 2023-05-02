@@ -9,7 +9,10 @@ use App\Models\Featurebox;
 use App\Models\User;
 use App\Models\ProjectTeamMembers;
 use App\Models\Manual;
+use App\Models\Events;
+use App\Models\EventsVisibleto;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\Auth;
 
 
 class ProjectDetailComponent extends Component
@@ -229,8 +232,25 @@ public function toggle($key)
         $data->save();
         $this->resetManualArray();
        // Manual::create($this->manual);
+       
+       $proj=Project::find($data->project_id);
+       $event =  new Events();
+       $event->payload=Auth::user()->name.'(empcode:'.Auth::user()->empcode.') has added Manual with title '.$data->title.' and version '.$data->version.' to the project with title '.$proj->title;
+       $event->save();
+    $lastevent=$event->id;
+       $visibleto=ProjectTeamMembers::all()->where('project_id','=',$data->project_id);
+       
+       foreach($visibleto as $vis)
+       {
+        $EventsVisibleto=new EventsVisibleto();
+        $EventsVisibleto->event_id=$lastevent;
+        $EventsVisibleto->user_id=$vis->user_id;
+        $EventsVisibleto->save();
+       }
         
-        $this->toggle('confirmingaddmanual');
+       
+       
+       $this->toggle('confirmingaddmanual');
         $this->dispatchBrowserEvent('banner-message', [
             'style' => 'success',
             'message' => 'New manual added successfully!'

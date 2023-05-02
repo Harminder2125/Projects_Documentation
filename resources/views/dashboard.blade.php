@@ -195,5 +195,11 @@
 
 
 
+
+
+
+        @livewire('notifications')
+
+
     </div>
 </x-dashboard-layout>

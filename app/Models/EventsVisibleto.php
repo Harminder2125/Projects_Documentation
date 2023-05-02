@@ -19,4 +19,10 @@ class EventsVisibleto extends Model
     {
         return $this->belongsTo(User::class);
     }
+
+    public function Events()
+    {
+        return $this->belongsTo(Events::class,'event_id');
+    }
+
 }
