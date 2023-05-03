@@ -48,13 +48,17 @@ class Admin extends Component
    }
    public function savePrivileges()
    {
-        role_privilege_mapping::where('role_id',$this->role)->delete();
+        
+        $current = role_privilege_mapping::where('role_id',$this->role)->delete();
         foreach($this->mappedPrivileges as $key=>$prv)
-        {
+        {   if($prv){
             $rpmapping = new role_privilege_mapping();
             $rpmapping->role_id = $this->role;
             $rpmapping->privilege_id = $key;
             $rpmapping->save();
+        }
+ 
+            
         }
         $this->emit('saved');
         $this->toggle('edit');
