@@ -54,6 +54,7 @@ class UserPolicy
      */
     public function create(User $user)
     {
+        dd(Session::get('permissions'));
         return Session::get('permissions.create_user')==1;
     }
 
