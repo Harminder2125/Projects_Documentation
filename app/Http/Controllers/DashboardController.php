@@ -71,13 +71,13 @@ class DashboardController extends Controller
         return view('notifications');
     }
 
-    public function administrative_priveleges()
+    public function administrative_privileges()
     {
-        return view('priveleges.administrative');
+        return view('privileges.administrative');
     }
-     public function project_priveleges()
+     public function project_privileges()
     {
-        return view('priveleges.project');
+        return view('privileges.project');
     }
     
     
