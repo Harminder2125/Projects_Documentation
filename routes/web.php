@@ -57,6 +57,10 @@ Route::middleware([
     Route::get('/user/projects',[UserController::class,'projects'])->name('userprojects');
     Route::get('/user/dashboard/{id?}',[UserController::class,'dashboard'])->name('rolebasedprojects');
     Route::get('/manage/user/projects',[UserController::class,'manageprojects'])->name('manageuserprojects');
+
+    //PRIVELEGES ROUTES
+    Route::get('/priveleges/administrative',[DashboardController::class,'administrative_priveleges'])->name('admin-priveleges');
+    Route::get('/priveleges/project',[DashboardController::class,'project_priveleges'])->name('project-priveleges');
      
 
     

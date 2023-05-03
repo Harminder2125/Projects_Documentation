@@ -51,7 +51,7 @@
             </li>
 
             @if(Auth::user()->role_id == 1)
-            @can('manage_users')
+
             <li>
 
 
@@ -67,7 +67,64 @@
 
 
             </li>
-            @endcan
+            <li class="border-b border-gray-200">
+                <button type="button" class="flex items-center w-full p-2 pl-3 py-3 text-sm font-normal text-gray-500 transition duration-75  group hover:bg-gray-200 dark:text-white dark:hover:bg-gray-700" aria-controls="dropdown-example2" data-collapse-toggle="dropdown-example2">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class=" w-6 h-6">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 5.25a3 3 0 013 3m3 0a6 6 0 01-7.029 5.912c-.563-.097-1.159.026-1.563.43L10.5 17.25H8.25v2.25H6v2.25H2.25v-2.818c0-.597.237-1.17.659-1.591l6.499-6.499c.404-.404.527-1 .43-1.563A6 6 0 1121.75 8.25z" />
+                    </svg>
+
+
+
+
+                    <span class="flex-1 text-xs font-semibold uppercase ml-2 text-left whitespace-nowrap" sidebar-toggle-item>Priveleges Management</span>
+                    <svg sidebar-toggle-item class="w-6 h-6" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                        <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd"></path>
+                    </svg>
+                </button>
+                <ul id="dropdown-example2" class="hidden">
+                    <li>
+                        <div class="pl-6">
+
+                            <x-jet-nav-link class="uppercase  text-sm border-b border-gray-200" href="{{ route('admin-priveleges') }}" :active="request()->routeIs('admin-priveleges')">
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="mr-2 w-6 h-6">
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="M9.568 3H5.25A2.25 2.25 0 003 5.25v4.318c0 .597.237 1.17.659 1.591l9.581 9.581c.699.699 1.78.872 2.607.33a18.095 18.095 0 005.223-5.223c.542-.827.369-1.908-.33-2.607L11.16 3.66A2.25 2.25 0 009.568 3z" />
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="M6 6h.008v.008H6V6z" />
+                                </svg>
+
+
+
+                                {{ __('Administrative Priveleges') }}
+
+                            </x-jet-nav-link>
+
+                        </div>
+                    </li>
+                    <li>
+                        <div class="pl-6">
+
+                            <x-jet-nav-link class="uppercase  text-sm border-b border-gray-200" href="{{ route('project-priveleges') }}" :active="request()->routeIs('project-priveleges')">
+
+
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="mr-2 w-6 h-6">
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="M9.568 3H5.25A2.25 2.25 0 003 5.25v4.318c0 .597.237 1.17.659 1.591l9.581 9.581c.699.699 1.78.872 2.607.33a18.095 18.095 0 005.223-5.223c.542-.827.369-1.908-.33-2.607L11.16 3.66A2.25 2.25 0 009.568 3z" />
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="M6 6h.008v.008H6V6z" />
+                                </svg>
+
+
+
+                                {{ __('Project Based Priveleges') }}
+
+                            </x-jet-nav-link>
+
+                        </div>
+                    </li>
+
+
+                </ul>
+
+            </li>
+
+
 
             <li>
 
@@ -85,7 +142,7 @@
 
             </li>
             @elseif(Auth::user()->role_id == 2 or Auth::user()->role_id == 3)
-            @can('manage_users')
+
             <li>
 
 
@@ -101,7 +158,7 @@
 
 
             </li>
-            @endcan
+
             <li>
                 <button type="button" class="flex items-center w-full p-2 pl-3 py-3 text-sm font-normal text-gray-500 transition duration-75  group hover:bg-gray-200 dark:text-white dark:hover:bg-gray-700" aria-controls="dropdown-example3" data-collapse-toggle="dropdown-example3">
                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class=" w-6 h-6">
