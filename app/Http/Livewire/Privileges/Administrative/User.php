@@ -30,7 +30,7 @@ class User extends Component
 
    public function loadPrivileges()
    {
-       $this->privileges = privileges::all();
+       $this->privileges = privileges::where('type',1)->get();
    }
     public function loadMappedPrivileges()
    {

@@ -19,11 +19,11 @@
             <form>
                 <div class="flex">
                     <div class="flex items-center h-5">
-                        <input id="helper-checkbox" wire:model="mappedPrivileges.{{ $prv->id }}" aria-describedby="helper-checkbox-text" type="checkbox" value="" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
+                        <input id="helper-checkbox.{{ $prv->id }}" wire:model="mappedPrivileges.{{ $prv->id }}" aria-describedby="helper-checkbox-text" type="checkbox" value="" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
                     </div>
                     <div class="ml-2 text-sm">
-                        <label for="helper-checkbox" class="font-medium font-semibold text-gray-900 dark:text-gray-300">{{$prv->name}}</label>
-                        <p id="helper-checkbox-text" class="text-xs font-normal text-gray-500 dark:text-gray-300">For orders shipped from $25 in books or $29 in other categories</p>
+                        <label for="helper-checkbox.{{ $prv->id }}" class="font-medium font-semibold text-gray-900 dark:text-gray-300">{{$prv->name}}</label>
+                        <p id="helper-checkbox-text" class="text-xs font-normal text-gray-500 dark:text-gray-300">{{$prv->description}}</p>
                     </div>
                 </div>
             </form>
@@ -37,7 +37,7 @@
                 </div>
                 <div class="ml-2 text-sm">
                     <label for="helper-checkbox" class="font-medium font-semibold text-gray-900 dark:text-gray-300">{{$prv->name}}</label>
-                    <p id="helper-checkbox-text" class="text-xs font-normal text-gray-500 dark:text-gray-300">For orders shipped from $25 in books or $29 in other categories</p>
+                    <p id="helper-checkbox-text" class="text-xs font-normal text-gray-500 dark:text-gray-300">{{$prv->description}}</p>
                 </div>
 
             </div>
