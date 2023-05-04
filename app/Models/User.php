@@ -122,7 +122,7 @@ class User extends Authenticatable
 
     public function role_privilege_mapping()
     {
-        return $this->hasMany(role_privilege_mapping::class,'role_id');
+        return $this->hasMany(role_privilege_mapping::class,'role_id','role_id');
     }
 
     public function ProjectTeamMembers()

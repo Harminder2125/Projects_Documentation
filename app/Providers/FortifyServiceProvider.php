@@ -45,11 +45,13 @@ class FortifyServiceProvider extends ServiceProvider
                  
                 $pp=array();
                 $perm=Privileges::get(['name']);
+                
                 foreach($perm as $y)
                 {
                     $pp[$y->name]=0;
                 }
                 $p=$user->role_privilege_mapping;
+                
                 foreach($p as $x)
                 {
 
@@ -83,6 +85,8 @@ class FortifyServiceProvider extends ServiceProvider
                
         
                 Session::put('permissions',$pp);
+
+                
                 Session::put('projectroles',$pr);
 
                //dd( Session::get('projectroles.1'));
