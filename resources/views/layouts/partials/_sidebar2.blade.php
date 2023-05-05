@@ -51,7 +51,7 @@
             </li>
 
             @if(Auth::user()->role_id == 1)
-
+            @canany(['update', 'view','delete','create'],[App\User::class])
             <li>
 
 
@@ -67,6 +67,7 @@
 
 
             </li>
+            @endcanany
             <li class="border-b border-gray-200">
                 <button type="button" class="flex items-center w-full p-2 pl-3 py-3 text-sm font-normal text-gray-500 transition duration-75  group hover:bg-gray-200 dark:text-white dark:hover:bg-gray-700" aria-controls="dropdown-example2" data-collapse-toggle="dropdown-example2">
                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class=" w-6 h-6">
@@ -142,7 +143,7 @@
 
             </li>
             @elseif(Auth::user()->role_id == 2 or Auth::user()->role_id == 3)
-
+            @canany(['update', 'view','delete','create'],[App\User::class])
             <li>
 
 
@@ -158,6 +159,7 @@
 
 
             </li>
+            @endcanany
 
             <li>
                 <button type="button" class="flex items-center w-full p-2 pl-3 py-3 text-sm font-normal text-gray-500 transition duration-75  group hover:bg-gray-200 dark:text-white dark:hover:bg-gray-700" aria-controls="dropdown-example3" data-collapse-toggle="dropdown-example3">
