@@ -9,9 +9,12 @@ use App\Models\Category;
 use App\Models\ProjectStatus;
 
 use Auth;
+
+use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 class EditProject extends Component
 {
         use WithFileUploads;
+        use AuthorizesRequests;
         public $project = [
         "id"=>"",
         "title"=>"",
@@ -56,6 +59,7 @@ class EditProject extends Component
     public function updateProjectDetails()
     {
         $project = Project::find($this->project['id']);
+        $this->authorize('update',$project);//policy for project update
         $project->title=$this->project['title'];
         $project->abbreviation=$this->project['abbreviation'];
         $project->category=$this->project['category'];

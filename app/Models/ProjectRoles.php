@@ -12,4 +12,9 @@ class ProjectRoles extends Model
         'name',
         
     ];
+
+    public function Projectrole_privilege_mapping()
+    {
+        return $this->hasMany(Projectrole_privilege_mapping::class,'projectrole_id');
+    }
 }

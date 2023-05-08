@@ -35,4 +35,11 @@ class ProjectTeamMembers extends Model
    }
 
    
+
+   public function Projectrole_privilege_mapping()
+   {
+    return $this->hasmany(Projectrole_privilege_mapping::class,'projectrole_id','projectrole_id');
+   }
+
+   
 }

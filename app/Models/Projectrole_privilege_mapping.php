@@ -13,12 +13,12 @@ class Projectrole_privilege_mapping extends Model
         'privilege_id'
      ];
 
-     function projectrole()
+     public function projectrole()
     {
-        return $this->belongsTo(ProjectRoles::class);
+        return $this->belongsTo(ProjectRoles::class,'projectrole_id');
     }
-    function privileges()
+    public function privileges()
     {
-        return $this->belongsTo(Privileges::class);
+        return $this->belongsTo(Privileges::class,'privilege_id');
     }
 }

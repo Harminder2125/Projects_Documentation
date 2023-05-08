@@ -7,9 +7,10 @@ use App\Models\Project;
 use App\Models\Category;
 use App\Models\ProjectStatus;
 use DB;
-
+use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 class AllProjects extends Component
 {
+    use AuthorizesRequests;
     public $search = '';
     public $category=0;
     public $categoryname="";
@@ -55,6 +56,8 @@ class AllProjects extends Component
 
     function openProjectForEditing($id)
     {
+        $project = Project::find($id);
+        $this->authorize('update',$project);
          return redirect()->to('/admin/edit/project/'.$id);
     }
 

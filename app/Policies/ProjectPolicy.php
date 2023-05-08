@@ -3,6 +3,7 @@
 namespace App\Policies;
 
 use App\Models\Project;
+use App\Models\ProjectTeamMembers;
 use App\Models\User;
 use Illuminate\Auth\Access\HandlesAuthorization;
 use Illuminate\Support\Facades\Session;
@@ -59,7 +60,23 @@ class ProjectPolicy
      */
     public function update(User $user, Project $project)
     {
-        //
+        
+        $projectroles=ProjectTeamMembers::where('user_id','=',$user->id)->where('project_id','=',$project->id)->get();
+        //dd($projectroles);
+        foreach($projectroles as $p)
+        {
+        $privileges=$p->Projectrole_privilege_mapping;
+        foreach($privileges as $pp)
+        {
+
+            $priv=$pp->privileges->name;
+            if($priv=='update_project')
+            {
+                return 1;
+            }
+        }
+        }
+       
     }
 
     /**
