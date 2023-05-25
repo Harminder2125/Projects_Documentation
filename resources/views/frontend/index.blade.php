@@ -22,35 +22,41 @@
 
         </div>
         <div class="w-full items-center flex flex-col border-t-0  border-zinc-300 border-dashed">
-            <div class="bg-gray-800 w-full flex justify-center">
+            <div class="bg-pink-900/10 w-full flex justify-center">
                 <div class="w-8/12 text-center grid grid-cols-4 gap-2">
 
 
 
                     <div class="p-4 pl-0">
-                        <div class="  p-2 ">
-                            <div class="text-4xl text-white font-bold mt-2">1,234</div>
-                            <div class="text-xl text-pink-200 font-semibold">Published Projects</div>
+                        <div class=" p-2 ">
+                            <div class="text-3xl text-stone-800 font-bold mt-2">1,234</div>
+                            <div class="text-xl text-pink-800 font-semibold">Published Projects</div>
 
                         </div>
                     </div>
                     <div class="p-4">
                         <div class="  p-2">
-                            <div class="text-4xl text-white font-bold mt-2">1,234</div>
-                            <div class="text-xl text-pink-200 font-semibold">Registered Groups</div>
+                            <div class="text-3xl text-stone-800 font-bold mt-2">1,234</div>
+
+                            <div class="text-xl text-pink-800 font-semibold">Registered Groups</div>
+
                         </div>
                     </div>
 
                     <div class="p-4">
                         <div class="  p-2">
-                            <div class="text-4xl text-white font-bold mt-2">10,000</div>
-                            <div class="text-xl text-pink-200 font-semibold">Project Categories</div>
+                            <div class="text-3xl text-stone-800 font-bold mt-2">10,000</div>
+
+                            <div class="text-xl text-pink-800 font-semibold">Project Categories</div>
+
                         </div>
                     </div>
                     <div class="p-4">
                         <div class="p-2">
-                            <div class="text-4xl text-white font-bold mt-2">10,000</div>
-                            <div class="text-xl text-pink-200 font-semibold">Project Manuals</div>
+                            <div class="text-3xl text-stone-800 font-bold mt-2">10,000</div>
+
+                            <div class="text-xl text-pink-800 font-semibold">Project Manuals</div>
+
                         </div>
                     </div>
 
