@@ -176,11 +176,19 @@
 
                             <h2 class="font-semibold">Groups/States Registered</h2>
                         </div>
-                        <div class="h-24 bg-stone-200 rounded-lg flex justify-center items-center">1000</div>
-                        <div class="h-24 bg-stone-200 rounded-lg flex justify-center items-center">1000</div>
-                        <div class="h-24 bg-stone-200 rounded-lg flex justify-center items-center">1000</div>
-                        <div class="h-24 bg-stone-200 rounded-lg flex justify-center items-center">1000</div>
-                        <div class="h-24 bg-stone-200 rounded-lg flex justify-center items-center">1000</div>
+                        <div class="h-24 bg-stone-200 rounded-lg flex justify-center items-center flex-col">
+                            <h1 class="text-2xl">{{$groups}}</h1>
+
+                            <h2 class="font-semibold">Users Registered</h2>
+                        </div>
+
+                        <div class="h-24 bg-stone-200 rounded-lg flex justify-center items-center flex-col">
+                            <h1 class="text-2xl">{{$groups}}</h1>
+
+                            <h2 class="font-semibold">Users Registered</h2>
+                        </div>
+
+
                     </div>
 
                 </div>

@@ -34,24 +34,24 @@
                            <ul class="mt-4 flex flex-col p-4 dark:border-gray-700 dark:bg-gray-800 md:mt-0 md:flex-row md:space-x-0 md:border-0">
                                <li class="hover:bg-rose-700 block rounded py-2 pl-3 pr-4">
 
-                                   <a href="/" class="{{ Route::is('home') ? 'md:text-rose-400' : '' }} text-sm text-white dark:text-white md:bg-transparent md:p-0 ">Introduction</a>
+                                   <a href="/" class="{{ Route::is('home') ? 'md:text-rose-400' : '' }} text-sm text-white dark:text-white md:bg-transparent md:p-0 ">Home</a>
                                </li>
                                <li class="hover:bg-rose-700 block rounded py-2 pl-3 pr-3">
 
-                                   <a href="/projects" class="{{ Route::is('projects') ? 'md:text-orange-400' : '' }} text-sm   text-white dark:text-white md:bg-transparent md:p-0 ">Home</a>
+                                   <a href="/projects" class="{{ Route::is('projects') ? 'md:text-orange-400' : '' }} text-sm   text-white dark:text-white md:bg-transparent md:p-0 ">Projects</a>
 
                                </li>
 
 
                                <li class="hover:bg-rose-700 block rounded py-2 pl-3 pr-4">
 
-                                   <a href="/" class="{{ Route::is('home') ? 'md:text-orange-400' : '' }} text-sm  text-white dark:text-white md:bg-transparent md:p-0 ">Projects</a>
+                                   <a href="/" class="{{ Route::is('home') ? 'md:text-orange-400' : '' }} text-sm  text-white dark:text-white md:bg-transparent md:p-0 ">About PMR</a>
 
                                </li>
 
                                <li class="hover:bg-rose-700 block rounded py-2 pl-3 pr-4">
 
-                                   <a href="/" class="{{ Route::is('home') ? 'md:text-orange-400' : '' }} text-sm  text-white dark:text-white md:bg-transparent md:p-0 ">Manuals</a>
+                                   <a href="/" class="{{ Route::is('home') ? 'md:text-orange-400' : '' }} text-sm  text-white dark:text-white md:bg-transparent md:p-0 ">PMR Manual</a>
 
                                </li>
 

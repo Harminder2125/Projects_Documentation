@@ -33,6 +33,12 @@ class HomeController extends Controller
             "groups"=>$countgroups,
         ]);
     }
+    public function projects()
+    {
+
+        return view('frontend.projects');
+    }
+
 
     
 }
