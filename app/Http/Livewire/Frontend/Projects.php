@@ -16,7 +16,10 @@ class Projects extends Component
     public $groups;
     public $filter = [
         "category"=>"",
-        "group"=>""
+        "group"=>"",
+        "categoryname"=>"",
+        "groupname"=>""
+
     ];
 
     public $projectscount=0;
@@ -33,6 +36,9 @@ class Projects extends Component
         // $projects = Project::where('publish_status',1)->paginate($this->pagesize);
         $category = $this->filter['category'];
         $group = $this->filter['group'];
+        $this->filter['categoryname'] = $this->getCategoryName($category);
+        $this->filter['groupname'] = $this->getGroupName($group);
+
 
         $projects = Project::when($group,function($query, $group){
                 return $query->where('group_id',$group);
@@ -44,6 +50,31 @@ class Projects extends Component
         $projects->withPath('/projects');
         return view('livewire.frontend.projects',['projects'=>$projects]);
     }
+    public function getCategoryName($cat)
+    {
+      
+        foreach($this->categories as $category)
+        {
+            if($category->id == $cat)
+            {
+                return $category->name;
+            }
+        }
+        return "";
+
+    }
+    public function getGroupName($grp)
+    {
+         foreach($this->groups as $group)
+        {
+            if($group->id == $grp)
+            {
+                return $group->name;
+            }
+        }
+        return "";
+
+    }
 
 
     public function resetFilters()
@@ -51,6 +82,10 @@ class Projects extends Component
        
         $this->filter["category"]= "";
         $this->filter["group"]= ""; 
+        $this->filter["categoryname"]= "";
+        $this->filter["groupname"]= ""; 
+
+
     
     }
 }
