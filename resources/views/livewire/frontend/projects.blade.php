@@ -37,25 +37,52 @@
 
                 <div class="flex justify-center items-center">
                     <x-jet-label class="mr-2">Group/State</x-jet-label>
-                    <x-select type="text" class="mt-1 block w-full" wire:model="project.category" :userlist="$groups" />
+                    <x-select type="text" class="mt-1 block w-full" wire:model="filter.group" :userlist="$groups" />
 
                 </div>
 
                 <div class="flex justify-center items-center">
                     <x-jet-label class="mx-2">Category</x-jet-label>
-
-                    <x-select type="text" class="mt-1 block w-full" wire:model="project.category" :userlist="$categories" />
+                    <x-select type="text" class="mt-1 block w-full" wire:model="filter.category" :userlist="$categories" />
                 </div>
 
                 <div class="flex justify-center items-center">
-                    <x-primary-button class="mt-1">Filter Projects</x-primary-button>
+                    @if($filter['group']=="" && $filter['category']=="")
+                    <x-secondary-button class="mt-1 readonly hover:!bg-stone-300 !cursor-not-allowed">Reset All Filters</x-secondary-button>
+
+
+                    @else
+                    <x-danger-button id="resetbutton" class="mt-1" wire:click="resetFilters()">Reset All Filters</x-danger-button>
+                    @endif
                 </div>
 
 
 
 
             </div>
+            @if($filter['group'] || $filter['category'])
+            <div class="flex justify-center items-center p-4 bg-orange-600/20 mb-4">
 
+                @if($filter['group'] && $filter['category']==null)
+                <x-sub-title id="grp">Showing all the projects developed by <span class="text-red-700">NIC-Punjab</span></x-sub-title>
+                @endif
+                @if($filter['category'] && $filter['group']==null)
+                <x-sub-title id="cat">Showing all the projects developed under Category <span class="text-red-700">Transport</span>
+                </x-sub-title>
+                @endif
+                @if($filter['group'] && $filter['category'])
+                <x-sub-title id="both">Showing all the projects developed by <span class="text-red-700">NIC-Punjab</span>
+
+
+                    Under Category <span class="text-red-700">Transport</span></x-sub-title>
+
+
+                @endif
+
+
+
+            </div>
+            @endif
             <h1 class="font-semibold">Total published projects ({{$projectscount}})</h1>
         </div>
 
@@ -70,9 +97,9 @@
                 @endif
                 <h1 class="uppercase font-semibold !text-lg my-2">{{$project->title}} ( {{$project->abbreviation}} )</h1>
                 <x-sub-title class="!leading-loose">Developed by - <span class="text-fuchsia-900 bg-fuchsia-900/20 p-1 rounded-lg">{{$project->group->name}}</span>
-                 under <span class="text-red-700">
-                 {{$project->project_category->name}} 
-                 </span> category</x-sub-title>
+                    under <span class="text-red-700">
+                        {{$project->project_category->name}}
+                    </span> category</x-sub-title>
 
 
 
