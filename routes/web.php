@@ -20,6 +20,7 @@ use App\Http\Controllers\AdminController;
 */
 Route::get('/',[HomeController::class , 'index'])->name('Home');
 Route::get('/projects',[HomeController::class , 'projects'])->name('Projects');
+Route::get('/about',[HomeController::class , 'about'])->name('about');
 
 
 

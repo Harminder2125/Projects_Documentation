@@ -8,7 +8,7 @@
             <x-main-heading class="!text-2xl !text-stone-700">Projects</x-main-heading>
             <x-sub-heading class="!mb-4">Portfolio of projects developed by National Informatics Centre</x-sub-heading>
 
-            <div class="w-full flex justify-start px-8 w-full">
+            <div class="flex justify-start px-8 w-full">
                 <span class="flex mb-2 ">
                     <a href="/" class="">
                         <x-sub-heading class="hover:!text-fuchsia-800"> Home > </x-sub-heading>
@@ -69,7 +69,10 @@
                 <div class="bg-fuchsia-900/30 text-white rounded-t-lg h-40 flex justify-center items-center">{{$project->abbreviation}}</div>
                 @endif
                 <h1 class="uppercase font-semibold !text-lg my-2">{{$project->title}} ( {{$project->abbreviation}} )</h1>
-                <x-sub-title class="!leading-loose">Developed by - <span class="text-fuchsia-900 bg-fuchsia-900/20 p-1 rounded-lg">{{$project->group->name}}</span> under <span class="text-red-700">{{$project->project_category->name}} </span> category</x-sub-title>
+                <x-sub-title class="!leading-loose">Developed by - <span class="text-fuchsia-900 bg-fuchsia-900/20 p-1 rounded-lg">{{$project->group->name}}</span>
+                 under <span class="text-red-700">
+                 {{$project->project_category->name}} 
+                 </span> category</x-sub-title>
 
 
 

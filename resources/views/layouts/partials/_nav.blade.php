@@ -45,7 +45,7 @@
 
                                <li class="hover:bg-rose-700 block rounded py-2 pl-3 pr-4">
 
-                                   <a href="/" class="{{ Route::is('home') ? 'md:text-orange-400' : '' }} text-sm  text-white dark:text-white md:bg-transparent md:p-0 ">About PMR</a>
+                                   <a href="/about" class="{{ Route::is('about') ? 'md:text-orange-400' : '' }} text-sm  text-white dark:text-white md:bg-transparent md:p-0 ">About PMR</a>
 
                                </li>
 
