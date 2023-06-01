@@ -14,7 +14,7 @@
                         <x-sub-heading class="hover:!text-fuchsia-800"> Home > </x-sub-heading>
 
                     </a>
-                    <a href="/" class="">
+                    <a href="#" class="">
                         <x-sub-heading class="hover:!text-fuchsia-800">&nbsp;Projects</x-sub-heading>
 
 
