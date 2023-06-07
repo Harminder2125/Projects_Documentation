@@ -28,17 +28,17 @@
             <div class="p-8">
                 <h1 class="uppercase font-semibold">Group/State wise nodal officers</h1>
                 <table class="w-full mt-4">
-                    <thead class="bg-pink-800/90 text-white w-full">
+                    <thead class="bg-stone-200 text-stone-600 w-full">
 
-                        <th class="p-4 border-r border-fuchsia-900/90">Sr.</th>
-                        <th class="p-4 border-r border-fuchsia-900/90"">Group/State</th>
-                        <th class=" p-4">Nodal Officer Detail</th>
+                        <th class="p-2 border-r border-stone-900/10">Sr.</th>
+                        <th class="p-2 border-r border-stone-900/10"">Group/State</th>
+                        <th class=" p-2">Nodal Officer Detail</th>
                     </thead>
                     <tbody>
                         @foreach($nodals as $key=>$nodal)
                         <tr class="border px-4">
                             <td class="border-r p-2">{{$key+1}}</td>
-                            <td class="border-r p-2">{{$nodal['group']}}</td>
+                            <td class="border-r p-2 uppercase">{{$nodal['group']}}</td>
                             <td class="border-r p-2">
                                 <div class="flex flex-col justify-center">
                                     <h1 class="text-lg font-semibold">{{$nodal['Officer']}}</h1>

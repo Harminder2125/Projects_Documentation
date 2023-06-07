@@ -90,7 +90,7 @@
             @endif
             <h1 class="font-semibold">Total published projects ({{$projectscount}})</h1>
         </div>
-        @if($projectscount<=1) <div class="flex flex-col justify-center items-center h-96">
+        @if($projectscount<1) <div class="flex flex-col justify-center items-center h-96">
             <div>
                 <lottie-player src="/assets/js/lottieanimations/empty-ghost.json" background="transparent" speed="1" style="width: 300px; height: 300px;" loop autoplay></lottie-player>
 
