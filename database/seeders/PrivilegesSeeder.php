@@ -17,7 +17,7 @@ class PrivilegesSeeder extends Seeder
         DB::table('privileges')->delete();
         $privileges = array(
                     array('name' => "view_project",'description'=>'To view the project','type'=>'2'),
-                    array('name' => "create_project",'description'=>'To create project','type'=>'2'),
+                    array('name' => "create_project",'description'=>'To create project','type'=>'1'),
                     array('name' => "update_project",'description'=>'to edit changes in project','type'=>'2'),
                     array('name' => "delete_project",'description'=>'To delete project','type'=>'2'), 
                     array('name' => "view_user",'description'=>'To view all users','type'=>'1'),

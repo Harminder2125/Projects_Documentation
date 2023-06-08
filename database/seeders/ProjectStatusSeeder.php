@@ -17,9 +17,9 @@ class ProjectStatusSeeder extends Seeder
     {
         DB::table('project_statuses')->delete();
         $status = array(
-                    array('name' => "Published"),
-                    array('name' => "Unpublished"),
-                   
+                    array('name' => "created"),
+                    array('name' => "description_completed"),
+                    array('name' => "description_published"),
                 );
         DB::table('project_statuses')->insert($status);
     }

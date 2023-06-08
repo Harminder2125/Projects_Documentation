@@ -58,7 +58,7 @@ class FortifyServiceProvider extends ServiceProvider
                     $pp[$x->privileges->name]=1;
                 }
 
-               // dd($pp);
+                // dd($pp);
                 
                 
 
@@ -85,11 +85,10 @@ class FortifyServiceProvider extends ServiceProvider
                
         
                 Session::put('permissions',$pp);
-
                 
                 Session::put('projectroles',$pr);
 
-               //dd( Session::get('projectroles.1'));
+            //    dd( Session::get('projectroles'));
                 
                 // Session::put('role_id',$user->role_id);
                 // Session::put('role',$user->role->name);

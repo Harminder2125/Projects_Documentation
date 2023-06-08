@@ -38,7 +38,7 @@ class CreateProject extends Component
         "logo_image"=>"",
         "banner_image"=>"",
         "group_id"=>"",
-        "publish_status"=>2, // means unpublished
+        "publish_status"=>1, // means unpublished
         "project_head_id"=>"",
         "project_head_name"=>""
     ];
@@ -137,6 +137,7 @@ class CreateProject extends Component
         ]);
       
         $this->emit('close-banner');
+        return redirect('/admin/projects');
 
     }
     public function resetProject()

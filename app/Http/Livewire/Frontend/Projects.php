@@ -44,7 +44,7 @@ class Projects extends Component
                 return $query->where('group_id',$group);
          })->when($category,function($query, $category){
                 return $query->where('category',$category);
-         })->orderBy('id','DESC')->where('publish_status',1)->paginate($this->pagesize);
+         })->orderBy('id','DESC')->where('publish_status',3)->paginate($this->pagesize);
 
         $this->projectscount = $projects->count();
         $projects->withPath('/projects');
