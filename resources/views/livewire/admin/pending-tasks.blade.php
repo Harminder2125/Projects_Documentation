@@ -47,7 +47,25 @@
                 <div class="text-sm text-stone-500">
                     @if($prj->publish_status ==1)
                     <!--Means project is just create and waiting for Project Head to complete the basic details  -->
-                    <p> You have create the project on </p>
+                    <div class="flex items-center">
+                        <div class="w-16 h-16 rounded-full flex items-center justify-center bg-gray-300">
+                            <div class="w-4 h-4 rounded-full bg-green-500"></div>
+                        </div>
+                        <div class="w-24 h-1 bg-gray-300"></div>
+                        <div class="w-16 h-16 rounded-full flex items-center justify-center bg-gray-300">
+                            <div class="w-4 h-4 rounded-full bg-green-500"></div>
+                        </div>
+                        <div class="w-24 h-1 bg-gray-300"></div>
+                        <div class="w-16 h-16 rounded-full flex items-center justify-center bg-gray-300">
+                            <div class="w-4 h-4 rounded-full bg-green-500"></div>
+                        </div>
+                        <div class="w-24 h-1 bg-gray-300"></div>
+                        <div class="w-16 h-16 rounded-full flex items-center justify-center bg-gray-300">
+                            <div class="w-4 h-4 rounded-full"></div>
+                        </div>
+                    </div>
+
+
 
                     @elseif($prj->publish_status == 2)
                     <!--Means project head has filled the basic details and sent project to admin for publishing-->
@@ -67,35 +85,4 @@
 
 
 
-    <div class="flex justify-center">
-        <div class="flex-grow">
-            <div class="relative">
-                <div class="absolute h-2 w-2 bg-gray-400 rounded-full top-0 left-1/2 transform -translate-x-1/2"></div>
-                <div class="flex justify-between items-center mb-8">
-                    <div class="w-16 h-16 bg-gray-400 rounded-full"></div>
-                    <div class="w-16 h-16 bg-gray-400 rounded-full"></div>
-                    <div class="w-16 h-16 bg-gray-400 rounded-full"></div>
-                    <div class="w-16 h-16 bg-gray-400 rounded-full"></div>
-                    <div class="flex justify-between">
-                        <div class="w-1/4 text-center">
-                            <p class="mb-2">Step 1</p>
-                            <p class="text-gray-400">Description 1</p>
-                        </div>
-                        <div class="w-1/4 text-center">
-                            <p class="mb-2">Step 2</p>
-                            <p class="text-gray-400">Description 2</p>
-                        </div>
-                        <div class="w-1/4 text-center">
-                            <p class="mb-2">Step 3</p>
-                            <p class="text-gray-400">Description 3</p>
-                        </div>
-
-
-                    </div>
-                </div>
-
-
-            </div>
-        </div>
-    </div>
 </div>
