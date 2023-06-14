@@ -4,15 +4,15 @@ namespace App\Http\Livewire\Admin;
 
 use Livewire\Component;
 use App\Models\Project;
+use Livewire\WithPagination;
 
 class PendingTasks extends Component
 {
+    use WithPagination;
     public function render()
     {
-        $projects = Project::where(function ($query) {
-                        $query->where('publish_status', 2)
-                                ->orWhere('publish_status', 1);
-        })->paginate(5);
+        $projects = Project::whereIn('publish_status', [1, 2])->paginate(5);
+         $projects->withPath('/dashboard');
       
         return view('livewire.admin.pending-tasks',['projects'=>$projects]);
     }

@@ -189,10 +189,10 @@
 
                 </div>
             </div>
-            <section name="pending-section">
+            <div name="pending-section">
                 <x-main-title>Pending Tasks ({{$pending}})</x-main-title>
                 <div class=" p-8 mt-2 flex flex-col">@livewire('admin.pending-tasks')</div>
-            </section>
+            </div>
         </div>
 
         @endif
