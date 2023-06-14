@@ -11,7 +11,7 @@ class PendingTasks extends Component
     use WithPagination;
     public function render()
     {
-        $projects = Project::whereIn('publish_status', [1, 2])->paginate(5);
+        $projects = Project::whereIn('publish_status', [1, 2])->orderBy('publish_status','DESC')->paginate(5);
          $projects->withPath('/dashboard');
       
         return view('livewire.admin.pending-tasks',['projects'=>$projects]);

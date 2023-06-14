@@ -1,23 +1,26 @@
 <div>
     <div class="grid grid-cols-5 gap-x-4 gap-y-10">
         @foreach($projects as $prj)
-        <div class=" bg-white rounded-md shadow-lg h-96">
+        <div class=" bg-white rounded-md shadow-lg h-104">
             <div class="
             @if($prj->publish_status == 2)
-     bg-red-500/90
+            bg-red-700/90
             @else
             bg-orange-500/90
+
             @endif
              mt-4 p-2 w-full  h-16 flex justify-center items-center">
 
-                <x-sub-title class="font-semibold !text-white text-center">{{$prj->title}} <span class="text-white
-               
-                  @if($prj->publish_status == 2)
-     bg-red-600 
-            @else
-           bg-orange-600 
-            @endif
-                 
+                <x-sub-title class="font-semibold !text-white text-center">{{$prj->title}} <span class="text-white 
+                @if($prj->publish_status == 2)
+                bg-red-700
+
+                @else
+                bg-orange-600
+
+
+                @endif
+
                  px-2 rounded-md">({{$prj->abbreviation}})</span></x-sub-title>
 
             </div>
@@ -58,7 +61,8 @@
 
                 @endif
             </div> --}}
-            <div class="text-sm text-stone-500 py-2 flex w-full items-start">
+            <div class="text-sm text-stone-500 py-2 flex w-full items-start h-36 bg-stone-100 p-2 mt-2 rounded-md">
+
                 @if($prj->publish_status ==1)
                 <!--Means project is just create and waiting for Project Head to complete the basic details  -->
                 <div class="flex items-center flex-col w-full">
@@ -96,16 +100,16 @@
                             <div class="w-4 h-4 rounded-full flex items-center justify-center bg-gray-300">
                                 <div class="w-2 h-2 rounded-full bg-gray-500"></div>
                             </div>
-                            
+
                         </div>
                         <div class="pl-3 text-xs font-semibold lowercase absolute top-24 left-5">
-                             Admin can approve/reject submitted project details
+                            Admin can approve/reject submitted project details
                         </div>
                     </div>
-                   
 
 
-                   
+
+
 
 
                 </div>
@@ -114,7 +118,7 @@
 
                 @elseif($prj->publish_status == 2)
                 <!--Means project head has filled the basic details and sent project to admin for publishing-->
-                  <div class="flex items-center flex-col w-full">
+                <div class="flex items-center flex-col w-full">
                     <div class="flex px-2 relative bg-blue-300 w-full">
                         <div class="flex items-center flex-col absolute left-0">
 
@@ -130,11 +134,11 @@
                             @endif
                         </div>
                     </div>
-                    <div class="flex px-2 relative bg-blue-300 w-full">
+                    <div class="flex px-2 relative w-full">
                         <div class="flex items-center flex-col absolute top-12 left-0">
 
                             <div class="w-4 h-4 rounded-full flex items-center justify-center bg-green-300">
-                                <div class="w-2 h-2 rounded-full bg-gray-500"></div>
+                                <div class="w-2 h-2 rounded-full bg-green-500"></div>
                             </div>
                             <div class="w-1 h-12  bg-gray-300"></div>
                         </div>
@@ -143,30 +147,30 @@
                         </div>
                     </div>
 
-                    <div class="flex px-2 relative bg-blue-300 w-full">
+                    <div class="flex px-2 relative w-full">
                         <div class="flex items-center flex-col absolute top-24 left-0">
 
                             <div class="w-4 h-4 rounded-full flex items-center justify-center bg-gray-300">
                                 <div class="w-2 h-2 rounded-full bg-gray-500"></div>
                             </div>
-                            
+
                         </div>
                         <div class="pl-3 text-xs font-semibold lowercase absolute top-24 left-5">
-                             waiting for admin to approve/reject submitted project details
+                            waiting for admin to approve/reject submitted project details
                         </div>
                     </div>
-                   
 
 
-                   
 
 
-                </div>    
+
+
+                </div>
 
                 @else
 
-                 <div class="flex items-center flex-col w-full">
-                    <div class="flex px-2 relative bg-blue-300 w-full">
+                <div class="flex items-center flex-col w-full">
+                    <div class="flex px-2 relative w-full">
                         <div class="flex items-center flex-col absolute left-0">
 
                             <div class="w-4 h-4 rounded-full flex items-center justify-center bg-green-300">
@@ -181,7 +185,7 @@
                             @endif
                         </div>
                     </div>
-                    <div class="flex px-2 relative bg-blue-300 w-full">
+                    <div class="flex px-2 relative w-full">
                         <div class="flex items-center flex-col absolute top-12 left-0">
 
                             <div class="w-4 h-4 rounded-full flex items-center justify-center bg-green-300">
@@ -194,32 +198,49 @@
                         </div>
                     </div>
 
-                    <div class="flex px-2 relative bg-blue-300 w-full">
+                    <div class="flex px-2 relative w-full">
                         <div class="flex items-center flex-col absolute top-24 left-0">
 
                             <div class="w-4 h-4 rounded-full flex items-center justify-center bg-green-300">
                                 <div class="w-2 h-2 rounded-full bg-green-500"></div>
                             </div>
-                            
+
                         </div>
                         <div class="pl-3 text-xs font-semibold lowercase absolute top-24 left-5">
-                             Project Published Successfully
+                            Project Published Successfully
                         </div>
                     </div>
-                   
 
 
-                   
 
 
-                </div> 
+
+
+                </div>
 
                 @endif
+            </div>
+            <div class="flex justify-center items-center py-2 pt-4 w-full">
+                @if($prj->publish_status == 1)
+                <x-secondary-button class="!px-2 !py-2 !text-xs">Send Reminder</x-secondary-button>
+
+
+
+
+                @elseif($prj->publish_status ==2)
+                <x-success-button class="!px-2 !py-2 !text-xs mr-1">View Project Details</x-success-button>
+
+                @endif
+
+
+
             </div>
 
         </div>
     </div>
     @endforeach
+
+
 </div>
 <div class="flex justify-end py-8 ">
     {{$projects->links()}}
