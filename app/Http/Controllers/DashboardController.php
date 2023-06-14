@@ -13,7 +13,8 @@ class DashboardController extends Controller
 {
     public function index()
     {
-        return view('dashboard');
+        $pending_tasks_count = Project::where('Publish_status',1)->orWhere('Publish_status',2)->count();
+        return view('dashboard',["pending"=>$pending_tasks_count]);
     }
     
     public function groups()

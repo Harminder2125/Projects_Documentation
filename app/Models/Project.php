@@ -40,7 +40,7 @@ class Project extends Model
     public function head()
     {
          // Returns only project head
-        return $this->hasMany(ProjectTeamMembers::class,'project_id','id')->where('projectrole_id',1);
+        return $this->hasOne(ProjectTeamMembers::class,'project_id','id')->where('projectrole_id',1);
     }
     public function leader()
     {

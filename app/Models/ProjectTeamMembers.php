@@ -23,6 +23,10 @@ class ProjectTeamMembers extends Model
    {
     return $this->belongsTo(User::class,'user_id','id');
    }
+    public function getuser()
+   {
+    return $this->belongsTo(User::class,'user_id','id');
+   }
 
    public function group()
    {
