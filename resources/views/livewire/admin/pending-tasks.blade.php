@@ -2,9 +2,23 @@
     <div class="grid grid-cols-5 gap-x-4 gap-y-10">
         @foreach($projects as $prj)
         <div class=" bg-white rounded-md shadow-lg h-96">
-            <div class="bg-orange-500/90 mt-4 p-2 w-full  h-16 flex justify-center items-center">
+            <div class="
+            @if($prj->publish_status == 2)
+     bg-red-500/90
+            @else
+            bg-orange-500/90
+            @endif
+             mt-4 p-2 w-full  h-16 flex justify-center items-center">
 
-                <x-sub-title class="font-semibold !text-white text-center">{{$prj->title}} <span class="text-white bg-orange-600 px-2 rounded-md">({{$prj->abbreviation}})</span></x-sub-title>
+                <x-sub-title class="font-semibold !text-white text-center">{{$prj->title}} <span class="text-white
+                 bg-orange-600 
+                  @if($prj->publish_status == 2)
+     bg-red-600 
+            @else
+           bg-orange-600 
+            @endif
+                 
+                 px-2 rounded-md">({{$prj->abbreviation}})</span></x-sub-title>
 
             </div>
             <div class="p-4 flex w-full justify-center items-center flex-col">
