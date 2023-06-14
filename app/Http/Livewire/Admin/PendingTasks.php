@@ -9,7 +9,10 @@ class PendingTasks extends Component
 {
     public function render()
     {
-        $projects = Project::where('Publish_status',1)->orWhere('Publish_status',2)->paginate(5);
+        $projects = Project::where(function ($query) {
+                        $query->where('publish_status', 2)
+                                ->orWhere('publish_status', 1);
+        })->paginate(5);
       
         return view('livewire.admin.pending-tasks',['projects'=>$projects]);
     }
