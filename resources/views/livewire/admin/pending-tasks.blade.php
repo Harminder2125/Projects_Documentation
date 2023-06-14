@@ -11,7 +11,7 @@
              mt-4 p-2 w-full  h-16 flex justify-center items-center">
 
                 <x-sub-title class="font-semibold !text-white text-center">{{$prj->title}} <span class="text-white
-                 bg-orange-600 
+               
                   @if($prj->publish_status == 2)
      bg-red-600 
             @else
