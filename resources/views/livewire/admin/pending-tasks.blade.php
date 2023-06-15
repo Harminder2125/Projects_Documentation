@@ -3,21 +3,36 @@
         @foreach($projects as $prj)
         <div class=" bg-white rounded-md shadow-lg h-104">
             <div class="
-            @if($prj->publish_status == 2)
-            bg-red-700/90
+            @if(Auth::user()->isAdmin())
+                @if($prj->publish_status == 2)
+                    bg-red-700/90
+                @else
+                    bg-orange-500/90
+                @endif
             @else
-            bg-orange-500/90
+             @if($prj->publish_status == 2)
+             bg-green-700/90
+             @else
+             bg-red-700/90
+             @endif
+
 
             @endif
              mt-4 p-2 w-full  h-16 flex justify-center items-center">
 
                 <x-sub-title class="font-semibold !text-white text-center">{{$prj->title}} <span class="text-white 
-                @if($prj->publish_status == 2)
-                bg-red-700
-
+                @if(Auth::user()->isAdmin())
+                    @if($prj->publish_status == 2)
+                        bg-red-700
+                    @else
+                        bg-orange-600
+                    @endif
                 @else
-                bg-orange-600
-
+                    @if($prj->publish_status == 2)
+                    bg-green-600
+                    @else
+                    bg-red-700
+                    @endif
 
                 @endif
 
@@ -27,8 +42,9 @@
             <div class="p-4 flex w-full justify-center items-center flex-col">
 
                 <div class="flex w-full px-4 flex-col justify-center items-center">
+                    @if(Auth::user()->isAdmin())
                     <div class="mx-2 w-12 h-12 rounded-full bg-red-800 text-sm font-semibold uppercase flex items-center justify-center text-white">
-
+                        @endif
                         @if($prj->head()->exists())
 
 
@@ -63,6 +79,7 @@
             </div> --}}
             <div class="text-sm text-stone-500 py-2 flex w-full items-start h-36 bg-stone-100 p-2 mt-2 rounded-md">
 
+                @if(Auth::user()->isAdmin())
                 @if($prj->publish_status ==1)
                 <!--Means project is just create and waiting for Project Head to complete the basic details  -->
                 <div class="flex items-center flex-col w-full">
@@ -106,18 +123,8 @@
                             Admin can approve/reject submitted project details
                         </div>
                     </div>
-
-
-
-
-
-
                 </div>
-
-
-
-                @elseif($prj->publish_status == 2)
-                <!--Means project head has filled the basic details and sent project to admin for publishing-->
+                @else
                 <div class="flex items-center flex-col w-full">
                     <div class="flex px-2 relative bg-blue-300 w-full">
                         <div class="flex items-center flex-col absolute left-0">
@@ -160,17 +167,58 @@
                         </div>
                     </div>
 
-
-
-
-
-
                 </div>
+                @endif
 
                 @else
-
+                <!--Means project head has filled the basic details and sent project to admin for publishing-->
+                @if($prj->publish_status ==1)
+                <!--Means project is just create and waiting for Project Head to complete the basic details  -->
                 <div class="flex items-center flex-col w-full">
-                    <div class="flex px-2 relative w-full">
+                    <div class="flex px-2 relative bg-blue-300 w-full">
+                        <div class="flex items-center flex-col absolute left-0">
+
+                            <div class="w-4 h-4 rounded-full flex items-center justify-center bg-green-300">
+                                <div class="w-2 h-2 rounded-full bg-green-500"></div>
+                            </div>
+                            <div class="w-1 h-12  bg-gray-300"></div>
+                        </div>
+                        <div class="pl-3 text-xs font-semibold absolute left-5">
+                            @if($prj->created_at)
+                            Project created - <span class="text-stone-500">{{$prj->created_at->diffForHumans();}}</span>
+
+                            @endif
+                        </div>
+                    </div>
+                    <div class="flex px-2 relative bg-blue-300 w-full">
+                        <div class="flex items-center flex-col absolute top-12 left-0">
+
+                            <div class="w-4 h-4 rounded-full flex items-center justify-center bg-gray-300">
+                                <div class="w-2 h-2 rounded-full bg-gray-500"></div>
+                            </div>
+                            <div class="w-1 h-12  bg-gray-300"></div>
+                        </div>
+                        <div class="pl-3 text-xs font-semibold lowercase absolute top-12 left-5">
+                            waiting for you to submit project details
+                        </div>
+                    </div>
+
+                    <div class="flex px-2 relative bg-blue-300 w-full">
+                        <div class="flex items-center flex-col absolute top-24 left-0">
+
+                            <div class="w-4 h-4 rounded-full flex items-center justify-center bg-gray-300">
+                                <div class="w-2 h-2 rounded-full bg-gray-500"></div>
+                            </div>
+
+                        </div>
+                        <div class="pl-3 text-xs font-semibold lowercase absolute top-24 left-5">
+                            Admin can approve/reject submitted project details
+                        </div>
+                    </div>
+                </div>
+                @else
+                <div class="flex items-center flex-col w-full">
+                    <div class="flex px-2 relative bg-blue-300 w-full">
                         <div class="flex items-center flex-col absolute left-0">
 
                             <div class="w-4 h-4 rounded-full flex items-center justify-center bg-green-300">
@@ -189,48 +237,59 @@
                         <div class="flex items-center flex-col absolute top-12 left-0">
 
                             <div class="w-4 h-4 rounded-full flex items-center justify-center bg-green-300">
-                                <div class="w-2 h-2 rounded-full bg-gray-500"></div>
+                                <div class="w-2 h-2 rounded-full bg-green-500"></div>
                             </div>
-                            <div class="w-1 h-12  bg-green-300"></div>
+                            <div class="w-1 h-12  bg-gray-300"></div>
                         </div>
                         <div class="pl-3 text-xs font-semibold lowercase absolute top-12 left-5">
-                            project head to submit project details
+                            You have submitted the project details
                         </div>
                     </div>
 
                     <div class="flex px-2 relative w-full">
                         <div class="flex items-center flex-col absolute top-24 left-0">
 
-                            <div class="w-4 h-4 rounded-full flex items-center justify-center bg-green-300">
-                                <div class="w-2 h-2 rounded-full bg-green-500"></div>
+                            <div class="w-4 h-4 rounded-full flex items-center justify-center bg-gray-300">
+                                <div class="w-2 h-2 rounded-full bg-gray-500"></div>
                             </div>
 
                         </div>
                         <div class="pl-3 text-xs font-semibold lowercase absolute top-24 left-5">
-                            Project Published Successfully
+                            waiting for admin to approve/reject submitted project details
                         </div>
                     </div>
 
-
-
-
-
-
                 </div>
+                @endif
+
+
 
                 @endif
             </div>
             <div class="flex justify-center items-center py-2 pt-4 w-full">
+                @if(Auth::user()->isAdmin())
                 @if($prj->publish_status == 1)
                 <x-secondary-button class="!px-2 !py-2 !text-xs">Send Reminder</x-secondary-button>
-
-
-
-
                 @elseif($prj->publish_status ==2)
                 <x-success-button class="!px-2 !py-2 !text-xs mr-1">View Project Details</x-success-button>
+                @endif
+                @else
+                @if($prj->publish_status == 1)
+                <x-secondary-button class="!px-2 !py-2 !text-xs">Update & Submit Detail</x-secondary-button>
+                @elseif($prj->publish_status ==2)
+                <div class="flex flex-col justify-center items-center">
+                    <x-sub-title class="text-green-700 !text-xs mb-2 text-center">You have successfully submitted the details</x-sub-title>
+                    <x-success-button class="!px-2 !py-2 !text-xs mr-1">View Project Details</x-success-button>
+                </div>
 
                 @endif
+                @endif
+
+
+
+
+
+
 
 
 

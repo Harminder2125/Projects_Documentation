@@ -1,19 +1,33 @@
 <?php
 
 namespace App\Http\Controllers;
-use Illuminate\Support\Facades\Auth;
+
 use Illuminate\Http\Request;
 use App\Models\User;
 use App\Models\Project;
 use App\Models\ManualContent;
 use Illuminate\Support\Facades\Gate;
 use Livewire\Livewire;
+use Auth;
 
 class DashboardController extends Controller
 {
     public function index()
     {
         $pending_tasks_count = Project::where('Publish_status',1)->orWhere('Publish_status',2)->count();
+        
+        if(Auth::user()->isAdmin())
+        {
+            $$pending_tasks_count  = Project::whereIn('publish_status', [1, 2])->count();
+            
+        }
+        else
+        {
+            $pending_tasks_count  = Project::whereIn('publish_status', [1, 2])->whereHas('team',function($query){
+
+                $query->where('user_id',Auth::user()->id)->where('projectrole_id',1);
+            })->count();
+        }
         return view('dashboard',["pending"=>$pending_tasks_count]);
     }
     

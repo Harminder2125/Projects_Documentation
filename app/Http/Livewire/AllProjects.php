@@ -57,7 +57,7 @@ class AllProjects extends Component
     function openProjectForEditing($id)
     {
         $project = Project::find($id);
-        $this->authorize('update',$project);
+        //$this->authorize('update',$project);
          return redirect()->to('/admin/edit/project/'.$id);
     }
 
