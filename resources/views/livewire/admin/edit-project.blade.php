@@ -2,7 +2,7 @@
 
  {{-- <img src="{{ url('storage/photos/avatar.png') }}" alt="" title="" /> --}}
 
- <div>
+ <>
 
      <x-sub-title class="font-semibold">Basic details</x-sub-title>
      <div class="bg-gray-200 my-2 p-8 rounded-md mb-12">
@@ -71,7 +71,7 @@
      </div>
 
 
-     <x-sub-title class="font-semibold">Features</x-sub-title>
+     <x-sub-title class="font-semibold">Logo and Banner</x-sub-title>
 
      <div class="grid grid-cols-2 my-2 gap-2 bg-gray-200 rounded-md p-8">
 
@@ -127,6 +127,26 @@
 
 
      </div>
+
+     @foreach ($featureboxes as $feature)
+     <x-sub-title class="font-semibold mt-4">{{$feature->title}}</x-sub-title>
+     <x-sub-title class="text-xs">{{$feature->subtitle}}</x-sub-title>
+     
+     <div class="flex bg-gray-200 rounded-md p-8">
+            <div class="flex justify-end w-full">
+            
+                <x-primary-button wire:click="togglemodal()">Hello</x-primary-button>
+                <a  class="bg-stone-300 cursor-pointer rounded-md hover:bg-stone-400 p-2">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-4 h-4">
+  <path stroke-linecap="round" stroke-linejoin="round" d="M12 4.5v15m7.5-7.5h-15" />
+</svg></a>
+
+            </div>
+     </div>
+         
+     @endforeach
+
+
      <div class="flex justify-end mt-8">
 
          <a href="/admin/projects">
@@ -152,6 +172,111 @@
 
 
      </div>
+
+    <x-jet-confirmation-modal wire:model="modaleditmode">
+
+        <x-slot name="icon">
+            <div class="mx-auto shrink-0 flex items-center justify-center h-12 w-12 rounded-full bg-green-100 sm:mx-0 sm:h-10 sm:w-10">
+                <svg class="h-6 w-6 text-green-600" stroke-width="1.5" stroke="currentColor" fill="none" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M19 7.5v3m0 0v3m0-3h3m-3 0h-3m-2.25-4.125a3.375 3.375 0 11-6.75 0 3.375 3.375 0 016.75 0zM4 19.235v-.11a6.375 6.375 0 0112.75 0v.109A12.318 12.318 0 0110.374 21c-2.331 0-4.512-.645-6.374-1.766z" />
+                </svg>
+
+
+            </div>
+        </x-slot>
+        <x-slot name="subtitle">
+            All users will be added as priveleged users.
+        </x-slot>
+
+        <x-slot name="title">
+            Update User Details
+        </x-slot>
+
+        <x-slot name="content">
+
+            <div>
+
+                <x-jet-validation-errors class="mb-4" />
+                <form method="POST">
+                    @csrf
+                    <div class="w-full flex gap-x-5">
+                        <div class="w-full">
+                            <x-jet-label for="name" value="{{ __('Name') }}" />
+                            <x-input value="" id="upd_name" class="block w-full" type="text" name="upd_name" required autofocus autocomplete="name" />
+                        </div>
+                        <!-- <div class="w-full">
+                            <x-jet-label for="role" value="{{ __('Role') }}" />
+                            {{-- <select id="role" name="role" class="w-full border">
+                                @foreach($roles as $role)
+                                <option value="{{$role->id}}" {{$role->id==$edituser['role_id']?'selected':''}}>
+                                    {{$role->name}}
+                                </option>
+                                @endforeach
+                            </select> --}}
+
+                        </div>-->
+
+                    </div>
+
+                    <div class="flex gap-x-5 w-full">
+
+                        <div class="mt-4 w-full">
+
+                            <x-jet-label for="email" value="{{ __('Email') }}" />
+                            <x-input  id="upd_email" class="block w-full" type="email" name="upd_email" :value="old('email')" required />
+
+
+
+
+                        </div>
+
+                        <div class="mt-4 w-full">
+
+                            <x-jet-label for="mobile" value="{{ __('Mobile') }}" />
+                            <x-input id="upd_mobile" class="block w-full" type="text" name="upd_mobile" required />
+
+
+
+
+                        </div>
+                    </div>
+                    <div class="flex gap-x-5">
+
+                        <div class="mt-4 w-full">
+
+                            <x-jet-label for="empcode" value="{{ __('Empcode') }}" />
+                            <x-input  id="upd_empcode" class="block w-full" type="text" name="upd_empcode" :value="old('empcode')" required />
+
+
+
+
+                        </div>
+                        <div class="mt-4 w-full">
+
+                            <x-jet-label for="designation" value="{{ __('Designation') }}" />
+                            <x-input  id="upd_designation" class="block w-full" type="text" name="upd_designation" :value="old('designation')" required />
+
+
+
+
+                        </div>
+                    </div>
+
+                </form>
+            </div>
+
+        </x-slot>
+
+        <x-slot name="footer">
+            {{-- <x-jet-secondary-button wire:click="$toggle('confirmingUserEditing')" wire:loading.attr="disabled">
+                Close
+            </x-jet-secondary-button>
+
+            <x-primary-button class="ml-2" wire:click="updateUser({{$edituser['id']}})" wire:loading.attr="disabled">
+                Update User Details
+            </x-primary-button> --}}
+        </x-slot>
+    </x-jet-confirmation-modal>
 
 
  </div>

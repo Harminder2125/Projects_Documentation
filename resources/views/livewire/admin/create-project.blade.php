@@ -81,7 +81,7 @@
          </div>
 
      </div>
-     <x-sub-title class="font-semibold">Features</x-sub-title>
+     <x-sub-title class="font-semibold">Logo and Banner</x-sub-title>
 
      <div class="grid grid-cols-2 my-2 gap-2 bg-gray-200 rounded-md p-8">
 
@@ -196,43 +196,7 @@
          </div>
      </div>
 
-     <x-sub-title class="font-semibold mt-4 mb-2">Extended Features</x-sub-title>
-
-     <div class="grid grid-cols-1 mb-8 gap-2 bg-gray-200 rounded-md p-8">
-         <div class="flex justify-between items-center w-full">
-             @if($project['project_head_id'])
-             <div class="flex w-full px-4">
-                 <div class="mx-2 w-12 h-12 rounded-full bg-fuchsia-900 text-sm font-semibold uppercase flex items-center justify-center text-white">
-                     {{$this->getNameInitials($project['project_head_name'])}}
-                 </div>
-                 <div>
-                     <div class="text-xs mt-2  uppercase font-semibold">
-                         {{$project['project_head_name']}}
-
-                     </div>
-                     <div class="text-xs text-gray-500">Project Head</div>
-                 </div>
-
-             </div>
-             <x-dark-button wire:click="toggle('projectheadmodal')">Update</x-dark-button>
-
-
-             @else
-             <div class="flex">
-                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" class="w-6 h-6 stroke-orange-600  mr-2">
-
-                     <path stroke-linecap="round" stroke-linejoin="round" d="M12 9v3.75m-9.303 3.376c-.866 1.5.217 3.374 1.948 3.374h14.71c1.73 0 2.813-1.874 1.948-3.374L13.949 3.378c-.866-1.5-3.032-1.5-3.898 0L2.697 16.126zM12 15.75h.007v.008H12v-.008z" />
-                 </svg>
-
-
-                 <x-sub-title>No project head assigned !</x-sub-title>
-             </div>
-             <x-primary-button wire:click="toggle('projectheadmodal')">Assign</x-primary-button>
-
-
-             @endif
-         </div>
-     </div>
+     
 
     
     

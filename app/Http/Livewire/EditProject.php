@@ -6,6 +6,7 @@ use Livewire\Component;
 use Livewire\WithFileUploads;
 use App\Models\Project;
 use App\Models\Category;
+use App\Models\Featurebox;
 use App\Models\ProjectStatus;
 
 use Auth;
@@ -30,6 +31,14 @@ class EditProject extends Component
         "edit_banner_image"=>"",
         "publish_status"=>0
     ];
+   
+    public $modaleditmode=false;
+
+    public function togglemodal(){
+        $this->modaleditmode=!$this->modaleditmode;
+    }
+
+
     public function mount($id)
     {
         $project = Project::find($id);
@@ -48,13 +57,18 @@ class EditProject extends Component
 
             $this->project['publish_status'] = $project->publish_status;
         }
+
     }
     public function render()
     {
       
         $categories = Category::all();
-         $status= ProjectStatus::all();
-        return view('livewire.admin.edit-project',['categories'=>$categories,'statuslist'=>$status]);
+        $status= ProjectStatus::all();
+        $features=Featurebox::where('project_id',$this->project['id'])->get();    
+
+        return view('livewire.admin.edit-project',['categories'=>$categories,'statuslist'=>$status,
+        'featureboxes'=>$features
+    ]);
     }
     public function updateProjectDetails()
     {
