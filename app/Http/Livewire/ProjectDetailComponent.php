@@ -76,7 +76,7 @@ class ProjectDetailComponent extends Component
         $this->team_members= [];
         $this->temp['members'] = [];
         $project=Project::find($this->project_id);
-        if($project->head->first()){
+        if($project->head!=null && $project->head->first()){
             $head = $project->head->first();
             $this->project_head = $head;
             $this->temp['project_head_id'] =$head->user->id ;

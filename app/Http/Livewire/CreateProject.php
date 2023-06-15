@@ -9,6 +9,7 @@ use App\Models\Category;
 use App\Models\Project;
 use App\Models\ProjectStatus;
 use App\Models\User;
+use App\Models\Featurebox;
 use Illuminate\Support\Facades\Validator;
 use App\Models\ProjectTeamMembers;
 
@@ -25,6 +26,14 @@ class CreateProject extends Component
 
     public $temp = [
         "project_head_id"=>"",
+    ];
+
+    public $extendedfeature=[
+        "project_id"=>"",
+        "title"=>"",
+        "subtitle"=>"",
+        "position"=>"",
+        "icon"=>""
     ];
    
     public $project = [
@@ -113,6 +122,59 @@ class CreateProject extends Component
         $project->save();
         // Project::create($project);
         $lastId = $project->id;
+       
+        for($i=0;$i<=6 ; $i++){
+            $extendedfeature=new Featurebox;
+            $extendedfeature->project_id=$project->id;
+            $extendedfeature->position=$i;
+            switch($i){
+                case 0:
+                $extendedfeature->title="Hardware Requirements";
+                $extendedfeature->subtitle="Hardware and software requirement for running";
+                $extendedfeature->icon="settings";
+                break;
+
+                case 1:
+                    $extendedfeature->title="PROJECT ONBOARDING";
+                    $extendedfeature->subtitle="STEPS TO FOLLOW FOR ONBOARDING";
+                    $extendedfeature->icon="a";
+                    break;
+                
+                case 2:
+                    $extendedfeature->title="PROJECT PRELIMINARY SETUP";
+                    $extendedfeature->subtitle="SETTINGS";
+                    $extendedfeature->icon="b";
+                    break;
+                
+                case 3:
+                    $extendedfeature->title="STAGING SERVER";
+                    $extendedfeature->subtitle="DETAILS OF STAGING SERVER";
+                    $extendedfeature->icon="c";
+                    break;
+                
+                case 4:
+                    $extendedfeature->title="LIVE SERVER";
+                    $extendedfeature->subtitle="DETAILS OF LIVE SERVER";
+                    $extendedfeature->icon="d";
+                    break;
+            
+                case 5:
+                    $extendedfeature->title="MOBILE APPLICATION";
+                    $extendedfeature->subtitle="ANDROID/IOS";
+                    $extendedfeature->icon="e";
+                    break;
+                case 6:
+                    $extendedfeature->title="COMPLETE PROJECT MANUAL";
+                    $extendedfeature->subtitle="LIST OF ALL THE MANUALS";
+                    $extendedfeature->icon="f";
+                    break;
+            }
+            
+            $extendedfeature->save();
+        }
+       
+
+
         // dd($this->project);
         $projectheadid = $this->project['project_head_id'];
         ProjectTeamMembers::create(["project_id"=>$lastId,"user_id"=>$projectheadid,"projectrole_id"=>1]);
