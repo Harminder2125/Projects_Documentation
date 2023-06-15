@@ -107,7 +107,7 @@ class User extends Authenticatable
     
    /* LOCAL SCOPES ENDS HERE */
 
-    function role()
+   function role()
     {
         return $this->belongsTo(Role::class);
     }

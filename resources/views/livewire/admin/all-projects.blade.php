@@ -123,7 +123,7 @@
                 </td>
 
 
-                @if($project->head->first())
+                @if($project->head != null && $project->head->first())
 
                 <td class="px-6 py-4">{{$project->head->first()->user->name}}</td>
                 @else
