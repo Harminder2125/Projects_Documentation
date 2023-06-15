@@ -9,16 +9,74 @@
 
         <!-- <x-jet-welcome /> -->
         @if(Auth::user()->role_id==3)
-        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-            <div class="bg-white overflow-hidden shadow-xl sm:rounded-lg">
+        <!-- Dashboard top boxes -->
+        <div class="w-full  px-10 xs:px-2">
 
-                <div class="flex flex-col justify-ceter items-center p-20">
-                    <img src="./assets/images/permission.jpg" class="w-60" />
-                    <h1 class="font-bold text-pink-800 uppercase">Test No role/permissions assigned !</h1>
-                    <p class="py-2"> You don't have any role/permission assigned to you. Contact your group/state admin to assign you some role.</p>
+
+            <div class="gap-x-10 flex flex-row flex-wrap justify-ceter items-center p-3">
+
+                <div class="pb-1 mb-5 flex-1 bg-gradient-to-l from-pink-500/80 via-pink-700/80 to-pink-900/80 h-24 rounded-t-xl">
+
+                    <div class="p-3 h-full bg-white rounded-t-lg flex flex-row justify-between">
+
+                        <h1>Project Heads</h1>
+                        <div class=" animate-bounce bg-pink-900 rounded-full p-2 w-12 h-12 flex justify-center items-center">
+
+                            <h1 class="text-sm text-white">25</h1>
+
+                        </div>
+
+                    </div>
+                </div>
+                <div class="pb-1 mb-5 text-gray-800  flex-1 bg-gradient-to-l from-orange-500/80 via-red-700/80 to-red-900/80 h-24 rounded-t-xl">
+
+
+                    <div class="p-3 h-full bg-white rounded-t-lg flex flex-row justify-between">
+
+                        <h1>Registered Users</h1>
+                        <div class="animate-bounce bg-orange-700 rounded-full p-2 w-12 h-12 flex justify-center items-center">
+
+                            <h1 class="text-sm text-white">103</h1>
+
+                        </div>
+
+                    </div>
+                </div>
+                <div class="pb-1 mb-5  flex-1 bg-gradient-to-l from-fuchsia-500/80 via-fuchsia-700/80 to-fuchsia-900/80 h-24 rounded-t-xl">
+
+
+                    <div class="p-3 h-full bg-white rounded-t-lg flex flex-row justify-between">
+
+                        <h1>Added Projects</h1>
+                        <div class="animate-bounce bg-fuchsia-900 rounded-full p-2 w-12 h-12 flex justify-center items-center">
+                            <h1 class="text-sm text-white">1053</h1>
+
+                        </div>
+
+                    </div>
+
+                </div>
+                <div class="  pb-1 mb-5 flex-1 bg-gradient-to-l from-indigo-500/80 via-indigo-700/80 to-indigo-900/80 h-24 rounded-t-xl ">
+
+
+                    <div class="p-3 h-full bg-white rounded-t-lg flex flex-row justify-between">
+                        <h1 class="text-sm font-inter font-bold text-gray-600">Uploaded Manuals</h1>
+                        <div class="animate-bounce bg-indigo-900 rounded-full p-2 w-12 h-12 flex justify-center items-center">
+                            <h1 class="text-sm text-white">4556</h1>
+                        </div>
+
+                    </div>
+
                 </div>
             </div>
+            <div name="pending-section">
+                <x-main-title>Pending Tasks ({{$pending}})</x-main-title>
+                <div class=" p-8 mt-2 flex flex-col">@livewire('admin.pending-tasks')</div>
+            </div>
         </div>
+
+
+
 
         @endif
 
