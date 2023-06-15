@@ -23,7 +23,7 @@ class PendingTasks extends Component
             $projects = Project::whereIn('publish_status', [1, 2])->whereHas('team',function($query){
 
                 $query->where('user_id',Auth::user()->id)->where('projectrole_id',1);
-            })->orderBy('publish_status','DESC')->paginate(5);
+            })->orderBy('publish_status','ASC')->paginate(5);
         }
        
        $projects->withPath('/dashboard');

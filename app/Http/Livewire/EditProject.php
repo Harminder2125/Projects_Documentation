@@ -33,11 +33,32 @@ class EditProject extends Component
     ];
    
     public $modaleditmode=false;
+    public $modalData = [
+        "title"=>"",
+        "subtitle"=>"",
+        "icon"=>"",
+        "items"=>[]
+    ];
+    public function closemodal(){
+        $this->modalData['title'] = "";
+        $this->modalData['subtitle'] = "";
+        $this->modalData['icon'] = "";
 
+        $this->togglemodal();
+    }
     public function togglemodal(){
+        
         $this->modaleditmode=!$this->modaleditmode;
     }
+    public function openmodal($title, $subtitle,$icon)
+    {
+        $this->modalData['title'] = $title;
+        $this->modalData['subtitle'] = $subtitle;
+        $this->modalData['icon'] = $icon;
 
+
+        $this->togglemodal();
+    }
 
     public function mount($id)
     {
