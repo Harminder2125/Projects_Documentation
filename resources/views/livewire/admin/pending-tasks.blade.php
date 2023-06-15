@@ -42,9 +42,28 @@
             <div class="p-4 flex w-full justify-center items-center flex-col">
 
                 <div class="flex w-full px-4 flex-col justify-center items-center">
+                    <div class="mx-2 w-12 h-12 rounded-full
+
                     @if(Auth::user()->isAdmin())
-                    <div class="mx-2 w-12 h-12 rounded-full bg-red-800 text-sm font-semibold uppercase flex items-center justify-center text-white">
+                        @if($prj->publish_status ==1)
+                        bg-orange-700
+
+                        @else
+                        bg-red-800
                         @endif
+                        
+                    @else
+                    @if($prj->publish_status ==1)
+                    bg-red-800
+
+                    @else
+                    bg-green-700
+
+                    @endif
+
+                    @endif
+                        text-sm font-semibold uppercase flex items-center justify-center text-white">
+
                         @if($prj->head()->exists())
 
 
