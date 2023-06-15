@@ -294,7 +294,8 @@
                 @endif
                 @else
                 @if($prj->publish_status == 1)
-                <x-secondary-button class="!px-2 !py-2 !text-xs">Update & Submit Detail</x-secondary-button>
+                <a href="/admin/edit/project/{{$prj->id}}" ><x-secondary-button class="!px-2 !py-2 !text-xs">Update & Submit Detail</x-secondary-button>
+                </a>
                 @elseif($prj->publish_status ==2)
                 <div class="flex flex-col justify-center items-center">
                     <x-sub-title class="text-green-700 !text-xs mb-2 text-center">You have successfully submitted the details</x-sub-title>
