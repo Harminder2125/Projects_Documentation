@@ -969,19 +969,29 @@
 
 
 
-                @foreach($currentFeatureBox->featureboxentries as $x)
-                <li class="flex items-start p-4">
+                @foreach($currentFeatureBox->featureboxentries->groupBy('title') as $key=>$x)
+                <li class="flex items-start px-4 py-0">
                     <svg class="w-4 h-4 mt-2 mr-1.5 text-green-500 dark:text-green-400 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
                         <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
                     </svg>
                     <div class="rounded-lg w-full">
-                        <h3 class="text-gray-800 text-lg font-semibold mb-2 flex items-center">
-                        
-                        {{$x->title}}</h3>
-                        <p class="text-gray-600">{{$x->description}}</p>
+                        <h3 class="text-gray-800 text-lg font-semibold mb-0 flex items-center">
+
+                            {{$key}}</h3>
+                        <ul class="list-disc ml-4">
+                            @foreach($x as $item)
+                            <li>
+                                <p class="text-gray-600">
+
+                                    {{$item->description}}</p>
+                            </li>
+
+                            @endforeach
+                        </ul>
+
                     </div>
                 </li>
-               @endforeach
+                @endforeach
 
             </ul>
 
