@@ -21,8 +21,8 @@ class ProjectDetailComponent extends Component
     public $project_id;
     public $featurebox=[];
     public $users=[];
-
-
+  
+    public $currentFeatureBoxId = "";
     public $project_head="";
     public $team_leader="";
     public $team_members=[];
@@ -107,7 +107,7 @@ class ProjectDetailComponent extends Component
         $this->featurebox=Featurebox::where("project_id","=",$id)->get();
        $this->entries=new Featureboxentries();
         $this->users = User::EndUser()->get();
-       
+    //    $this->currentFeatureBox = new Featurebox();
        
         // $this->temp['team_leader_id'] = "";
         // $this->temp['project_head_id']="";
@@ -123,8 +123,19 @@ class ProjectDetailComponent extends Component
     public function render()
     {
         $project=Project::find($this->project_id);
+        $cfb = null;
+        if($this->currentFeatureBoxId !="")
+        {
+            $cfb = Featurebox::find($this->currentFeatureBoxId);
+            
+        }
+        else
+        {
+            $cfb = new Featurebox();
+        }
+       
         $this->loadManuals();
-        return view('livewire.admin.project-detail-component',["project"=>$project]);
+        return view('livewire.admin.project-detail-component',["project"=>$project,"currentFeatureBox"=>$cfb]);
     }
     public function loadManuals()
     {
@@ -164,19 +175,8 @@ public function toggle($key)
     public function openFeature($featureboxid)
     {
              
-
-        if($this->featurEntryDetails){
-            $this->entries=new Featureboxentries();
-        }
-        else
-        {
-            $this->entries=Featureboxentries::where('featurebox_id',$featureboxid)->get();
-           
-        }
-
+        $this->currentFeatureBoxId = $featureboxid;
         $this->featurEntryDetails=!$this->featurEntryDetails;
-
-          
     }
 
 

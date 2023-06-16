@@ -940,12 +940,18 @@
     </x-slot>
 </x-jet-confirmation-modal>
 
+
+
+
+
 <x-jet-confirmation-modal wire:model="featurEntryDetails">
 
     <x-slot name="icon">
+
         <div class="mx-auto shrink-0 flex items-center justify-center h-12 w-12 rounded-fullsm:mx-0 sm:h-10 sm:w-10">
             <object type="image/svg+xml" data="\assets\svg\a.svg" width="32" height="32"> </object>
         </div>
+
     </x-slot>
 
     <x-slot name="title">
@@ -958,23 +964,27 @@
 
         <div class="w-full flex justify-center items-center p-10">
 
-           
+
             <ul class="grid grid-cols-1 gap-4">
-                @foreach($entries as $x)
-                
-                    <li>
-                        <div class="p-2 bg-gray-100 shadow rounded-lg">
-                            <h3 class="text-gray-800 text-lg font-semibold mb-2">title</h3>
-                            <p class="text-gray-600">In publishing and graphic design, Lorem ipsum is a placeholder text commonly used to demonstrate the visual form of a document or a typeface without relying on meaningful content. Lorem ipsum may be used as a placeholder before final copy is available. </p>
-                        </div>
-                    </li>
-                   
-               
+
+
+
+                @foreach($currentFeatureBox->featureboxentries as $x)
+
+                <li>
+                    <div class="p-2 bg-gray-100 shadow rounded-lg">
+                        <h3 class="text-gray-800 text-lg font-semibold mb-2">{{$x->title}}</h3>
+                        <p class="text-gray-600">In publishing and graphic design, Lorem ipsum is a placeholder text commonly used to demonstrate the visual form of a document or a typeface without relying on meaningful content. Lorem ipsum may be used as a placeholder before final copy is available. </p>
+                    </div>
+                </li>
+
+
 
                 @endforeach
-                 </ul>
-               
-           
+
+            </ul>
+
+
         </div>
     </x-slot>
 

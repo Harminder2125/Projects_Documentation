@@ -7,7 +7,10 @@ use Livewire\WithFileUploads;
 use App\Models\Project;
 use App\Models\Category;
 use App\Models\Featurebox;
+use App\Models\Featureboxentries;
+
 use App\Models\ProjectStatus;
+use Illuminate\Support\Facades\Validator;
 
 use Auth;
 
@@ -33,16 +36,58 @@ class EditProject extends Component
     ];
    
     public $modaleditmode=false;
-    public $modalData = [
+    public $featurebox = [
+        "id"=>null,
         "title"=>"",
         "subtitle"=>"",
         "icon"=>"",
-        "items"=>[]
+        "entries"=>[]
     ];
+    public $featureboxdata =[
+
+        "featurebox_id"=>null,
+        "title"=>"",
+        "description"=>""
+    ];
+    public function addFeatureData()
+    {
+        $this->featureboxdata['featurebox_id'] = $this->featurebox['id'];
+        Validator::make($this->featureboxdata, [
+            'title' => ['required', 'string', ],
+            'description' => ['required', 'string'],
+            'featurebox_id' => ['required','numeric'],
+        ])->validate();
+        
+        $fbentry = [];
+        $fbentry['title'] = $this->featureboxdata['title'];
+        $fbentry['description'] = $this->featureboxdata['description'];
+        $fbentry['featurebox_id'] = $this->featureboxdata['featurebox_id'];
+        $fbentry['position'] = 0;
+        array_push($this->featurebox['entries'], $fbentry);
+        $this->featureboxdata['title']="";
+        $this->featureboxdata['description']="";
+    }
+    public function saveFeatureBoxEntries()
+    {
+        Featureboxentries::where('featurebox_id',$this->featurebox['id'])->delete();
+        foreach ($this->featurebox['entries'] as $fbe)
+        {
+            $fb = new Featureboxentries();
+            $fb->title = $fbe['title'];
+            $fb->featurebox_id = $fbe['featurebox_id'];
+            $fb->description = $fbe['description'];
+            $fb->position = $fbe['position'];
+            $fb->save();
+        }
+        $this->closemodal();
+    }
+    public function removeEntry($index)
+    {
+        unset($this->featurebox['entries'][$index]);
+    }
+
     public function closemodal(){
-        $this->modalData['title'] = "";
-        $this->modalData['subtitle'] = "";
-        $this->modalData['icon'] = "";
+       
 
         $this->togglemodal();
     }
@@ -50,12 +95,20 @@ class EditProject extends Component
         
         $this->modaleditmode=!$this->modaleditmode;
     }
-    public function openmodal($title, $subtitle,$icon)
+    public function openmodal($featurebox)
     {
-        $this->modalData['title'] = $title;
-        $this->modalData['subtitle'] = $subtitle;
-        $this->modalData['icon'] = $icon;
+        // $this->featurebox['id'] = null;
+        // $this->featurebox['title'] = "";
+        // $this->featurebox['subtitle'] = "";
+        // $this->featurebox['icon'] = "";
 
+
+        $this->featurebox['id'] = $featurebox['id'];
+        $this->featurebox['title'] = $featurebox['title'];
+        $this->featurebox['subtitle'] = $featurebox['subtitle'];
+        $this->featurebox['icon'] = $featurebox['icon'];
+        $fbentries =  Featureboxentries::where('featurebox_id', $this->featurebox['id'])->get();
+        $this->featurebox['entries'] = $fbentries;
 
         $this->togglemodal();
     }
