@@ -949,38 +949,39 @@
     <x-slot name="icon">
 
         <div class="mx-auto shrink-0 flex items-center justify-center h-12 w-12 rounded-fullsm:mx-0 sm:h-10 sm:w-10">
-            <object type="image/svg+xml" data="\assets\svg\a.svg" width="32" height="32"> </object>
+            <object type="image/svg+xml" data="\assets\svg\{{$currentFeatureBox->icon}}.svg" width="32" height="32"> </object>
         </div>
 
     </x-slot>
 
     <x-slot name="title">
-        <span class="text-red-800">Dummy details</span>
+        <span class="text-red-800">{{$currentFeatureBox->title}}</span>
     </x-slot>
     <x-slot name="subtitle">
-        Dummy description
+        {{$currentFeatureBox->subtitle}}
     </x-slot>
     <x-slot name="content">
 
-        <div class="w-full flex justify-center items-center p-10">
+        <div class="w-full flex justify-center items-center p-5">
 
 
-            <ul class="grid grid-cols-1 gap-4">
+            <ul class="grid grid-cols-1 gap-2 w-full">
 
 
 
                 @foreach($currentFeatureBox->featureboxentries as $x)
-
-                <li>
-                    <div class="p-2 bg-gray-100 shadow rounded-lg">
-                        <h3 class="text-gray-800 text-lg font-semibold mb-2">{{$x->title}}</h3>
-                        <p class="text-gray-600">In publishing and graphic design, Lorem ipsum is a placeholder text commonly used to demonstrate the visual form of a document or a typeface without relying on meaningful content. Lorem ipsum may be used as a placeholder before final copy is available. </p>
+                <li class="flex items-start p-4">
+                    <svg class="w-4 h-4 mt-2 mr-1.5 text-green-500 dark:text-green-400 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                        <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
+                    </svg>
+                    <div class="rounded-lg w-full">
+                        <h3 class="text-gray-800 text-lg font-semibold mb-2 flex items-center">
+                        
+                        {{$x->title}}</h3>
+                        <p class="text-gray-600">{{$x->description}}</p>
                     </div>
                 </li>
-
-
-
-                @endforeach
+               @endforeach
 
             </ul>
 
