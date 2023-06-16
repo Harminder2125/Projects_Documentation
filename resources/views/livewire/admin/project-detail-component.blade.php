@@ -82,7 +82,7 @@
             <div class="relative overflow-x-auto  sm:rounded-lg">
                 <div class="mb-4  flex justify-center text-gray-900 ">
                     @if($project['logo_image'])
-                    <img class="object-cover w-40 h-40 rounded" src='/storage/{{$project['logo_image']}}' />
+                    <img class="object-cover w-40 h-40 rounded" src='/assets/images/projects/{{$project['logo_image']}}' />
                     @else
                     <div class="rounded w-40 h-40 text-2xl flex items-center justify-center bg-fuchsia-800 text-white">{{$project['abbreviation']}}</div>
                     @endif
@@ -246,7 +246,8 @@
         <x-main-title>Quick Links</x-main-title>
         <div class="w-full grid grid-cols-6 gap-3 mt-4 ">
             @foreach ($featurebox as $fb)
-            <div class="border bg-stone-200 border-dashed p-4 rounded-md shadow-sm hover:bg-stone-300 cursor-pointer">
+
+            <div wire:click="openFeature('{{$fb->id}}')" class="border bg-stone-200 border-dashed p-4 rounded-md shadow-sm hover:bg-stone-300 cursor-pointer">
                 <div class="flex flex-col justify-center items-center">
                     <div class="flex">
                         <object type="image/svg+xml" data="\assets\svg\{{ $fb->icon }}.svg" width="32" height="32"> </object>
@@ -936,6 +937,52 @@
         <x-jet-danger-button class="ml-2" wire:click="deleteMan({{$manual['id']}})" wire:loading.attr="disabled">
             delete it !
         </x-jet-danger-button>
+    </x-slot>
+</x-jet-confirmation-modal>
+
+<x-jet-confirmation-modal wire:model="featurEntryDetails">
+
+    <x-slot name="icon">
+        <div class="mx-auto shrink-0 flex items-center justify-center h-12 w-12 rounded-fullsm:mx-0 sm:h-10 sm:w-10">
+            <object type="image/svg+xml" data="\assets\svg\a.svg" width="32" height="32"> </object>
+        </div>
+    </x-slot>
+
+    <x-slot name="title">
+        <span class="text-red-800">Dummy details</span>
+    </x-slot>
+    <x-slot name="subtitle">
+        Dummy description
+    </x-slot>
+    <x-slot name="content">
+
+        <div class="w-full flex justify-center items-center p-10">
+
+           
+            <ul class="grid grid-cols-1 gap-4">
+                @foreach($entries as $x)
+                
+                    <li>
+                        <div class="p-2 bg-gray-100 shadow rounded-lg">
+                            <h3 class="text-gray-800 text-lg font-semibold mb-2">title</h3>
+                            <p class="text-gray-600">In publishing and graphic design, Lorem ipsum is a placeholder text commonly used to demonstrate the visual form of a document or a typeface without relying on meaningful content. Lorem ipsum may be used as a placeholder before final copy is available. </p>
+                        </div>
+                    </li>
+                   
+               
+
+                @endforeach
+                 </ul>
+               
+           
+        </div>
+    </x-slot>
+
+    <x-slot name="footer">
+        <x-jet-secondary-button wire:click="openFeature('')" wire:loading.attr="disabled">
+            Cancel
+        </x-jet-secondary-button>
+
     </x-slot>
 </x-jet-confirmation-modal>
 

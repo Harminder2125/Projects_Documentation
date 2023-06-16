@@ -8,6 +8,7 @@ use App\Models\Division;
 use App\Models\Featurebox;
 use App\Models\User;
 use App\Models\ProjectTeamMembers;
+use App\Models\Featureboxentries;
 use App\Models\Manual;
 use App\Models\Events;
 use App\Models\EventsVisibleto;
@@ -34,6 +35,9 @@ class ProjectDetailComponent extends Component
     public $confirmingteamassign = false;
     public $confirmingaddmanual = false;
     public $confirmingManualDeletion = false;
+    public $featurEntryDetails = false;
+
+    public $entries =null;
 
     public $assignteamfinal =false;
     public $projectheadmodal = false;
@@ -101,7 +105,7 @@ class ProjectDetailComponent extends Component
     public function mount($id){
         $this->project_id=$id;
         $this->featurebox=Featurebox::where("project_id","=",$id)->get();
-    
+       $this->entries=new Featureboxentries();
         $this->users = User::EndUser()->get();
        
        
@@ -156,6 +160,26 @@ public function toggle($key)
 
         }
     }
+
+    public function openFeature($featureboxid)
+    {
+             
+
+        if($this->featurEntryDetails){
+            $this->entries=new Featureboxentries();
+        }
+        else
+        {
+            $this->entries=Featureboxentries::where('featurebox_id',$featureboxid)->get();
+           
+        }
+
+        $this->featurEntryDetails=!$this->featurEntryDetails;
+
+          
+    }
+
+
     public function selectProjectHead()
     {
          $head =  $this->users->where('id',$this->temp['project_head_id'])->first();
