@@ -122,6 +122,47 @@
 
 
 </div>
+<div class="grid grid-cols-1 my-2 gap-2 bg-gray-200 rounded-md p-8">
+
+
+
+    <div>
+        <x-jet-label for="cap" value="{{ __('Manual') }}" />
+        <form wire:submit.prevent="save" enctype="multipart/form-data">
+            <x-input type="file" wire:model="pdf" class="mt-1 block w-full" />
+            @error('pdf') <div class="text-orange-700 p-3">{{ $message }}</div> @enderror
+
+            <button class="bg-purple-800 rounded p-2 text-white" type="submit">Upload</button>
+        </form>
+
+        @if (session()->has('message'))
+        <div class="text-green-700 p-3">
+            {{ session('message') }}
+        </div>
+        @endif
+
+
+        @if($manual!='')
+        {{-- <img src="{{$project['logo_image']->temporaryUrl()}}" class="mt-2 w-32 h-32 rounded-md" /> --}}
+        <a target="_blank" href="/storage/{{$manual->has_document_manual}}">
+            <div class="flex p-2 items-center">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-4 h-4 text-rose-700">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M18.375 12.739l-7.693 7.693a4.5 4.5 0 01-6.364-6.364l10.94-10.94A3 3 0 1119.5 7.372L8.552 18.32m.009-.01l-.01.01m5.699-9.941l-7.81 7.81a1.5 1.5 0 002.112 2.13" />
+                </svg>
+
+                {{$manual->title}}
+            </div>
+        </a>
+
+
+        @else
+        no Manual
+        @endif
+
+
+    </div>
+
+</div>
 
 @foreach ($featureboxes as $feature)
 <x-sub-title class="font-semibold mt-4 ">{{$feature->title}}</x-sub-title>
@@ -431,6 +472,7 @@
                     </div>
                 </div>
             </div>
+
             <div class="w-full flex gap-x-5 bg-stone-100 rounded-md p-2 mb-2 border-dotted border-2
                          border-orange-600/40">
                 <div class="w-full">
@@ -448,6 +490,7 @@
                     </div>
                 </div>
             </div>
+
             <div class="w-full flex gap-x-5 ">
                 {{-- <div class="w-full">
                     @dd($featurebox)

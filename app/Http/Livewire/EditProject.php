@@ -8,6 +8,7 @@ use App\Models\Project;
 use App\Models\Category;
 use App\Models\Featurebox;
 use App\Models\Featureboxentries;
+use App\Models\Manual;
 
 use App\Models\ProjectStatus;
 use Illuminate\Support\Facades\Validator;
@@ -19,6 +20,7 @@ class EditProject extends Component
 {
         use WithFileUploads;
         use AuthorizesRequests;
+
         public $project = [
         "id"=>"",
         "title"=>"",
@@ -33,6 +35,15 @@ class EditProject extends Component
         "edit_logo_image"=>"",
         "edit_banner_image"=>"",
         "publish_status"=>0
+    ];
+
+    public $manual=[
+        'project_id'=>'',
+        'title'=>'',
+        // 'version'=>'',
+        // 'major_changes'=>'',
+        'has_document_manual'=>'',
+        // 'has_video_manual'=>'',
     ];
    
     public $modaleditmode=false;
@@ -121,6 +132,7 @@ class EditProject extends Component
     public function mount($id)
     {
         $project = Project::find($id);
+        
         if($project)
         {
             $this->project['id'] = $project->id;
@@ -136,7 +148,9 @@ class EditProject extends Component
 
             $this->project['publish_status'] = $project->publish_status;
         }
+        $this->manual=Manual::where('project_id',$this->project['id'])->latest()->first();
 
+       
     }
     public function render()
     {
@@ -144,9 +158,11 @@ class EditProject extends Component
         $categories = Category::all();
         $status= ProjectStatus::all();
         $features=Featurebox::where('project_id',$this->project['id'])->get();    
-
+        
+        
         return view('livewire.admin.edit-project',['categories'=>$categories,'statuslist'=>$status,
-        'featureboxes'=>$features
+        'featureboxes'=>$features,
+        
     ]);
     }
     public function update()
@@ -211,5 +227,30 @@ class EditProject extends Component
         return redirect()->to('/dashboard');
 
 
+    }
+
+    public $pdf="";
+
+    public function save()
+    {
+        $this->validate([
+            'pdf' => 'required|mimes:pdf|max:2048', // Validate the file type and size
+        ]);
+        $path = $this->pdf->store('pdfs','public'); // Store the file in the 'pdfs' directory
+
+        // Perform any additional logic with the uploaded file
+        // For example, you can save the file path to the database
+        $m=new Manual();
+        $m->project_id=$this->project['id'];
+        $m->title="Offline Manual";
+        $m->has_document_manual=$path;
+        $m->save();
+        $this->manual=$m;
+        session()->flash('message', 'Manual uploaded successfully.');
+
+        // Clear the file input field
+        $this->pdf = null;
+ 
+       
     }
 }
