@@ -4,12 +4,18 @@ namespace App\Http\Livewire\Admin;
 
 use Livewire\Component;
 use App\Models\Project;
+use App\Models\Featurebox;
+use App\Models\Featureboxentries;
 use Livewire\WithPagination;
 use Auth;
 
 class PendingTasks extends Component
 {
     use WithPagination;
+    public $modalviewonly = false;
+    public $modaldata=[];
+    public $featurebox=[];
+    public $fetaureboxentries=[];
     public function render()
     {
         $projects = "";
@@ -27,8 +33,18 @@ class PendingTasks extends Component
         }
        
        $projects->withPath('/dashboard');
-      
-        return view('livewire.admin.pending-tasks',['projects'=>$projects]);
+
+        if($this->modaldata==null){
+            $this->modaldata=new Project();
+            // $this->featurebox=new Featurebox();
+            // $this->featureboxentries=new Featureboxentries();
+        }
+              
+        return view('livewire.admin.pending-tasks',['projects'=>$projects,
+        'modaldata'=>$this->modaldata,
+        // 'fb'=>$this->featurebox,
+        // 'fbe'=>$this->featureboxentries
+    ]);
     }
      public function getNameInitials($value)
     {
@@ -39,4 +55,17 @@ class PendingTasks extends Component
         }
         return $acronym;
     } 
+    public function openModal($prj=null)
+    {
+        
+        if($prj!=null)
+        $this->modaldata=Project::find($prj['id']);
+        // $this->featurebox=FeatureBox::where('project_id',$prj['id']);
+           
+        // foreach ($this->featurebox as $fb) {
+        //     $this->featureboxentries=FeatureBoxentries::find($fb->featurebox_id);
+        // }
+        
+        $this->modalviewonly=!$this->modalviewonly;
+    }
 }

@@ -309,7 +309,7 @@
                 </a>
                 @elseif($prj->publish_status ==2)
                 <div class="flex flex-col justify-center items-center">
-                    <x-success-button class="!px-2 !py-2 !text-xs mr-1">View Project Details</x-success-button>
+                    <x-success-button wire:click="openModal({{$prj}})" class="!px-2 !py-2 !text-xs mr-1">View Project Details</x-success-button>
                     <x-sub-title class="text-green-700 !text-xs mt-2 text-center">You have successfully submitted the details</x-sub-title>
 
 
@@ -326,6 +326,202 @@
 <div class="flex justify-end py-8 ">
     {{$projects->links()}}
 </div>
+
+<x-jet-confirmation-modal wire:model="modalviewonly">
+
+    <x-slot name="icon">
+        <div class="mx-auto shrink-0 flex items-center justify-center h-12 w-12 rounded-full sm:mx-0 sm:h-10 sm:w-10">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-8 h-8">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M12 6v6h4.5m4.5 0a9 9 0 11-18 0 9 9 0 0118 0z" />
+            </svg>
+
+
+
+        </div>
+    </x-slot>
+
+
+    <x-slot name="title">
+        Complete Project Details
+    </x-slot>
+    <x-slot name="subtitle">
+        Detail of Project submitted to Admin for Approval
+
+    </x-slot>
+    <x-slot name="content">
+
+        <div>
+
+            <x-jet-validation-errors class="mb-4" />
+
+            <div class="w-full flex gap-x-5 bg-stone-100 rounded-md p-2 mb-2 border-dotted border-2
+                         border-orange-600/40">
+                <div class="w-full">
+                    <x-jet-label for="name" value="{{ __('Title') }}" />
+                    <div class="pb-3  mb-2">
+                        @if($modaldata->title!=null)
+                        {{$modaldata->title}}
+                        @else
+                        NA
+                        @endif
+                    </div>
+                </div>
+            </div>
+            <div class="w-full flex gap-x-5 bg-stone-100 rounded-md p-2 mb-2 border-dotted border-2
+                         border-orange-600/40">
+                <div class="w-full">
+                    <x-jet-label for="name" value="{{ __('Abbreviation') }}" />
+                    <div class="pb-3  mb-2">
+                        @if($modaldata->abbreviation!=null)
+                        {{$modaldata->abbreviation}}
+                        @else
+                        NA
+                        @endif
+                    </div>
+                </div>
+            </div>
+            <div class="w-full flex gap-x-5  bg-stone-100 rounded-md p-2 mb-2 border-dotted border-2
+                         border-orange-600/40">
+                <div class="w-full">
+                    <x-jet-label for="name" value="{{ __('Description') }}" />
+                    <div class="pb-3  mb-2">
+                        @if($modaldata->description!=null)
+                        {{$modaldata->description}}
+                        @else
+                        NA
+                        @endif
+                    </div>
+                </div>
+            </div>
+            <div class="w-full flex gap-x-5 bg-stone-100 rounded-md p-2 mb-2 border-dotted border-2
+                         border-orange-600/40">
+                <div class="w-full">
+                    <x-jet-label for="name" value="{{ __('Category') }}" />
+                    <div class="pb-3  mb-2">
+                        @if($modaldata->category!=null)
+                        {{$modaldata->project_category->name}}
+                        @else
+                        NA
+                        @endif
+                    </div>
+                </div>
+            </div>
+            <div class="w-full flex gap-x-5 bg-stone-100 rounded-md p-2 mb-2 border-dotted border-2
+                         border-orange-600/40">
+                <div class="w-full">
+                    <x-jet-label for="name" value="{{ __('Launched_by') }}" />
+                    <div class="pb-3  mb-2">
+                        @if($modaldata->launched_by!=null)
+                        {{$modaldata->launched_by}}
+                        @else
+                        NA
+                        @endif
+                    </div>
+                </div>
+            </div>
+            <div class="w-full flex gap-x-5 bg-stone-100 rounded-md p-2 mb-2 border-dotted border-2
+                         border-orange-600/40">
+                <div class="w-full">
+                    <x-jet-label for="name" value="{{ __('logo_image') }}" />
+                    <div class="pb-3  mb-2">
+                        @if($modaldata->logo_image!=null)
+                        <a href="assets/images/projects/{{$modaldata->logo_image}}" target="_blank">
+                            <img class="h-16" src="assets/images/projects/{{$modaldata->logo_image}}" />
+                        </a>
+                        @else
+                        NA
+                        @endif
+                    </div>
+                </div>
+            </div>
+            <div class="w-full flex gap-x-5 bg-stone-100 rounded-md p-2 mb-2 border-dotted border-2
+                         border-orange-600/40">
+                <div class="w-full">
+                    <x-jet-label for="name" value="{{ __('banner_image') }}" />
+                    <div class="pb-3  mb-2">
+                        @if($modaldata->banner_image!=null)
+                        <a href="assets/images/projects/{{$modaldata->banner_image}}" target="_blank"><img class="h-16" src="assets/images/projects/{{$modaldata->banner_image}}" />
+                        </a>
+                        @else
+                        NA
+                        @endif
+                    </div>
+                </div>
+            </div>
+            <div class="w-full flex gap-x-5 ">
+                <div class="w-full">
+
+                    <div class="pb-2  mb-2">
+                        @foreach ($modaldata->featurebox as $fb)
+                        <div class="bg-stone-100 rounded-md p-2 mb-2  border-dotted border-2
+                         border-orange-600/40 ">
+                            <div class="py-2">
+
+                                <x-main-title>
+                                    {{$fb->title}}
+                                </x-main-title>
+                                <x-sub-title>
+                                    {{$fb->subtitle}}
+                                </x-sub-title>
+                            </div>
+
+                            <div class="ml-6">
+                                <ul class="list-disc">
+                                    @foreach ($fb->featureboxentries as $fbe)
+                                    <li>
+                                        <div class="">
+                                            {{$fbe->title}}
+                                            {{$fbe->description}}
+                                        </div>
+                                    </li>
+
+                                    @endforeach
+                                </ul>
+                            </div>
+                        </div>
+
+
+
+                        @endforeach
+                    </div>
+                </div>
+            </div>
+
+            <div class="bg-orange-600/10 rounded-md border border-orange-200 px-4 ">
+                <ul class="list-disc p-4">
+                    <li>
+                        <x-sub-title class="text-xs text-orange-500 font-semibold">
+                            Projects details submitted and forwarded to Admin for Approval and Publishing.</x-sub-title>
+                    </li>
+                    <li>
+                        <x-sub-title class="text-xs text-orange-500 font-semibold">
+                            You can not edit project details now.</x-sub-title>
+
+                    </li>
+
+
+                </ul>
+
+            </div>
+
+
+
+
+
+        </div>
+
+    </x-slot>
+
+    <x-slot name="footer">
+        <x-secondary-button wire:click="openModal('')" wire:loading.attr="disabled">
+            Close
+        </x-secondary-button>
+
+        {{-- <x-primary-button class="ml-2" wire:click="saveFeatureBoxEntries()" wire:loading.attr="disabled">
+                Save
+            </x-primary-button> --}}
+    </x-slot>
+</x-jet-confirmation-modal>
 
 
 

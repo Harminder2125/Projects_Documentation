@@ -52,6 +52,11 @@ class Project extends Model
          // Returns only team members
        return $this->hasMany(ProjectTeamMembers::class,'project_id','id')->where('projectrole_id',3);
     }
+    public function featurebox()
+    {
+         // Returns only team members
+       return $this->hasMany(Featurebox::class,'project_id','id');
+    }
     
 
 
