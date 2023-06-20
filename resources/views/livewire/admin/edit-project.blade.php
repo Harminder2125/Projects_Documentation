@@ -347,6 +347,165 @@
 
             <h1 class="font-semibold text-md text-gray-800 mt-4"> Are you sure you want to submit following details to Admin for approval and publishing ?</h1>
 
+            <div class="w-full flex gap-x-5 bg-stone-100 rounded-md p-2 mb-2 border-dotted border-2
+                         border-orange-600/40">
+                <div class="w-full">
+                    <x-jet-label for="name" value="{{ __('Title') }}" />
+                    <div class="pb-3  mb-2">
+                        @if($project['title']!=null)
+                        {{$project['title']}}
+
+                        @else
+                        NA
+                        @endif
+                    </div>
+                </div>
+            </div>
+            <div class="w-full flex gap-x-5 bg-stone-100 rounded-md p-2 mb-2 border-dotted border-2
+                         border-orange-600/40">
+                <div class="w-full">
+                    <x-jet-label for="name" value="{{ __('Abbreviation') }}" />
+                    <div class="pb-3  mb-2">
+                        @if($project['abbreviation']!=null)
+                        {{$project['abbreviation']}}
+                        @else
+                        NA
+                        @endif
+                    </div>
+                </div>
+            </div>
+            <div class="w-full flex gap-x-5  bg-stone-100 rounded-md p-2 mb-2 border-dotted border-2
+                         border-orange-600/40">
+                <div class="w-full">
+                    <x-jet-label for="name" value="{{ __('Description') }}" />
+                    <div class="pb-3  mb-2">
+                        @if($project['description']!=null)
+                        {{$project['description']}}
+                        @else
+                        NA
+                        @endif
+                    </div>
+                </div>
+            </div>
+            <div class="w-full flex gap-x-5 bg-stone-100 rounded-md p-2 mb-2 border-dotted border-2
+                         border-orange-600/40">
+                <div class="w-full">
+                    <x-jet-label for="name" value="{{ __('Category') }}" />
+                    <div class="pb-3  mb-2">
+                        @if($project['category']!=null)
+                        <x-select disabled type="text" class="mt-1 block w-full !border-0" wire:model="project.category" :userlist="$categories" />
+
+                        @else
+                        NA
+                        @endif
+                    </div>
+                </div>
+            </div>
+            <div class="w-full flex gap-x-5 bg-stone-100 rounded-md p-2 mb-2 border-dotted border-2
+                         border-orange-600/40">
+                <div class="w-full">
+                    <x-jet-label for="name" value="{{ __('Launched_by') }}" />
+                    <div class="pb-3  mb-2">
+                        @if($project['launched_by']!=null)
+                        {{$project['launched_by']}}
+                        @else
+                        NA
+                        @endif
+                    </div>
+                </div>
+            </div>
+            <div class="w-full flex gap-x-5 bg-stone-100 rounded-md p-2 mb-2 border-dotted border-2
+                         border-orange-600/40">
+                <div class="w-full">
+                    <x-jet-label for="name" value="{{ __('logo_image') }}" />
+                    <div class="pb-3  mb-2">
+                        @if($project['edit_logo_image']!='')
+
+                        <img src="{{$project['edit_logo_image']->temporaryUrl()}}" class="mt-2 w-32 h-32 rounded-md" />
+                        @elseif($project['logo_image']!='')
+                        <img src="/storage/{{$project['logo_image']}}" class="mt-2 w-32 h-32 rounded-md" />
+
+                        @else
+                        @endif
+
+                    </div>
+                </div>
+            </div>
+            <div class="w-full flex gap-x-5 bg-stone-100 rounded-md p-2 mb-2 border-dotted border-2
+                         border-orange-600/40">
+                <div class="w-full">
+                    <x-jet-label for="name" value="{{ __('banner_image') }}" />
+                    <div class="pb-3  mb-2">
+                        @if($project['edit_banner_image']!='')
+
+                        <img src="{{$project['edit_banner_image']->temporaryUrl()}}" class="mt-2 w-32 h-32 rounded-md" />
+                        @elseif($project['banner_image']!='')
+                        <img src="/storage/{{$project['banner_image']}}" class="mt-2 w-32 h-32 rounded-md" />
+
+                        @else
+                        @endif
+
+                    </div>
+                </div>
+            </div>
+            <div class="w-full flex gap-x-5 ">
+                {{-- <div class="w-full">
+                    @dd($featurebox)
+                    @if($featurebox)
+                    <div class="pb-2  mb-2">
+                        @foreach ($featurebox as $fb)
+                        <div class="bg-stone-100 rounded-md p-2 mb-2  border-dotted border-2
+                         border-orange-600/40 ">
+                            <div class="py-2">
+
+                                <x-main-title>
+                                    {{$fb['title']}}
+                </x-main-title>
+                <x-sub-title>
+                    {{$fb['subtitle']}}
+                </x-sub-title>
+            </div>
+
+            <div class="ml-6">
+                <ul class="list-disc">
+                    @foreach ($fb['entries'] as $fbe)
+                    <li>
+                        <div class="">
+                            {{$fbe->title}}
+                            {{$fbe->description}}
+                        </div>
+                    </li>
+
+                    @endforeach
+                </ul>
+            </div>
+        </div>
+
+
+
+        @endforeach
+        </div>
+        @endif
+        </div> --}}
+        </div>
+
+        <div class="bg-orange-600/10 rounded-md border border-orange-200 px-4 ">
+            <ul class="list-disc p-4">
+                <li>
+                    <x-sub-title class="text-xs text-orange-500 font-semibold">
+                        Projects details submitted and forwarded to Admin for Approval and Publishing.</x-sub-title>
+                </li>
+                <li>
+                    <x-sub-title class="text-xs text-orange-500 font-semibold">
+                        You can not edit project details now.</x-sub-title>
+
+                </li>
+
+
+            </ul>
+
+        </div>
+
 
 
 
