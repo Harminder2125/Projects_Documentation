@@ -25,100 +25,84 @@
     </div>
 
     @endif
+
+
+
     <div class="grid grid-cols-5 gap-x-4 gap-y-10">
         @foreach($projects as $prj)
         <div class=" bg-white rounded-md shadow-lg h-104">
             <div class="
-            @if(Auth::user()->isAdmin())
-                @if($prj->publish_status == 2)
-                    bg-red-700/90
-                @else
-                    bg-orange-500/90
-                @endif
-            @else
-             @if($prj->publish_status == 2)
-             bg-green-700/90
-             @else
-             bg-red-700/90
-             @endif
-
-
-            @endif
-             mt-4 p-2 w-full  h-16 flex justify-center items-center">
+                        @if(Auth::user()->isAdmin())
+                            @if($prj->publish_status == 2)
+                                bg-red-700/90
+                            @else
+                                bg-orange-500/90
+                            @endif
+                        @else
+                            @if($prj->publish_status == 2)
+                                bg-green-700/90
+                            @else
+                                bg-red-700/90
+                            @endif
+                        @endif
+                        mt-4 p-2 w-full  h-16 flex justify-center items-center">
 
                 <x-sub-title class="font-semibold !text-white text-center">{{$prj->title}} <span class="text-white 
-                @if(Auth::user()->isAdmin())
-                    @if($prj->publish_status == 2)
-                        bg-red-700
-                    @else
-                        bg-orange-600
-                    @endif
-                @else
-                    @if($prj->publish_status == 2)
-                    bg-green-600
-                    @else
-                    bg-red-700
-                    @endif
-
-                @endif
-
-                 px-2 rounded-md">({{$prj->abbreviation}})</span></x-sub-title>
+                        @if(Auth::user()->isAdmin())
+                            @if($prj->publish_status == 2)
+                                bg-red-700
+                            @else
+                                bg-orange-600
+                            @endif
+                        @else
+                            @if($prj->publish_status == 2)
+                                bg-green-600
+                            @else
+                                bg-red-700
+                            @endif
+                        @endif
+                        px-2 rounded-md">({{$prj->abbreviation}})</span></x-sub-title>
 
             </div>
             <div class="p-4 flex w-full justify-center items-center flex-col">
-
                 <div class="flex w-full px-4 flex-col justify-center items-center">
                     <div class="mx-2 w-12 h-12 rounded-full
-
-                    @if(Auth::user()->isAdmin())
-                        @if($prj->publish_status ==1)
-                        bg-orange-700
-
-                        @else
-                        bg-red-800
-                        @endif
-                        
-                    @else
-                    @if($prj->publish_status ==1)
-                    bg-red-800
-
-                    @else
-                    bg-green-700
-
-                    @endif
-
-                    @endif
-                        text-sm font-semibold uppercase flex items-center justify-center text-white">
-
+                            @if(Auth::user()->isAdmin())
+                                @if($prj->publish_status ==1)
+                                    bg-orange-700
+                                @else
+                                    bg-red-800
+                                @endif
+                            @else
+                                @if($prj->publish_status ==1)
+                                    bg-red-800
+                                @else
+                                    bg-green-700
+                                @endif
+                            @endif
+                            text-sm font-semibold uppercase flex items-center justify-center text-white">
                         @if($prj->head()->exists())
-
-
-
-                        {{$this->getNameInitials($prj->head->user->name)}}
+                        {{$this->getNameInitials($prj->head->first()->user->name)}}
                         @else
                         {{$this->getNameInitials("Not Assigned")}}
-
                         @endif
                     </div>
                     <div>
                         <div class="text-xs mt-2  uppercase font-semibold">
                             @if($prj->head()->exists())
 
-                            {{$prj->head->user->name}}
+                            {{$prj->head->first()->user->name}}
                             @else
                             Not Assigned
-
                             @endif
-
-
                         </div>
                         <div class="text-xs text-gray-500 text-center">Project Head</div>
                     </div>
 
                 </div>
                 {{-- <div class="text-sm">
-                    @if($prj->created_at)
-                    Project created - <span class="text-stone-500">{{$prj->created_at->diffForHumans();}}</span>
+                                    @if($prj->created_at)
+                                    Project created - <span class="text-stone-500">{{$prj->created_at->diffForHumans();}}</span>
 
                 @endif
             </div> --}}
@@ -325,28 +309,19 @@
                 </a>
                 @elseif($prj->publish_status ==2)
                 <div class="flex flex-col justify-center items-center">
-                    <x-sub-title class="text-green-700 !text-xs mb-2 text-center">You have successfully submitted the details</x-sub-title>
                     <x-success-button class="!px-2 !py-2 !text-xs mr-1">View Project Details</x-success-button>
+                    <x-sub-title class="text-green-700 !text-xs mt-2 text-center">You have successfully submitted the details</x-sub-title>
+
+
                 </div>
 
                 @endif
                 @endif
-
-
-
-
-
-
-
-
-
             </div>
 
         </div>
     </div>
     @endforeach
-
-
 </div>
 <div class="flex justify-end py-8 ">
     {{$projects->links()}}
