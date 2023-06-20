@@ -36,6 +36,7 @@ class EditProject extends Component
     ];
    
     public $modaleditmode=false;
+    public $modalforapproval = false;
     public $featurebox = [
         "id"=>null,
         "title"=>"",
@@ -91,6 +92,10 @@ class EditProject extends Component
 
         $this->togglemodal();
     }
+     public function toggleapprovalmodal(){
+        
+        $this->modalforapproval=!$this->modalforapproval;
+    }
     public function togglemodal(){
         
         $this->modaleditmode=!$this->modaleditmode;
@@ -144,7 +149,7 @@ class EditProject extends Component
         'featureboxes'=>$features
     ]);
     }
-    public function updateProjectDetails()
+    public function update()
     {
         $project = Project::find($this->project['id']);
         $this->authorize('update',$project);//policy for project update
@@ -155,7 +160,7 @@ class EditProject extends Component
         $project->live_url = $this->project['live_url'];
         $project->launch_date = $this->project['launch_date'];
         $project->launched_by = $this->project['launched_by'];
-        $project->publish_status = $this->project['publish_status'];
+        // $project->publish_status = $this->project['publish_status'];
         $lastId = $this->project['id'];
        
         if($this->project['edit_logo_image']!="")
@@ -174,6 +179,12 @@ class EditProject extends Component
 
 
         $project->save();
+
+
+    }
+    public function updateProjectDetails()
+    {
+        $this->update();
         $this->dispatchBrowserEvent('banner-message', [
             'style' => 'success',
             'message' => 'Project Details updated successfully!'
@@ -182,5 +193,23 @@ class EditProject extends Component
         $this->emit('close-banner');
        
         return redirect()->to('/admin/projects');
+    }
+
+    public function submitForApproval()
+    {
+        $this->update();  // Update any changes 
+        $project = Project::find($this->project['id']);
+        $project->publish_status = 2;
+        $project->save();
+        $this->dispatchBrowserEvent('banner-message', [
+            'style' => 'success',
+            'message' => 'Project Submitted to Admin for Approval!'
+        ]);
+      
+        $this->emit('close-banner');
+       
+        return redirect()->to('/dashboard');
+
+
     }
 }
