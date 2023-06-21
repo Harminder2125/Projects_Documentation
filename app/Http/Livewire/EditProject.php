@@ -150,6 +150,19 @@ class EditProject extends Component
     {
         unset($this->featurebox['entries'][$index]);
     }
+    public function removeManualEntry($index)
+    {
+        Manual::find($index)->delete();
+        $this->togglemanualmodal();
+        
+        $this->dispatchBrowserEvent('banner-message', [
+            'style' => 'success',
+            'message' => 'Manual deleted Successfully!'
+        ]);
+      
+        $this->emit('close-banner');
+    }
+
 
     public function closemodal(){
        
