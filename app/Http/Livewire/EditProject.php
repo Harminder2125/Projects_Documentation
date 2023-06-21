@@ -36,17 +36,21 @@ class EditProject extends Component
         "edit_banner_image"=>"",
         "publish_status"=>0
     ];
-
-    public $manual=[
+    public $manuals = [];
+    public $editmanual=[
         'project_id'=>'',
         'title'=>'',
-        // 'version'=>'',
-        // 'major_changes'=>'',
+        'version'=>'',
+        'major_changes'=>'',
         'has_document_manual'=>'',
+       
         // 'has_video_manual'=>'',
     ];
+    public $pdf = "";
    
     public $modaleditmode=false;
+    public $modaleditmanual=false;
+
     public $modalforapproval = false;
     public $featurebox = [
         "id"=>null,
@@ -79,6 +83,55 @@ class EditProject extends Component
         $this->featureboxdata['title']="";
         $this->featureboxdata['description']="";
     }
+
+    public function addProjectManual()
+    {
+         $this->editmanual['project_id'] = $this->project['id'];
+        // $this->featureboxdata['featurebox_id'] = $this->featurebox['id'];
+        Validator::make($this->editmanual, [
+            'project_id' => ['required' ],
+            'title' => ['required', 'string'],
+            'version' => ['required'],
+            // 'pdf' => ['required'],
+            
+        ])->validate();
+        $this->validate([
+            'pdf' => 'required|mimes:pdf|max:2048', // Validate the file type and size
+        ]);
+        $m=new Manual();
+        $m->project_id=$this->editmanual['project_id'];
+        $m->title=$this->editmanual['title'];
+        $m->version=$this->editmanual['version'];
+        $m->major_changes=$this->editmanual['major_changes'];
+        $unique = time();
+        if($this->pdf!="")
+        {
+            $path =  $this->pdf->storeAs('pdf/projects/manuals',$this->project['abbreviation'].'_'.$unique.'.pdf','public');
+            $m->has_document_manual = $path;
+        }       
+      
+        $m->save();
+        $this->togglemanualmodal();
+        
+        $this->dispatchBrowserEvent('banner-message', [
+            'style' => 'success',
+            'message' => 'New Manual Successfully added!'
+        ]);
+      
+        $this->emit('close-banner');
+       
+
+        // Clear the file input field
+        $this->pdf = "";
+        $this->editmanual['project_id'] = "";
+        $this->editmanual['title'] = "";
+        $this->editmanual['version'] = "";
+        $this->editmanual['major_changes'] = "";
+
+        
+        
+
+    }
     public function saveFeatureBoxEntries()
     {
         Featureboxentries::where('featurebox_id',$this->featurebox['id'])->delete();
@@ -107,25 +160,32 @@ class EditProject extends Component
         
         $this->modalforapproval=!$this->modalforapproval;
     }
+    public function togglemanualmodal(){
+        
+        $this->modaleditmanual=!$this->modaleditmanual;
+    }
     public function togglemodal(){
         
         $this->modaleditmode=!$this->modaleditmode;
     }
-    public function openmodal($featurebox)
+    public function getFeatureBoxData($featurebox)
     {
-        // $this->featurebox['id'] = null;
-        // $this->featurebox['title'] = "";
-        // $this->featurebox['subtitle'] = "";
-        // $this->featurebox['icon'] = "";
-
-
-        $this->featurebox['id'] = $featurebox['id'];
+$this->featurebox['id'] = $featurebox['id'];
         $this->featurebox['title'] = $featurebox['title'];
         $this->featurebox['subtitle'] = $featurebox['subtitle'];
         $this->featurebox['icon'] = $featurebox['icon'];
         $fbentries =  Featureboxentries::where('featurebox_id', $this->featurebox['id'])->get();
         $this->featurebox['entries'] = $fbentries;
-
+    }
+    public function openmanualmodal($featurebox)
+    {
+   
+        $this->getFeatureBoxData($featurebox);
+        $this->togglemanualmodal();
+    }
+    public function openmodal($featurebox)
+    {
+        $this->getFeatureBoxData($featurebox);
         $this->togglemodal();
     }
 
@@ -148,7 +208,7 @@ class EditProject extends Component
 
             $this->project['publish_status'] = $project->publish_status;
         }
-        $this->manual=Manual::where('project_id',$this->project['id'])->latest()->first();
+        //
 
        
     }
@@ -158,7 +218,7 @@ class EditProject extends Component
         $categories = Category::all();
         $status= ProjectStatus::all();
         $features=Featurebox::where('project_id',$this->project['id'])->get();    
-        
+        $this->manuals=Manual::where('project_id',$this->project['id'])->get();
         
         return view('livewire.admin.edit-project',['categories'=>$categories,'statuslist'=>$status,
         'featureboxes'=>$features,
@@ -229,28 +289,4 @@ class EditProject extends Component
 
     }
 
-    public $pdf="";
-
-    public function save()
-    {
-        $this->validate([
-            'pdf' => 'required|mimes:pdf|max:2048', // Validate the file type and size
-        ]);
-        $path = $this->pdf->store('pdfs','public'); // Store the file in the 'pdfs' directory
-
-        // Perform any additional logic with the uploaded file
-        // For example, you can save the file path to the database
-        $m=new Manual();
-        $m->project_id=$this->project['id'];
-        $m->title="Offline Manual";
-        $m->has_document_manual=$path;
-        $m->save();
-        $this->manual=$m;
-        session()->flash('message', 'Manual uploaded successfully.');
-
-        // Clear the file input field
-        $this->pdf = null;
- 
-       
     }
-}

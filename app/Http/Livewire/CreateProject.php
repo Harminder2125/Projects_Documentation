@@ -166,7 +166,7 @@ class CreateProject extends Component
                 case 6:
                     $extendedfeature->title="COMPLETE PROJECT MANUAL";
                     $extendedfeature->subtitle="LIST OF ALL THE MANUALS";
-                    $extendedfeature->icon="f";
+                    $extendedfeature->icon="manual";
                     break;
             }
             
