@@ -6,7 +6,9 @@ use Livewire\Component;
 use App\Models\Project;
 use App\Models\Featurebox;
 use App\Models\Featureboxentries;
+use App\Models\Remark;
 use Livewire\WithPagination;
+use Illuminate\Support\Facades\Validator;
 use Auth;
 
 class PendingTasks extends Component
@@ -14,9 +16,16 @@ class PendingTasks extends Component
     use WithPagination;
     public $modalviewonly = false;
     public $openpublishmodal = false;
+    public $opensendbackmodal = false;
     public $modaldata=null;
     public $featurebox=[];
     public $fetaureboxentries=[];
+
+    public $comments=[
+        "remarks"=>''
+    ];
+
+
     public function render()
     {
         $projects = "";
@@ -47,9 +56,76 @@ class PendingTasks extends Component
         // 'fbe'=>$this->featureboxentries
     ]);
     }
+
+    public function publishproject(){
+
+       $data=new Remark();
+       $data->project_id=$this->modaldata['id'];
+       $data->user_id=Auth::user()->id;
+       $data->remarks=$this->comments['remarks'];
+       $data->save();
+       $prj=Project::find($this->modaldata['id']);
+       $prj->publish_status=3;
+       $prj->save();
+
+       $this->togglepublishmodal();
+       $this->modalviewonly=!$this->modalviewonly;
+
+       $this->dispatchBrowserEvent('banner-message', [
+        'style' => 'success',
+        'message' => 'Project Published Successfully!'
+    ]);
+  
+    $this->emit('close-banner');
+
+    }
+
+    public function sendback(){
+
+        $data=new Remark();
+        $data->project_id=$this->modaldata['id'];
+        $data->user_id=Auth::user()->id;
+        $data->remarks=$this->comments['remarks'];
+        $data->save();
+        $prj=Project::find($this->modaldata['id']);
+        $prj->publish_status=1;
+        $prj->save();
+ 
+        $this->togglesendbackmodal();
+        $this->modalviewonly=!$this->modalviewonly;
+ 
+        $this->dispatchBrowserEvent('banner-message', [
+         'style' => 'success',
+         'message' => 'Project Send Back to HOD Successfully!'
+     ]);
+   
+     $this->emit('close-banner');
+ 
+     }
+
+    
+
     public function openpublishmodal()
     {
+        
+        Validator::make($this->comments, [
+            'remarks' => ['required', 'string', ],
+                   ])->validate();
+        
         $this->togglepublishmodal();
+    }
+    public function opensendbackmodal()
+    {
+        
+        Validator::make($this->comments, [
+            'remarks' => ['required', 'string', ],
+                   ])->validate();
+        $this->togglesendbackmodal();
+       
+    }
+    public function togglesendbackmodal()
+    {
+        $this->opensendbackmodal = !$this->opensendbackmodal;
     }
 
     public function togglepublishmodal()

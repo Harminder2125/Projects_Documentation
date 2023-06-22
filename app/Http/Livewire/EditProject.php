@@ -9,6 +9,7 @@ use App\Models\Category;
 use App\Models\Featurebox;
 use App\Models\Featureboxentries;
 use App\Models\Manual;
+use App\Models\Remark;
 
 use App\Models\ProjectStatus;
 use Illuminate\Support\Facades\Validator;
@@ -212,7 +213,7 @@ class EditProject extends Component
     }
     public function getFeatureBoxData($featurebox)
     {
-$this->featurebox['id'] = $featurebox['id'];
+        $this->featurebox['id'] = $featurebox['id'];
         $this->featurebox['title'] = $featurebox['title'];
         $this->featurebox['subtitle'] = $featurebox['subtitle'];
         $this->featurebox['icon'] = $featurebox['icon'];
@@ -235,6 +236,8 @@ $this->featurebox['id'] = $featurebox['id'];
     {
         $project = Project::find($id);
         
+        
+        
         if($project)
         {
             $this->project['id'] = $project->id;
@@ -247,13 +250,14 @@ $this->featurebox['id'] = $featurebox['id'];
             $this->project['launched_by'] = $project->launched_by;
             $this->project['logo_image'] = $project->logo_image;
             $this->project['banner_image'] = $project->banner_image;
-
             $this->project['publish_status'] = $project->publish_status;
         }
         //
 
        
     }
+
+    public $remarksdata=[];
     public function render()
     {
       
@@ -261,7 +265,7 @@ $this->featurebox['id'] = $featurebox['id'];
         $status= ProjectStatus::all();
         $features=Featurebox::where('project_id',$this->project['id'])->get();    
         $this->manuals=Manual::where('project_id',$this->project['id'])->get();
-        
+        $this->remarksdata=Remark::where('project_id',$this->project['id'])->get();
         return view('livewire.admin.edit-project',['categories'=>$categories,'statuslist'=>$status,
         'featureboxes'=>$features,
         

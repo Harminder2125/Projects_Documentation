@@ -5,6 +5,7 @@ use App\Models\Scopes\GroupScope;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use App\Models\Manual;
+use App\Models\Remark;
 
 class Project extends Model
 {
@@ -63,6 +64,11 @@ class Project extends Model
     {
          // Returns only team members
        return $this->hasMany(Manual::class,'project_id','id');
+    }
+    public function getremarks()
+    {
+         // Returns only team members
+       return $this->hasMany(Remark::class,'project_id','id')->orderBy('id');
     }
     
 

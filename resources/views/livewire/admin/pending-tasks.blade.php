@@ -349,7 +349,7 @@
 
             <div>
 
-                <x-jet-validation-errors class="mb-4" />
+                
 
                 <div class="w-full flex gap-x-5 bg-stone-100 rounded-md p-2 mb-2 border-dotted border-2
                          border-orange-600/40">
@@ -530,21 +530,39 @@
                     {{-- <x-sub-title class="text-gray-800 font-semibold">Publish or Send back</x-sub-title> --}}
                     <div class="bg-stone-300 rounded-md p-4 text-xs ">
 
-                        @if(count($modaldata->manuals)==0)
+                        @if(count($modaldata->getremarks)==0)
                         <div class="flex justify-center items-center">
                             No Previous Remarks Available !
                         </div>
+                        @else
+                            @foreach ($modaldata->getremarks as $rem)
+                                <div class="p-2 rounded bg-stone-100 mb-2 flex items-start justify-between">
+                                    <div class="">
+                                    {{$rem->remarks}}
+                                    </div>
+                                    <div class="flex flex-col items-end">
+                                        <div class="font-bold">{{$rem->user->name}}</div>
+
+                                    <div>{{$rem->created_at}}</div>
+                                    </div>
+                                 
+                                 
+                                </div>
+                               
+                            @endforeach
                         @endif
+                        <x-jet-validation-errors class="mb-4" />
                         <div class="mt-6 border-t border-dashed border-stone-500">
                             <x-jet-label for="cap" value="{{ __('Remarks') }}" />
-                            <textarea maxlength=8000 placeholder="Enter Remarks (Maximum 8000 Characters)" required wire:model="" rows="4" class="mt-1 block p-2.5 w-full text-sm text-gray-900  border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"></textarea>
+                            <textarea maxlength=8000 placeholder="Enter Remarks (Maximum 8000 Characters)" required wire:model="comments.remarks" rows="4" class="mt-1 block p-2.5 w-full text-sm text-gray-900  border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"></textarea>
 
 
                             <x-jet-input-error for="cap" class="mt-2" />
                         </div>
+                        
                         <div class="flex justify-end items-end mt-2">
                             <x-success-button class="mr-2" wire:click="openpublishmodal()">Publish Project</x-success-button>
-                            <x-danger-button>Send Back</x-danger-button>
+                            <x-danger-button wire:click="opensendbackmodal()">Send Back</x-danger-button>
 
 
                         </div>
@@ -614,7 +632,7 @@
 
         <x-slot name="content" class="bg-stone-100">
 
-            <div>
+                    
 
 
                 <div class="flex justify-center items-center">
@@ -636,8 +654,61 @@
                             Cancel
                         </x-jet-secondary-button>
 
-                        <x-success-button class="ml-2" wire:click="removeManualEntry()" wire:loading.attr="disabled">
+                        <x-success-button class="ml-2" wire:click="publishproject()" wire:loading.attr="disabled">
                             Publish
+                        </x-success-button>
+
+                    </div>
+
+
+
+
+                </div>
+        </x-slot>
+
+        <x-slot name="footer" class="bg-white">
+
+        </x-slot>
+    </x-jet-confirmation-modal>
+
+     <x-jet-confirmation-modal wire:model="opensendbackmodal">
+
+        <x-slot name="icon">
+            <div class="mx-auto shrink-0 flex items-center justify-center h-12 w-12 rounded-full sm:mx-0 sm:h-10 sm:w-10">
+                <svg class="h-6 w-6 text-gray-900" stroke-width="1.5" stroke="currentColor" fill="none" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M16.5 10.5V6.75a4.5 4.5 0 10-9 0v3.75m-.75 11.25h10.5a2.25 2.25 0 002.25-2.25v-6.75a2.25 2.25 0 00-2.25-2.25H6.75a2.25 2.25 0 00-2.25 2.25v6.75a2.25 2.25 0 002.25 2.25z" />
+                </svg>
+            </div>
+        </x-slot>
+        <x-slot name="title">
+            Send back for Correction 
+
+        </x-slot>
+
+        <x-slot name="subtitle">
+            This action will send back this project to project head
+        </x-slot>
+
+        <x-slot name="content" class="bg-stone-100">
+
+                 
+                <div class="bg-red-600/10 rounded-md border border-red-200 p-4 mt-3 flex flex-col justify-center items-center">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" class="w-12 h-12 stroke-red-500">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M12 9v3.75m9-.75a9 9 0 11-18 0 9 9 0 0118 0zm-9 3.75h.008v.008H12v-.008z" />
+                    </svg>
+
+
+                    <span class="text-red-600 text-2xl"> Are you sure you want to send back project </span>
+                    <span class="text-stone-900 text-2xl"> TEST PROJECT MANAGEMENT SYSTEM</span>
+                    <span class="text-stone-900 text-md"> with following remarks</span>
+                    <span class="text-stone-900 text-2xl"> {{$comments['remarks']}}</span>
+                    <div class="flex mt-6">
+                        <x-jet-secondary-button wire:click="togglesendbackmodal()" wire:loading.attr="disabled">
+                            Cancel
+                        </x-jet-secondary-button>
+
+                        <x-success-button class="ml-2" wire:click="sendback()" wire:loading.attr="disabled">
+                            Send Back
                         </x-success-button>
 
                     </div>

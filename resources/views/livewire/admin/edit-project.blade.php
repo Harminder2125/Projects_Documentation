@@ -1,4 +1,26 @@
 <div>
+
+    <div>
+              @if(count($remarksdata)>0)
+                      
+                            @foreach ($remarksdata as $rem)
+                                <div class="p-2 rounded-md bg-red-700/10 mb-2 flex items-start justify-between">
+                                    <div class="">
+                                    {{$rem->remarks}}
+                                    </div>
+                                    <div class="flex flex-col items-end">
+                                        <div class="font-bold">{{$rem->user->name}}</div>
+
+                                    <div>{{$rem->created_at}}</div>
+                                    </div>
+                                 
+                                 
+                                </div>
+                               
+                            @endforeach
+
+                        @endif
+    </div>
     <x-sub-title class="font-semibold">Basic details</x-sub-title>
     <div class="bg-gray-200 my-2 p-8 rounded-md mb-12">
 
