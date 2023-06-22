@@ -31,7 +31,7 @@ class DatabaseSeeder extends Seeder
            
             ProjectHistorySeeder::class,
             
-            Featureboxentries::class,
+            
             ManualSeeder::class,
             ManualContentSeeder::class,
             ProjectRolesSeeder::class,
@@ -43,7 +43,8 @@ class DatabaseSeeder extends Seeder
             EventsSeeder::class,
             EventsVisibletoSeeder::class,
             RemarksSeeder::class,
-            FeatureboxSeeder::class
+            FeatureboxSeeder::class,
+            Featureboxentries::class
             
         ]);
     }
