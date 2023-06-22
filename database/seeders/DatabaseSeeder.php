@@ -42,7 +42,8 @@ class DatabaseSeeder extends Seeder
             ManualStaticsSeeder::class,
             EventsSeeder::class,
             EventsVisibletoSeeder::class,
-            RemarksSeeder::class
+            RemarksSeeder::class,
+            FeatureboxSeeder::class
             
         ]);
     }
