@@ -13,6 +13,7 @@ class PendingTasks extends Component
 {
     use WithPagination;
     public $modalviewonly = false;
+    public $openpublishmodal = false;
     public $modaldata=null;
     public $featurebox=[];
     public $fetaureboxentries=[];
@@ -45,6 +46,15 @@ class PendingTasks extends Component
         // 'fb'=>$this->featurebox,
         // 'fbe'=>$this->featureboxentries
     ]);
+    }
+    public function openpublishmodal()
+    {
+        $this->togglepublishmodal();
+    }
+
+    public function togglepublishmodal()
+    {
+        $this->openpublishmodal = !$this->openpublishmodal;
     }
      public function getNameInitials($value)
     {
