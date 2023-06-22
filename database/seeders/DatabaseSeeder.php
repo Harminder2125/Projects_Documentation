@@ -30,7 +30,7 @@ class DatabaseSeeder extends Seeder
             ProjectSeeder::class, 
            
             ProjectHistorySeeder::class,
-            Featurebox::class,
+            
             Featureboxentries::class,
             ManualSeeder::class,
             ManualContentSeeder::class,
