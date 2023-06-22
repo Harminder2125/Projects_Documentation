@@ -37,6 +37,13 @@ class EditProject extends Component
         "publish_status"=>0
     ];
     public $manuals = [];
+    public $manualToDelete = [
+        "id"=>"",
+        "title"=>"",
+        "version"=>"",
+        "major_changes"=>"",
+        "has_document_manual"=>""
+    ];
     public $editmanual=[
         'project_id'=>'',
         'title'=>'',
@@ -50,6 +57,7 @@ class EditProject extends Component
    
     public $modaleditmode=false;
     public $modaleditmanual=false;
+    public $manualdeletionmodal = false;
 
     public $modalforapproval = false;
     public $featurebox = [
@@ -132,6 +140,22 @@ class EditProject extends Component
         
 
     }
+    public function toggleManualDeletion()
+    {
+        $this->manualdeletionmodal = !$this->manualdeletionmodal;
+    }
+    public function confirmManualDeletion($manual)
+    {
+       
+        $this->manualToDelete['id'] = $manual['id'];
+        $this->manualToDelete['title'] = $manual['title'];
+        $this->manualToDelete['version'] = $manual['version'];
+        $this->manualToDelete['major_changes'] = $manual['major_changes'];
+        $this->manualToDelete['has_document_manual'] = $manual['has_document_manual'];
+
+
+        $this->toggleManualDeletion();
+    }
     public function saveFeatureBoxEntries()
     {
         Featureboxentries::where('featurebox_id',$this->featurebox['id'])->delete();
@@ -153,8 +177,13 @@ class EditProject extends Component
     public function removeManualEntry($index)
     {
         Manual::find($index)->delete();
+        $this->toggleManualDeletion();
         $this->togglemanualmodal();
-        
+        $this->manualToDelete['id'] = "";
+        $this->manualToDelete['title'] = "";
+        $this->manualToDelete['major_changes'] = "";
+        $this->manualToDelete['has_document_manual'] = "";
+
         $this->dispatchBrowserEvent('banner-message', [
             'style' => 'success',
             'message' => 'Manual deleted Successfully!'
