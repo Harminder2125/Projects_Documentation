@@ -13,7 +13,7 @@ class PendingTasks extends Component
 {
     use WithPagination;
     public $modalviewonly = false;
-    public $modaldata=[];
+    public $modaldata=null;
     public $featurebox=[];
     public $fetaureboxentries=[];
     public function render()

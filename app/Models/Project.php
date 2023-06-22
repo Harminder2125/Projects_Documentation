@@ -4,6 +4,7 @@ namespace App\Models;
 use App\Models\Scopes\GroupScope;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use App\Models\Manual;
 
 class Project extends Model
 {
@@ -56,6 +57,12 @@ class Project extends Model
     {
          // Returns only team members
        return $this->hasMany(Featurebox::class,'project_id','id');
+    }
+
+    public function manuals()
+    {
+         // Returns only team members
+       return $this->hasMany(Manual::class,'project_id','id');
     }
     
 
