@@ -2,11 +2,12 @@
     <div class="w-full xs:px-2">
 
 
-        <div class=" flex flex-row flex-wrap justify-ceter items-center ">
+        <div class=" flex flex-row flex-wrap justify-ceter items-top">
 
-            <div class="w-full bg-white rounded-t-lg flex flex-col justify-between">
+            <div class="w-full bg-white rounded-md flex flex-col justify-between p-3">
 
-
+              
+               
                 @foreach ($newnotifications as $nn)
 
                 <div class="p-3 bg-stone-100 rounded mb-2 w-full flex flex-col">
@@ -18,6 +19,7 @@
                     @endif
                 </div>
                 @endforeach
+               
 
 
 

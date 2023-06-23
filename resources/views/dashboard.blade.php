@@ -69,10 +69,10 @@
 
                 </div>
             </div>
-            <div class="flex border-dashed border-1 border-stone-600 rounded-md">
+            <div class="flex border-dashed border-1 border-stone-600 rounded-md bg-stone-300 p-3 m-3 mt-0">
                 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
-                <div class="w-64 p-3">
+                <div class="w-1/4 p-3">
                     <canvas id="doughnutChart"></canvas>
                     <script>
                         // Get the canvas element by its id
@@ -80,9 +80,9 @@
 
                         // Define the chart data
                         var chartData = {
-                            labels: ['Label 1', 'Label 2', 'Label 3']
+                            labels: ['Created', 'Pending', 'Published']
                             , datasets: [{
-                                data: [30, 50, 20], // Example data for the chart
+                                data: [{{$countcreated}},{{$countpending}}, {{$countpublished}}], // Example data for the chart
                                 backgroundColor: ['#FF6384', '#36A2EB', '#FFCE56'] // Example colors for the chart
                             }]
                         };
@@ -96,8 +96,13 @@
                     </script>
 
                 </div>
-                <div>
-                Notificationk Section</div>
+                <div class="w-full ">
+                <x-main-title class="p-1">Latest Notifications</x-main-title>
+                <div class="w-full rounded-md h-80 overflow-scroll overflow-x-hidden">
+                    
+                     @livewire('notifications')
+                </div>
+                </div>
             </div>
             <div name="pending-section">
                 <x-main-title>Pending Tasks ({{$pending}})</x-main-title>
@@ -277,6 +282,41 @@
 
                     </div>
 
+                </div>
+            </div>
+            <div class="flex border-dashed border-1 border-stone-600 rounded-md bg-stone-300 p-3 m-3 mt-0">
+                <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+                <div class="w-1/4 p-3">
+                    <canvas id="doughnutChart"></canvas>
+                    <script>
+                        // Get the canvas element by its id
+                        var doughnutChartCanvas = document.getElementById('doughnutChart').getContext('2d');
+
+                        // Define the chart data
+                        var chartData = {
+                            labels: ['Created', 'Pending', 'Published']
+                            , datasets: [{
+                                data: [{{$countcreated}},{{$countpending}}, {{$countpublished}}], // Example data for the chart
+                                backgroundColor: ['#FF6384', '#36A2EB', '#FFCE56'] // Example colors for the chart
+                            }]
+                        };
+
+                        // Create the doughnut chart
+                        var doughnutChart = new Chart(doughnutChartCanvas, {
+                            type: 'doughnut'
+                            , data: chartData
+                        });
+
+                    </script>
+
+                </div>
+                <div class="w-full ">
+                <x-main-title class="p-1">Latest Notifications</x-main-title>
+                <div class="w-full rounded-md h-80 overflow-scroll overflow-x-hidden">
+                    
+                     @livewire('notifications')
+                </div>
                 </div>
             </div>
             <div name="pending-section">
