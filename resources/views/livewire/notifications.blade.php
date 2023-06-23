@@ -6,7 +6,7 @@
 
             <div class="w-full bg-white rounded-md flex flex-col justify-between p-3">
 
-              
+               
                
                 @foreach ($newnotifications as $nn)
 

@@ -98,7 +98,7 @@
                 </div>
                 <div class="w-full ">
                 <x-main-title class="p-1">Latest Notifications</x-main-title>
-                <div class="w-full rounded-md h-80 overflow-scroll overflow-x-hidden">
+                <div class="w-full rounded-md max-h-80 overflow-scroll overflow-x-hidden">
                     
                      @livewire('notifications')
                 </div>
@@ -313,7 +313,7 @@
                 </div>
                 <div class="w-full ">
                 <x-main-title class="p-1">Latest Notifications</x-main-title>
-                <div class="w-full rounded-md h-80 overflow-scroll overflow-x-hidden">
+                <div class="w-full rounded-md max-h-80 overflow-scroll overflow-x-hidden">
                     
                      @livewire('notifications')
                 </div>
