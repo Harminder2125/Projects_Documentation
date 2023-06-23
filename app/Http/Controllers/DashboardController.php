@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\User;
 use App\Models\Project;
+use App\Models\ProjectTeamMembers;
 use App\Models\ManualContent;
 use Illuminate\Support\Facades\Gate;
 use Livewire\Livewire;
@@ -15,20 +16,64 @@ class DashboardController extends Controller
     public function index()
     {
         $pending_tasks_count = Project::where('Publish_status',1)->orWhere('Publish_status',2)->count();
-        
+        $prjdata=[];
         if(Auth::user()->isAdmin())
         {
             $$pending_tasks_count  = Project::whereIn('publish_status', [1, 2])->count();
-            
+            $countcreated=Project::where('group_id',Auth::user()->group_id)->where('publish_status','1')->get()->count();
+            $countpending=Project::where('group_id',Auth::user()->group_id)->where('publish_status','2')->get()->count();
+            $countpublished=Project::where('group_id',Auth::user()->group_id)->where('publish_status','3')->get()->count();
+            $x=Project::where('group_id',Auth::user()->group_id)->get();
+            $t=0;
+            foreach ($x as $prj) {
+                $t+=$prj->manuals->count();
+            }
+            $countmanual=$t;
+            // dd($t);
         }
+
+
         else
         {
             $pending_tasks_count  = Project::whereIn('publish_status', [1, 2])->whereHas('team',function($query){
 
                 $query->where('user_id',Auth::user()->id)->where('projectrole_id',1);
             })->count();
+            
+            $x=ProjectTeamMembers::where('projectrole_id','=','1')->where('user_id','=',Auth::user()->id)->get();
+            $countcreated=0;
+            $countpending=0;
+            $countpublished=0;
+            $countmanual=0;
+            foreach($x as $prj){
+                if($prj->project->publish_status==1)
+                {
+                    $countcreated++;
+                }
+                else if($prj->project->publish_status==2)
+                {
+                    $countpending++;
+                }
+                else if($prj->project->publish_status==3)
+                {
+                    $countpublished++;
+                }
+
+                if($prj->project->manuals!=null)
+                 $countmanual+=$prj->project->manuals->count();
+            }
+            
+           
+
+          
         }
-        return view('dashboard',["pending"=>$pending_tasks_count]);
+
+        return view('dashboard',["pending"=>$pending_tasks_count,
+        "countcreated"=>$countcreated,
+        "countpending"=>$countpending,
+        "countpublished"=>$countpublished,
+        "countmanual"=>$countmanual
+        ]);
     }
     
     public function groups()

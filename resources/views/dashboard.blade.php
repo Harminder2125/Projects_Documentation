@@ -19,10 +19,10 @@
 
                     <div class="p-3 h-full bg-white rounded-t-lg flex flex-row justify-between">
 
-                        <h1>Project Heads</h1>
+                        <h1>Project Inbox</h1>
                         <div class=" animate-bounce bg-pink-900 rounded-full p-2 w-12 h-12 flex justify-center items-center">
 
-                            <h1 class="text-sm text-white">25</h1>
+                            <h1 class="text-sm text-white"> {{$countcreated}}</h1>
 
                         </div>
 
@@ -33,10 +33,10 @@
 
                     <div class="p-3 h-full bg-white rounded-t-lg flex flex-row justify-between">
 
-                        <h1>Registered Users</h1>
+                        <h1>Project Sent for Approval</h1>
                         <div class="animate-bounce bg-orange-700 rounded-full p-2 w-12 h-12 flex justify-center items-center">
 
-                            <h1 class="text-sm text-white">103</h1>
+                            <h1 class="text-sm text-white">{{$countpending}}</h1>
 
                         </div>
 
@@ -47,9 +47,9 @@
 
                     <div class="p-3 h-full bg-white rounded-t-lg flex flex-row justify-between">
 
-                        <h1>Added Projects</h1>
+                        <h1>Project Published</h1>
                         <div class="animate-bounce bg-fuchsia-900 rounded-full p-2 w-12 h-12 flex justify-center items-center">
-                            <h1 class="text-sm text-white">1053</h1>
+                            <h1 class="text-sm text-white">{{$countpublished}}</h1>
 
                         </div>
 
@@ -62,12 +62,42 @@
                     <div class="p-3 h-full bg-white rounded-t-lg flex flex-row justify-between">
                         <h1 class="text-sm font-inter font-bold text-gray-600">Uploaded Manuals</h1>
                         <div class="animate-bounce bg-indigo-900 rounded-full p-2 w-12 h-12 flex justify-center items-center">
-                            <h1 class="text-sm text-white">4556</h1>
+                            <h1 class="text-sm text-white">{{$countmanual}}</h1>
                         </div>
 
                     </div>
 
                 </div>
+            </div>
+            <div class="flex border-dashed border-1 border-stone-600 rounded-md">
+                <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+                <div class="w-64 p-3">
+                    <canvas id="doughnutChart"></canvas>
+                    <script>
+                        // Get the canvas element by its id
+                        var doughnutChartCanvas = document.getElementById('doughnutChart').getContext('2d');
+
+                        // Define the chart data
+                        var chartData = {
+                            labels: ['Label 1', 'Label 2', 'Label 3']
+                            , datasets: [{
+                                data: [30, 50, 20], // Example data for the chart
+                                backgroundColor: ['#FF6384', '#36A2EB', '#FFCE56'] // Example colors for the chart
+                            }]
+                        };
+
+                        // Create the doughnut chart
+                        var doughnutChart = new Chart(doughnutChartCanvas, {
+                            type: 'doughnut'
+                            , data: chartData
+                        });
+
+                    </script>
+
+                </div>
+                <div>
+                Notificationk Section</div>
             </div>
             <div name="pending-section">
                 <x-main-title>Pending Tasks ({{$pending}})</x-main-title>
@@ -197,10 +227,12 @@
 
                     <div class="p-3 h-full bg-white rounded-t-lg flex flex-row justify-between">
 
-                        <h1>Project Heads</h1>
+                        <h1>Project Created</h1>
                         <div class=" animate-bounce bg-pink-900 rounded-full p-2 w-12 h-12 flex justify-center items-center">
 
-                            <h1 class="text-sm text-white">25</h1>
+                            <h1 class="text-sm text-white">
+                                {{$countcreated}}
+                            </h1>
 
                         </div>
 
@@ -211,10 +243,10 @@
 
                     <div class="p-3 h-full bg-white rounded-t-lg flex flex-row justify-between">
 
-                        <h1>Registered Users</h1>
+                        <h1>Pending Projects</h1>
                         <div class="animate-bounce bg-orange-700 rounded-full p-2 w-12 h-12 flex justify-center items-center">
 
-                            <h1 class="text-sm text-white">103</h1>
+                            <h1 class="text-sm text-white"> {{$countpending}}</h1>
 
                         </div>
 
@@ -225,9 +257,9 @@
 
                     <div class="p-3 h-full bg-white rounded-t-lg flex flex-row justify-between">
 
-                        <h1>Added Projects</h1>
+                        <h1>Projects Published</h1>
                         <div class="animate-bounce bg-fuchsia-900 rounded-full p-2 w-12 h-12 flex justify-center items-center">
-                            <h1 class="text-sm text-white">1053</h1>
+                            <h1 class="text-sm text-white"> {{$countpublished}}</h1>
 
                         </div>
 
@@ -240,7 +272,7 @@
                     <div class="p-3 h-full bg-white rounded-t-lg flex flex-row justify-between">
                         <h1 class="text-sm font-inter font-bold text-gray-600">Uploaded Manuals</h1>
                         <div class="animate-bounce bg-indigo-900 rounded-full p-2 w-12 h-12 flex justify-center items-center">
-                            <h1 class="text-sm text-white">4556</h1>
+                            <h1 class="text-sm text-white">{{$countmanual}}</h1>
                         </div>
 
                     </div>
