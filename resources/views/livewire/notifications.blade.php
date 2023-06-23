@@ -11,11 +11,11 @@
                 @foreach ($newnotifications as $nn)
 
                 <div class="p-3 bg-stone-100 rounded mb-2 w-full flex flex-col">
-                    <div wire:click="onseen({{ $nn->id }})" class="cursor-pointer{{$nn->seen==0?" font-bold":""}}" > {{ $nn->Events->payload }}</div>
+                    <div wire:click="onseen({{ $nn->id }})" class="cursor-pointer {{$nn->seen==0?" font-bold text-purple-700":""}}" > {{ $nn->Events->payload }}</div>
                     
-                    
+                   
                     @if ($nn->Events->created_at)
-                    <div class="text-right text-sm  text-stone-500"> {{ $nn->Events->created_at->diffForHumans() }}</div>
+                    <div class="text-right text-sm "> {{ $nn->Events->created_at->diffForHumans() }}</div>
                     @endif
                 </div>
                 @endforeach
