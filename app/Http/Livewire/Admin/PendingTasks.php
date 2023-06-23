@@ -8,6 +8,9 @@ use App\Models\Featurebox;
 use App\Models\Featureboxentries;
 use App\Models\Remark;
 use Livewire\WithPagination;
+use App\Models\EventsVisibleto;
+use App\Models\Events;
+use App\Models\ProjectTeamMembers;
 use Illuminate\Support\Facades\Validator;
 use Auth;
 
@@ -90,6 +93,21 @@ class PendingTasks extends Component
         $prj=Project::find($this->modaldata['id']);
         $prj->publish_status=1;
         $prj->save();
+
+        $proj=Project::find($this->modaldata['id']);
+       $event =  new Events();
+       $event->payload=Auth::user()->name.'(empcode:'.Auth::user()->empcode.') has sent back   the project with title '.$proj->title;
+       $event->save();
+    $lastevent=$event->id;
+       $visibleto=ProjectTeamMembers::all()->where('project_id','=',$this->modaldata['id'])->where('projectrole_id','=',1);
+       
+       foreach($visibleto as $vis)
+       {
+        $EventsVisibleto=new EventsVisibleto();
+        $EventsVisibleto->event_id=$lastevent;
+        $EventsVisibleto->user_id=$vis->user_id;
+        $EventsVisibleto->save();
+       }
  
         $this->togglesendbackmodal();
         $this->modalviewonly=!$this->modalviewonly;
