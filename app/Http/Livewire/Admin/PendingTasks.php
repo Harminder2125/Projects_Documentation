@@ -10,6 +10,7 @@ use App\Models\Remark;
 use Livewire\WithPagination;
 use App\Models\EventsVisibleto;
 use App\Models\Events;
+use App\Models\User;
 use App\Models\ProjectTeamMembers;
 use Illuminate\Support\Facades\Validator;
 use Auth;
@@ -71,12 +72,52 @@ class PendingTasks extends Component
        $prj->publish_status=3;
        $prj->save();
 
+       $proj=Project::find($this->modaldata['id']);
+       $event =  new Events();
+       $event->payload=Auth::user()->name.'(empcode:'.Auth::user()->empcode.') has Published  the project with title '.$proj->title;
+       $event->save();
+    $lastevent=$event->id;
+       $visibleto=User::where('group_id','=',Auth::user()->group_id)->get();
+       
+       foreach($visibleto as $vis)
+       {
+        $EventsVisibleto=new EventsVisibleto();
+        $EventsVisibleto->event_id=$lastevent;
+        $EventsVisibleto->user_id=$vis->id;
+        $EventsVisibleto->save();
+       }
+
        $this->togglepublishmodal();
        $this->modalviewonly=!$this->modalviewonly;
 
        $this->dispatchBrowserEvent('banner-message', [
         'style' => 'success',
         'message' => 'Project Published Successfully!'
+    ]);
+  
+    $this->emit('close-banner');
+
+    }
+
+    public function sendreminder($id){
+        $proj=Project::find($id);
+       $event =  new Events();
+       $event->payload=Auth::user()->name.'(empcode:'.Auth::user()->empcode.') has sent Reminder to Update the project with title '.$proj->title;
+       $event->save();
+    $lastevent=$event->id;
+       $visibleto=ProjectTeamMembers::all()->where('project_id','=',$id)->where('projectrole_id','=',1);
+       
+       foreach($visibleto as $vis)
+       {
+        $EventsVisibleto=new EventsVisibleto();
+        $EventsVisibleto->event_id=$lastevent;
+        $EventsVisibleto->user_id=$vis->user_id;
+        $EventsVisibleto->save();
+       }
+
+       $this->dispatchBrowserEvent('banner-message', [
+        'style' => 'success',
+        'message' => 'Reminder Sent Successfully'
     ]);
   
     $this->emit('close-banner');

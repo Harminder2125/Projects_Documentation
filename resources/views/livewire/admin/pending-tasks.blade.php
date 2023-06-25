@@ -293,7 +293,7 @@
                 <div class="flex justify-center items-center py-2 pt-4 w-full">
                     @if(Auth::user()->isAdmin())
                     @if($prj->publish_status == 1)
-                    <x-secondary-button class="!px-2 !py-2 !text-xs">Send Reminder</x-secondary-button>
+                    <x-secondary-button wire:click="sendreminder({{$prj->id}})" class="!px-2 !py-2 !text-xs">Send Reminder</x-secondary-button>
                     @elseif($prj->publish_status ==2)
                     <x-success-button wire:click="openModal({{$prj}})" class="!px-2 !py-2 !text-xs mr-1">View Project Details</x-success-button>
 

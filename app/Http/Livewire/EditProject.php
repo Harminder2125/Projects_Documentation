@@ -10,6 +10,9 @@ use App\Models\Featurebox;
 use App\Models\Featureboxentries;
 use App\Models\Manual;
 use App\Models\Remark;
+use App\Models\EventsVisibleto;
+use App\Models\Events;
+use App\Models\User;
 
 use App\Models\ProjectStatus;
 use Illuminate\Support\Facades\Validator;
@@ -323,6 +326,22 @@ class EditProject extends Component
         $project = Project::find($this->project['id']);
         $project->publish_status = 2;
         $project->save();
+
+        
+       $event =  new Events();
+       $event->payload=Auth::user()->name.'(empcode:'.Auth::user()->empcode.') has submitted  the project with title '.$project->title.' for Approval';
+       $event->save();
+    $lastevent=$event->id;
+       $visibleto=User::where('group_id','=',Auth::user()->group_id)->where('role_id','=',2)->get();
+       
+       foreach($visibleto as $vis)
+       {
+        $EventsVisibleto=new EventsVisibleto();
+        $EventsVisibleto->event_id=$lastevent;
+        $EventsVisibleto->user_id=$vis->id;
+        $EventsVisibleto->save();
+       }
+
         $this->dispatchBrowserEvent('banner-message', [
             'style' => 'success',
             'message' => 'Project Submitted to Admin for Approval!'
