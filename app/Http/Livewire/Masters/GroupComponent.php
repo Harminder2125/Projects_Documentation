@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Livewire;
+namespace App\Http\Livewire\Masters;
 
 use Livewire\Component;
 use Illuminate\Support\Facades\Validator;
@@ -22,8 +22,8 @@ class GroupComponent extends Component
         $groups = Group::when($this->searchGroup,function($query, $searchGroup){
             return $query->where('name','LIKE',"%$this->searchGroup%");
      })->orderBy('id','DESC')->paginate(6);
-     $groups->withPath('/groups');
-        return view('livewire.group-component',[
+     $groups->withPath('/masters/group');
+        return view('livewire.masters.group-component',[
             'allgroups'=>$groups,
         ]);
     }
@@ -47,7 +47,11 @@ class GroupComponent extends Component
         ]);
       
         $this->emit('close-banner');
-        $this->group=[];
+        $this->group=[
+            "id"=>"",
+            "name"=>"",
+            "code"=>""
+        ];
     }
      public function openGroupForEditing($id)
     {
@@ -62,7 +66,7 @@ class GroupComponent extends Component
     public function cancelEditMode()
     {
         $this->editmode = false;
-        $this->group=[];
+        $this->group=["id"=>"","name"=>"","code"=>"",];
     }
     public function updateGroup($id)
     {
@@ -88,20 +92,22 @@ class GroupComponent extends Component
     }
      public function openGroupForDeletion($id)
     {
-        
+       
         $editgroup = Group::find($id);
+       
         $this->group['id'] = $id;
         $this->group['name'] = $editgroup->name;
         $this->group['code'] = $editgroup->code;
+       
         $this->toggle('Deletion');
 
     }
      public function deleteGroup($id)
     {
-        
+      
         $group_delete = Group::find($id);
         $group_delete->delete();
-        
+     
         $this->toggle('Deletion');
         $this->dispatchBrowserEvent('banner-message', [
             'style' => 'danger',

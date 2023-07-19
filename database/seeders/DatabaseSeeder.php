@@ -24,16 +24,19 @@ class DatabaseSeeder extends Seeder
             GroupSeeder::class,
             RoleSeeder::class,
             UserSeeder::class,
+          
             PermissionSeeder::class,
             CategorySeeder::class,
             ProjectStatusSeeder::class ,   
             ProjectSeeder::class, 
            
-            ProjectHistorySeeder::class,
+           // ProjectHistorySeeder::class,
             
             
-            ManualSeeder::class,
-            ManualContentSeeder::class,
+           // ManualSeeder::class,
+
+           // ManualContentSeeder::class,
+
             ProjectRolesSeeder::class,
             ProjectTeamMembersSeeder::class,
             PrivilegesSeeder::class,

@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Livewire;
+namespace App\Http\Livewire\Masters;
 
 use Livewire\Component;
 use Illuminate\Support\Facades\Validator;
@@ -23,9 +23,9 @@ class Categories extends Component
         return $query->where('name','LIKE',"%$this->searchCategory%");
         })->orderBy('id','DESC')->paginate(5);
 
-        $categories->withPath('/categories');
+        $categories->withPath('masters/categories');
 
-        return view('livewire.category',[
+        return view('livewire.masters.category',[
             'categories'=>$categories,
         ]);
     }

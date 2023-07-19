@@ -76,10 +76,7 @@ class DashboardController extends Controller
         ]);
     }
     
-    public function groups()
-    {
-        return view('groups');
-    }
+   
     public function assignRoles()
     {
        
@@ -109,11 +106,7 @@ class DashboardController extends Controller
     {
         return view('team');
     }
-    public function categories()
-    {
-        return view('categories');
-    }
-
+   
     public function manual($id)
     {
         $manual =  ManualContent::where("manual_id","=",$id)->where("parent_id","=",null)->get();

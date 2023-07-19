@@ -1,5 +1,5 @@
 <div>
-    <div class="w-full {{$editmode?'bg-orange-200':'bg-gray-300'}} p-6 rounded-sm shadow-sm">
+    <div class="w-full {{$editmode?'bg-red-900/10':'bg-stone-200'}} p-6 rounded-sm shadow-sm">
         <x-jet-validation-errors class="mb-4" />
         <div class="w-full  flex">
             <form method="POST" class="w-full flex justify-center items-center">
@@ -18,21 +18,21 @@
                 </div>
             </form>
 
-            @if($editmode) <x-jet-button wire:click="updateGroup({{$group['id']}})" class=" mr-2 h-12 bg-orange-400 hover:bg-orange-500  focus:border-green-700 focus:ring focus:ring-green-300 active:bg-green-600 "><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5 mr-2">
+            @if($editmode) <x-primary-button wire:click="updateGroup({{$group['id']}})"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5 mr-2">
                     <path stroke-linecap="round" stroke-linejoin="round" d="M19 7.5v3m0 0v3m0-3h3m-3 0h-3m-2.25-4.125a3.375 3.375 0 11-6.75 0 3.375 3.375 0 016.75 0zM4 19.235v-.11a6.375 6.375 0 0112.75 0v.109A12.318 12.318 0 0110.374 21c-2.331 0-4.512-.645-6.374-1.766z" />
                 </svg>
-                Update</x-jet-button>
-            <x-jet-button wire:click="cancelEditMode" class="h-12 bg-red-600 hover:bg-red-700  focus:border-green-700 focus:ring focus:ring-green-300 active:bg-green-600 "><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5 mr-2">
+                Update</x-primary-button>
+            <x-dark-button wire:click="cancelEditMode" class="ml-2"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5">
                     <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
-                </svg></x-jet-button>
+                </svg></x-dark-button>
 
             @else
 
-            <x-jet-button wire:click="addGroup" class="h-12 bg-green-600 hover:bg-green-800  focus:border-green-700 focus:ring focus:ring-green-300 active:bg-green-600 "><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5 mr-2">
+            <x-primary-button wire:click="addGroup"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5 mr-2">
                     <path stroke-linecap="round" stroke-linejoin="round" d="M19 7.5v3m0 0v3m0-3h3m-3 0h-3m-2.25-4.125a3.375 3.375 0 11-6.75 0 3.375 3.375 0 016.75 0zM4 19.235v-.11a6.375 6.375 0 0112.75 0v.109A12.318 12.318 0 0110.374 21c-2.331 0-4.512-.645-6.374-1.766z" />
                 </svg>
 
-                Add</x-jet-button>
+                Add</x-primary-button>
             @endif
 
 
@@ -51,6 +51,7 @@
             </h1>
             <p class="text-xl">Groups and States Registered</p>
         </div>
+
         <div class="w-3/5 flex flex-col pl-5">
             <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
 
@@ -94,14 +95,14 @@
                         <td class="px-6 py-4">{{$group['code']}}</td>
 
                         <td class="px-6 py-4 flex">
-                            <x-jet-button wire:click="openGroupForEditing({{$group['id']}})" class="bg-blue-500 hover:bg-blue-700 mr-2">
+                            <x-dark-button wire:click="openGroupForEditing({{$group['id']}})" class="mr-2">
                                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-4 h-4">
                                     <path stroke-linecap="round" stroke-linejoin="round" d="M16.862 4.487l1.687-1.688a1.875 1.875 0 112.652 2.652L10.582 16.07a4.5 4.5 0 01-1.897 1.13L6 18l.8-2.685a4.5 4.5 0 011.13-1.897l8.932-8.931zm0 0L19.5 7.125M18 14v4.75A2.25 2.25 0 0115.75 21H5.25A2.25 2.25 0 013 18.75V8.25A2.25 2.25 0 015.25 6H10" />
                                 </svg>
 
 
 
-                            </x-jet-button>
+                            </x-dark-button>
 
 
 
@@ -154,20 +155,25 @@
         <x-slot name="title">
             Delete Group?
         </x-slot>
+        <x-slot name="subtitle">
+            This action is irreversible
+        </x-slot>
+
 
         <x-slot name="content">
             <div class="pr-10">
                 <h2>Are you sure you want to permanently delete this group from the system.</h2>
             </div>
             <div class="w-full">
-                <table class="w-1/2 border-separate mt-2">
+
+                <table class="border-separate mt-2">
                     <tr>
-                        <th class="w-1/2 bg-red-500 text-red-50  p-2">Name</th>
-                        <td class="w-1/2 text-red-500 bg-red-50 p-2 line-through">{{$group['name']}}</td>
+                        <th class="w-1/2 bg-red-900 text-red-50  p-2">Name</th>
+                        <td class="w-1/2 text-red-700 bg-red-50 p-2 line-through">{{$this->group['name']}}</td>
                     </tr>
                     <tr>
-                        <th class="w-1/2 bg-red-500 text-red-50  p-2">Code</th>
-                        <td class="w-1/2 text-red-500 bg-red-50 p-2 line-through">{{$group['code']}}</td>
+                        <th class="w-1/2 bg-red-900 text-red-50  p-2">Code</th>
+                        <td class="w-1/2 text-red-700 bg-red-50 p-2 line-through">{{$this->group['code']}}</td>
                     </tr>
 
                 </table>
@@ -179,7 +185,7 @@
                 Cancel
             </x-jet-secondary-button>
 
-            <x-jet-danger-button class="ml-2" wire:click="deleteGroup({{$group['id']}})" wire:loading.attr="disabled">
+            <x-jet-danger-button class="ml-2" wire:click="deleteGroup({{$this->group['id']}})" wire:loading.attr="disabled">
                 delete it !
             </x-jet-danger-button>
         </x-slot>

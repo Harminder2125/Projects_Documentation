@@ -5,6 +5,8 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\Controller;
+
 
 
 
@@ -34,12 +36,11 @@ Route::middleware([
 ])->group(function () {
 
     Route::get('/dashboard',[DashboardController::class,'index'])->name('dashboard');
-    Route::get('/groups',[DashboardController::class,'groups'])->name('groups');
+
     Route::get('/role/assign',[DashboardController::class,'assignRoles'])->name('assign_roles');
     Route::get('/project/create',[DashboardController::class,'projectcreate'])->name('projectcreate');
     Route::get('/project/timeline/{id}',[DashboardController::class,'projecttimeline'])->name('projecttimeline');
 
-    Route::get('/categories',[DashboardController::class,'categories'])->name('categories');
 
     Route::get('/team',[DashboardController::class,'team'])->name('team');
 
@@ -68,6 +69,13 @@ Route::middleware([
     //PRIVELEGES ROUTES
     Route::get('/privileges/administrative',[DashboardController::class,'administrative_privileges'])->name('admin-privileges');
     Route::get('/privileges/project',[DashboardController::class,'project_privileges'])->name('project-privileges');
+
+
+    //Masters Routes
+    Route::get('/masters/group',[Controller::class,'groupmaster'])->name('groupmaster');
+    Route::get('/masters/role',[Controller::class,'rolemaster'])->name('rolemaster');
+    Route::get('/masters/categories',[Controller::class,'categoriesmaster'])->name('categoriesmaster');
+
      
 
     
